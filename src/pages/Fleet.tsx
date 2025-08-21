@@ -13,6 +13,12 @@ import {
   CheckCircle,
   Phone
 } from "lucide-react";
+import partyBus40 from "@/assets/party-bus-40.jpg";
+import partyBus25 from "@/assets/party-bus-25.jpg";
+import stretchLimo from "@/assets/stretch-limo.jpg";
+import partyVan15 from "@/assets/party-van-15.jpg";
+import suvLimo from "@/assets/suv-limo.jpg";
+import miniBus12 from "@/assets/mini-bus-12.jpg";
 
 const Fleet = () => {
   const vehicles = [
@@ -21,7 +27,7 @@ const Fleet = () => {
       name: "Luxury Party Bus 40",
       type: "Party Bus",
       capacity: "Up to 40 passengers",
-      image: "/placeholder.svg",
+      image: partyBus40,
       features: [
         "Premium leather seating",
         "LED lighting system", 
@@ -39,7 +45,7 @@ const Fleet = () => {
       name: "Executive Party Bus 25",
       type: "Party Bus",
       capacity: "Up to 25 passengers",
-      image: "/placeholder.svg",
+      image: partyBus25,
       features: [
         "Luxury leather seating",
         "Color-changing LED lights",
@@ -56,7 +62,7 @@ const Fleet = () => {
       name: "Stretch Limousine",
       type: "Limousine", 
       capacity: "Up to 10 passengers",
-      image: "/placeholder.svg",
+      image: stretchLimo,
       features: [
         "Plush leather interior",
         "Mood lighting",
@@ -73,7 +79,7 @@ const Fleet = () => {
       name: "Party Van 15",
       type: "Party Van",
       capacity: "Up to 15 passengers", 
-      image: "/placeholder.svg",
+      image: partyVan15,
       features: [
         "Comfortable seating",
         "Sound system",
@@ -90,7 +96,7 @@ const Fleet = () => {
       name: "Executive SUV Limo",
       type: "SUV Limo",
       capacity: "Up to 20 passengers",
-      image: "/placeholder.svg", 
+      image: suvLimo,
       features: [
         "Executive seating",
         "Premium entertainment",
@@ -107,7 +113,7 @@ const Fleet = () => {
       name: "Mini Party Bus 12",
       type: "Mini Bus",
       capacity: "Up to 12 passengers",
-      image: "/placeholder.svg",
+      image: miniBus12,
       features: [
         "Intimate setting", 
         "Quality sound system",
