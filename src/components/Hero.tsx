@@ -46,11 +46,11 @@ const Hero = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Button variant="accent" size="xl" className="shadow-glow">
+              <Button variant="accent" size="xl" className="shadow-glow opacity-100">
                 <Calendar className="mr-2 h-5 w-5" />
                 Book Now
               </Button>
-              <Button variant="outline" size="xl" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-foreground">
+              <Button variant="hero" size="xl" className="bg-white/20 text-white border-2 border-white/40 hover:bg-white hover:text-foreground opacity-100 backdrop-blur-sm">
                 View Fleet
               </Button>
             </div>
