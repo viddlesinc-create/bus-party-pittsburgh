@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -43,6 +44,7 @@ const Blog = () => {
     author: "Pittsburgh Party Bus Team"
   };
 
+
   const blogPosts = [
     {
       title: "Top 10 Events to Book a Party Bus For in Pittsburgh",
@@ -51,7 +53,8 @@ const Blog = () => {
       category: "Event Planning",
       date: "March 12, 2024",
       readTime: "6 min read",
-      icon: Calendar
+      icon: Calendar,
+      slug: "top-events-pittsburgh"
     },
     {
       title: "Party Bus vs. Limo: Which is Best for Your Group?",
@@ -60,7 +63,8 @@ const Blog = () => {
       category: "Vehicle Guide",
       date: "March 10, 2024",
       readTime: "5 min read",
-      icon: Car
+      icon: Car,
+      slug: "party-bus-vs-limo"
     },
     {
       title: "Bachelor & Bachelorette Party Bus Ideas in Pittsburgh", 
@@ -69,7 +73,8 @@ const Blog = () => {
       category: "Event Ideas",
       date: "March 8, 2024",
       readTime: "7 min read",
-      icon: Users
+      icon: Users,
+      slug: "bachelor-bachelorette-ideas"
     },
     {
       title: "Wedding Transportation: Making Your Day Perfect",
@@ -78,7 +83,8 @@ const Blog = () => {
       category: "Wedding Tips",
       date: "March 5, 2024",
       readTime: "9 min read",
-      icon: Heart
+      icon: Heart,
+      slug: "wedding-transportation"
     },
     {
       title: "Corporate Event Transportation: Impress Your Team",
@@ -87,7 +93,8 @@ const Blog = () => {
       category: "Corporate",
       date: "March 3, 2024",
       readTime: "6 min read",
-      icon: Briefcase
+      icon: Briefcase,
+      slug: "corporate-event-transportation"
     },
     {
       title: "Concert Party Bus: The Ultimate Group Experience",
@@ -96,7 +103,8 @@ const Blog = () => {
       category: "Entertainment",
       date: "February 28, 2024",
       readTime: "5 min read",
-      icon: Music
+      icon: Music,
+      slug: "concert-party-bus"
     },
     {
       title: "Prom Transportation Safety: Parents' Peace of Mind",
@@ -105,7 +113,8 @@ const Blog = () => {
       category: "Safety",
       date: "February 25, 2024",
       readTime: "7 min read",
-      icon: GraduationCap
+      icon: GraduationCap,
+      slug: "prom-transportation-safety"
     },
     {
       title: "Party Bus Safety Tips for a Fun Night Out",
@@ -114,7 +123,8 @@ const Blog = () => {
       category: "Safety Guide",
       date: "February 22, 2024",
       readTime: "6 min read",
-      icon: Shield
+      icon: Shield,
+      slug: "party-bus-safety-tips"
     },
     {
       title: "How to Get an Accurate Party Bus Estimate Online",
@@ -123,7 +133,8 @@ const Blog = () => {
       category: "Booking Tips",
       date: "February 20, 2024",
       readTime: "4 min read",
-      icon: DollarSign
+      icon: DollarSign,
+      slug: "accurate-party-bus-estimate"
     }
   ];
 
@@ -212,10 +223,12 @@ const Blog = () => {
                   </div>
                 </div>
                 
-                <Button variant="hero" size="lg">
-                  Read Full Article
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
+                <Link to="/blog/party-bus-pricing-guide">
+                  <Button variant="hero" size="lg">
+                    Read Full Article
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </Link>
               </div>
             </div>
           </Card>
@@ -293,10 +306,12 @@ const Blog = () => {
                     </span>
                   </div>
                   
-                  <Button variant="outline" size="sm" className="w-full group-hover:bg-primary group-hover:text-primary-foreground">
-                    Read Article
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
+                  <Link to={`/blog/${post.slug}`}>
+                    <Button variant="outline" size="sm" className="w-full group-hover:bg-primary group-hover:text-primary-foreground">
+                      Read Article
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
                 </CardContent>
               </Card>
             ))}
