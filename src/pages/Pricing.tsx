@@ -23,7 +23,7 @@ const Pricing = () => {
   const pricingTiers = [
     {
       name: "Mini Party Bus (8-12)",
-      hourlyRate: "$75-95",
+      hourlyRate: "$100",
       minimumHours: 3,
       popular: false,
       features: [
@@ -37,7 +37,7 @@ const Pricing = () => {
     },
     {
       name: "Party Van (13-15)",
-      hourlyRate: "$85-105",
+      hourlyRate: "$125",
       minimumHours: 3,
       popular: false,
       features: [
@@ -51,7 +51,7 @@ const Pricing = () => {
     },
     {
       name: "Executive Party Bus (20-25)",
-      hourlyRate: "$125-150",
+      hourlyRate: "$150",
       minimumHours: 4,
       popular: true,
       features: [
@@ -65,7 +65,7 @@ const Pricing = () => {
     },
     {
       name: "Luxury Party Bus (35-40)",
-      hourlyRate: "$150-185",
+      hourlyRate: "$175",
       minimumHours: 4,
       popular: false,
       features: [
@@ -248,7 +248,7 @@ const Pricing = () => {
                 <CardHeader className="text-center">
                   <CardTitle className="text-lg">{tier.name}</CardTitle>
                   <div className="text-2xl font-bold text-accent">{tier.hourlyRate}</div>
-                  <CardDescription>per hour</CardDescription>
+                  <CardDescription>starting per hour</CardDescription>
                   <div className="text-sm text-muted-foreground">
                     {tier.minimumHours} hour minimum
                   </div>

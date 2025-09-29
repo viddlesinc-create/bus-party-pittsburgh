@@ -30,8 +30,7 @@ const Events = () => {
         "Champagne setup",
         "Professional coordination"
       ],
-      popular: true,
-      pricing: "Starting at $125/hour"
+      popular: true
     },
     {
       icon: GraduationCap,
@@ -43,8 +42,7 @@ const Events = () => {
         "Photo opportunities", 
         "Parent peace of mind",
         "Special prom packages"
-      ],
-      pricing: "Starting at $85/hour"
+      ]
     },
     {
       icon: Users,
@@ -56,8 +54,7 @@ const Events = () => {
         "Multiple stop coordination",
         "Late-night availability",
         "Group entertainment"
-      ],
-      pricing: "Starting at $135/hour"
+      ]
     },
     {
       icon: Briefcase,
@@ -69,8 +66,7 @@ const Events = () => {
         "Airport transfers",
         "Meeting coordination", 
         "Corporate billing"
-      ],
-      pricing: "Starting at $115/hour"
+      ]
     },
     {
       icon: Music,
@@ -82,8 +78,7 @@ const Events = () => {
         "Group coordination",
         "Post-event pickup",
         "Designated driver service"
-      ],
-      pricing: "Starting at $95/hour"
+      ]
     },
     {
       icon: Calendar,
@@ -95,8 +90,7 @@ const Events = () => {
         "Multiple venue stops",
         "Party coordination",
         "Special packages"
-      ],
-      pricing: "Starting at $105/hour"
+      ]
     }
   ];
 
@@ -175,7 +169,6 @@ const Events = () => {
                     <event.icon className="h-8 w-8 text-primary-foreground" />
                   </div>
                   <CardTitle className="text-xl">{event.title}</CardTitle>
-                  <div className="text-lg font-semibold text-accent">{event.pricing}</div>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <CardDescription className="text-base">
