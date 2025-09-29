@@ -1,3 +1,5 @@
+import { SEOHead } from "@/components/SEOHead";
+import { FAQSchema } from "@/components/FAQSchema";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -131,8 +133,18 @@ const FAQs = () => {
     }
   ];
 
+
+  // Flatten all FAQs for schema
+  const allFaqs = faqCategories.flatMap(category => category.faqs);
+
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead 
+        title="FAQs - Your Party Bus Questions Answered"
+        description="Get answers to frequently asked questions about party bus rentals in Pittsburgh. Learn about booking, pricing, policies, and what to expect."
+        canonical="/faqs"
+      />
+      <FAQSchema faqs={allFaqs} />
       <Navigation />
       
       {/* Hero Section */}

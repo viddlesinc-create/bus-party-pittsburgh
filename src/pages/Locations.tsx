@@ -1,3 +1,5 @@
+import { SEOHead } from "@/components/SEOHead";
+import { StructuredData, organizationSchema } from "@/components/StructuredData";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -106,6 +108,12 @@ const Locations = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead 
+        title="Service Areas - Pittsburgh Party Bus Coverage"
+        description="Party bus and limousine service throughout Pittsburgh and surrounding areas. Downtown, Oakland, South Side, North Shore, and all Allegheny County locations."
+        canonical="/locations"
+      />
+      <StructuredData data={organizationSchema} />
       <Navigation />
       
       {/* Hero Section */}

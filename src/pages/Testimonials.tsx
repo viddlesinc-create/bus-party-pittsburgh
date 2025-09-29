@@ -1,3 +1,5 @@
+import { SEOHead } from "@/components/SEOHead";
+import { StructuredData } from "@/components/StructuredData";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -137,8 +139,27 @@ const Testimonials = () => {
     { name: "Birthday Parties", count: 94, icon: Camera, color: "bg-yellow-100 text-yellow-600" }
   ];
 
+  const reviewSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Pitt Party Bus",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5.0",
+      "reviewCount": "500",
+      "bestRating": "5",
+      "worstRating": "1"
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead 
+        title="Reviews & Testimonials - 500+ Five Star Reviews"
+        description="Read real reviews from satisfied customers. Over 500 five-star reviews for our party bus and limousine service in Pittsburgh. See why we're #1 rated."
+        canonical="/testimonials"
+      />
+      <StructuredData data={reviewSchema} />
       <Navigation />
       
       {/* Hero Section */}

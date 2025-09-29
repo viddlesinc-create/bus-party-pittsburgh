@@ -32,13 +32,19 @@ export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "name": "Pitt Party Bus",
+  "alternateName": "Pittsburgh Party Bus",
   "description": "Premium party bus and limousine rentals in Pittsburgh, PA. Luxury transportation for weddings, proms, corporate events, and special occasions.",
   "url": "https://pittpartybus.com",
-  "telephone": "+1-412-385-3877",
+  "logo": "https://pittpartybus.com/logo.png",
+  "image": "https://pittpartybus.com/hero-party-bus.jpg",
+  "telephone": "+14123853877",
+  "email": "info@pittpartybus.com",
   "address": {
     "@type": "PostalAddress",
+    "streetAddress": "",
     "addressLocality": "Pittsburgh",
     "addressRegion": "PA",
+    "postalCode": "15222",
     "addressCountry": "US"
   },
   "geo": {
@@ -46,17 +52,85 @@ export const organizationSchema = {
     "latitude": "40.4406",
     "longitude": "-79.9959"
   },
-  "priceRange": "$100-$175 per hour",
-  "areaServed": {
-    "@type": "City",
-    "name": "Pittsburgh"
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday"
+    ],
+    "opens": "00:00",
+    "closes": "23:59"
   },
-  "serviceType": [
-    "Party Bus Rental",
-    "Limousine Service",
-    "Wedding Transportation",
-    "Corporate Transportation",
-    "Prom Transportation"
+  "priceRange": "$100-$175",
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Pittsburgh",
+      "containedInPlace": {
+        "@type": "State",
+        "name": "Pennsylvania"
+      }
+    },
+    {
+      "@type": "City",
+      "name": "Allegheny County"
+    }
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Party Bus and Limousine Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Party Bus Rental",
+          "description": "Luxury party buses for groups of 8-40 passengers"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Wedding Transportation",
+          "description": "Elegant transportation for weddings and special occasions"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Corporate Event Transportation",
+          "description": "Professional group transportation for corporate events"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Prom & Graduation Transportation",
+          "description": "Safe, reliable transportation for students"
+        }
+      }
+    ]
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5.0",
+    "reviewCount": "500",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "paymentAccepted": "Cash, Credit Card, Debit Card",
+  "currenciesAccepted": "USD",
+  "sameAs": [
+    "https://www.facebook.com/pittpartybus",
+    "https://www.instagram.com/pittpartybus"
   ]
 };
 
