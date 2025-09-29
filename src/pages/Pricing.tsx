@@ -72,7 +72,7 @@ const Pricing = () => {
         "Professional chauffeur",
         "State-of-the-art sound",
         "Full bar & ice",
-        "Large dance floor",
+        "Largest Interior Space",
         "Premium amenities"
       ],
       bestFor: "Large groups, special celebrations"
