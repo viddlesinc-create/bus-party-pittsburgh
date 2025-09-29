@@ -1,5 +1,6 @@
-import { createRoot, hydrateRoot } from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom'
+import React from 'react';
+import { hydrateRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/toaster";
@@ -30,9 +31,8 @@ import './index.css';
 
 const queryClient = new QueryClient();
 
-const container = document.getElementById("root")!;
-
-const AppContent = () => (
+hydrateRoot(
+  document.getElementById('root')!,
   <BrowserRouter>
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
@@ -65,12 +65,3 @@ const AppContent = () => (
     </QueryClientProvider>
   </BrowserRouter>
 );
-
-// Check if app was server-rendered
-if (container.innerHTML) {
-  // Hydrate if server-rendered
-  hydrateRoot(container, <AppContent />);
-} else {
-  // Client-side render if not server-rendered
-  createRoot(container).render(<AppContent />);
-}
