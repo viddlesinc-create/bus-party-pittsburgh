@@ -3,129 +3,302 @@ import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { 
   Users, 
-  Music, 
-  Wifi, 
-  GlassWater, 
-  Camera, 
-  Star,
   CheckCircle,
-  Phone
+  Phone,
+  Calendar
 } from "lucide-react";
-import partyBus40 from "@/assets/party-bus-40.jpg";
-import partyBus25 from "@/assets/party-bus-25.jpg";
-import stretchLimo from "@/assets/stretch-limo.jpg";
-import partyVan15 from "@/assets/party-van-15.jpg";
-import suvLimo from "@/assets/suv-limo.jpg";
-import miniBus12 from "@/assets/mini-bus-12.jpg";
+
+// Party Buses
+import partyBus30Ext from "@/assets/party-bus-30-passenger-exterior.jpg";
+import partyBus30Int from "@/assets/party-bus-30-passenger-interior.jpg";
+import partyBus28Ext from "@/assets/party-bus-28-passenger-exterior.jpg";
+import partyBus28Int from "@/assets/party-bus-28-passenger-interior.jpg";
+import partyBus26Ext from "@/assets/party-bus-26-passenger-exterior.jpg";
+import partyBus26Int from "@/assets/party-bus-26-passenger-interior.jpg";
+import partyBus24Ext from "@/assets/party-bus-24-passenger-exterior.jpg";
+import partyBus24Int from "@/assets/party-bus-24-passenger-interior.jpg";
+import partyBus22Ext from "@/assets/party-bus-22-passenger-exterior.jpg";
+import partyBus22Int from "@/assets/party-bus-22-passenger-interior.jpg";
+
+// Mini Party Buses
+import miniPartyBus12Ext from "@/assets/mini-party-bus-12-passenger-exterior.jpg";
+import miniPartyBus12Int from "@/assets/mini-party-bus-12-passenger-interior.jpg";
+import miniPartyBus14Ext from "@/assets/mini-party-bus-14-passenger-exterior.jpg";
+import miniPartyBus14Int from "@/assets/mini-party-bus-14-passenger-interior.jpg";
+
+// Limousines
+import limoLincolnExt from "@/assets/limousine-lincoln-towncar-exterior.jpg";
+import limoLincolnInt from "@/assets/limousine-lincoln-towncar-interior.jpg";
+import limoDenaliExt from "@/assets/limousine-denali-exterior.jpg";
+import limoDenaliInt from "@/assets/limousine-denali-interior.jpg";
+
+// Shuttle Service
+import shuttle23Ext from "@/assets/shuttle-bus-23-passenger-exterior.jpg";
+import shuttle23Int from "@/assets/shuttle-bus-23-passenger-interior.jpg";
+import shuttle14Ext from "@/assets/shuttle-bus-14-passenger-exterior.jpg";
+
+// Private Car
+import expeditionExt from "@/assets/private-car-expedition-exterior.jpg";
+import expeditionInt from "@/assets/private-car-expedition-interior.jpg";
+import continentalExt from "@/assets/private-car-lincoln-continental-exterior.jpg";
+import continentalInt from "@/assets/private-car-lincoln-continental-interior.jpg";
 
 const Fleet = () => {
-  const vehicles = [
-    {
-      id: 1,
-      name: "Luxury Party Bus 40",
-      type: "Party Bus",
-      capacity: "Up to 40 passengers",
-      image: partyBus40,
-      features: [
-        "Premium leather seating",
-        "LED lighting system", 
-        "Premium sound system",
-        "Full bar setup",
-        "Dance floor",
-        "Climate control"
-      ],
-      description: "Our flagship party bus perfect for large groups and special celebrations.",
-      pricing: "From $150/hour",
-      popular: true
-    },
-    {
-      id: 2,
-      name: "Executive Party Bus 25",
-      type: "Party Bus",
-      capacity: "Up to 25 passengers",
-      image: partyBus25,
-      features: [
-        "Luxury leather seating",
-        "Color-changing LED lights",
-        "Bluetooth sound system",
-        "Bar with ice & cups",
-        "Flat screen TVs",
-        "Wi-Fi connectivity"
-      ],
-      description: "Perfect mid-size option for corporate events and medium-sized groups.",
-      pricing: "From $125/hour"
-    },
-    {
-      id: 3,
-      name: "Stretch Limousine",
-      type: "Limousine", 
-      capacity: "Up to 10 passengers",
-      image: stretchLimo,
-      features: [
-        "Plush leather interior",
-        "Mood lighting",
-        "Premium bar setup",
-        "Privacy partition",
-        "Surround sound",
-        "Tinted windows"
-      ],
-      description: "Classic elegance for weddings, proms, and intimate celebrations.",
-      pricing: "From $95/hour"
-    },
-    {
-      id: 4,
-      name: "Party Van 15",
-      type: "Party Van",
-      capacity: "Up to 15 passengers", 
-      image: partyVan15,
-      features: [
-        "Comfortable seating",
-        "Sound system",
-        "LED accent lighting",
-        "Cooler space",
-        "Phone chargers",
-        "A/C & heating"
-      ],
-      description: "Great for smaller groups wanting a fun and affordable party experience.",
-      pricing: "From $85/hour"
-    },
-    {
-      id: 5,
-      name: "Executive SUV Limo",
-      type: "SUV Limo",
-      capacity: "Up to 20 passengers",
-      image: suvLimo,
-      features: [
-        "Executive seating",
-        "Premium entertainment",
-        "Full bar service",
-        "Panoramic roof",
-        "High-end sound",
-        "VIP treatment"
-      ],
-      description: "Ultimate luxury for executive travel and VIP occasions.",
-      pricing: "From $135/hour"
-    },
-    {
-      id: 6,
-      name: "Mini Party Bus 12",
-      type: "Mini Bus",
-      capacity: "Up to 12 passengers",
-      image: miniBus12,
-      features: [
-        "Intimate setting", 
-        "Quality sound system",
-        "Colorful lighting",
-        "Bar area",
-        "Comfortable seating",
-        "Easy entry/exit"
-      ],
-      description: "Perfect for small intimate groups and special occasions.",
-      pricing: "From $75/hour"
-    }
-  ];
+  const fleetCategories = {
+    partyBuses: [
+      {
+        id: 1,
+        name: "30 Passenger Party Bus",
+        capacity: "26-30 Passengers",
+        images: [partyBus30Ext, partyBus30Int],
+        features: [
+          "Premium leather seating",
+          "LED light show system",
+          "High-end sound system",
+          "Full bar with coolers",
+          "Dance floor area",
+          "Climate control"
+        ],
+        description: "Our largest party bus, perfect for big celebrations and events. Features luxurious amenities and plenty of space to party."
+      },
+      {
+        id: 2,
+        name: "28 Passenger Party Bus",
+        capacity: "24-28 Passengers",
+        images: [partyBus28Ext, partyBus28Int],
+        features: [
+          "Luxury leather seating",
+          "Color-changing LED lights",
+          "Premium audio system",
+          "Bar area with ice",
+          "Flat screen TVs",
+          "Bluetooth connectivity"
+        ],
+        description: "Premium party bus ideal for weddings, proms, and corporate events. Top-of-the-line entertainment system."
+      },
+      {
+        id: 3,
+        name: "26 Passenger Party Bus",
+        capacity: "20-26 Passengers",
+        images: [partyBus26Ext, partyBus26Int],
+        features: [
+          "Comfortable leather seating",
+          "Dynamic LED lighting",
+          "Quality sound system",
+          "Bar setup",
+          "Entertainment center",
+          "A/C & heating"
+        ],
+        description: "Great mid-size option for birthday parties, bachelor/bachelorette parties, and special occasions."
+      },
+      {
+        id: 4,
+        name: "24 Passenger Party Bus",
+        capacity: "18-24 Passengers",
+        images: [partyBus24Ext, partyBus24Int],
+        features: [
+          "Plush seating",
+          "LED accent lighting",
+          "Premium speakers",
+          "Cooler space",
+          "Phone charging ports",
+          "Climate controlled"
+        ],
+        description: "Perfect size for medium groups wanting a party atmosphere. Ideal for nights out and celebrations."
+      },
+      {
+        id: 5,
+        name: "22 Passenger Party Bus",
+        capacity: "14-22 Passengers",
+        images: [partyBus22Ext, partyBus22Int],
+        features: [
+          "Comfortable seating",
+          "Colorful LED lights",
+          "Sound system",
+          "Bar area",
+          "Entertainment options",
+          "Easy access"
+        ],
+        description: "Intimate party bus setting perfect for smaller celebrations while still providing the full party experience."
+      }
+    ],
+    miniPartyBuses: [
+      {
+        id: 6,
+        name: "12 Passenger Ford Mini Party Bus",
+        capacity: "12 Passengers",
+        images: [miniPartyBus12Ext, miniPartyBus12Int],
+        features: [
+          "Intimate seating arrangement",
+          "LED lighting",
+          "Quality audio",
+          "Bar setup",
+          "Comfortable interior",
+          "Perfect for small groups"
+        ],
+        description: "Compact party bus perfect for intimate celebrations and small group outings."
+      },
+      {
+        id: 7,
+        name: "14 Passenger Ford Mini Party Bus",
+        capacity: "14 Passengers",
+        images: [miniPartyBus14Ext, miniPartyBus14Int],
+        features: [
+          "Modern interior",
+          "LED lighting system",
+          "Premium sound",
+          "Cooler access",
+          "Charging ports",
+          "Climate control"
+        ],
+        description: "Ideal for small parties, wine tours, and intimate gatherings. All the amenities in a compact package."
+      }
+    ],
+    limousines: [
+      {
+        id: 8,
+        name: "Lincoln Town Car",
+        capacity: "2-6 Passengers",
+        images: [limoLincolnExt, limoLincolnInt],
+        features: [
+          "Luxury leather seats",
+          "Privacy partition",
+          "Premium sound",
+          "Bar service",
+          "Mood lighting",
+          "Professional chauffeur"
+        ],
+        description: "Classic elegance for airport transfers, weddings, and special occasions."
+      },
+      {
+        id: 9,
+        name: "Denali SUV Limo",
+        capacity: "10-14 Passengers",
+        images: [limoDenaliExt, limoDenaliInt],
+        features: [
+          "Executive seating",
+          "Entertainment system",
+          "Full bar setup",
+          "LED lighting",
+          "Premium audio",
+          "Spacious interior"
+        ],
+        description: "Luxury SUV limousine perfect for executive travel and VIP occasions."
+      }
+    ],
+    shuttleService: [
+      {
+        id: 10,
+        name: "23 Passenger Luxury Shuttle",
+        capacity: "Up to 23 Passengers",
+        images: [shuttle23Ext, shuttle23Int],
+        features: [
+          "Comfortable seating",
+          "Climate control",
+          "Large luggage space",
+          "PA system",
+          "Professional driver",
+          "Corporate travel ready"
+        ],
+        description: "Perfect for airport shuttles, corporate events, and group transportation. Ask about split packages!"
+      },
+      {
+        id: 11,
+        name: "14 Passenger Shuttle",
+        capacity: "Up to 14 Passengers",
+        images: [shuttle14Ext],
+        features: [
+          "Comfortable seats",
+          "A/C & heating",
+          "Luggage capacity",
+          "Reliable service",
+          "Professional driver",
+          "Flexible scheduling"
+        ],
+        description: "Ideal for smaller group transportation, airport transfers, and corporate shuttle needs."
+      }
+    ],
+    privateCar: [
+      {
+        id: 12,
+        name: "Ford Expedition",
+        capacity: "Up to 6 Passengers",
+        images: [expeditionExt, expeditionInt],
+        features: [
+          "Luxury SUV comfort",
+          "Spacious interior",
+          "Leather seating",
+          "Climate control",
+          "Entertainment system",
+          "Professional service"
+        ],
+        description: "Executive SUV service for airport transfers, corporate travel, and private transportation."
+      },
+      {
+        id: 13,
+        name: "Lincoln Continental",
+        capacity: "Up to 3 Passengers",
+        images: [continentalExt, continentalInt],
+        features: [
+          "Executive sedan",
+          "Premium comfort",
+          "Quiet ride",
+          "Professional driver",
+          "Business ready",
+          "Airport service"
+        ],
+        description: "Elegant sedan service for business executives, airport transportation, and professional needs."
+      }
+    ]
+  };
+
+  const VehicleCard = ({ vehicle }: { vehicle: any }) => (
+    <Card className="border-border shadow-card-custom hover:shadow-party transition-all duration-300 overflow-hidden">
+      <div className="grid md:grid-cols-2 gap-4 p-6">
+        <div className="space-y-4">
+          {vehicle.images.map((image: string, idx: number) => (
+            <img 
+              key={idx}
+              src={image} 
+              alt={`${vehicle.name} - View ${idx + 1}`}
+              className="w-full h-48 object-cover rounded-lg"
+            />
+          ))}
+        </div>
+        
+        <div className="space-y-4">
+          <div>
+            <h3 className="text-2xl font-bold text-foreground mb-2">{vehicle.name}</h3>
+            <div className="flex items-center text-muted-foreground mb-4">
+              <Users className="h-5 w-5 mr-2" />
+              <span className="text-lg font-semibold">{vehicle.capacity}</span>
+            </div>
+            <p className="text-muted-foreground">{vehicle.description}</p>
+          </div>
+          
+          <div>
+            <h4 className="font-semibold mb-3">Features:</h4>
+            <div className="grid grid-cols-1 gap-2">
+              {vehicle.features.map((feature: string, index: number) => (
+                <div key={index} className="flex items-center space-x-2">
+                  <CheckCircle className="h-4 w-4 text-accent flex-shrink-0" />
+                  <span className="text-sm">{feature}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          <Button variant="accent" className="w-full shadow-glow">
+            <Calendar className="mr-2 h-4 w-4" />
+            Get Quote for This Vehicle
+          </Button>
+        </div>
+      </div>
+    </Card>
+  );
 
   return (
     <div className="min-h-screen bg-background">
@@ -135,92 +308,82 @@ const Fleet = () => {
       <section className="py-20 bg-hero-gradient">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-6xl font-bold text-primary-foreground mb-6">
-            Our Premium Fleet
+            FLEET
           </h1>
           <p className="text-xl text-primary-foreground/90 max-w-3xl mx-auto mb-8">
-            Choose from our diverse collection of luxury party buses, limousines, and specialty vehicles. 
-            Every vehicle is meticulously maintained and equipped with premium amenities.
+            Explore our diverse fleet of luxury vehicles. From intimate limousines to spacious party buses, 
+            we have the perfect vehicle for every occasion.
           </p>
           <Button variant="accent" size="xl" className="shadow-glow">
             <Phone className="mr-2 h-5 w-5" />
-            Get Fleet Quote - (412) 385-3877
+            Call (412) 385-3877
           </Button>
         </div>
       </section>
 
-      {/* Fleet Grid */}
+      {/* Fleet Categories */}
       <section className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Choose Your Perfect Ride
-            </h2>
-            <p className="text-xl text-muted-foreground">
-              From intimate gatherings to large celebrations - we have the right vehicle for every occasion
-            </p>
-          </div>
-
-          <div className="grid lg:grid-cols-2 gap-8">
-            {vehicles.map((vehicle) => (
-              <Card key={vehicle.id} className="border-border shadow-card-custom hover:shadow-party transition-all duration-300 overflow-hidden">
-                <div className="relative">
-                  <img 
-                    src={vehicle.image} 
-                    alt={vehicle.name}
-                    className="w-full h-64 object-cover"
-                  />
-                  {vehicle.popular && (
-                    <Badge className="absolute top-4 left-4 bg-accent text-accent-foreground font-semibold">
-                      Most Popular
-                    </Badge>
-                  )}
-                  <div className="absolute top-4 right-4 bg-background/90 text-foreground px-3 py-1 rounded-full text-sm font-medium">
-                    {vehicle.type}
-                  </div>
-                </div>
-                
-                <CardHeader>
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <CardTitle className="text-2xl">{vehicle.name}</CardTitle>
-                      <CardDescription className="text-lg flex items-center mt-1">
-                        <Users className="h-4 w-4 mr-2" />
-                        {vehicle.capacity}
-                      </CardDescription>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-2xl font-bold text-accent">{vehicle.pricing}</div>
-                    </div>
-                  </div>
-                </CardHeader>
-                
-                <CardContent className="space-y-6">
-                  <p className="text-muted-foreground">{vehicle.description}</p>
-                  
-                  <div>
-                    <h4 className="font-semibold mb-3">Vehicle Features:</h4>
-                    <div className="grid grid-cols-2 gap-2">
-                      {vehicle.features.map((feature, index) => (
-                        <div key={index} className="flex items-center space-x-2">
-                          <CheckCircle className="h-4 w-4 text-accent flex-shrink-0" />
-                          <span className="text-sm">{feature}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                  
-                  <div className="flex flex-col sm:flex-row gap-3">
-                    <Button variant="hero" className="flex-1">
-                      Book This Vehicle
-                    </Button>
-                    <Button variant="outline" className="flex-1">
-                      Get Quote
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          <Tabs defaultValue="party" className="w-full">
+            <TabsList className="grid w-full grid-cols-2 md:grid-cols-5 mb-12">
+              <TabsTrigger value="party" className="text-sm md:text-base">PARTY BUSES</TabsTrigger>
+              <TabsTrigger value="mini" className="text-sm md:text-base">MINI PARTY BUSES</TabsTrigger>
+              <TabsTrigger value="limo" className="text-sm md:text-base">LIMOUSINES</TabsTrigger>
+              <TabsTrigger value="shuttle" className="text-sm md:text-base">SHUTTLE SERVICE</TabsTrigger>
+              <TabsTrigger value="private" className="text-sm md:text-base">PRIVATE CAR</TabsTrigger>
+            </TabsList>
+            
+            <TabsContent value="party" className="space-y-8">
+              <div className="text-center mb-8">
+                <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2">PARTY BUSES</h2>
+                <p className="text-xl text-muted-foreground">22-30 Passengers</p>
+              </div>
+              {fleetCategories.partyBuses.map((vehicle) => (
+                <VehicleCard key={vehicle.id} vehicle={vehicle} />
+              ))}
+            </TabsContent>
+            
+            <TabsContent value="mini" className="space-y-8">
+              <div className="text-center mb-8">
+                <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2">MINI PARTY BUSES</h2>
+                <p className="text-xl text-muted-foreground">Perfect for intimate celebrations</p>
+              </div>
+              {fleetCategories.miniPartyBuses.map((vehicle) => (
+                <VehicleCard key={vehicle.id} vehicle={vehicle} />
+              ))}
+            </TabsContent>
+            
+            <TabsContent value="limo" className="space-y-8">
+              <div className="text-center mb-8">
+                <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2">LIMOUSINES</h2>
+                <p className="text-xl text-muted-foreground">Classic luxury transportation</p>
+              </div>
+              {fleetCategories.limousines.map((vehicle) => (
+                <VehicleCard key={vehicle.id} vehicle={vehicle} />
+              ))}
+            </TabsContent>
+            
+            <TabsContent value="shuttle" className="space-y-8">
+              <div className="text-center mb-8">
+                <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2">SHUTTLE SERVICE</h2>
+                <p className="text-xl text-muted-foreground">Up to 23 Passengers</p>
+                <p className="text-sm text-muted-foreground italic mt-2">*Ask about our split packages to accommodate your shuttle needs!</p>
+              </div>
+              {fleetCategories.shuttleService.map((vehicle) => (
+                <VehicleCard key={vehicle.id} vehicle={vehicle} />
+              ))}
+            </TabsContent>
+            
+            <TabsContent value="private" className="space-y-8">
+              <div className="text-center mb-8">
+                <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2">PRIVATE CAR</h2>
+                <p className="text-xl text-muted-foreground">Executive transportation</p>
+              </div>
+              {fleetCategories.privateCar.map((vehicle) => (
+                <VehicleCard key={vehicle.id} vehicle={vehicle} />
+              ))}
+            </TabsContent>
+          </Tabs>
         </div>
       </section>
 
@@ -249,7 +412,7 @@ const Fleet = () => {
             <Card className="text-center border-border shadow-card-custom">
               <CardHeader>
                 <div className="mx-auto mb-4 p-3 bg-hero-gradient rounded-full w-fit">
-                  <Star className="h-6 w-6 text-primary-foreground" />
+                  <CheckCircle className="h-6 w-6 text-primary-foreground" />
                 </div>
                 <CardTitle>Premium Amenities</CardTitle>
               </CardHeader>
@@ -259,7 +422,7 @@ const Fleet = () => {
                   <li>Premium sound systems</li>
                   <li>Climate control</li>
                   <li>Bluetooth connectivity</li>
-                  <li>Tinted windows</li>
+                  <li>Entertainment centers</li>
                 </ul>
               </CardContent>
             </Card>
@@ -292,15 +455,17 @@ const Fleet = () => {
             Ready to Book Your Perfect Vehicle?
           </h2>
           <p className="text-xl mb-8 opacity-90">
-            Our fleet specialists are standing by to help you choose the perfect vehicle for your event.
+            Contact us today for a custom quote tailored to your event needs.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button variant="luxury" size="xl">
+              <Phone className="mr-2 h-5 w-5" />
               Call (412) 385-3877
             </Button>
             <Button variant="secondary" size="xl">
-              Get Free Fleet Quote
+              <Calendar className="mr-2 h-5 w-5" />
+              Get a Quote
             </Button>
           </div>
         </div>
