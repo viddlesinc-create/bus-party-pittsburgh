@@ -1,3 +1,5 @@
+import { SEOHead } from "@/components/SEOHead";
+import { StructuredData, serviceSchema } from "@/components/StructuredData";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -113,6 +115,16 @@ const Pricing = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead 
+        title="Pricing & Rates - Pittsburgh Party Bus Rental"
+        description="Transparent party bus pricing in Pittsburgh. Mini $100, Party Van $125, Executive $150, Luxury $175 per hour. Free quotes. No hidden fees."
+        canonical="/pricing"
+      />
+      <StructuredData data={serviceSchema({
+        name: "Party Bus Rental Pricing",
+        description: "Competitive party bus rental rates in Pittsburgh starting at $100 per hour",
+        price: "$100-175 per hour"
+      })} />
       <Navigation />
       
       {/* Hero Section */}

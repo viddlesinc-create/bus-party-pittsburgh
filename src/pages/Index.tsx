@@ -1,3 +1,5 @@
+import { SEOHead } from "@/components/SEOHead";
+import { StructuredData, organizationSchema, websiteSchema } from "@/components/StructuredData";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
@@ -21,6 +23,11 @@ import fleetImage from "@/assets/fleet-showcase.jpg";
 import interiorImage from "@/assets/party-bus-interior.jpg";
 
 const Index = () => {
+  const combinedSchema = {
+    "@context": "https://schema.org",
+    "@graph": [organizationSchema, websiteSchema]
+  };
+
   const features = [
     {
       icon: Users,
@@ -76,6 +83,12 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead 
+        title="Pittsburgh Party Bus & Limo Rental"
+        description="Premium party bus and limousine rentals in Pittsburgh, PA. Luxury transportation for weddings, proms, bachelor parties, corporate events. Available 24/7. Book now!"
+        canonical="/"
+      />
+      <StructuredData data={combinedSchema} />
       <Navigation />
       <Hero />
       

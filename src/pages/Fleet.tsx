@@ -1,3 +1,5 @@
+import { SEOHead } from "@/components/SEOHead";
+import { StructuredData, serviceSchema } from "@/components/StructuredData";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -302,6 +304,16 @@ const Fleet = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead 
+        title="Our Fleet - Party Buses & Limousines"
+        description="Explore our premium fleet of party buses and limousines in Pittsburgh. Vehicles for 6-40 passengers with luxury amenities. View photos and features."
+        canonical="/fleet"
+      />
+      <StructuredData data={serviceSchema({
+        name: "Party Bus & Limousine Fleet",
+        description: "Premium party bus and limousine rental fleet serving Pittsburgh, PA",
+        price: "$100-175 per hour"
+      })} />
       <Navigation />
       
       {/* Hero Section */}

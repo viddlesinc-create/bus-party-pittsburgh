@@ -1,3 +1,5 @@
+import { SEOHead } from "@/components/SEOHead";
+import { StructuredData, breadcrumbSchema } from "@/components/StructuredData";
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -152,6 +154,15 @@ const Blog = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead 
+        title="Party Bus Blog - Tips, Guides & Event Ideas"
+        description="Expert party bus tips, event planning guides, and Pittsburgh transportation advice. Learn about pricing, safety, and making your celebration unforgettable."
+        canonical="/blog"
+      />
+      <StructuredData data={breadcrumbSchema([
+        { name: "Home", url: "/" },
+        { name: "Blog", url: "/blog" }
+      ])} />
       <Navigation />
       
       {/* Hero Section */}

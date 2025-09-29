@@ -1,3 +1,5 @@
+import { SEOHead } from "@/components/SEOHead";
+import { StructuredData, articleSchema } from "@/components/StructuredData";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -26,8 +28,28 @@ const BlogPostLayout = ({
   image,
   children,
 }: BlogPostLayoutProps) => {
+  const slug = typeof window !== 'undefined' ? window.location.pathname : '';
+  
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead 
+        title={title}
+        description={excerpt}
+        canonical={slug}
+        ogImage={image}
+        type="article"
+        article={{
+          publishedTime: new Date(date).toISOString(),
+          author: author
+        }}
+      />
+      <StructuredData data={articleSchema({
+        title,
+        description: excerpt,
+        image: `https://pittpartybus.com${image}`,
+        datePublished: new Date(date).toISOString(),
+        author
+      })} />
       <Navigation />
       
       {/* Hero Section */}

@@ -1,3 +1,5 @@
+import { SEOHead } from "@/components/SEOHead";
+import { StructuredData, breadcrumbSchema } from "@/components/StructuredData";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -120,6 +122,15 @@ const Events = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead 
+        title="Events We Serve - Pittsburgh Party Bus"
+        description="Professional party bus and limousine services for weddings, proms, bachelor parties, corporate events, concerts, and birthdays in Pittsburgh, PA."
+        canonical="/events"
+      />
+      <StructuredData data={breadcrumbSchema([
+        { name: "Home", url: "/" },
+        { name: "Events", url: "/events" }
+      ])} />
       <Navigation />
       
       {/* Hero Section */}
