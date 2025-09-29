@@ -20,11 +20,23 @@ import {
   Shield
 } from "lucide-react";
 
+// Blog post images
+import pricingGuideImg from "@/assets/blog-party-bus-pricing-guide.jpg";
+import topEventsImg from "@/assets/blog-top-events-pittsburgh.jpg";
+import busVsLimoImg from "@/assets/blog-party-bus-vs-limo.jpg";
+import bachelorPartyImg from "@/assets/blog-bachelor-bachelorette-party.jpg";
+import weddingTransportImg from "@/assets/blog-wedding-transportation.jpg";
+import corporateEventImg from "@/assets/blog-corporate-event-transportation.jpg";
+import concertBusImg from "@/assets/blog-concert-party-bus.jpg";
+import promSafetyImg from "@/assets/blog-prom-transportation-safety.jpg";
+import safetyTipsImg from "@/assets/blog-party-bus-safety-tips.jpg";
+import onlineEstimateImg from "@/assets/blog-online-party-bus-estimate.jpg";
+
 const Blog = () => {
   const featuredPost = {
     title: "How Much Does a Party Bus Cost in Pittsburgh? Complete 2024 Guide",
     excerpt: "Everything you need to know about party bus rental pricing in Pittsburgh, including factors that affect cost, seasonal variations, and money-saving tips.",
-    image: "/placeholder.svg",
+    image: pricingGuideImg,
     category: "Pricing Guide",
     date: "March 15, 2024",
     readTime: "8 min read",
@@ -35,7 +47,7 @@ const Blog = () => {
     {
       title: "Top 10 Events to Book a Party Bus For in Pittsburgh",
       excerpt: "From Steelers games to weddings, discover the best occasions for luxury group transportation in the Steel City.",
-      image: "/placeholder.svg",
+      image: topEventsImg,
       category: "Event Planning",
       date: "March 12, 2024",
       readTime: "6 min read",
@@ -44,7 +56,7 @@ const Blog = () => {
     {
       title: "Party Bus vs. Limo: Which is Best for Your Group?",
       excerpt: "Compare party buses and limousines to choose the perfect vehicle for your Pittsburgh celebration.",
-      image: "/placeholder.svg",
+      image: busVsLimoImg,
       category: "Vehicle Guide",
       date: "March 10, 2024",
       readTime: "5 min read",
@@ -53,7 +65,7 @@ const Blog = () => {
     {
       title: "Bachelor & Bachelorette Party Bus Ideas in Pittsburgh", 
       excerpt: "Creative itinerary ideas for unforgettable bachelor and bachelorette parties using party bus transportation.",
-      image: "/placeholder.svg",
+      image: bachelorPartyImg,
       category: "Event Ideas",
       date: "March 8, 2024",
       readTime: "7 min read",
@@ -62,7 +74,7 @@ const Blog = () => {
     {
       title: "Wedding Transportation: Making Your Day Perfect",
       excerpt: "How to coordinate seamless transportation for your wedding party and guests in Pittsburgh.",
-      image: "/placeholder.svg",
+      image: weddingTransportImg,
       category: "Wedding Tips",
       date: "March 5, 2024",
       readTime: "9 min read",
@@ -71,7 +83,7 @@ const Blog = () => {
     {
       title: "Corporate Event Transportation: Impress Your Team",
       excerpt: "Elevate your corporate events with professional group transportation that makes a lasting impression.",
-      image: "/placeholder.svg",
+      image: corporateEventImg,
       category: "Corporate",
       date: "March 3, 2024",
       readTime: "6 min read",
@@ -80,7 +92,7 @@ const Blog = () => {
     {
       title: "Concert Party Bus: The Ultimate Group Experience",
       excerpt: "Skip the parking hassles and enhance your concert experience with party bus transportation to Pittsburgh venues.",
-      image: "/placeholder.svg",
+      image: concertBusImg,
       category: "Entertainment",
       date: "February 28, 2024",
       readTime: "5 min read",
@@ -89,7 +101,7 @@ const Blog = () => {
     {
       title: "Prom Transportation Safety: Parents' Peace of Mind",
       excerpt: "Why professional prom transportation is the safest choice for Pittsburgh high school students.",
-      image: "/placeholder.svg",
+      image: promSafetyImg,
       category: "Safety",
       date: "February 25, 2024",
       readTime: "7 min read",
@@ -98,7 +110,7 @@ const Blog = () => {
     {
       title: "Party Bus Safety Tips for a Fun Night Out",
       excerpt: "Essential safety guidelines to ensure your party bus experience is both fun and secure.",
-      image: "/placeholder.svg",
+      image: safetyTipsImg,
       category: "Safety Guide",
       date: "February 22, 2024",
       readTime: "6 min read",
@@ -107,7 +119,7 @@ const Blog = () => {
     {
       title: "How to Get an Accurate Party Bus Estimate Online",
       excerpt: "Learn what information to provide when requesting quotes to get the most accurate pricing estimates.",
-      image: "/placeholder.svg",
+      image: onlineEstimateImg,
       category: "Booking Tips",
       date: "February 20, 2024",
       readTime: "4 min read",
