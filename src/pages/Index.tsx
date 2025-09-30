@@ -292,7 +292,7 @@ const Index = () => {
             <Button 
               variant="outline" 
               size="xl" 
-              className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-foreground"
+              className="bg-primary-foreground/10 backdrop-blur-sm border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
               asChild
             >
               <a href="tel:4123853877">
