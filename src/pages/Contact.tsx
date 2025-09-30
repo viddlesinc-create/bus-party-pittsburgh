@@ -7,6 +7,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useToast } from "@/hooks/use-toast";
+import { useState } from "react";
 import { 
   Phone,
   Mail,
@@ -20,6 +22,59 @@ import {
 } from "lucide-react";
 
 const Contact = () => {
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      firstName: formData.get('firstName') as string,
+      lastName: formData.get('lastName') as string,
+      email: formData.get('email') as string,
+      phone: formData.get('phone') as string,
+      dateOfRide: formData.get('dateOfRide') as string,
+      pickupCity: formData.get('pickupCity') as string,
+      dropoffCity: formData.get('dropoffCity') as string,
+      partySize: formData.get('partySize') as string,
+      pickupTime: formData.get('pickupTime') as string,
+      dropoffTime: formData.get('dropoffTime') as string,
+      source: 'contact' as const,
+    };
+
+    try {
+      const response = await fetch('/functions/v1/send-contact-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        toast({
+          title: "Quote Request Sent!",
+          description: result.message,
+        });
+        (e.target as HTMLFormElement).reset();
+      } else {
+        throw new Error(result.error || 'Failed to submit quote request');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      toast({
+        title: "Error",
+        description: "Failed to submit quote request. Please try again or call us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   const contactMethods = [
     {
       icon: Phone,
@@ -153,53 +208,54 @@ const Contact = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="first-name">First Name</Label>
-                    <Input id="first-name" placeholder="Your first name" />
+                    <Input id="first-name" name="firstName" placeholder="Your first name" required />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="last-name">Last Name</Label>
-                    <Input id="last-name" placeholder="Your last name" />
+                    <Input id="last-name" name="lastName" placeholder="Your last name" required />
                   </div>
                 </div>
                 
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="email">Email</Label>
-                    <Input id="email" type="email" placeholder="your.email@example.com" />
+                    <Input id="email" name="email" type="email" placeholder="your.email@example.com" required />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="phone">Phone #</Label>
-                    <Input id="phone" type="tel" placeholder="(412) 555-0123" />
+                    <Input id="phone" name="phone" type="tel" placeholder="(412) 555-0123" required />
                   </div>
                 </div>
                 
                 <div className="space-y-2">
                   <Label htmlFor="event-date">Date Of Ride</Label>
-                  <Input id="event-date" type="date" />
+                  <Input id="event-date" name="dateOfRide" type="date" required />
                 </div>
                 
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="pickup-city">Pickup City w/ Zip</Label>
-                    <Input id="pickup-city" placeholder="Pittsburgh, PA 15219" />
+                    <Input id="pickup-city" name="pickupCity" placeholder="Pittsburgh, PA 15219" required />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="dropoff-city">Drop-off City W/ Zip</Label>
-                    <Input id="dropoff-city" placeholder="Pittsburgh, PA 15219" />
+                    <Input id="dropoff-city" name="dropoffCity" placeholder="Pittsburgh, PA 15219" required />
                   </div>
                 </div>
                 
                 <div className="space-y-2">
                   <Label htmlFor="party-size"># in Party</Label>
-                  <Input id="party-size" type="number" placeholder="18" min="1" max="50" />
+                  <Input id="party-size" name="partySize" type="number" placeholder="18" min="1" max="50" required />
                 </div>
                 
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="pickup-time">Pick Up Time</Label>
-                    <Select>
+                    <Select name="pickupTime">
                       <SelectTrigger>
                         <SelectValue placeholder="- Select -" />
                       </SelectTrigger>
@@ -222,7 +278,7 @@ const Contact = () => {
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="dropoff-time">Drop Off Time</Label>
-                    <Select>
+                    <Select name="dropoffTime">
                       <SelectTrigger>
                         <SelectValue placeholder="- Select -" />
                       </SelectTrigger>
@@ -243,10 +299,15 @@ const Contact = () => {
                   </div>
                 </div>
                 
-                <Button variant="hero" size="lg" className="w-full">
+                <Button type="submit" variant="hero" size="lg" className="w-full" disabled={isSubmitting}>
                   <Send className="mr-2 h-5 w-5" />
-                  Get Quote
+                  {isSubmitting ? "Sending..." : "Get Quote"}
                 </Button>
+                
+                <p className="text-xs text-muted-foreground text-center">
+                  We'll respond within 2 hours during business hours. For immediate assistance, please call.
+                </p>
+                </form>
                 
                 <p className="text-xs text-muted-foreground text-center">
                   We'll respond within 2 hours during business hours. For immediate assistance, please call.

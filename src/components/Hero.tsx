@@ -5,9 +5,64 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calendar, Users, MapPin, Star } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useToast } from "@/hooks/use-toast";
+import { useState } from "react";
 import heroImage from "@/assets/hero-party-bus.jpg";
 
 const Hero = () => {
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      firstName: formData.get('firstName') as string,
+      lastName: formData.get('lastName') as string,
+      email: formData.get('email') as string,
+      phone: formData.get('phone') as string,
+      dateOfRide: formData.get('dateOfRide') as string,
+      pickupCity: formData.get('pickupCity') as string,
+      dropoffCity: formData.get('dropoffCity') as string,
+      partySize: formData.get('partySize') as string,
+      pickupTime: formData.get('pickupTime') as string,
+      dropoffTime: formData.get('dropoffTime') as string,
+      source: 'homepage' as const,
+    };
+
+    try {
+      const response = await fetch('/functions/v1/send-contact-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        toast({
+          title: "Quote Request Sent!",
+          description: result.message,
+        });
+        (e.target as HTMLFormElement).reset();
+      } else {
+        throw new Error(result.error || 'Failed to submit quote request');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      toast({
+        title: "Error",
+        description: "Failed to submit quote request. Please try again or call us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden" aria-label="Hero section">
       {/* Background Image with Overlay */}
@@ -83,22 +138,26 @@ const Hero = () => {
                   <p className="text-muted-foreground">Free estimates in under 60 seconds</p>
                 </div>
                 
-                <form className="space-y-4">
+                <form className="space-y-4" onSubmit={handleSubmit}>
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="first-name">First Name</Label>
                       <Input 
-                        id="first-name" 
+                        id="first-name"
+                        name="firstName"
                         placeholder="Your first name"
                         className="border-border focus:border-primary"
+                        required
                       />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="last-name">Last Name</Label>
                       <Input 
-                        id="last-name" 
+                        id="last-name"
+                        name="lastName"
                         placeholder="Your last name"
                         className="border-border focus:border-primary"
+                        required
                       />
                     </div>
                   </div>
@@ -107,19 +166,23 @@ const Hero = () => {
                     <div className="space-y-2">
                       <Label htmlFor="email">Email</Label>
                       <Input 
-                        id="email" 
+                        id="email"
+                        name="email"
                         type="email"
                         placeholder="your.email@example.com"
                         className="border-border focus:border-primary"
+                        required
                       />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="phone">Phone #</Label>
                       <Input 
-                        id="phone" 
+                        id="phone"
+                        name="phone"
                         type="tel" 
                         placeholder="(412) 555-0123"
                         className="border-border focus:border-primary"
+                        required
                       />
                     </div>
                   </div>
@@ -127,47 +190,55 @@ const Hero = () => {
                   <div className="space-y-2">
                     <Label htmlFor="date">Date Of Ride</Label>
                     <Input 
-                      id="date" 
+                      id="date"
+                      name="dateOfRide"
                       type="date" 
                       className="border-border focus:border-primary"
+                      required
                     />
                   </div>
                   
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="pickup-city">Pickup City w/ Zip</Label>
-                      <Input 
-                        id="pickup-city" 
-                        placeholder="Pittsburgh, PA 15219"
-                        className="border-border focus:border-primary"
-                      />
+                       <Input 
+                         id="pickup-city"
+                         name="pickupCity"
+                         placeholder="Pittsburgh, PA 15219"
+                         className="border-border focus:border-primary"
+                         required
+                       />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="dropoff-city">Drop-off City W/ Zip</Label>
-                      <Input 
-                        id="dropoff-city" 
-                        placeholder="Pittsburgh, PA 15219"
-                        className="border-border focus:border-primary"
-                      />
+                       <Input 
+                         id="dropoff-city"
+                         name="dropoffCity"
+                         placeholder="Pittsburgh, PA 15219"
+                         className="border-border focus:border-primary"
+                         required
+                       />
                     </div>
                   </div>
                   
                   <div className="space-y-2">
                     <Label htmlFor="party-size"># in Party</Label>
-                    <Input 
-                      id="party-size" 
-                      type="number"
-                      placeholder="18"
-                      min="1"
-                      max="50"
-                      className="border-border focus:border-primary"
-                    />
+                     <Input 
+                       id="party-size"
+                       name="partySize"
+                       type="number"
+                       placeholder="18"
+                       min="1"
+                       max="50"
+                       className="border-border focus:border-primary"
+                       required
+                     />
                   </div>
                   
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="pickup-time">Pick Up Time</Label>
-                      <Select>
+                       <Select name="pickupTime">
                         <SelectTrigger className="border-border focus:border-primary">
                           <SelectValue placeholder="- Select -" />
                         </SelectTrigger>
@@ -190,7 +261,7 @@ const Hero = () => {
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="dropoff-time">Drop Off Time</Label>
-                      <Select>
+                      <Select name="dropoffTime">
                         <SelectTrigger className="border-border focus:border-primary">
                           <SelectValue placeholder="- Select -" />
                         </SelectTrigger>
@@ -211,9 +282,9 @@ const Hero = () => {
                     </div>
                   </div>
                   
-                  <Button type="submit" variant="hero" size="lg" className="w-full">
-                    Get Quote
-                  </Button>
+                   <Button type="submit" variant="hero" size="lg" className="w-full" disabled={isSubmitting}>
+                     {isSubmitting ? "Sending..." : "Get Quote"}
+                   </Button>
                   
                   <p className="text-xs text-muted-foreground text-center">
                     No spam. We respect your privacy.
