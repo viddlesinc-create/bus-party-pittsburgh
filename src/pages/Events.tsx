@@ -1,10 +1,14 @@
 import { SEOHead } from "@/components/SEOHead";
 import { StructuredData, breadcrumbSchema } from "@/components/StructuredData";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { InternalLinkCTA } from "@/components/InternalLinkCTA";
+import { RelatedServices } from "@/components/RelatedServices";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Link } from "react-router-dom";
 import { 
   Heart,
   GraduationCap,
@@ -16,7 +20,9 @@ import {
   MapPin,
   Phone,
   Clock,
-  Star
+  Star,
+  Car,
+  DollarSign
 } from "lucide-react";
 
 const Events = () => {
@@ -133,6 +139,10 @@ const Events = () => {
       ])} />
       <Navigation />
       
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Breadcrumbs items={[{ name: "Events", url: "/events" }]} />
+      </div>
+      
       {/* Hero Section */}
       <section className="py-20 bg-hero-gradient">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -144,12 +154,16 @@ const Events = () => {
             that makes every event special and memorable.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="accent" size="xl" className="shadow-glow">
-              <Phone className="mr-2 h-5 w-5" />
-              Call (412) 385-3877
+            <Button variant="accent" size="xl" className="shadow-glow" asChild>
+              <a href="tel:4123853877">
+                <Phone className="mr-2 h-5 w-5" />
+                Call (412) 385-3877
+              </a>
             </Button>
-            <Button variant="outline" size="xl" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-foreground">
-              Get Event Quote
+            <Button variant="outline" size="xl" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-foreground" asChild>
+              <Link to="/contact">
+                Get Event Quote
+              </Link>
             </Button>
           </div>
         </div>
@@ -199,11 +213,15 @@ const Events = () => {
                   </div>
                   
                   <div className="pt-4 space-y-2">
-                    <Button variant="hero" className="w-full">
-                      Book This Event
+                    <Button variant="hero" className="w-full" asChild>
+                      <Link to="/contact">
+                        Book This Event
+                      </Link>
                     </Button>
-                    <Button variant="outline" size="sm" className="w-full">
-                      Learn More
+                    <Button variant="outline" size="sm" className="w-full" asChild>
+                      <Link to="/fleet">
+                        View Our Fleet
+                      </Link>
                     </Button>
                   </div>
                 </CardContent>
@@ -311,31 +329,39 @@ const Events = () => {
         </div>
       </section>
 
+      {/* Related Services */}
+      <RelatedServices 
+        title="Complete Event Solutions"
+        services={[
+          {
+            title: "View Our Fleet",
+            description: "Explore our diverse range of luxury vehicles perfect for any event size and style.",
+            href: "/fleet",
+            icon: Car
+          },
+          {
+            title: "Get Pricing",
+            description: "Transparent pricing and instant quotes for your Pittsburgh event transportation.",
+            href: "/pricing",
+            icon: DollarSign
+          },
+          {
+            title: "Read Our Blog",
+            description: "Event planning tips, party ideas, and transportation guides for Pittsburgh celebrations.",
+            href: "/blog",
+            icon: Calendar
+          }
+        ]}
+      />
+
       {/* CTA Section */}
-      <section className="py-20 bg-accent text-accent-foreground">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Ready to Make Your Event Unforgettable?
-          </h2>
-          <p className="text-xl mb-8 opacity-90">
-            Let us handle the transportation while you focus on enjoying your special occasion.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="luxury" size="xl">
-              <Phone className="mr-2 h-5 w-5" />
-              Call (412) 385-3877
-            </Button>
-            <Button variant="secondary" size="xl">
-              Get Event Quote
-            </Button>
-          </div>
-          
-          <div className="mt-8 opacity-90">
-            <p className="text-sm">Available 24/7 • Same-day quotes • Expert event planning</p>
-          </div>
-        </div>
-      </section>
+      <InternalLinkCTA 
+        title="Ready to Make Your Event Unforgettable?"
+        description="Let us handle the transportation while you focus on enjoying your special occasion. Available 24/7 for all your event needs."
+        primaryLink={{ text: "Get Free Quote", href: "/contact" }}
+        secondaryLink={{ text: "Call (412) 385-3877", href: "tel:4123853877" }}
+        bgClass="bg-accent"
+      />
 
       <Footer />
     </div>

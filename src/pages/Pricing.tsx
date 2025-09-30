@@ -1,10 +1,13 @@
 import { SEOHead } from "@/components/SEOHead";
-import { StructuredData, serviceSchema } from "@/components/StructuredData";
+import { StructuredData, serviceSchema, breadcrumbSchema } from "@/components/StructuredData";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { InternalLinkCTA } from "@/components/InternalLinkCTA";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Link } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -126,6 +129,10 @@ const Pricing = () => {
         price: "$100-175 per hour"
       })} />
       <Navigation />
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Breadcrumbs items={[{ name: "Pricing", url: "/pricing" }]} />
+      </div>
       
       {/* Hero Section */}
       <section className="py-20 bg-hero-gradient">
@@ -398,32 +405,50 @@ const Pricing = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-accent text-accent-foreground">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Ready for Your Free Quote?
-          </h2>
-          <p className="text-xl mb-8 opacity-90">
-            Get accurate pricing in minutes, not days. No pressure, just honest estimates.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="luxury" size="xl">
-              <Phone className="mr-2 h-5 w-5" />
-              Call (412) 385-3877
-            </Button>
-            <Button variant="secondary" size="xl">
-              <Calculator className="mr-2 h-5 w-5" />
-              Online Quote Form
-            </Button>
+      {/* Quick Links Section */}
+      <section className="py-12 bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl font-bold mb-2">Plan Your Perfect Event</h2>
+            <p className="text-muted-foreground">Explore everything you need for memorable transportation</p>
           </div>
-          
-          <div className="mt-8 opacity-90">
-            <p className="text-sm">Free quotes • No hidden fees • Price lock guarantee</p>
+          <div className="grid md:grid-cols-4 gap-6">
+            <Link to="/fleet" className="group">
+              <div className="p-6 border border-border rounded-lg hover:border-primary hover:shadow-card-custom transition-all text-center">
+                <h3 className="font-bold text-lg mb-2 group-hover:text-primary">View Fleet →</h3>
+                <p className="text-sm text-muted-foreground">Browse our luxury vehicles</p>
+              </div>
+            </Link>
+            <Link to="/events" className="group">
+              <div className="p-6 border border-border rounded-lg hover:border-primary hover:shadow-card-custom transition-all text-center">
+                <h3 className="font-bold text-lg mb-2 group-hover:text-primary">Event Types →</h3>
+                <p className="text-sm text-muted-foreground">See what we specialize in</p>
+              </div>
+            </Link>
+            <Link to="/blog/party-bus-pricing-guide" className="group">
+              <div className="p-6 border border-border rounded-lg hover:border-primary hover:shadow-card-custom transition-all text-center">
+                <h3 className="font-bold text-lg mb-2 group-hover:text-primary">Pricing Guide →</h3>
+                <p className="text-sm text-muted-foreground">Complete cost breakdown</p>
+              </div>
+            </Link>
+            <Link to="/faqs" className="group">
+              <div className="p-6 border border-border rounded-lg hover:border-primary hover:shadow-card-custom transition-all text-center">
+                <h3 className="font-bold text-lg mb-2 group-hover:text-primary">Have Questions? →</h3>
+                <p className="text-sm text-muted-foreground">View common FAQs</p>
+              </div>
+            </Link>
           </div>
         </div>
       </section>
+
+      {/* CTA Section */}
+      <InternalLinkCTA 
+        title="Ready for Your Free Quote?"
+        description="Get accurate pricing in minutes, not days. No pressure, just honest estimates from Pittsburgh's most trusted party bus service."
+        primaryLink={{ text: "Get Quote Online", href: "/contact" }}
+        secondaryLink={{ text: "Call (412) 385-3877", href: "tel:4123853877" }}
+        bgClass="bg-accent"
+      />
 
       <Footer />
     </div>

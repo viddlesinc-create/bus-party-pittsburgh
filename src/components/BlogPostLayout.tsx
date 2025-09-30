@@ -1,11 +1,21 @@
 import { SEOHead } from "@/components/SEOHead";
 import { StructuredData, articleSchema } from "@/components/StructuredData";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { RelatedPosts } from "@/components/RelatedPosts";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock, User, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
+
+// Import blog post images for related posts
+import topEventsImg from "@/assets/blog-top-events-pittsburgh.jpg";
+import busVsLimoImg from "@/assets/blog-party-bus-vs-limo.jpg";
+import bachelorPartyImg from "@/assets/blog-bachelor-bachelorette-party.jpg";
+import weddingTransportImg from "@/assets/blog-wedding-transportation.jpg";
+import safetyTipsImg from "@/assets/blog-party-bus-safety-tips.jpg";
+import pricingGuideImg from "@/assets/blog-party-bus-pricing-guide.jpg";
 
 interface BlogPostLayoutProps {
   title: string;
@@ -30,6 +40,34 @@ const BlogPostLayout = ({
 }: BlogPostLayoutProps) => {
   const slug = typeof window !== 'undefined' ? window.location.pathname : '';
   
+  // Related posts data - can be customized per blog post
+  const relatedPosts = [
+    {
+      title: "How Much Does a Party Bus Cost in Pittsburgh?",
+      excerpt: "Complete guide to party bus pricing in Pittsburgh with cost factors and money-saving tips.",
+      slug: "party-bus-pricing-guide",
+      image: pricingGuideImg,
+      date: "March 15, 2024",
+      readTime: "8 min"
+    },
+    {
+      title: "Party Bus Safety Tips for a Fun Night Out",
+      excerpt: "Essential safety guidelines to ensure your party bus experience is both fun and secure.",
+      slug: "party-bus-safety-tips",
+      image: safetyTipsImg,
+      date: "February 22, 2024",
+      readTime: "6 min"
+    },
+    {
+      title: "Top 10 Events to Book a Party Bus For in Pittsburgh",
+      excerpt: "Discover the best occasions for luxury group transportation in the Steel City.",
+      slug: "top-events-pittsburgh",
+      image: topEventsImg,
+      date: "March 12, 2024",
+      readTime: "6 min"
+    }
+  ];
+  
   return (
     <div className="min-h-screen bg-background">
       <SEOHead 
@@ -51,6 +89,13 @@ const BlogPostLayout = ({
         author
       })} />
       <Navigation />
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Breadcrumbs items={[
+          { name: "Blog", url: "/blog" },
+          { name: title.substring(0, 50) + (title.length > 50 ? "..." : ""), url: slug }
+        ]} />
+      </div>
       
       {/* Hero Section */}
       <section className="relative py-20 bg-hero-gradient">
@@ -111,6 +156,35 @@ const BlogPostLayout = ({
         </div>
       </article>
 
+      {/* Internal Links Section */}
+      <section className="py-12 bg-background">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-3 gap-6">
+            <Link to="/fleet" className="group">
+              <div className="p-6 border border-border rounded-lg hover:border-primary hover:shadow-card-custom transition-all">
+                <h3 className="font-bold text-lg mb-2 group-hover:text-primary">View Our Fleet →</h3>
+                <p className="text-sm text-muted-foreground">Explore luxury vehicles for any group size</p>
+              </div>
+            </Link>
+            <Link to="/pricing" className="group">
+              <div className="p-6 border border-border rounded-lg hover:border-primary hover:shadow-card-custom transition-all">
+                <h3 className="font-bold text-lg mb-2 group-hover:text-primary">Check Pricing →</h3>
+                <p className="text-sm text-muted-foreground">Transparent rates and instant quotes</p>
+              </div>
+            </Link>
+            <Link to="/events" className="group">
+              <div className="p-6 border border-border rounded-lg hover:border-primary hover:shadow-card-custom transition-all">
+                <h3 className="font-bold text-lg mb-2 group-hover:text-primary">Event Services →</h3>
+                <p className="text-sm text-muted-foreground">Perfect transportation for any occasion</p>
+              </div>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Related Posts */}
+      <RelatedPosts posts={relatedPosts} title="You Might Also Like" />
+
       {/* CTA Section */}
       <section className="py-16 bg-accent">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -121,16 +195,16 @@ const BlogPostLayout = ({
             Get a free quote for your Pittsburgh party bus rental today!
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
-            <Link to="/contact">
-              <Button variant="luxury" size="lg">
+            <Button variant="luxury" size="lg" asChild>
+              <Link to="/contact">
                 Get Free Quote
-              </Button>
-            </Link>
-            <Link to="/fleet">
-              <Button variant="outline" size="lg" className="bg-white/10 text-accent-foreground border-accent-foreground/20">
+              </Link>
+            </Button>
+            <Button variant="outline" size="lg" className="bg-white/10 text-accent-foreground border-accent-foreground/20" asChild>
+              <Link to="/fleet">
                 View Our Fleet
-              </Button>
-            </Link>
+              </Link>
+            </Button>
           </div>
         </div>
       </section>

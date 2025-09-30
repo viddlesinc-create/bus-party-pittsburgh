@@ -39,6 +39,11 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
+                <Link to="/" className="text-primary-foreground/80 hover:text-accent transition-colors">
+                  Home
+                </Link>
+              </li>
+              <li>
                 <Link to="/fleet" className="text-primary-foreground/80 hover:text-accent transition-colors">
                   Our Fleet
                 </Link>
@@ -59,8 +64,23 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
+                <Link to="/contact" className="text-primary-foreground/80 hover:text-accent transition-colors">
+                  Contact Us
+                </Link>
+              </li>
+              <li>
+                <Link to="/faqs" className="text-primary-foreground/80 hover:text-accent transition-colors">
+                  FAQs
+                </Link>
+              </li>
+              <li>
                 <Link to="/blog" className="text-primary-foreground/80 hover:text-accent transition-colors">
-                  Blog
+                  Blog & Tips
+                </Link>
+              </li>
+              <li>
+                <Link to="/testimonials" className="text-primary-foreground/80 hover:text-accent transition-colors">
+                  Testimonials
                 </Link>
               </li>
             </ul>
@@ -71,19 +91,39 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4">Popular Services</h3>
             <ul className="space-y-2">
               <li>
-                <span className="text-primary-foreground/80">Wedding Transportation</span>
+                <Link to="/events" className="text-primary-foreground/80 hover:text-accent transition-colors">
+                  Wedding Transportation
+                </Link>
               </li>
               <li>
-                <span className="text-primary-foreground/80">Prom Limos</span>
+                <Link to="/events" className="text-primary-foreground/80 hover:text-accent transition-colors">
+                  Prom & Graduation
+                </Link>
               </li>
               <li>
-                <span className="text-primary-foreground/80">Bachelor/Bachelorette Parties</span>
+                <Link to="/events" className="text-primary-foreground/80 hover:text-accent transition-colors">
+                  Bachelor/Bachelorette Parties
+                </Link>
               </li>
               <li>
-                <span className="text-primary-foreground/80">Corporate Events</span>
+                <Link to="/events" className="text-primary-foreground/80 hover:text-accent transition-colors">
+                  Corporate Events
+                </Link>
               </li>
               <li>
-                <span className="text-primary-foreground/80">Concert & Sports Events</span>
+                <Link to="/events" className="text-primary-foreground/80 hover:text-accent transition-colors">
+                  Concert & Sports Events
+                </Link>
+              </li>
+              <li>
+                <Link to="/events" className="text-primary-foreground/80 hover:text-accent transition-colors">
+                  Birthday Parties
+                </Link>
+              </li>
+              <li>
+                <Link to="/blog" className="text-primary-foreground/80 hover:text-accent transition-colors">
+                  Event Planning Tips
+                </Link>
               </li>
             </ul>
           </div>

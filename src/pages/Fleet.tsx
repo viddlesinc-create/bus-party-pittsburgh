@@ -1,11 +1,14 @@
 import { SEOHead } from "@/components/SEOHead";
-import { StructuredData, serviceSchema } from "@/components/StructuredData";
+import { StructuredData, serviceSchema, breadcrumbSchema } from "@/components/StructuredData";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { InternalLinkCTA } from "@/components/InternalLinkCTA";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Link } from "react-router-dom";
 import { 
   Users, 
   CheckCircle,
@@ -293,9 +296,11 @@ const Fleet = () => {
             </div>
           </div>
           
-          <Button variant="accent" className="w-full shadow-glow">
-            <Calendar className="mr-2 h-4 w-4" />
-            Get Quote for This Vehicle
+          <Button variant="accent" className="w-full shadow-glow" asChild>
+            <Link to="/contact">
+              <Calendar className="mr-2 h-4 w-4" />
+              Get Quote for This Vehicle
+            </Link>
           </Button>
         </div>
       </div>
@@ -314,7 +319,15 @@ const Fleet = () => {
         description: "Premium party bus and limousine rental fleet serving Pittsburgh, PA",
         price: "$100-175 per hour"
       })} />
+      <StructuredData data={breadcrumbSchema([
+        { name: "Home", url: "/" },
+        { name: "Fleet", url: "/fleet" }
+      ])} />
       <Navigation />
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Breadcrumbs items={[{ name: "Fleet", url: "/fleet" }]} />
+      </div>
       
       {/* Hero Section */}
       <section className="py-20 bg-hero-gradient">
@@ -326,9 +339,11 @@ const Fleet = () => {
             Explore our diverse fleet of luxury vehicles. From intimate limousines to spacious party buses, 
             we have the perfect vehicle for every occasion.
           </p>
-          <Button variant="accent" size="xl" className="shadow-glow">
-            <Phone className="mr-2 h-5 w-5" />
-            Call (412) 385-3877
+          <Button variant="accent" size="xl" className="shadow-glow" asChild>
+            <a href="tel:4123853877">
+              <Phone className="mr-2 h-5 w-5" />
+              Call (412) 385-3877
+            </a>
           </Button>
         </div>
       </section>
@@ -461,24 +476,42 @@ const Fleet = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-accent text-accent-foreground">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Ready to Book Your Perfect Vehicle?
-          </h2>
-          <p className="text-xl mb-8 opacity-90">
-            Contact us today for a custom quote tailored to your event needs.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="luxury" size="xl">
-              <Phone className="mr-2 h-5 w-5" />
-              Call (412) 385-3877
-            </Button>
-            <Button variant="secondary" size="xl">
-              <Calendar className="mr-2 h-5 w-5" />
-              Get a Quote
-            </Button>
+      <InternalLinkCTA 
+        title="Ready to Reserve Your Vehicle?"
+        description="Get an instant quote and reserve your perfect party bus or limousine today. Browse our event services to see which vehicle fits your celebration best."
+        primaryLink={{ text: "Get Free Quote", href: "/contact" }}
+        secondaryLink={{ text: "View Event Services", href: "/events" }}
+        bgClass="bg-accent"
+      />
+
+      {/* Quick Links Section */}
+      <section className="py-12 bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-4 gap-6">
+            <Link to="/pricing" className="group">
+              <div className="p-6 border border-border rounded-lg hover:border-primary hover:shadow-card-custom transition-all text-center">
+                <h3 className="font-bold text-lg mb-2 group-hover:text-primary">View Pricing →</h3>
+                <p className="text-sm text-muted-foreground">Transparent rates & packages</p>
+              </div>
+            </Link>
+            <Link to="/events" className="group">
+              <div className="p-6 border border-border rounded-lg hover:border-primary hover:shadow-card-custom transition-all text-center">
+                <h3 className="font-bold text-lg mb-2 group-hover:text-primary">Event Services →</h3>
+                <p className="text-sm text-muted-foreground">Perfect for any occasion</p>
+              </div>
+            </Link>
+            <Link to="/blog" className="group">
+              <div className="p-6 border border-border rounded-lg hover:border-primary hover:shadow-card-custom transition-all text-center">
+                <h3 className="font-bold text-lg mb-2 group-hover:text-primary">Planning Tips →</h3>
+                <p className="text-sm text-muted-foreground">Expert event guides</p>
+              </div>
+            </Link>
+            <Link to="/faqs" className="group">
+              <div className="p-6 border border-border rounded-lg hover:border-primary hover:shadow-card-custom transition-all text-center">
+                <h3 className="font-bold text-lg mb-2 group-hover:text-primary">FAQs →</h3>
+                <p className="text-sm text-muted-foreground">Common questions answered</p>
+              </div>
+            </Link>
           </div>
         </div>
       </section>
