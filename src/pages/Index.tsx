@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Link } from "react-router-dom";
 import { 
   Users, 
   Clock, 
@@ -82,7 +83,7 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <>
       <SEOHead 
         title="Pittsburgh Party Bus & Limo Rental"
         description="Premium party bus and limousine rentals in Pittsburgh, PA. Luxury transportation for weddings, proms, bachelor parties, corporate events. Available 24/7. Book now!"
@@ -92,11 +93,12 @@ const Index = () => {
       <Navigation />
       <Hero />
       
-      {/* Features Section */}
-      <section className="py-20 bg-background">
+      <main id="main-content">
+        {/* Features Section */}
+        <section className="py-20 bg-background" aria-labelledby="features-heading">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            <h2 id="features-heading" className="text-3xl md:text-4xl font-bold text-foreground mb-4">
               Why Choose Pitt Party Bus?
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -124,11 +126,11 @@ const Index = () => {
       </section>
 
       {/* Fleet Preview Section */}
-      <section className="py-20 bg-muted/50">
+      <section className="py-20 bg-muted/50" aria-labelledby="fleet-heading">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
+              <h2 id="fleet-heading" className="text-3xl md:text-4xl font-bold text-foreground mb-6">
                 Our Premium Fleet
               </h2>
               <p className="text-lg text-muted-foreground mb-8">
@@ -146,12 +148,16 @@ const Index = () => {
               </div>
               
               <div className="flex flex-wrap gap-4">
-                <Button variant="hero" size="lg">
-                  <Car className="mr-2 h-5 w-5" />
-                  View Full Fleet
+                <Button variant="hero" size="lg" asChild>
+                  <Link to="/fleet">
+                    <Car className="mr-2 h-5 w-5" />
+                    View Full Fleet
+                  </Link>
                 </Button>
-                <Button variant="outline" size="lg">
-                  Get Fleet Quote
+                <Button variant="outline" size="lg" asChild>
+                  <Link to="/contact">
+                    Get Fleet Quote
+                  </Link>
                 </Button>
               </div>
             </div>
@@ -159,8 +165,11 @@ const Index = () => {
             <div className="relative">
               <img
                 src={fleetImage}
-                alt="Pitt Party Bus Fleet Showcase"
+                alt="Pittsburgh party bus fleet including luxury coaches and limousines"
                 className="rounded-lg shadow-luxury w-full h-auto"
+                width="800"
+                height="600"
+                loading="lazy"
               />
               <div className="absolute -bottom-4 -right-4 bg-accent text-accent-foreground p-4 rounded-lg shadow-glow">
                 <div className="text-2xl font-bold">15+</div>
@@ -172,14 +181,17 @@ const Index = () => {
       </section>
 
       {/* Interior Showcase */}
-      <section className="py-20 bg-background">
+      <section className="py-20 bg-background" aria-labelledby="interior-heading">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="relative">
               <img
                 src={interiorImage}
-                alt="Luxury Party Bus Interior"
+                alt="Luxury party bus interior featuring LED lights, premium sound system, and leather seating"
                 className="rounded-lg shadow-luxury w-full h-auto"
+                width="800"
+                height="600"
+                loading="lazy"
               />
               <div className="absolute top-4 left-4 bg-primary text-primary-foreground px-3 py-2 rounded-lg font-semibold">
                 Premium Interior
@@ -187,7 +199,7 @@ const Index = () => {
             </div>
             
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
+              <h2 id="interior-heading" className="text-3xl md:text-4xl font-bold text-foreground mb-6">
                 Luxury That Moves You
               </h2>
               <p className="text-lg text-muted-foreground mb-6">
@@ -214,8 +226,10 @@ const Index = () => {
                 </li>
               </ul>
               
-              <Button variant="accent" size="lg">
-                Book Your Experience
+              <Button variant="accent" size="lg" asChild>
+                <Link to="/contact">
+                  Book Your Experience
+                </Link>
               </Button>
             </div>
           </div>
@@ -223,10 +237,10 @@ const Index = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 bg-muted/50">
+      <section className="py-20 bg-muted/50" aria-labelledby="testimonials-heading">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            <h2 id="testimonials-heading" className="text-3xl md:text-4xl font-bold text-foreground mb-4">
               What Our Customers Say
             </h2>
             <p className="text-xl text-muted-foreground">
@@ -260,9 +274,9 @@ const Index = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-hero-gradient">
+      <section className="py-20 bg-hero-gradient" aria-labelledby="cta-heading">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground mb-6">
+          <h2 id="cta-heading" className="text-3xl md:text-4xl font-bold text-primary-foreground mb-6">
             Ready to Make Your Event Unforgettable?
           </h2>
           <p className="text-xl text-primary-foreground/90 mb-8">
@@ -270,15 +284,20 @@ const Index = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="accent" size="xl" className="shadow-glow">
-              Get Free Quote Now
+            <Button variant="accent" size="xl" className="shadow-glow" asChild>
+              <Link to="/contact">
+                Get Free Quote Now
+              </Link>
             </Button>
             <Button 
               variant="outline" 
               size="xl" 
               className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-foreground"
+              asChild
             >
-              Call (412) 385-3877
+              <a href="tel:4123853877">
+                Call (412) 385-3877
+              </a>
             </Button>
           </div>
           
@@ -287,9 +306,10 @@ const Index = () => {
           </div>
         </div>
       </section>
+      </main>
 
       <Footer />
-    </div>
+    </>
   );
 };
 

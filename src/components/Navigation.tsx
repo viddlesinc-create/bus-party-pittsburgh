@@ -17,7 +17,8 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className="bg-background/95 backdrop-blur-sm border-b border-border sticky top-0 z-50 shadow-card-custom">
+    <header>
+      <nav className="bg-background/95 backdrop-blur-sm border-b border-border sticky top-0 z-50 shadow-card-custom" role="navigation" aria-label="Main navigation">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
@@ -40,19 +41,21 @@ const Navigation = () => {
               </Link>
             ))}
             <div className="flex items-center space-x-4">
-              <a href="tel:412-385-3877" className="flex items-center text-accent hover:text-accent-glow font-semibold">
-                <Phone className="h-4 w-4 mr-2" />
+              <a href="tel:4123853877" className="flex items-center text-accent hover:text-accent-glow font-semibold" aria-label="Call Pitt Party Bus at 412-385-3877">
+                <Phone className="h-4 w-4 mr-2" aria-hidden="true" />
                 (412) 385-3877
               </a>
-              <Button variant="hero" size="sm">
-                Get Free Quote
+              <Button variant="hero" size="sm" asChild>
+                <Link to="/contact">
+                  Get Free Quote
+                </Link>
               </Button>
             </div>
           </div>
 
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center">
-            <a href="tel:412-385-3877" className="mr-4">
+            <a href="tel:4123853877" className="mr-4" aria-label="Call Pitt Party Bus">
               <Button variant="ghost" size="sm">
                 <Phone className="h-4 w-4" />
               </Button>
@@ -60,6 +63,8 @@ const Navigation = () => {
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="text-foreground hover:text-primary"
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isMenuOpen}
             >
               {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
@@ -89,7 +94,8 @@ const Navigation = () => {
           </div>
         </div>
       )}
-    </nav>
+      </nav>
+    </header>
   );
 };
 

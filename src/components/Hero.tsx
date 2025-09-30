@@ -4,17 +4,20 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calendar, Users, MapPin, Star } from "lucide-react";
+import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-party-bus.jpg";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden" aria-label="Hero section">
       {/* Background Image with Overlay */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0" aria-hidden="true">
         <img
           src={heroImage}
-          alt="Luxury Party Bus Pittsburgh"
+          alt="Luxury party bus exterior in Pittsburgh"
           className="w-full h-full object-cover"
+          width="1920"
+          height="1080"
         />
         <div className="absolute inset-0 bg-luxury-gradient opacity-80"></div>
       </div>
@@ -46,12 +49,16 @@ const Hero = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Button variant="accent" size="xl" className="shadow-glow opacity-100">
-                <Calendar className="mr-2 h-5 w-5" />
-                Book Now
+              <Button variant="accent" size="xl" className="shadow-glow opacity-100" asChild>
+                <Link to="/contact">
+                  <Calendar className="mr-2 h-5 w-5" />
+                  Book Now
+                </Link>
               </Button>
-              <Button variant="hero" size="xl" className="bg-white/20 text-white border-2 border-white/40 hover:bg-white hover:text-foreground opacity-100 backdrop-blur-sm">
-                View Fleet
+              <Button variant="hero" size="xl" className="bg-white/20 text-white border-2 border-white/40 hover:bg-white hover:text-foreground opacity-100 backdrop-blur-sm" asChild>
+                <Link to="/fleet">
+                  View Fleet
+                </Link>
               </Button>
             </div>
             
@@ -139,7 +146,7 @@ const Hero = () => {
                     />
                   </div>
                   
-                  <Button variant="hero" size="lg" className="w-full">
+                  <Button type="submit" variant="hero" size="lg" className="w-full">
                     Get Free Quote Now
                   </Button>
                   

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-luxury-gradient text-primary-foreground">
+    <footer className="bg-luxury-gradient text-primary-foreground" role="contentinfo">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid md:grid-cols-4 gap-8">
           {/* Company Info */}
@@ -16,14 +16,20 @@ const Footer = () => {
               Pittsburgh's premier party bus and limousine rental service. Making your special events unforgettable since day one.
             </p>
             <div className="flex space-x-3">
-              <Button variant="ghost" size="sm" className="text-primary-foreground hover:text-accent">
-                <Facebook className="h-5 w-5" />
+              <Button variant="ghost" size="sm" className="text-primary-foreground hover:text-accent" asChild>
+                <a href="https://www.facebook.com/pittpartybus" target="_blank" rel="noopener noreferrer" aria-label="Visit Pitt Party Bus on Facebook">
+                  <Facebook className="h-5 w-5" />
+                </a>
               </Button>
-              <Button variant="ghost" size="sm" className="text-primary-foreground hover:text-accent">
-                <Instagram className="h-5 w-5" />
+              <Button variant="ghost" size="sm" className="text-primary-foreground hover:text-accent" asChild>
+                <a href="https://www.instagram.com/pittpartybus" target="_blank" rel="noopener noreferrer" aria-label="Visit Pitt Party Bus on Instagram">
+                  <Instagram className="h-5 w-5" />
+                </a>
               </Button>
-              <Button variant="ghost" size="sm" className="text-primary-foreground hover:text-accent">
-                <Twitter className="h-5 w-5" />
+              <Button variant="ghost" size="sm" className="text-primary-foreground hover:text-accent" asChild>
+                <a href="https://twitter.com/pittpartybus" target="_blank" rel="noopener noreferrer" aria-label="Visit Pitt Party Bus on Twitter">
+                  <Twitter className="h-5 w-5" />
+                </a>
               </Button>
             </div>
           </div>
@@ -97,8 +103,8 @@ const Footer = () => {
                 </div>
               </div>
               <div className="flex items-center">
-                <Phone className="h-5 w-5 mr-3 text-accent" />
-                <a href="tel:412-385-3877" className="text-primary-foreground/80 hover:text-accent transition-colors">
+                <Phone className="h-5 w-5 mr-3 text-accent" aria-hidden="true" />
+                <a href="tel:4123853877" className="text-primary-foreground/80 hover:text-accent transition-colors">
                   (412) 385-3877
                 </a>
               </div>
