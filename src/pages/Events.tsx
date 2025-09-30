@@ -308,6 +308,9 @@ const Events = () => {
                       src={testimonial.image} 
                       alt={testimonial.name}
                       className="w-12 h-12 rounded-full object-cover"
+                      loading="lazy"
+                      width="48"
+                      height="48"
                     />
                     <div>
                       <CardTitle className="text-lg">{testimonial.name}</CardTitle>

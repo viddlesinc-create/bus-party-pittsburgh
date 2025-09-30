@@ -270,6 +270,9 @@ const Fleet = () => {
               src={image} 
               alt={`${vehicle.name} - View ${idx + 1}`}
               className="w-full h-48 object-cover rounded-lg"
+              loading="lazy"
+              width="400"
+              height="300"
             />
           ))}
         </div>

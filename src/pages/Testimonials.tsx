@@ -221,6 +221,9 @@ const Testimonials = () => {
                   src={featuredTestimonial.image} 
                   alt={featuredTestimonial.name}
                   className="w-16 h-16 rounded-full object-cover mr-4"
+                  loading="lazy"
+                  width="64"
+                  height="64"
                 />
                 <div className="flex-1">
                   <h3 className="text-xl font-bold">{featuredTestimonial.name}</h3>
@@ -308,6 +311,9 @@ const Testimonials = () => {
                         src={testimonial.image} 
                         alt={testimonial.name}
                         className="w-10 h-10 rounded-full object-cover"
+                        loading="lazy"
+                        width="40"
+                        height="40"
                       />
                       <div>
                         <CardTitle className="text-base">{testimonial.name}</CardTitle>

@@ -206,6 +206,9 @@ const Blog = () => {
                   src={featuredPost.image} 
                   alt={featuredPost.title}
                   className="w-full h-64 md:h-full object-cover"
+                  loading="lazy"
+                  width="600"
+                  height="400"
                 />
               </div>
               <div className="md:w-1/2 p-8">
@@ -284,6 +287,9 @@ const Blog = () => {
                     src={post.image} 
                     alt={post.title}
                     className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                    width="400"
+                    height="300"
                   />
                   <div className="absolute top-4 left-4">
                     <Badge variant="secondary" className="bg-background/90">

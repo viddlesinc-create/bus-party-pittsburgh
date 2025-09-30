@@ -143,6 +143,9 @@ const BlogPostLayout = ({
             src={image} 
             alt={title}
             className="w-full rounded-lg shadow-luxury h-96 object-cover"
+            loading="lazy"
+            width="1200"
+            height="600"
           />
         </div>
       </section>
