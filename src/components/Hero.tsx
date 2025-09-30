@@ -86,68 +86,133 @@ const Hero = () => {
                 <form className="space-y-4">
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="date">Event Date</Label>
+                      <Label htmlFor="first-name">First Name</Label>
                       <Input 
-                        id="date" 
-                        type="date" 
+                        id="first-name" 
+                        placeholder="Your first name"
                         className="border-border focus:border-primary"
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="time">Time</Label>
+                      <Label htmlFor="last-name">Last Name</Label>
                       <Input 
-                        id="time" 
-                        type="time" 
+                        id="last-name" 
+                        placeholder="Your last name"
+                        className="border-border focus:border-primary"
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="email">Email</Label>
+                      <Input 
+                        id="email" 
+                        type="email"
+                        placeholder="your.email@example.com"
+                        className="border-border focus:border-primary"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="phone">Phone #</Label>
+                      <Input 
+                        id="phone" 
+                        type="tel" 
+                        placeholder="(412) 555-0123"
                         className="border-border focus:border-primary"
                       />
                     </div>
                   </div>
                   
                   <div className="space-y-2">
-                    <Label htmlFor="passengers">Number of Passengers</Label>
-                    <Select>
-                      <SelectTrigger className="border-border focus:border-primary">
-                        <SelectValue placeholder="Select group size" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="8-12">8-12 passengers</SelectItem>
-                        <SelectItem value="13-20">13-20 passengers</SelectItem>
-                        <SelectItem value="21-30">21-30 passengers</SelectItem>
-                        <SelectItem value="31-40">31-40 passengers</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <Label htmlFor="event-type">Event Type</Label>
-                    <Select>
-                      <SelectTrigger className="border-border focus:border-primary">
-                        <SelectValue placeholder="Select event type" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="wedding">Wedding</SelectItem>
-                        <SelectItem value="prom">Prom</SelectItem>
-                        <SelectItem value="bachelor">Bachelor/Bachelorette</SelectItem>
-                        <SelectItem value="birthday">Birthday Party</SelectItem>
-                        <SelectItem value="corporate">Corporate Event</SelectItem>
-                        <SelectItem value="concert">Concert/Show</SelectItem>
-                        <SelectItem value="other">Other</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <Label htmlFor="phone">Phone Number</Label>
+                    <Label htmlFor="date">Date Of Ride</Label>
                     <Input 
-                      id="phone" 
-                      type="tel" 
-                      placeholder="(412) 555-0123"
+                      id="date" 
+                      type="date" 
                       className="border-border focus:border-primary"
                     />
                   </div>
                   
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="pickup-city">Pickup City w/ Zip</Label>
+                      <Input 
+                        id="pickup-city" 
+                        placeholder="Pittsburgh, PA 15219"
+                        className="border-border focus:border-primary"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="dropoff-city">Drop-off City W/ Zip</Label>
+                      <Input 
+                        id="dropoff-city" 
+                        placeholder="Pittsburgh, PA 15219"
+                        className="border-border focus:border-primary"
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <Label htmlFor="party-size"># in Party</Label>
+                    <Input 
+                      id="party-size" 
+                      type="number"
+                      placeholder="18"
+                      min="1"
+                      max="50"
+                      className="border-border focus:border-primary"
+                    />
+                  </div>
+                  
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="pickup-time">Pick Up Time</Label>
+                      <Select>
+                        <SelectTrigger className="border-border focus:border-primary">
+                          <SelectValue placeholder="- Select -" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="10am">10 AM</SelectItem>
+                          <SelectItem value="11am">11 AM</SelectItem>
+                          <SelectItem value="12pm">12 PM</SelectItem>
+                          <SelectItem value="1pm">1 PM</SelectItem>
+                          <SelectItem value="2pm">2 PM</SelectItem>
+                          <SelectItem value="3pm">3 PM</SelectItem>
+                          <SelectItem value="4pm">4 PM</SelectItem>
+                          <SelectItem value="5pm">5 PM</SelectItem>
+                          <SelectItem value="6pm">6 PM</SelectItem>
+                          <SelectItem value="7pm">7 PM</SelectItem>
+                          <SelectItem value="8pm">8 PM</SelectItem>
+                          <SelectItem value="9pm">9 PM</SelectItem>
+                          <SelectItem value="10pm">10 PM</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="dropoff-time">Drop Off Time</Label>
+                      <Select>
+                        <SelectTrigger className="border-border focus:border-primary">
+                          <SelectValue placeholder="- Select -" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="12pm">12 PM</SelectItem>
+                          <SelectItem value="1pm">1 PM</SelectItem>
+                          <SelectItem value="2pm">2 PM</SelectItem>
+                          <SelectItem value="3pm">3 PM</SelectItem>
+                          <SelectItem value="4pm">4 PM</SelectItem>
+                          <SelectItem value="5pm">5 PM</SelectItem>
+                          <SelectItem value="6pm">6 PM</SelectItem>
+                          <SelectItem value="7pm">7 PM</SelectItem>
+                          <SelectItem value="8pm">8 PM</SelectItem>
+                          <SelectItem value="9pm">9 PM</SelectItem>
+                          <SelectItem value="10pm">10 PM</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+                  
                   <Button type="submit" variant="hero" size="lg" className="w-full">
-                    Get Free Quote Now
+                    Get Quote
                   </Button>
                   
                   <p className="text-xs text-muted-foreground text-center">
