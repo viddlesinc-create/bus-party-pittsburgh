@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import { useEffect, useState } from 'react';
 import { Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Fleet from "./pages/Fleet";
@@ -28,6 +29,23 @@ import PartyBusSafetyTips from "./pages/blog/PartyBusSafetyTips";
 import AccuratePartyBusEstimate from "./pages/blog/AccuratePartyBusEstimate";
 import './index.css';
 
+const ClientOnlyToasters = () => {
+  const [mounted, setMounted] = useState(false);
+  
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+  
+  if (!mounted) return null;
+  
+  return (
+    <>
+      <Toaster />
+      <Sonner />
+    </>
+  );
+};
+
 const queryClient = new QueryClient();
 
 const container = document.getElementById("root")!;
@@ -36,8 +54,7 @@ const AppContent = () => (
   <BrowserRouter>
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <Toaster />
-        <Sonner />
+        <ClientOnlyToasters />
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />

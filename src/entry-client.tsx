@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { hydrateRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -29,6 +29,23 @@ import PartyBusSafetyTips from "./pages/blog/PartyBusSafetyTips";
 import AccuratePartyBusEstimate from "./pages/blog/AccuratePartyBusEstimate";
 import './index.css';
 
+const ClientOnlyToasters = () => {
+  const [mounted, setMounted] = useState(false);
+  
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+  
+  if (!mounted) return null;
+  
+  return (
+    <>
+      <Toaster />
+      <Sonner />
+    </>
+  );
+};
+
 const queryClient = new QueryClient();
 
 hydrateRoot(
@@ -36,8 +53,7 @@ hydrateRoot(
   <BrowserRouter>
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <Toaster />
-        <Sonner />
+        <ClientOnlyToasters />
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />

@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Routes, Route } from "react-router-dom";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import SkipToContent from "@/components/SkipToContent";
+import { useEffect, useState } from "react";
 import Index from "./pages/Index";
 import Fleet from "./pages/Fleet";
 import Events from "./pages/Events";
@@ -28,14 +29,25 @@ import AccuratePartyBusEstimate from "./pages/blog/AccuratePartyBusEstimate";
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <SkipToContent />
-      <Toaster />
-      <Sonner />
-      <ScrollToTop />
-      <Routes>
+const App = () => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <SkipToContent />
+        {isClient && (
+          <>
+            <Toaster />
+            <Sonner />
+          </>
+        )}
+        <ScrollToTop />
+        <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/fleet" element={<Fleet />} />
         <Route path="/events" element={<Events />} />
@@ -57,9 +69,10 @@ const App = () => (
         <Route path="/testimonials" element={<Testimonials />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
-      </Routes>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+        </Routes>
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;
