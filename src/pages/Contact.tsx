@@ -170,62 +170,82 @@ const Contact = () => {
                     <Input id="email" type="email" placeholder="your.email@example.com" />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="phone">Phone</Label>
+                    <Label htmlFor="phone">Phone #</Label>
                     <Input id="phone" type="tel" placeholder="(412) 555-0123" />
                   </div>
                 </div>
                 
+                <div className="space-y-2">
+                  <Label htmlFor="event-date">Date Of Ride</Label>
+                  <Input id="event-date" type="date" />
+                </div>
+                
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="event-date">Event Date</Label>
-                    <Input id="event-date" type="date" />
+                    <Label htmlFor="pickup-city">Pickup City w/ Zip</Label>
+                    <Input id="pickup-city" placeholder="Pittsburgh, PA 15219" />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="passengers">Group Size</Label>
+                    <Label htmlFor="dropoff-city">Drop-off City W/ Zip</Label>
+                    <Input id="dropoff-city" placeholder="Pittsburgh, PA 15219" />
+                  </div>
+                </div>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="party-size"># in Party</Label>
+                  <Input id="party-size" type="number" placeholder="18" min="1" max="50" />
+                </div>
+                
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="pickup-time">Pick Up Time</Label>
                     <Select>
                       <SelectTrigger>
-                        <SelectValue placeholder="Number of passengers" />
+                        <SelectValue placeholder="- Select -" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="8-12">8-12 passengers</SelectItem>
-                        <SelectItem value="13-20">13-20 passengers</SelectItem>
-                        <SelectItem value="21-30">21-30 passengers</SelectItem>
-                        <SelectItem value="31-40">31-40 passengers</SelectItem>
+                        <SelectItem value="10am">10 AM</SelectItem>
+                        <SelectItem value="11am">11 AM</SelectItem>
+                        <SelectItem value="12pm">12 PM</SelectItem>
+                        <SelectItem value="1pm">1 PM</SelectItem>
+                        <SelectItem value="2pm">2 PM</SelectItem>
+                        <SelectItem value="3pm">3 PM</SelectItem>
+                        <SelectItem value="4pm">4 PM</SelectItem>
+                        <SelectItem value="5pm">5 PM</SelectItem>
+                        <SelectItem value="6pm">6 PM</SelectItem>
+                        <SelectItem value="7pm">7 PM</SelectItem>
+                        <SelectItem value="8pm">8 PM</SelectItem>
+                        <SelectItem value="9pm">9 PM</SelectItem>
+                        <SelectItem value="10pm">10 PM</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="dropoff-time">Drop Off Time</Label>
+                    <Select>
+                      <SelectTrigger>
+                        <SelectValue placeholder="- Select -" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="12pm">12 PM</SelectItem>
+                        <SelectItem value="1pm">1 PM</SelectItem>
+                        <SelectItem value="2pm">2 PM</SelectItem>
+                        <SelectItem value="3pm">3 PM</SelectItem>
+                        <SelectItem value="4pm">4 PM</SelectItem>
+                        <SelectItem value="5pm">5 PM</SelectItem>
+                        <SelectItem value="6pm">6 PM</SelectItem>
+                        <SelectItem value="7pm">7 PM</SelectItem>
+                        <SelectItem value="8pm">8 PM</SelectItem>
+                        <SelectItem value="9pm">9 PM</SelectItem>
+                        <SelectItem value="10pm">10 PM</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
                 </div>
                 
-                <div className="space-y-2">
-                  <Label htmlFor="event-type">Event Type</Label>
-                  <Select>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select your event type" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="wedding">Wedding</SelectItem>
-                      <SelectItem value="prom">Prom</SelectItem>
-                      <SelectItem value="bachelor">Bachelor/Bachelorette Party</SelectItem>
-                      <SelectItem value="birthday">Birthday Party</SelectItem>
-                      <SelectItem value="corporate">Corporate Event</SelectItem>
-                      <SelectItem value="concert">Concert/Sports Event</SelectItem>
-                      <SelectItem value="other">Other</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                
-                <div className="space-y-2">
-                  <Label htmlFor="message">Message</Label>
-                  <Textarea 
-                    id="message" 
-                    placeholder="Tell us about your event, pickup/drop-off locations, and any special requests..."
-                    rows={4}
-                  />
-                </div>
-                
                 <Button variant="hero" size="lg" className="w-full">
                   <Send className="mr-2 h-5 w-5" />
-                  Send Message
+                  Get Quote
                 </Button>
                 
                 <p className="text-xs text-muted-foreground text-center">
