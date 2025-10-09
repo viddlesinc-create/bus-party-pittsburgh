@@ -27,6 +27,7 @@ import ConcertPartyBus from "./pages/blog/ConcertPartyBus";
 import PromTransportationSafety from "./pages/blog/PromTransportationSafety";
 import PartyBusSafetyTips from "./pages/blog/PartyBusSafetyTips";
 import AccuratePartyBusEstimate from "./pages/blog/AccuratePartyBusEstimate";
+import { InternalLinkCTA } from "@/components/InternalLinkCTA";
 
 const queryClient = new QueryClient();
 
@@ -72,6 +73,14 @@ const App = () => {
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
         </Routes>
+          
+          <InternalLinkCTA 
+            title="Ready to Book Your Party Bus?"
+            description="Get a free quote in minutes. Available 24/7 for all your event transportation needs in Pittsburgh."
+            primaryLink={{ text: "Get Free Quote", href: "/contact" }}
+            secondaryLink={{ text: "Call (412) 385-3877", href: "tel:4123853877" }}
+            bgClass="bg-accent"
+          />
         </TooltipProvider>
       </QueryClientProvider>
     </HelmetProvider>
