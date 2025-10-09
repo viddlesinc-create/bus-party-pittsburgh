@@ -8,15 +8,14 @@ import { Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 import heroImage from "@/assets/hero-party-bus.jpg";
-
 const Hero = () => {
-  const { toast } = useToast();
+  const {
+    toast
+  } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-
     const formData = new FormData(e.currentTarget);
     const data = {
       firstName: formData.get('firstName') as string,
@@ -29,22 +28,20 @@ const Hero = () => {
       partySize: formData.get('partySize') as string,
       pickupTime: formData.get('pickupTime') as string,
       dropoffTime: formData.get('dropoffTime') as string,
-      source: 'homepage' as const,
+      source: 'homepage' as const
     };
-
     try {
       const response = await fetch('https://formspree.io/f/mkgqvajy', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(data)
       });
-
       if (response.ok) {
         toast({
           title: "Quote Request Sent!",
-          description: "We'll get back to you within 2 hours during business hours.",
+          description: "We'll get back to you within 2 hours during business hours."
         });
         (e.target as HTMLFormElement).reset();
       } else {
@@ -55,23 +52,16 @@ const Hero = () => {
       toast({
         title: "Error",
         description: "Failed to submit quote request. Please try again or call us directly.",
-        variant: "destructive",
+        variant: "destructive"
       });
     } finally {
       setIsSubmitting(false);
     }
   };
-  return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden" aria-label="Hero section">
+  return <section className="relative min-h-screen flex items-center justify-center overflow-hidden" aria-label="Hero section">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0" aria-hidden="true">
-        <img
-          src={heroImage}
-          alt="Luxury party bus exterior in Pittsburgh"
-          className="w-full h-full object-cover"
-          width="1920"
-          height="1080"
-        />
+        <img src={heroImage} alt="Luxury party bus exterior in Pittsburgh" className="w-full h-full object-cover" width="1920" height="1080" />
         <div className="absolute inset-0 bg-luxury-gradient opacity-80"></div>
       </div>
 
@@ -82,9 +72,7 @@ const Hero = () => {
           <div className="text-center lg:text-left">
             <div className="flex items-center justify-center lg:justify-start mb-4">
               <div className="flex text-accent">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="h-5 w-5 fill-current" />
-                ))}
+                {[...Array(5)].map((_, i) => <Star key={i} className="h-5 w-5 fill-current" />)}
               </div>
               <span className="ml-2 text-primary-foreground font-medium">Rated #1 in Pittsburgh</span>
             </div>
@@ -133,104 +121,53 @@ const Hero = () => {
               <CardContent className="p-6">
                 <div className="text-center mb-6">
                   <h3 className="text-2xl font-bold text-card-foreground mb-2">Get Instant Quote</h3>
-                  <p className="text-muted-foreground">Free estimates in under 60 seconds</p>
+                  <p className="text-muted-foreground">Free estimates - Same Day!
+
+                </p>
                 </div>
                 
                 <form className="space-y-4" onSubmit={handleSubmit}>
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="first-name">First Name</Label>
-                      <Input 
-                        id="first-name"
-                        name="firstName"
-                        placeholder="Your first name"
-                        className="border-border focus:border-primary"
-                        required
-                      />
+                      <Input id="first-name" name="firstName" placeholder="Your first name" className="border-border focus:border-primary" required />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="last-name">Last Name</Label>
-                      <Input 
-                        id="last-name"
-                        name="lastName"
-                        placeholder="Your last name"
-                        className="border-border focus:border-primary"
-                        required
-                      />
+                      <Input id="last-name" name="lastName" placeholder="Your last name" className="border-border focus:border-primary" required />
                     </div>
                   </div>
                   
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="email">Email</Label>
-                      <Input 
-                        id="email"
-                        name="email"
-                        type="email"
-                        placeholder="your.email@example.com"
-                        className="border-border focus:border-primary"
-                        required
-                      />
+                      <Input id="email" name="email" type="email" placeholder="your.email@example.com" className="border-border focus:border-primary" required />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="phone">Phone #</Label>
-                      <Input 
-                        id="phone"
-                        name="phone"
-                        type="tel" 
-                        placeholder="(412) 555-0123"
-                        className="border-border focus:border-primary"
-                        required
-                      />
+                      <Input id="phone" name="phone" type="tel" placeholder="(412) 555-0123" className="border-border focus:border-primary" required />
                     </div>
                   </div>
                   
                   <div className="space-y-2">
                     <Label htmlFor="date">Date Of Ride</Label>
-                    <Input 
-                      id="date"
-                      name="dateOfRide"
-                      type="date" 
-                      className="border-border focus:border-primary"
-                      required
-                    />
+                    <Input id="date" name="dateOfRide" type="date" className="border-border focus:border-primary" required />
                   </div>
                   
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="pickup-city">Pickup City w/ Zip</Label>
-                       <Input 
-                         id="pickup-city"
-                         name="pickupCity"
-                         placeholder="Pittsburgh, PA 15219"
-                         className="border-border focus:border-primary"
-                         required
-                       />
+                       <Input id="pickup-city" name="pickupCity" placeholder="Pittsburgh, PA 15219" className="border-border focus:border-primary" required />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="dropoff-city">Drop-off City W/ Zip</Label>
-                       <Input 
-                         id="dropoff-city"
-                         name="dropoffCity"
-                         placeholder="Pittsburgh, PA 15219"
-                         className="border-border focus:border-primary"
-                         required
-                       />
+                       <Input id="dropoff-city" name="dropoffCity" placeholder="Pittsburgh, PA 15219" className="border-border focus:border-primary" required />
                     </div>
                   </div>
                   
                   <div className="space-y-2">
                     <Label htmlFor="party-size"># in Party</Label>
-                     <Input 
-                       id="party-size"
-                       name="partySize"
-                       type="number"
-                       placeholder="18"
-                       min="1"
-                       max="50"
-                       className="border-border focus:border-primary"
-                       required
-                     />
+                     <Input id="party-size" name="partySize" type="number" placeholder="18" min="1" max="50" className="border-border focus:border-primary" required />
                   </div>
                   
                   <div className="grid grid-cols-2 gap-4">
@@ -293,8 +230,6 @@ const Hero = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Hero;
