@@ -45,7 +45,7 @@ const Contact = () => {
     };
 
     try {
-      const response = await fetch('/functions/v1/send-contact-email', {
+      const response = await fetch('https://formspree.io/f/mkgqvajy', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -53,16 +53,14 @@ const Contact = () => {
         body: JSON.stringify(data),
       });
 
-      const result = await response.json();
-
       if (response.ok) {
         toast({
           title: "Quote Request Sent!",
-          description: result.message,
+          description: "We'll get back to you within 2 hours during business hours.",
         });
         (e.target as HTMLFormElement).reset();
       } else {
-        throw new Error(result.error || 'Failed to submit quote request');
+        throw new Error('Failed to submit quote request');
       }
     } catch (error) {
       console.error('Error submitting form:', error);
