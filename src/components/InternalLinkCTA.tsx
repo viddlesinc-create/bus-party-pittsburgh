@@ -44,7 +44,7 @@ export function InternalLinkCTA({
             <Button 
               variant="outline" 
               size="xl" 
-              className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-foreground"
+              className="bg-primary-foreground/10 border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-foreground backdrop-blur-sm"
               asChild
             >
               <Link to={secondaryLink.href}>
