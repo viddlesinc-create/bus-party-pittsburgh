@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { hydrateRoot } from 'react-dom/client';
+import { hydrateRoot, createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -48,8 +48,8 @@ const ClientOnlyToasters = () => {
 
 const queryClient = new QueryClient();
 
-hydrateRoot(
-  document.getElementById('root')!,
+const container = document.getElementById('root')!;
+const app = (
   <BrowserRouter>
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
@@ -81,3 +81,12 @@ hydrateRoot(
     </QueryClientProvider>
   </BrowserRouter>
 );
+
+const html = container.innerHTML.trim();
+const hasSSR = html !== "" && !html.includes('ssr-outlet');
+
+if (hasSSR) {
+  hydrateRoot(container, app);
+} else {
+  createRoot(container).render(app);
+}
