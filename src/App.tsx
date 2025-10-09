@@ -6,6 +6,7 @@ import { Routes, Route } from "react-router-dom";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import SkipToContent from "@/components/SkipToContent";
 import { useEffect, useState } from "react";
+import { HelmetProvider } from 'react-helmet';
 import Index from "./pages/Index";
 import Fleet from "./pages/Fleet";
 import Events from "./pages/Events";
@@ -37,17 +38,18 @@ const App = () => {
   }, []);
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <SkipToContent />
-        {isClient && (
-          <>
-            <Toaster />
-            <Sonner />
-          </>
-        )}
-        <ScrollToTop />
-        <Routes>
+    <HelmetProvider>
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <SkipToContent />
+          {isClient && (
+            <>
+              <Toaster />
+              <Sonner />
+            </>
+          )}
+          <ScrollToTop />
+          <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/fleet" element={<Fleet />} />
         <Route path="/events" element={<Events />} />
@@ -70,8 +72,9 @@ const App = () => {
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
         </Routes>
-      </TooltipProvider>
-    </QueryClientProvider>
+        </TooltipProvider>
+      </QueryClientProvider>
+    </HelmetProvider>
   );
 };
 
