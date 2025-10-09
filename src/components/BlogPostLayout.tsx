@@ -203,7 +203,7 @@ const BlogPostLayout = ({
                 Get Free Quote
               </Link>
             </Button>
-            <Button variant="outline" size="lg" className="bg-white/10 text-accent-foreground border-accent-foreground/20" asChild>
+            <Button variant="outline" size="lg" className="bg-white/20 border-2 text-accent-foreground border-accent-foreground/40 backdrop-blur-sm" asChild>
               <Link to="/fleet">
                 View Our Fleet
               </Link>

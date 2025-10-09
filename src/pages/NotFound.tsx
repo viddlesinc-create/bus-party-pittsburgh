@@ -42,7 +42,7 @@ const NotFound = () => {
               </Button>
             </Link>
             <Link to="/fleet">
-              <Button variant="outline" size="lg">
+              <Button variant="outline" size="lg" className="bg-background/50 border-2">
                 <Search className="mr-2 h-5 w-5" />
                 View Our Fleet
               </Button>

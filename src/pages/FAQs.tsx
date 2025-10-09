@@ -174,7 +174,7 @@ const FAQs = () => {
               <Phone className="mr-2 h-5 w-5" />
               Call (412) 385-3877
             </Button>
-            <Button variant="outline" size="xl" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-foreground">
+            <Button variant="outline" size="xl" className="bg-primary-foreground/10 border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-foreground backdrop-blur-sm">
               <MessageSquare className="mr-2 h-5 w-5" />
               Ask a Question
             </Button>
@@ -267,7 +267,7 @@ const FAQs = () => {
               <CardContent>
                 <div className="text-lg font-semibold text-accent mb-2">2-Hour Response</div>
                 <p className="text-muted-foreground mb-4">During business hours</p>
-                <Button variant="outline" size="sm" className="w-full">
+                <Button variant="outline" size="sm" className="w-full bg-background/50 border-2">
                   Contact Form
                 </Button>
               </CardContent>

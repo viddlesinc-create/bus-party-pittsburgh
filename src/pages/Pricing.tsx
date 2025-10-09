@@ -287,7 +287,7 @@ const Pricing = () => {
                     ))}
                   </ul>
                   
-                  <Button variant="outline" size="sm" className="w-full">
+                  <Button variant="outline" size="sm" className="w-full bg-background/50 border-2">
                     Select This Option
                   </Button>
                 </CardContent>

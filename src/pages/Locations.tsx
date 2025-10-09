@@ -131,7 +131,7 @@ const Locations = () => {
               <Phone className="mr-2 h-5 w-5" />
               Call (412) 385-3877
             </Button>
-            <Button variant="outline" size="xl" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-foreground">
+            <Button variant="outline" size="xl" className="bg-primary-foreground/10 border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-foreground backdrop-blur-sm">
               <NavigationIcon className="mr-2 h-5 w-5" />
               Check Your Area
             </Button>
@@ -245,7 +245,7 @@ const Locations = () => {
                 <Button variant="accent" size="lg">
                   Get Directions
                 </Button>
-                <Button variant="outline" size="lg">
+                <Button variant="outline" size="lg" className="bg-background/50 border-2">
                   Request Pickup
                 </Button>
               </div>

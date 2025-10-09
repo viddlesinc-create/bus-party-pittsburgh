@@ -324,7 +324,7 @@ const Blog = () => {
                   </div>
                   
                   <Link to={`/blog/${post.slug}`}>
-                    <Button variant="outline" size="sm" className="w-full group-hover:bg-primary group-hover:text-primary-foreground">
+                    <Button variant="outline" size="sm" className="w-full bg-background/50 border-2 group-hover:bg-primary group-hover:text-primary-foreground">
                       Read Article
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>

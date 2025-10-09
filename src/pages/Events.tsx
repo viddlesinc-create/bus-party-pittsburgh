@@ -160,7 +160,7 @@ const Events = () => {
                 Call (412) 385-3877
               </a>
             </Button>
-            <Button variant="outline" size="xl" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-foreground" asChild>
+            <Button variant="outline" size="xl" className="bg-primary-foreground/10 border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-foreground backdrop-blur-sm" asChild>
               <Link to="/contact">
                 Get Event Quote
               </Link>
@@ -218,7 +218,7 @@ const Events = () => {
                         Book This Event
                       </Link>
                     </Button>
-                    <Button variant="outline" size="sm" className="w-full" asChild>
+                    <Button variant="outline" size="sm" className="w-full bg-background/50 border-2" asChild>
                       <Link to="/fleet">
                         View Our Fleet
                       </Link>

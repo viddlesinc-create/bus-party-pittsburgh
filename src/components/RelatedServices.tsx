@@ -45,7 +45,7 @@ export function RelatedServices({ services, title = "Related Services" }: Relate
                   {service.description}
                 </CardDescription>
                 
-                <Button variant="outline" className="w-full group-hover:bg-primary group-hover:text-primary-foreground" asChild>
+                <Button variant="outline" className="w-full bg-background/50 border-2 group-hover:bg-primary group-hover:text-primary-foreground" asChild>
                   <Link to={service.href}>
                     Learn More
                     <ArrowRight className="ml-2 h-4 w-4" />

@@ -154,7 +154,7 @@ const Index = () => {
                     View Full Fleet
                   </Link>
                 </Button>
-                <Button variant="outline" size="lg" asChild>
+                <Button variant="outline" size="lg" className="bg-background/50 border-2" asChild>
                   <Link to="/contact">
                     Get Fleet Quote
                   </Link>

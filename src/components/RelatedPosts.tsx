@@ -64,7 +64,7 @@ export function RelatedPosts({ posts, title = "Related Articles" }: RelatedPosts
                   </span>
                 </div>
                 
-                <Button variant="outline" size="sm" className="w-full group-hover:bg-primary group-hover:text-primary-foreground" asChild>
+                <Button variant="outline" size="sm" className="w-full bg-background/50 border-2 group-hover:bg-primary group-hover:text-primary-foreground" asChild>
                   <Link to={`/blog/${post.slug}`}>
                     Read More
                     <ArrowRight className="ml-2 h-4 w-4" />

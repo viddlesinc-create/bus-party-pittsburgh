@@ -147,7 +147,7 @@ const Contact = () => {
               <Phone className="mr-2 h-5 w-5" />
               Call (412) 385-3877
             </Button>
-            <Button variant="outline" size="xl" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-foreground">
+            <Button variant="outline" size="xl" className="bg-primary-foreground/10 border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-foreground backdrop-blur-sm">
               <MessageSquare className="mr-2 h-5 w-5" />
               Send Message
             </Button>
@@ -353,7 +353,7 @@ const Contact = () => {
                       {index < faqs.length - 1 && <hr className="border-border" />}
                     </div>
                   ))}
-                  <Button variant="outline" size="sm" className="w-full mt-4">
+                  <Button variant="outline" size="sm" className="w-full mt-4 bg-background/50 border-2">
                     View All FAQs
                   </Button>
                 </CardContent>
@@ -378,10 +378,10 @@ const Contact = () => {
                     </div>
                   </div>
                   <div className="mt-4 flex gap-2">
-                    <Button variant="outline" size="sm" className="flex-1">
+                    <Button variant="outline" size="sm" className="flex-1 bg-background/50 border-2">
                       Get Directions
                     </Button>
-                    <Button variant="outline" size="sm" className="flex-1">
+                    <Button variant="outline" size="sm" className="flex-1 bg-background/50 border-2">
                       Call Location
                     </Button>
                   </div>
