@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { 
   Phone,
   Mail,
@@ -24,12 +24,34 @@ import {
 const Contact = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [mathQuestion, setMathQuestion] = useState({ num1: 0, num2: 0, answer: 0 });
+
+  useEffect(() => {
+    generateMathQuestion();
+  }, []);
+
+  const generateMathQuestion = () => {
+    const num1 = Math.floor(Math.random() * 10) + 1;
+    const num2 = Math.floor(Math.random() * 10) + 1;
+    setMathQuestion({ num1, num2, answer: num1 + num2 });
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsSubmitting(true);
-
+    
     const formData = new FormData(e.currentTarget);
+    const userAnswer = parseInt(formData.get('mathAnswer') as string);
+    
+    if (userAnswer !== mathQuestion.answer) {
+      toast({
+        title: "Verification Failed",
+        description: "Please solve the math problem correctly to submit the form.",
+        variant: "destructive"
+      });
+      return;
+    }
+    
+    setIsSubmitting(true);
     const data = {
       firstName: formData.get('firstName') as string,
       lastName: formData.get('lastName') as string,
@@ -59,6 +81,7 @@ const Contact = () => {
           description: "We'll get back to you within 2 hours during business hours.",
         });
         (e.target as HTMLFormElement).reset();
+        generateMathQuestion();
       } else {
         throw new Error('Failed to submit quote request');
       }
@@ -295,6 +318,17 @@ const Contact = () => {
                       </SelectContent>
                     </Select>
                   </div>
+                </div>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="math-answer">Security Check: What is {mathQuestion.num1} + {mathQuestion.num2}?</Label>
+                  <Input 
+                    id="math-answer" 
+                    name="mathAnswer" 
+                    type="number" 
+                    placeholder="Enter answer" 
+                    required 
+                  />
                 </div>
                 
                 <Button type="submit" variant="hero" size="lg" className="w-full" disabled={isSubmitting}>
