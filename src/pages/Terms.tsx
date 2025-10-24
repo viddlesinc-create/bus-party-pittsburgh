@@ -3,7 +3,8 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { FileText, AlertCircle, Scale, ShieldCheck, Ban, DollarSign } from "lucide-react";
+import { FileText, AlertCircle, Scale, ShieldCheck, Ban, DollarSign, ExternalLink } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Terms = () => {
   return (
@@ -61,11 +62,11 @@ const Terms = () => {
                 <div>
                   <h3 className="font-semibold text-foreground mb-2">Reservations</h3>
                   <ul className="list-disc pl-6 space-y-2">
-                    <li>All reservations must be made by phone or through our website</li>
+                    <li>All reservations must be made by <Link to="/contact" className="text-accent hover:underline">phone or through our website</Link></li>
                     <li>A 25% non-refundable deposit is required to secure your booking</li>
                     <li>The remaining balance is due on the day of service before departure</li>
                     <li>We accept cash, credit cards, and PayPal</li>
-                    <li>All prices are subject to change until deposit is received</li>
+                    <li>All <Link to="/pricing" className="text-accent hover:underline">prices</Link> are subject to change until deposit is received</li>
                   </ul>
                 </div>
                 <div>
@@ -105,11 +106,12 @@ const Terms = () => {
                     <li>Cancellations 7-14 days before event: 25% refund of deposit</li>
                     <li>Cancellations within 7 days: No refund</li>
                   </ul>
+                  <p className="mt-3">For questions about cancellations, please <Link to="/contact" className="text-accent hover:underline">contact us</Link>.</p>
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground mb-2">Modifications</h3>
                   <ul className="list-disc pl-6 space-y-2">
-                    <li>Changes to date, time, or vehicle can be made up to 48 hours before event at no charge</li>
+                    <li>Changes to date, time, or <Link to="/fleet" className="text-accent hover:underline">vehicle</Link> can be made up to 48 hours before event at no charge</li>
                     <li>Changes within 48 hours subject to availability and may incur fees</li>
                   </ul>
                 </div>
@@ -202,7 +204,7 @@ const Terms = () => {
                 <div>
                   <h3 className="font-semibold text-foreground mb-2">Service Area</h3>
                   <ul className="list-disc pl-6 space-y-2">
-                    <li>We primarily serve Pittsburgh and surrounding Allegheny County areas</li>
+                    <li>We primarily serve <Link to="/locations" className="text-accent hover:underline">Pittsburgh and surrounding Allegheny County areas</Link></li>
                     <li>Out-of-area trips may require fuel surcharges and extended minimum hours</li>
                     <li>Long-distance trips must be discussed and approved in advance</li>
                   </ul>
@@ -263,13 +265,45 @@ const Terms = () => {
               </CardHeader>
               <CardContent className="text-muted-foreground">
                 <p className="mb-4">
-                  If you have questions about these Terms of Service, please contact us:
+                  If you have questions about these Terms of Service, please <Link to="/contact" className="text-accent hover:underline">contact us</Link>:
                 </p>
                 <div className="space-y-2">
                   <p><strong>Pitt Party Bus</strong></p>
                   <p>2101 Centre Ave, Pittsburgh, PA 15219</p>
                   <p>Phone: <a href="tel:4123853877" className="text-accent hover:underline">(412) 385-3877</a></p>
                   <p>Email: <a href="mailto:Pittpartybus412@gmail.com" className="text-accent hover:underline">Pittpartybus412@gmail.com</a></p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border shadow-card-custom bg-muted/50">
+              <CardHeader>
+                <div className="flex items-center">
+                  <ExternalLink className="h-6 w-6 text-accent mr-3" />
+                  <CardTitle>Helpful Resources</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground mb-4">Find more information about our services:</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  <Link to="/fleet" className="text-accent hover:underline flex items-center">
+                    → Browse Our Fleet
+                  </Link>
+                  <Link to="/pricing" className="text-accent hover:underline flex items-center">
+                    → View Pricing & Packages
+                  </Link>
+                  <Link to="/events" className="text-accent hover:underline flex items-center">
+                    → Event Types We Serve
+                  </Link>
+                  <Link to="/locations" className="text-accent hover:underline flex items-center">
+                    → Service Areas
+                  </Link>
+                  <Link to="/contact" className="text-accent hover:underline flex items-center">
+                    → Get in Touch
+                  </Link>
+                  <Link to="/privacy" className="text-accent hover:underline flex items-center">
+                    → Privacy Policy
+                  </Link>
                 </div>
               </CardContent>
             </Card>

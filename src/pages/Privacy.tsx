@@ -3,7 +3,8 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Shield, Lock, Eye, Users, Database, Cookie } from "lucide-react";
+import { Shield, Lock, Eye, Users, Database, Cookie, ExternalLink } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Privacy = () => {
   return (
@@ -60,12 +61,12 @@ const Privacy = () => {
               <CardContent className="space-y-4 text-muted-foreground">
                 <div>
                   <h3 className="font-semibold text-foreground mb-2">Personal Information</h3>
-                  <p>When you book our services, we may collect:</p>
+                  <p>When you <Link to="/contact" className="text-accent hover:underline">book our services</Link>, we may collect:</p>
                   <ul className="list-disc pl-6 space-y-1 mt-2">
                     <li>Name and contact information (phone number, email address)</li>
                     <li>Event details (date, time, location, number of passengers)</li>
                     <li>Payment information (processed securely through our payment processor)</li>
-                    <li>Special requests or requirements for your event</li>
+                    <li>Special requests or requirements for your <Link to="/events" className="text-accent hover:underline">event</Link></li>
                   </ul>
                 </div>
                 <div>
@@ -90,10 +91,10 @@ const Privacy = () => {
               <CardContent className="space-y-4 text-muted-foreground">
                 <p>We use the information we collect to:</p>
                 <ul className="list-disc pl-6 space-y-2">
-                  <li>Process your bookings and provide our transportation services</li>
+                  <li>Process your bookings and provide our <Link to="/fleet" className="text-accent hover:underline">transportation services</Link></li>
                   <li>Communicate with you about your reservation and any changes</li>
                   <li>Send you confirmations, receipts, and service-related information</li>
-                  <li>Respond to your inquiries and provide customer support</li>
+                  <li>Respond to your <Link to="/contact" className="text-accent hover:underline">inquiries</Link> and provide customer support</li>
                   <li>Improve our services and website functionality</li>
                   <li>Send promotional materials (only with your consent)</li>
                   <li>Comply with legal obligations and protect our rights</li>
@@ -213,13 +214,45 @@ const Privacy = () => {
               </CardHeader>
               <CardContent className="text-muted-foreground">
                 <p className="mb-4">
-                  If you have any questions or concerns about this Privacy Policy or our data practices, please contact us:
+                  If you have any questions or concerns about this Privacy Policy or our data practices, please <Link to="/contact" className="text-accent hover:underline">contact us</Link>:
                 </p>
                 <div className="space-y-2">
                   <p><strong>Pitt Party Bus</strong></p>
                   <p>2101 Centre Ave, Pittsburgh, PA 15219</p>
                   <p>Phone: <a href="tel:4123853877" className="text-accent hover:underline">(412) 385-3877</a></p>
                   <p>Email: <a href="mailto:Pittpartybus412@gmail.com" className="text-accent hover:underline">Pittpartybus412@gmail.com</a></p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border shadow-card-custom bg-muted/50">
+              <CardHeader>
+                <div className="flex items-center">
+                  <ExternalLink className="h-6 w-6 text-accent mr-3" />
+                  <CardTitle>Explore More</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground mb-4">Learn more about our services and policies:</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  <Link to="/fleet" className="text-accent hover:underline flex items-center">
+                    → View Our Fleet
+                  </Link>
+                  <Link to="/pricing" className="text-accent hover:underline flex items-center">
+                    → Get Pricing Information
+                  </Link>
+                  <Link to="/events" className="text-accent hover:underline flex items-center">
+                    → Event Services
+                  </Link>
+                  <Link to="/contact" className="text-accent hover:underline flex items-center">
+                    → Contact Us
+                  </Link>
+                  <Link to="/terms" className="text-accent hover:underline flex items-center">
+                    → Terms of Service
+                  </Link>
+                  <Link to="/faqs" className="text-accent hover:underline flex items-center">
+                    → Frequently Asked Questions
+                  </Link>
                 </div>
               </CardContent>
             </Card>
