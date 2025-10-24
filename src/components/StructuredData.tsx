@@ -1,30 +1,18 @@
-import { useEffect } from 'react';
+import { Helmet } from 'react-helmet';
 
 interface StructuredDataProps {
   data: object;
 }
 
 export function StructuredData({ data }: StructuredDataProps) {
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
-    script.text = JSON.stringify(data);
-    script.id = 'structured-data';
-    
-    // Remove existing structured data script if present
-    const existing = document.getElementById('structured-data');
-    if (existing) {
-      existing.remove();
-    }
-    
-    document.head.appendChild(script);
-
-    return () => {
-      script.remove();
-    };
-  }, [data]);
-
-  return null;
+  // Use Helmet for SSR-compatible structured data
+  return (
+    <Helmet>
+      <script type="application/ld+json">
+        {JSON.stringify(data)}
+      </script>
+    </Helmet>
+  );
 }
 
 // Predefined structured data templates

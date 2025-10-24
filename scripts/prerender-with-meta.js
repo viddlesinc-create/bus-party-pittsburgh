@@ -69,12 +69,30 @@ async function prerender() {
 
       fs.writeFileSync(filePath, html);
       
-      // Verify content is present
+      // Comprehensive verification of SSR content
       const hasH1 = html.includes('<h1');
       const hasMeta = html.includes('meta name="description"');
-      const statusIcon = hasH1 && hasMeta ? '✅' : '⚠️';
+      const hasCanonical = html.includes('rel="canonical"');
+      const hasOgTags = html.includes('property="og:title"') && html.includes('property="og:description"');
+      const hasTwitterCard = html.includes('name="twitter:card"');
+      const hasStructuredData = html.includes('application/ld+json');
+      const hasNavLinks = html.includes('href="/fleet"') && html.includes('href="/contact"');
       
-      console.log(`${statusIcon} ${route} → ${path.relative(process.cwd(), filePath)}`);
+      const checks = {
+        'H1': hasH1,
+        'Meta': hasMeta,
+        'Canonical': hasCanonical,
+        'OpenGraph': hasOgTags,
+        'Twitter': hasTwitterCard,
+        'Schema': hasStructuredData,
+        'NavLinks': hasNavLinks
+      };
+      
+      const failedChecks = Object.entries(checks).filter(([_, passed]) => !passed).map(([name]) => name);
+      const statusIcon = failedChecks.length === 0 ? '✅' : '⚠️';
+      const status = failedChecks.length === 0 ? 'PASS' : `MISSING: ${failedChecks.join(', ')}`;
+      
+      console.log(`${statusIcon} ${route.padEnd(45)} ${status}`);
       successCount++;
 
     } catch (error) {
