@@ -336,11 +336,15 @@ const Fleet = () => {
       <section className="py-20 bg-hero-gradient">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-6xl font-bold text-primary-foreground mb-6">
-            FLEET
+            Our Premium Fleet
           </h1>
           <p className="text-xl text-primary-foreground/90 max-w-3xl mx-auto mb-8">
-            Explore our diverse fleet of luxury vehicles. From intimate limousines to spacious party buses, 
-            we have the perfect vehicle for every occasion.
+            Explore our diverse fleet of luxury vehicles perfect for any <Link to="/events" className="text-white hover:underline font-semibold">event</Link>. 
+            From intimate limousines to spacious party buses, we have the perfect vehicle for every occasion and group size. 
+            All vehicles serve the entire <Link to="/locations" className="text-white hover:underline font-semibold">Pittsburgh area</Link> with 
+            competitive <Link to="/pricing" className="text-white hover:underline font-semibold">hourly rates</Link>. 
+            Read our <Link to="/blog/party-bus-vs-limo" className="text-white hover:underline font-semibold">party bus vs limo guide</Link> to 
+            choose the right vehicle.
           </p>
           <Button variant="accent" size="xl" className="shadow-glow" asChild>
             <a href="tel:4123853877">

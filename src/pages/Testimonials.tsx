@@ -2,6 +2,7 @@ import { MetaTags } from "@/components/MetaTags";
 import { StructuredData } from "@/components/StructuredData";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -16,7 +17,9 @@ import {
   Camera,
   MessageSquare,
   Trophy,
-  CheckCircle
+  CheckCircle,
+  Car,
+  DollarSign
 } from "lucide-react";
 
 const Testimonials = () => {
@@ -170,7 +173,13 @@ const Testimonials = () => {
           </h1>
           <p className="text-xl text-primary-foreground/90 max-w-3xl mx-auto mb-8">
             Don't just take our word for it - see what Pittsburgh customers say about 
-            their amazing party bus and limousine experiences with us.
+            their amazing party bus and limousine experiences with us. Read reviews from 
+            real <Link to="/events" className="text-white hover:underline font-semibold">weddings</Link>, 
+            {" "}<Link to="/events" className="text-white hover:underline font-semibold">proms</Link>, 
+            {" "}<Link to="/events" className="text-white hover:underline font-semibold">bachelor parties</Link>, and 
+            more. Explore our <Link to="/fleet" className="text-white hover:underline font-semibold">fleet</Link>, 
+            check <Link to="/pricing" className="text-white hover:underline font-semibold">pricing</Link>, or 
+            read our <Link to="/blog" className="text-white hover:underline font-semibold">blog</Link> for event planning tips.
           </p>
           
           <div className="flex items-center justify-center space-x-6 text-primary-foreground">
@@ -269,7 +278,11 @@ const Testimonials = () => {
               Reviews by Event Type
             </h2>
             <p className="text-xl text-muted-foreground">
-              See how we've made different types of events unforgettable
+              See how we've made different types of events unforgettable throughout the 
+              {" "}<Link to="/locations" className="text-accent hover:underline font-semibold">Pittsburgh area</Link>. 
+              From downtown celebrations to suburban affairs, our professional service and 
+              {" "}<Link to="/fleet" className="text-accent hover:underline font-semibold">luxury vehicles</Link> create 
+              memories that last a lifetime.
             </p>
           </div>
 
@@ -342,6 +355,90 @@ const Testimonials = () => {
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Related Resources */}
+      <section className="py-20 bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Ready to Create Your Own Success Story?
+            </h2>
+            <p className="text-xl text-muted-foreground">
+              Explore our services and start planning your perfect event
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-4 gap-6">
+            <Card className="border-border shadow-card-custom hover:shadow-party transition-all duration-300">
+              <CardHeader className="text-center">
+                <div className="mx-auto mb-4 p-3 bg-hero-gradient rounded-full w-fit">
+                  <Car className="h-6 w-6 text-primary-foreground" />
+                </div>
+                <CardTitle>Browse Fleet</CardTitle>
+              </CardHeader>
+              <CardContent className="text-center">
+                <p className="text-sm text-muted-foreground mb-4">
+                  Explore our luxury vehicles perfect for any group size
+                </p>
+                <Button variant="outline" size="sm" className="w-full" asChild>
+                  <Link to="/fleet">View Vehicles</Link>
+                </Button>
+              </CardContent>
+            </Card>
+            
+            <Card className="border-border shadow-card-custom hover:shadow-party transition-all duration-300">
+              <CardHeader className="text-center">
+                <div className="mx-auto mb-4 p-3 bg-hero-gradient rounded-full w-fit">
+                  <DollarSign className="h-6 w-6 text-primary-foreground" />
+                </div>
+                <CardTitle>Get Pricing</CardTitle>
+              </CardHeader>
+              <CardContent className="text-center">
+                <p className="text-sm text-muted-foreground mb-4">
+                  Transparent rates and instant online estimates
+                </p>
+                <Button variant="outline" size="sm" className="w-full" asChild>
+                  <Link to="/pricing">See Rates</Link>
+                </Button>
+              </CardContent>
+            </Card>
+            
+            <Card className="border-border shadow-card-custom hover:shadow-party transition-all duration-300">
+              <CardHeader className="text-center">
+                <div className="mx-auto mb-4 p-3 bg-hero-gradient rounded-full w-fit">
+                  <Calendar className="h-6 w-6 text-primary-foreground" />
+                </div>
+                <CardTitle>Event Ideas</CardTitle>
+              </CardHeader>
+              <CardContent className="text-center">
+                <p className="text-sm text-muted-foreground mb-4">
+                  Discover which events we specialize in
+                </p>
+                <Button variant="outline" size="sm" className="w-full" asChild>
+                  <Link to="/events">Explore Events</Link>
+                </Button>
+              </CardContent>
+            </Card>
+            
+            <Card className="border-border shadow-card-custom hover:shadow-party transition-all duration-300">
+              <CardHeader className="text-center">
+                <div className="mx-auto mb-4 p-3 bg-hero-gradient rounded-full w-fit">
+                  <MessageSquare className="h-6 w-6 text-primary-foreground" />
+                </div>
+                <CardTitle>Contact Us</CardTitle>
+              </CardHeader>
+              <CardContent className="text-center">
+                <p className="text-sm text-muted-foreground mb-4">
+                  Get a free quote and book your transportation
+                </p>
+                <Button variant="outline" size="sm" className="w-full" asChild>
+                  <Link to="/contact">Get Quote</Link>
+                </Button>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>

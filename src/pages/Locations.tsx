@@ -2,6 +2,7 @@ import { MetaTags } from "@/components/MetaTags";
 import { StructuredData, organizationSchema } from "@/components/StructuredData";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -116,24 +117,29 @@ const Locations = () => {
       <StructuredData data={organizationSchema} />
       <Navigation />
       
-      {/* Hero Section */}
-      <section className="py-20 bg-hero-gradient">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold text-primary-foreground mb-6">
+      <section className="py-12 bg-hero-gradient">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-4xl md:text-5xl font-bold text-primary-foreground mb-6">
             Pittsburgh Service Areas
           </h1>
           <p className="text-xl text-primary-foreground/90 max-w-3xl mx-auto mb-8">
-            We proudly serve Pittsburgh and all surrounding communities with premium party bus 
-            and limousine transportation. From downtown to the suburbs, we know the Steel City.
+            We proudly serve Pittsburgh and all surrounding communities with premium <Link to="/fleet" className="text-white hover:underline font-semibold">party bus</Link> and 
+            limousine transportation. From downtown to the suburbs, we know the Steel City inside and out. Our experienced drivers navigate 
+            Pittsburgh's unique terrain and neighborhoods with ease, ensuring prompt pickups and timely arrivals for 
+            all <Link to="/events" className="text-white hover:underline font-semibold">events</Link>.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="accent" size="xl" className="shadow-glow">
-              <Phone className="mr-2 h-5 w-5" />
-              Call (412) 385-3877
+            <Button variant="accent" size="xl" className="shadow-glow" asChild>
+              <a href="tel:4123853877">
+                <Phone className="mr-2 h-5 w-5" />
+                Call (412) 385-3877
+              </a>
             </Button>
-            <Button variant="outline" size="xl" className="bg-primary-foreground/10 border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-foreground backdrop-blur-sm">
-              <NavigationIcon className="mr-2 h-5 w-5" />
-              Check Your Area
+            <Button variant="outline" size="xl" className="bg-primary-foreground/10 border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-foreground backdrop-blur-sm" asChild>
+              <Link to="/contact">
+                <NavigationIcon className="mr-2 h-5 w-5" />
+                Get Service Quote
+              </Link>
             </Button>
           </div>
         </div>
@@ -146,8 +152,17 @@ const Locations = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
               Areas We Serve Throughout Pittsburgh
             </h2>
-            <p className="text-xl text-muted-foreground">
-              From the city center to suburban communities - we bring luxury transportation everywhere
+            <p className="text-xl text-muted-foreground mb-4">
+              From the city center to suburban communities - we bring luxury transportation everywhere. 
+              Whether you're planning a <Link to="/events" className="text-accent hover:underline font-semibold">wedding</Link>, 
+              {" "}<Link to="/events" className="text-accent hover:underline font-semibold">corporate event</Link>, or 
+              {" "}<Link to="/events" className="text-accent hover:underline font-semibold">night out</Link>, 
+              our <Link to="/fleet" className="text-accent hover:underline font-semibold">fleet</Link> reaches every corner of the Pittsburgh metro area.
+            </p>
+            <p className="text-lg text-muted-foreground">
+              Check our <Link to="/pricing" className="text-accent hover:underline font-semibold">transparent pricing</Link> and 
+              read our <Link to="/blog/top-events-pittsburgh" className="text-accent hover:underline font-semibold">guide to top Pittsburgh events</Link> to 
+              plan your perfect outing.
             </p>
           </div>
 

@@ -142,7 +142,12 @@ const Pricing = () => {
           </h1>
           <p className="text-xl text-primary-foreground/90 max-w-3xl mx-auto mb-8">
             Transparent, competitive pricing for premium party bus and limousine rentals in Pittsburgh. 
-            Get your free estimate in seconds.
+            Get your free estimate in seconds. All <Link to="/fleet" className="text-white hover:underline font-semibold">vehicles</Link> include 
+            professional chauffeurs, insurance, and amenities. We serve 
+            all <Link to="/locations" className="text-white hover:underline font-semibold">Pittsburgh areas</Link> for 
+            any <Link to="/events" className="text-white hover:underline font-semibold">event type</Link>. 
+            Read our <Link to="/blog/party-bus-pricing-guide" className="text-white hover:underline font-semibold">complete pricing guide</Link> to 
+            understand cost factors.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button variant="accent" size="xl" className="shadow-glow">

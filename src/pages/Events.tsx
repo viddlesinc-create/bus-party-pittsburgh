@@ -149,9 +149,12 @@ const Events = () => {
           <h1 className="text-4xl md:text-6xl font-bold text-primary-foreground mb-6">
             Events We Serve
           </h1>
-          <p className="text-xl text-primary-foreground/90 max-w-3xl mx-auto mb-8">
+          <p className="text-xl text-muted-foreground">
             From intimate celebrations to grand occasions, we provide luxury transportation 
-            that makes every event special and memorable.
+            that makes every event special and memorable. Our <Link to="/fleet" className="text-primary-foreground hover:underline font-semibold">diverse fleet</Link> includes 
+            vehicles perfect for any group size, and our professional service ensures your event runs smoothly. 
+            Learn about <Link to="/pricing" className="text-primary-foreground hover:underline font-semibold">competitive pricing</Link> or 
+            read <Link to="/blog" className="text-primary-foreground hover:underline font-semibold">planning tips</Link> on our blog.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button variant="accent" size="xl" className="shadow-glow" asChild>
@@ -176,8 +179,14 @@ const Events = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
               Perfect Transportation for Every Occasion
             </h2>
-            <p className="text-xl text-muted-foreground">
-              Whatever you're celebrating, we have the experience and vehicles to make it extraordinary
+            <p className="text-xl text-muted-foreground mb-4">
+              Whatever you're celebrating, we have the experience and vehicles to make it extraordinary. 
+              Serving all <Link to="/locations" className="text-accent hover:underline font-semibold">Pittsburgh neighborhoods</Link> with 
+              professional chauffeurs and <Link to="/fleet" className="text-accent hover:underline font-semibold">luxury vehicles</Link>.
+            </p>
+            <p className="text-lg text-muted-foreground">
+              Get <Link to="/pricing" className="text-accent hover:underline font-semibold">instant pricing</Link> or 
+              read our <Link to="/blog" className="text-accent hover:underline font-semibold">event planning guides</Link> for expert tips.
             </p>
           </div>
 

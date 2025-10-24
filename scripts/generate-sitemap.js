@@ -39,10 +39,15 @@ ${routes.map(route => {
   if (route === '/') {
     priority = '1.0';
   } else if (route.startsWith('/blog/')) {
-    priority = '0.6';
+    priority = '0.7';
     changefreq = 'monthly';
   } else if (['/fleet', '/pricing', '/events'].includes(route)) {
     priority = '0.9';
+  } else if (['/locations', '/contact', '/faqs', '/testimonials'].includes(route)) {
+    priority = '0.8';
+  } else if (['/privacy', '/terms'].includes(route)) {
+    priority = '0.5';
+    changefreq = 'yearly';
   }
   
   return `  <url>

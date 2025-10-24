@@ -1,6 +1,7 @@
 import { MetaTags } from "@/components/MetaTags";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -163,7 +164,13 @@ const Contact = () => {
           </h1>
           <p className="text-xl text-primary-foreground/90 max-w-3xl mx-auto mb-8">
             Ready to book your luxury transportation? Have questions about our services? 
-            We're here to help make your event planning easy and stress-free.
+            We're here to help make your event planning easy and stress-free. Browse 
+            our <Link to="/fleet" className="text-white hover:underline font-semibold">fleet</Link>, 
+            check <Link to="/pricing" className="text-white hover:underline font-semibold">pricing</Link>, 
+            explore <Link to="/events" className="text-white hover:underline font-semibold">events we serve</Link>, or 
+            verify we serve your <Link to="/locations" className="text-white hover:underline font-semibold">area</Link>. 
+            Read our <Link to="/blog" className="text-white hover:underline font-semibold">blog</Link> or 
+            check <Link to="/faqs" className="text-white hover:underline font-semibold">FAQs</Link> for quick answers.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button variant="accent" size="xl" className="shadow-glow">
@@ -185,8 +192,12 @@ const Contact = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
               Get in Touch
             </h2>
-            <p className="text-xl text-muted-foreground">
-              Multiple ways to reach us - choose what's most convenient for you
+            <p className="text-xl text-muted-foreground mb-4">
+              Multiple ways to reach us - choose what's most convenient for you. Need help deciding on 
+              a <Link to="/fleet" className="text-accent hover:underline font-semibold">vehicle</Link>? 
+              Questions about <Link to="/pricing" className="text-accent hover:underline font-semibold">pricing</Link>? 
+              Want to know if we serve your <Link to="/locations" className="text-accent hover:underline font-semibold">area</Link>? 
+              We're available 24/7 to assist with all your party bus rental needs.
             </p>
           </div>
 

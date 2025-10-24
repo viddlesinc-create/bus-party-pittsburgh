@@ -173,7 +173,10 @@ const Blog = () => {
           </h1>
           <p className="text-xl text-primary-foreground/90 max-w-3xl mx-auto mb-8">
             Expert tips, event ideas, and insider knowledge for planning the perfect 
-            celebration with luxury transportation in Pittsburgh.
+            celebration with luxury transportation in Pittsburgh. Discover <Link to="/pricing" className="text-white hover:underline font-semibold">pricing guides</Link>, 
+            explore <Link to="/events" className="text-white hover:underline font-semibold">event planning tips</Link>, 
+            learn about our <Link to="/fleet" className="text-white hover:underline font-semibold">vehicle options</Link>, and 
+            find answers to your questions. Serving all <Link to="/locations" className="text-white hover:underline font-semibold">Pittsburgh areas</Link>.
           </p>
           
           {/* Search Bar */}

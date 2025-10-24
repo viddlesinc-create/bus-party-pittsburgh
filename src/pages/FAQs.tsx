@@ -2,6 +2,7 @@ import { MetaTags } from "@/components/MetaTags";
 import { FAQSchema } from "@/components/FAQSchema";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -154,8 +155,13 @@ const FAQs = () => {
             Frequently Asked Questions
           </h1>
           <p className="text-xl text-primary-foreground/90 max-w-3xl mx-auto mb-8">
-            Find answers to common questions about party bus rentals in Pittsburgh. 
-            Can't find what you're looking for? Give us a call!
+            Find answers to common questions about party bus rentals in Pittsburgh. Learn about 
+            our <Link to="/fleet" className="text-white hover:underline font-semibold">vehicles</Link>, 
+            {" "}<Link to="/pricing" className="text-white hover:underline font-semibold">pricing</Link>, 
+            {" "}<Link to="/locations" className="text-white hover:underline font-semibold">service areas</Link>, and 
+            rental policies. Planning an <Link to="/events" className="text-white hover:underline font-semibold">event</Link>? 
+            Read our <Link to="/blog" className="text-white hover:underline font-semibold">blog guides</Link> for expert tips. 
+            Can't find what you're looking for? Give us a call at <a href="tel:4123853877" className="text-white hover:underline font-semibold">(412) 385-3877</a>!
           </p>
           
           {/* Search Bar */}
