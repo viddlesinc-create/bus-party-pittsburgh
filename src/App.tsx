@@ -27,6 +27,8 @@ import ConcertPartyBus from "./pages/blog/ConcertPartyBus";
 import PromTransportationSafety from "./pages/blog/PromTransportationSafety";
 import PartyBusSafetyTips from "./pages/blog/PartyBusSafetyTips";
 import AccuratePartyBusEstimate from "./pages/blog/AccuratePartyBusEstimate";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
 import { InternalLinkCTA } from "@/components/InternalLinkCTA";
 
 const queryClient = new QueryClient();
@@ -70,6 +72,8 @@ const App = () => {
         <Route path="/blog/party-bus-safety-tips" element={<PartyBusSafetyTips />} />
         <Route path="/blog/accurate-party-bus-estimate" element={<AccuratePartyBusEstimate />} />
         <Route path="/testimonials" element={<Testimonials />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/terms" element={<Terms />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
         </Routes>

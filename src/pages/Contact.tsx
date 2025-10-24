@@ -1,4 +1,4 @@
-import { SEOHead } from "@/components/SEOHead";
+import { MetaTags } from "@/components/MetaTags";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -148,7 +148,7 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <SEOHead 
+      <MetaTags 
         title="Contact Us - Get Your Free Quote"
         description="Contact Pitt Party Bus for a free quote. Call (412) 385-3877 or submit our online form. Available 24/7 for party bus and limo rentals in Pittsburgh."
         canonical="/contact"

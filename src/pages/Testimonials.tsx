@@ -1,4 +1,4 @@
-import { SEOHead } from "@/components/SEOHead";
+import { MetaTags } from "@/components/MetaTags";
 import { StructuredData } from "@/components/StructuredData";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -154,7 +154,7 @@ const Testimonials = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <SEOHead 
+      <MetaTags 
         title="Reviews & Testimonials - 500+ Five Star Reviews"
         description="Read real reviews from satisfied customers. Over 500 five-star reviews for our party bus and limousine service in Pittsburgh. See why we're #1 rated."
         canonical="/testimonials"

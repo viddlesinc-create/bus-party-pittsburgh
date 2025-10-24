@@ -1,4 +1,4 @@
-import { SEOHead } from "@/components/SEOHead";
+import { MetaTags } from "@/components/MetaTags";
 import { StructuredData, serviceSchema, breadcrumbSchema } from "@/components/StructuredData";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { InternalLinkCTA } from "@/components/InternalLinkCTA";
@@ -312,7 +312,7 @@ const Fleet = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <SEOHead 
+      <MetaTags 
         title="Our Fleet - Party Buses & Limousines"
         description="Explore our premium fleet of party buses and limousines in Pittsburgh. Vehicles for 6-40 passengers with luxury amenities. View photos and features."
         canonical="/fleet"

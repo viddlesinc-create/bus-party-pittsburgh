@@ -1,4 +1,4 @@
-import { SEOHead } from "@/components/SEOHead";
+import { MetaTags } from "@/components/MetaTags";
 import { StructuredData, breadcrumbSchema } from "@/components/StructuredData";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { InternalLinkCTA } from "@/components/InternalLinkCTA";
@@ -128,7 +128,7 @@ const Events = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <SEOHead 
+      <MetaTags 
         title="Events We Serve - Pittsburgh Party Bus"
         description="Professional party bus and limousine services for weddings, proms, bachelor parties, corporate events, concerts, and birthdays in Pittsburgh, PA."
         canonical="/events"

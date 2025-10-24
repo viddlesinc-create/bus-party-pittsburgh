@@ -1,4 +1,4 @@
-import { SEOHead } from "@/components/SEOHead";
+import { MetaTags } from "@/components/MetaTags";
 import { StructuredData, articleSchema } from "@/components/StructuredData";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { RelatedPosts } from "@/components/RelatedPosts";
@@ -70,7 +70,7 @@ const BlogPostLayout = ({
   
   return (
     <div className="min-h-screen bg-background">
-      <SEOHead 
+      <MetaTags 
         title={title}
         description={excerpt}
         canonical={slug}

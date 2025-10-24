@@ -1,4 +1,4 @@
-import { SEOHead } from "@/components/SEOHead";
+import { MetaTags } from "@/components/MetaTags";
 import { FAQSchema } from "@/components/FAQSchema";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -139,7 +139,7 @@ const FAQs = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <SEOHead 
+      <MetaTags 
         title="FAQs - Your Party Bus Questions Answered"
         description="Get answers to frequently asked questions about party bus rentals in Pittsburgh. Learn about booking, pricing, policies, and what to expect."
         canonical="/faqs"

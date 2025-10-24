@@ -1,4 +1,4 @@
-import { SEOHead } from "@/components/SEOHead";
+import { MetaTags } from "@/components/MetaTags";
 import { StructuredData, organizationSchema, websiteSchema } from "@/components/StructuredData";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
@@ -84,7 +84,7 @@ const Index = () => {
 
   return (
     <>
-      <SEOHead 
+      <MetaTags 
         title="Pittsburgh Party Bus & Limo Rental"
         description="Premium party bus and limousine rentals in Pittsburgh, PA. Luxury transportation for weddings, proms, bachelor parties, corporate events. Available 24/7. Book now!"
         canonical="/"

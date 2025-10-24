@@ -15,6 +15,8 @@ const routes = [
   "/faqs",
   "/blog",
   "/testimonials",
+  "/privacy",
+  "/terms",
   "/blog/party-bus-pricing-guide",
   "/blog/top-events-pittsburgh",
   "/blog/party-bus-vs-limo",

@@ -1,4 +1,4 @@
-import { SEOHead } from "@/components/SEOHead";
+import { MetaTags } from "@/components/MetaTags";
 import { StructuredData, breadcrumbSchema } from "@/components/StructuredData";
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
@@ -154,7 +154,7 @@ const Blog = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <SEOHead 
+      <MetaTags 
         title="Party Bus Blog - Tips, Guides & Event Ideas"
         description="Expert party bus tips, event planning guides, and Pittsburgh transportation advice. Learn about pricing, safety, and making your celebration unforgettable."
         canonical="/blog"

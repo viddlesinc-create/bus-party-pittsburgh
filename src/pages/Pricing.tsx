@@ -1,4 +1,4 @@
-import { SEOHead } from "@/components/SEOHead";
+import { MetaTags } from "@/components/MetaTags";
 import { StructuredData, serviceSchema, breadcrumbSchema } from "@/components/StructuredData";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { InternalLinkCTA } from "@/components/InternalLinkCTA";
@@ -118,7 +118,7 @@ const Pricing = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <SEOHead 
+      <MetaTags 
         title="Pricing & Rates - Pittsburgh Party Bus Rental"
         description="Transparent party bus pricing in Pittsburgh. Mini $100, Party Van $125, Executive $150, Luxury $175 per hour. Free quotes. No hidden fees."
         canonical="/pricing"
