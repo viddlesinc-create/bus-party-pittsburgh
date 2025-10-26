@@ -4,10 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite dev",
-    "build": "node scripts/build-ssr-complete.js",
-    "verify-ssr": "node scripts/verify-ssr.js",
-    "preview": "vite preview"
+  "dev": "vite",
+  "build": "node scripts/build-ssr-complete.js",
+  "build:dev": "vite build --mode development",
+  "verify-ssr": "node scripts/verify-ssr.js",
+  "preview": "vite preview"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
