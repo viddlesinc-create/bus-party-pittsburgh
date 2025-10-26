@@ -4,10 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "node scripts/build-ssr-complete.js"
-    "build:dev": "vite build --mode development",
-    "lint": "eslint .",
+    "dev": "vite dev",
+    "build": "node scripts/build-ssr-complete.js",
+    "verify-ssr": "node scripts/verify-ssr.js",
     "preview": "vite preview"
   },
   "dependencies": {
