@@ -138,7 +138,7 @@ const Pricing = () => {
       <section className="py-20 bg-hero-gradient">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-6xl font-bold text-primary-foreground mb-6">
-            Pricing & Estimates
+            Party Bus Rental Pricing & Online Estimates
           </h1>
           <p className="text-xl text-primary-foreground/90 max-w-3xl mx-auto mb-8">
             Transparent, competitive pricing for premium party bus and limousine rentals in Pittsburgh. 

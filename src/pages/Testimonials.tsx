@@ -169,7 +169,7 @@ const Testimonials = () => {
       <section className="py-20 bg-hero-gradient">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-6xl font-bold text-primary-foreground mb-6">
-            Customer Reviews & Testimonials
+            Customer Testimonials & Reviews - Pitt Party Bus
           </h1>
           <p className="text-xl text-primary-foreground/90 max-w-3xl mx-auto mb-8">
             Don't just take our word for it - see what Pittsburgh customers say about 

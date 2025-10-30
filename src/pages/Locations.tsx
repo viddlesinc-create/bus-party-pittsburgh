@@ -120,7 +120,7 @@ const Locations = () => {
       <section className="py-12 bg-hero-gradient">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-primary-foreground mb-6">
-            Pittsburgh Service Areas
+            Pittsburgh Party Bus Service Areas & Locations
           </h1>
           <p className="text-xl text-primary-foreground/90 max-w-3xl mx-auto mb-8">
             We proudly serve Pittsburgh and all surrounding communities with premium <Link to="/fleet" className="text-white hover:underline font-semibold">party bus</Link> and 

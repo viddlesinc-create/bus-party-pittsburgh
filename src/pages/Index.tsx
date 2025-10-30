@@ -3,6 +3,7 @@ import { StructuredData, organizationSchema, websiteSchema } from "@/components/
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
+import { LatestArticles } from "@/components/LatestArticles";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -668,6 +669,9 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Latest Articles */}
+      <LatestArticles />
 
       {/* CTA Section */}
       <section className="py-20 bg-hero-gradient" aria-labelledby="cta-heading">

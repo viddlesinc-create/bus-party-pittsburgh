@@ -336,7 +336,7 @@ const Fleet = () => {
       <section className="py-20 bg-hero-gradient">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-6xl font-bold text-primary-foreground mb-6">
-            Our Premium Fleet
+            Premium Party Bus & Limousine Fleet - Pittsburgh
           </h1>
           <p className="text-xl text-primary-foreground/90 max-w-3xl mx-auto mb-8">
             Explore our diverse fleet of luxury vehicles perfect for any <Link to="/events" className="text-white hover:underline font-semibold">event</Link>. 

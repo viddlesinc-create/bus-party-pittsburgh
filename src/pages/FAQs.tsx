@@ -152,7 +152,7 @@ const FAQs = () => {
       <section className="py-20 bg-hero-gradient">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-6xl font-bold text-primary-foreground mb-6">
-            Frequently Asked Questions
+            Frequently Asked Questions - Party Bus Rentals
           </h1>
           <p className="text-xl text-primary-foreground/90 max-w-3xl mx-auto mb-8">
             Find answers to common questions about party bus rentals in Pittsburgh. Learn about 

@@ -147,7 +147,7 @@ const Events = () => {
       <section className="py-20 bg-hero-gradient">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-6xl font-bold text-primary-foreground mb-6">
-            Events We Serve
+            Party Bus Rentals for All Events in Pittsburgh
           </h1>
           <p className="text-xl text-muted-foreground">
             From intimate celebrations to grand occasions, we provide luxury transportation 

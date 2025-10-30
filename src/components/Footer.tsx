@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer className="bg-luxury-gradient text-primary-foreground" role="contentinfo">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid md:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Company Info */}
           <div className="md:col-span-1">
             <div className="bg-accent text-accent-foreground px-3 py-2 rounded-lg font-bold text-xl mb-4 inline-block">
@@ -123,6 +123,43 @@ const Footer = () => {
               <li>
                 <Link to="/blog" className="text-primary-foreground/80 hover:text-accent transition-colors">
                   Event Planning Tips
+                </Link>
+              </li>
+            </ul>
+           </div>
+
+          {/* Popular Articles */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4">Popular Articles</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link to="/blog/party-bus-pricing-guide" className="text-primary-foreground/80 hover:text-accent transition-colors">
+                  Party Bus Pricing Guide
+                </Link>
+              </li>
+              <li>
+                <Link to="/blog/top-events-pittsburgh" className="text-primary-foreground/80 hover:text-accent transition-colors">
+                  Top Events in Pittsburgh
+                </Link>
+              </li>
+              <li>
+                <Link to="/blog/wedding-transportation" className="text-primary-foreground/80 hover:text-accent transition-colors">
+                  Wedding Transportation
+                </Link>
+              </li>
+              <li>
+                <Link to="/blog/bachelor-bachelorette-ideas" className="text-primary-foreground/80 hover:text-accent transition-colors">
+                  Bachelor Party Ideas
+                </Link>
+              </li>
+              <li>
+                <Link to="/blog/party-bus-safety-tips" className="text-primary-foreground/80 hover:text-accent transition-colors">
+                  Safety Tips & Guidelines
+                </Link>
+              </li>
+              <li>
+                <Link to="/blog/prom-transportation-safety" className="text-primary-foreground/80 hover:text-accent transition-colors">
+                  Prom Transportation
                 </Link>
               </li>
             </ul>
