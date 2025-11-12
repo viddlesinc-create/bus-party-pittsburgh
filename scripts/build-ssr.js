@@ -23,13 +23,15 @@ console.log('📁 Copying static assets...');
 const publicDir = path.join(root, 'public');
 const distDir = path.join(root, 'dist');
 
-const staticFiles = ['robots.txt', 'sitemap.xml'];
+const staticFiles = ['robots.txt', 'sitemap.xml', '.htaccess'];
 staticFiles.forEach(file => {
   const src = path.join(publicDir, file);
   const dest = path.join(distDir, file);
   if (fs.existsSync(src)) {
     fs.copyFileSync(src, dest);
     console.log(`✅ Copied ${file}`);
+  } else {
+    console.log(`⚠️  Warning: ${file} not found in public/`);
   }
 });
 

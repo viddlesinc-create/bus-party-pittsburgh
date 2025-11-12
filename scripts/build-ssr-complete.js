@@ -40,12 +40,12 @@ try {
   process.exit(1);
 }
 
-// Step 4: Copy static assets to dist
+// Step 4: Copy critical static files (including .htaccess)
 console.log('📁 Step 4/5: Copying static assets...');
 const publicDir = path.join(root, 'public');
 const distDir = path.join(root, 'dist');
 
-const staticFiles = ['robots.txt', 'sitemap.xml'];
+const staticFiles = ['robots.txt', 'sitemap.xml', '.htaccess'];
 let copiedCount = 0;
 
 staticFiles.forEach(file => {
@@ -56,14 +56,14 @@ staticFiles.forEach(file => {
     console.log(`  ✅ Copied ${file}`);
     copiedCount++;
   } else {
-    console.log(`  ⚠️  ${file} not found, skipping`);
+    console.log(`  ❌ WARNING: ${file} not found - REQUIRED for production!`);
   }
 });
 console.log(`✅ Copied ${copiedCount}/${staticFiles.length} static files\n`);
 
 // Step 5: Verify build output
 console.log('🔍 Step 5/5: Verifying build output...');
-const requiredFiles = ['index.html', 'fleet.html', 'contact.html', 'robots.txt', 'sitemap.xml'];
+const requiredFiles = ['index.html', 'fleet.html', 'contact.html', 'robots.txt', 'sitemap.xml', '.htaccess'];
 let verifiedCount = 0;
 
 requiredFiles.forEach(file => {
@@ -72,7 +72,7 @@ requiredFiles.forEach(file => {
     console.log(`  ✅ ${file} exists`);
     verifiedCount++;
   } else {
-    console.log(`  ❌ ${file} missing!`);
+    console.log(`  ❌ ${file} missing! (CRITICAL FOR DEPLOYMENT)`);
   }
 });
 
