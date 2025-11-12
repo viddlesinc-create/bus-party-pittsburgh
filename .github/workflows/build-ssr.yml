@@ -1,0 +1,71 @@
+name: Build SSR for Hostinger
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-artifact:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build SSR application
+        run: npm run build
+
+      - name: Verify build output
+        run: node scripts/verify-build.js
+        continue-on-error: true
+
+      - name: Create deployment package
+        run: |
+          cd dist
+          zip -r ../pittpartybus-ssr-build.zip .
+          cd ..
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pittpartybus-ssr-build-${{ github.sha }}
+          path: pittpartybus-ssr-build.zip
+          retention-days: 30
+
+      - name: Upload dist folder
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist-folder-${{ github.sha }}
+          path: dist/
+          retention-days: 30
+
+      - name: Build summary
+        run: |
+          echo "## 🎉 SSR Build Complete!" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 📦 Artifacts Created:" >> $GITHUB_STEP_SUMMARY
+          echo "- **ZIP file**: pittpartybus-ssr-build.zip" >> $GITHUB_STEP_SUMMARY
+          echo "- **Dist folder**: Full dist/ directory" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 🚀 Next Steps:" >> $GITHUB_STEP_SUMMARY
+          echo "1. Download the artifact from the Actions tab" >> $GITHUB_STEP_SUMMARY
+          echo "2. Extract the ZIP file" >> $GITHUB_STEP_SUMMARY
+          echo "3. Upload contents to Hostinger's public_html directory" >> $GITHUB_STEP_SUMMARY
+          echo "4. Clear Hostinger cache" >> $GITHUB_STEP_SUMMARY
+          echo "5. Test by viewing page source for <h1> tags" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 📊 Build Info:" >> $GITHUB_STEP_SUMMARY
+          echo "- Commit: ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Branch: ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Triggered by: ${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
