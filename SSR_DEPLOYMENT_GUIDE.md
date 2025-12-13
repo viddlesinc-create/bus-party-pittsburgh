@@ -1,100 +1,163 @@
-# SSR Deployment Guide for Pitt Party Bus
+# SSR Deployment Guide - Pitt Party Bus
 
-## Critical: For Ahrefs Crawling Success
+## Canonical Deployment: Node.js SSR Server
 
-Ahrefs and other SEO tools need **pre-rendered HTML** to properly index your site. The current SPA (Single Page Application) setup requires JavaScript to render content, which means crawlers see empty pages.
+This application uses **true per-request Server-Side Rendering**. Every HTTP request is rendered by the Node.js server before being sent to the browser.
 
-## Why You're Getting Ahrefs Errors
+---
 
-The errors you're seeing are because:
-1. **H1 tags missing** - Crawlers can't execute JavaScript to see your H1 tags
-2. **Open Graph incomplete** - Meta tags aren't in the initial HTML
-3. **Low word count** - Content requires JavaScript to render
-4. **Orphan pages** - Internal links require JavaScript to render
+## Production Deployment Steps
 
-## Solution: Deploy with SSR Pre-rendering
-
-### Option 1: Full SSR Build (Recommended)
-
-This creates pre-rendered HTML files that crawlers can read immediately:
-
-```bash
-# Run the SSR build
-npm run build:ssr
-
-# OR if using bun
-bun run build:ssr
-```
-
-This will:
-- Generate static HTML for all routes
-- Inject meta tags directly into HTML
-- Include all H1 tags and content in the initial HTML
-- Create proper internal links visible to crawlers
-- Enable gzip/brotli compression
-- Optimize CSS bundles
-
-### Option 2: Standard Build + Dynamic SSR
-
-If your hosting supports Node.js, you can use dynamic SSR:
+### 1. Build the Application
 
 ```bash
 npm run build
 ```
 
-Then configure your hosting to serve `dist/index.html` with the server entry point.
+This creates:
+- `dist/client/` - Static assets (JS, CSS, images)
+- `dist/server/` - SSR bundle for the Node server
 
-## After Deployment
+### 2. Start the Production Server
 
-1. **Test your meta tags:**
+```bash
+npm run start
+```
+
+Or directly:
+
+```bash
+NODE_ENV=production npx tsx server.ts
+```
+
+The server listens on port 3000 (or `$PORT`).
+
+### 3. Configure Your Hosting
+
+#### Railway / Render / Fly.io
+
+These platforms auto-detect Node.js. Configure:
+
+- **Build command:** `npm run build`
+- **Start command:** `npm run start`
+- **Port:** 3000 (or use `$PORT`)
+
+#### VPS (DigitalOcean, AWS, etc.)
+
+1. Clone your repo to the server
+2. Install dependencies: `npm install`
+3. Build: `npm run build`
+4. Use PM2 for process management:
    ```bash
-   curl -I https://pittpartybus.com
+   pm2 start "npm run start" --name pittpartybus
+   pm2 save
+   pm2 startup
    ```
-   You should see the HTML with meta tags immediately.
+5. Configure nginx as reverse proxy:
+   ```nginx
+   server {
+       listen 80;
+       server_name pittpartybus.com;
+       
+       location / {
+           proxy_pass http://localhost:3000;
+           proxy_http_version 1.1;
+           proxy_set_header Host $host;
+           proxy_set_header X-Real-IP $remote_addr;
+       }
+   }
+   ```
 
-2. **View source in browser:**
-   - Right-click → "View Page Source"
-   - You should see complete HTML with H1 tags, meta tags, and content
-   - If you only see `<div id="root"></div>`, SSR isn't working
+---
 
-3. **Resubmit to Ahrefs:**
-   - Wait 24-48 hours after SSR deployment
-   - Request a fresh crawl in Ahrefs
-   - Most errors will be resolved automatically
+## What Happens on Each Request
 
-## Files Already Configured
+```
+1. Browser requests /fleet
+2. Express server receives request
+3. server.ts loads dist/server/entry-server.js
+4. render('/fleet') is called
+5. React renders the Fleet page to HTML
+6. Helmet extracts meta tags
+7. Route loader fetches fleet data
+8. HTML template is populated with:
+   - Rendered React content
+   - <title>, <meta>, Open Graph tags
+   - window.__INITIAL_DATA__ for hydration
+9. Complete HTML sent to browser
+10. Browser displays content immediately
+11. React hydrates for interactivity
+```
 
-✅ All pages have MetaTags components
-✅ All pages have proper H1 tags  
-✅ All pages have internal links
-✅ Sitemap includes all pages
-✅ Robots.txt is configured
-✅ Compression is enabled
-✅ CSS is optimized
+---
 
-## Expected Results After SSR Deployment
+## Verifying SSR is Working
 
-- ✅ H1 tags visible to crawlers
-- ✅ Complete Open Graph tags
-- ✅ All content indexed
-- ✅ Internal links discoverable
-- ✅ Compressed assets (gzip + brotli)
-- ✅ Optimized CSS bundles
-- ✅ Fast crawling and indexing
+### Method 1: curl
 
-## Important Notes
+```bash
+curl -s https://pittpartybus.com/fleet | grep -i "<h1"
+```
 
-1. The errors you're seeing are **not code issues** - they're deployment issues
-2. All SEO elements are properly implemented in the code
-3. Crawlers need pre-rendered HTML, not client-side rendered content
-4. After SSR deployment, allow 24-48 hours for re-crawling
+You should see the H1 tag in the response.
 
-## Hosting Configuration
+### Method 2: View Source
 
-Most modern hosting platforms support SSR. Make sure to:
-- Deploy the `dist` folder
-- Configure Node.js runtime (if using dynamic SSR)
-- Enable compression at the hosting level
-- Set proper cache headers
+1. Open your site in a browser
+2. Right-click → "View Page Source"
+3. You should see complete HTML content, not just `<div id="root"></div>`
 
-Your code is SEO-ready. Now it needs SSR deployment to work with crawlers! 🚀
+### Method 3: Check Meta Tags
+
+```bash
+curl -s https://pittpartybus.com/fleet | grep -i "og:title"
+```
+
+Open Graph tags should be in the initial HTML.
+
+---
+
+## Environment Variables
+
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `NODE_ENV` | Yes | Set to `production` |
+| `PORT` | No | Server port (default: 3000) |
+
+---
+
+## Optional: Static Prerendering
+
+For CDN edge caching, you can optionally prerender static HTML:
+
+```bash
+npm run prerender
+```
+
+This is **not required** for production. The Node server handles all requests with per-request SSR.
+
+---
+
+## Why Node.js SSR?
+
+| Feature | Static HTML | Node.js SSR |
+|---------|-------------|-------------|
+| Dynamic content | ❌ Rebuild required | ✅ Always fresh |
+| SEO | ✅ Good | ✅ Good |
+| Personalization | ❌ Limited | ✅ Full |
+| Hosting complexity | Simple | Node.js required |
+| Time to first byte | Faster | Slightly slower |
+
+For Pitt Party Bus, Node.js SSR provides:
+- Complete SEO coverage
+- Dynamic meta tags per route
+- Fresh content on every request
+- Proper hydration for React
+
+---
+
+## Explicit Confirmation
+
+> **Every HTTP request in production is served by the Node SSR server, which runs the SSR render function for that URL before sending HTML to the browser.**
+
+No static prerendering is required. The application functions correctly with only the Node.js server.

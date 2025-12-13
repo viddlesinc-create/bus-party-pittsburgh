@@ -1,87 +1,232 @@
-# SSR Build Instructions for Pitt Party Bus
+# Pitt Party Bus - SSR Production Guide
 
-## Prerequisites
-Make sure you have Node.js installed.
+## Overview
 
-## Build Commands
+This application uses **true per-request Server-Side Rendering (SSR)**. Every HTTP request is rendered by a Node.js server before being sent to the browser.
 
-### Generate Updated Sitemap
+**Canonical deployment: Node.js SSR server (not static HTML files)**
+
+---
+
+## Quick Start
+
 ```bash
-node scripts/generate-sitemap.js
+# Install dependencies
+npm install
+
+# Development (with HMR)
+npm run dev
+
+# Production build
+npm run build
+
+# Start production SSR server
+npm run start
 ```
 
-### Full SSR Build
-```bash
-node scripts/build-ssr.js
+---
+
+## Architecture
+
+### Entry Points
+
+| File | Purpose |
+|------|---------|
+| `src/entry-client.tsx` | Client-side hydration |
+| `src/entry-server.tsx` | Server-side render function |
+| `server.ts` | Express server (dev + prod) |
+
+### Build Output
+
+```
+dist/
+├── client/              # Static assets for the browser
+│   ├── index.html       # HTML template (SSR content injected here)
+│   ├── assets/          # JS, CSS bundles (hashed)
+│   ├── robots.txt
+│   └── sitemap.xml
+└── server/
+    └── entry-server.js  # SSR bundle used by server.ts
 ```
 
-### Prerender All Routes (Optional - for advanced SSR)
-```bash
-node scripts/prerender.js
+### Request Flow
+
+```
+Browser Request
+      ↓
+Express Server (server.ts)
+      ↓
+Load SSR bundle (dist/server/entry-server.js)
+      ↓
+Call render(url) function
+      ↓
+React renders to HTML string
+      ↓
+Helmet extracts meta tags
+      ↓
+Route loader data serialized
+      ↓
+HTML template populated with:
+  - SSR content
+  - Meta tags
+  - window.__INITIAL_DATA__
+      ↓
+HTML Response sent to browser
+      ↓
+Browser hydrates with React
 ```
 
-## What Gets Built
+---
 
-The SSR build process:
-1. ✅ Generates sitemap.xml for all 19 routes
-2. ✅ Builds optimized production bundle
-3. ✅ Copies robots.txt and sitemap.xml to dist/
-4. ✅ Creates static HTML files for all routes
-5. ✅ Ensures all pages are crawlable without JavaScript
+## Commands
 
-## Routes Included (pittpartybus.com)
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Development server with Vite SSR + HMR |
+| `npm run build` | Build client + server bundles |
+| `npm run start` | **Production SSR server** |
+| `npm run prerender` | (Optional) Generate static HTML |
+| `npm run verify-ssr` | (Optional) Verify meta tags |
 
-**Main Pages:**
-- / (Homepage)
-- /fleet
-- /events  
-- /locations
-- /pricing
-- /contact
-- /faqs
-- /blog
-- /testimonials
+---
 
-**Blog Posts:**
-- /blog/party-bus-pricing-guide
-- /blog/top-events-pittsburgh
-- /blog/party-bus-vs-limo
-- /blog/bachelor-bachelorette-ideas
-- /blog/wedding-transportation
-- /blog/corporate-event-transportation
-- /blog/concert-party-bus
-- /blog/prom-transportation-safety
-- /blog/party-bus-safety-tips
-- /blog/accurate-party-bus-estimate
+## Production Deployment
 
-## Deployment
+### Requirements
 
-After running the build:
-1. The `dist/` folder contains your complete static site
-2. Deploy the `dist/` folder to your hosting provider
-3. All routes will be server-rendered and SEO-ready
+- Node.js 18+ runtime
+- Able to run persistent processes
 
-## Testing SSR
+### Steps
 
-Test that content is server-rendered:
-```bash
-curl -s https://pittpartybus.com | grep "<h1"
+1. **Build the application:**
+   ```bash
+   npm run build
+   ```
+
+2. **Start the SSR server:**
+   ```bash
+   npm run start
+   # OR
+   NODE_ENV=production npx tsx server.ts
+   ```
+
+3. **Configure your hosting:**
+   - Point your domain to port 3000 (or set `PORT` env var)
+   - Use a reverse proxy (nginx, Caddy) if needed
+   - Enable process manager (PM2, systemd) for auto-restart
+
+### Environment Variables
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `PORT` | 3000 | Server port |
+| `NODE_ENV` | - | Set to `production` for prod |
+
+---
+
+## How SSR Works
+
+### Every Request is Rendered Fresh
+
+The `server.ts` handler calls `render(url)` for **every incoming request**:
+
+```typescript
+app.use('*', async (req, res) => {
+  const { html, helmet, initialData, statusCode } = await render(url);
+  
+  // Inject into template...
+  res.send(finalHtml);
+});
 ```
 
-You should see H1 tags in the response, proving server-side rendering is working.
+This means:
+- ✅ Content is always up-to-date
+- ✅ Dynamic data works without client-side fetching
+- ✅ SEO crawlers see complete HTML immediately
+- ✅ Meta tags are in the initial response
 
-## SEO Benefits
+### Hydration
 
-✅ All content rendered before JavaScript
-✅ Meta tags in initial HTML  
-✅ Structured data server-rendered
-✅ Perfect for search engine crawlers
-✅ Fast TTFB and Core Web Vitals
-✅ Social media preview cards work perfectly
+After the browser receives the SSR HTML:
 
-## Notes
+1. `window.__INITIAL_DATA__` contains the serialized route data
+2. React hydrates the existing DOM (no re-render)
+3. The app becomes interactive
 
-- SSR configuration is in `vite.config.ts`
-- Entry points: `src/entry-server.tsx` and `src/entry-client.tsx`
-- Main entry updated for hydration support
-- All routes configured with proper priorities in sitemap
+---
+
+## Optional: Static Prerendering
+
+For edge caching or CDN deployment, you can optionally generate static HTML:
+
+```bash
+npm run prerender
+```
+
+This creates `.html` files for each route in `dist/client/`. These are **not required** for production - they're an optimization for specific hosting scenarios.
+
+---
+
+## SEO Features
+
+All pages include:
+- ✅ Server-rendered content (visible without JavaScript)
+- ✅ Proper `<title>` tags
+- ✅ Meta descriptions
+- ✅ Open Graph tags
+- ✅ Canonical URLs
+- ✅ Structured data (JSON-LD)
+- ✅ H1 tags in initial HTML
+
+---
+
+## Hosting Recommendations
+
+### Recommended (Node.js SSR)
+
+- **Railway** - Easy Node.js deployment
+- **Render** - Free tier available
+- **Fly.io** - Global edge deployment
+- **DigitalOcean App Platform** - Managed Node.js
+- **AWS EC2 / Lightsail** - Full control
+- **VPS providers** - Any with Node.js support
+
+### For Static Prerendering Only
+
+If you use `npm run prerender`, you can deploy `dist/client/` to:
+- Netlify
+- Vercel (static mode)
+- Cloudflare Pages
+- GitHub Pages
+
+But the canonical deployment remains the Node.js SSR server.
+
+---
+
+## Troubleshooting
+
+### "Client build not found"
+
+Run `npm run build` before `npm run start`.
+
+### SSR content not appearing
+
+1. Check that `index.html` contains `<!--ssr-outlet-->` or `<div id="root"></div>`
+2. Verify `dist/server/entry-server.js` exists
+3. Check server logs for render errors
+
+### Hydration mismatch warnings
+
+These are usually caused by:
+- Date/time differences between server and client
+- Browser-only APIs used during SSR
+- Random values generated during render
+
+---
+
+## Confirmation
+
+> **Every HTTP request in production is served by the Node SSR server, which runs the SSR render function for that URL before sending HTML to the browser.**
+
+The application does not require static prerendering. The Node.js server handles all requests with true per-request SSR.

@@ -1,6 +1,42 @@
-# Welcome to your Lovable project
+# Pitt Party Bus - SSR Application
 
-## Project info
+## Overview
+
+This is a **Server-Side Rendered (SSR)** React application for Pitt Party Bus. Every HTTP request is rendered by a Node.js server before being sent to the browser.
+
+## Quick Start
+
+```bash
+# Install dependencies
+npm install
+
+# Development (with HMR)
+npm run dev
+
+# Production build
+npm run build
+
+# Start production SSR server
+npm run start
+```
+
+## SSR Architecture
+
+- **Entry Points:**
+  - `src/entry-client.tsx` - Client-side hydration
+  - `src/entry-server.tsx` - Server-side render function
+  - `server.ts` - Express server
+
+- **Production Flow:**
+  1. `npm run build` - Creates client + server bundles
+  2. `npm run start` - Runs Node.js SSR server
+  3. Every request is rendered server-side
+
+See `SSR_BUILD_README.md` for detailed documentation.
+
+---
+
+## Lovable Project Info
 
 **URL**: https://lovable.dev/projects/d90f3da3-e60d-4b23-8863-61e80683a536
 
@@ -59,8 +95,25 @@ This project is built with:
 - React
 - shadcn-ui
 - Tailwind CSS
+- Express (SSR server)
 
 ## How can I deploy this project?
+
+### Production Deployment (Node.js SSR)
+
+```bash
+# Build the application
+npm run build
+
+# Start the production SSR server
+npm run start
+```
+
+The server runs on port 3000 (or `$PORT`). Every HTTP request is server-side rendered.
+
+See `SSR_DEPLOYMENT_GUIDE.md` for hosting options.
+
+### Lovable Deployment
 
 Simply open [Lovable](https://lovable.dev/projects/d90f3da3-e60d-4b23-8863-61e80683a536) and click on Share -> Publish.
 

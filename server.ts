@@ -1,3 +1,22 @@
+/**
+ * ============================================
+ * Pitt Party Bus - SSR Server
+ * ============================================
+ * 
+ * This is the CANONICAL production entrypoint for the application.
+ * 
+ * IMPORTANT: Every HTTP request in production is served by this Node server,
+ * which runs the SSR render function for that URL before sending HTML to the browser.
+ * 
+ * The app does NOT require prerendered static files. This server performs
+ * true per-request server-side rendering on every incoming request.
+ * 
+ * Commands:
+ *   Development: npm run dev     (Vite SSR middleware with HMR)
+ *   Production:  npm run build   (Build client + server bundles)
+ *                npm run start   (Run this server in production mode)
+ */
+
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -11,15 +30,18 @@ const port = process.env.PORT || 3000;
 async function createServer() {
   const app = express();
 
-  // Gzip compression for production
+  // Gzip compression for all responses
   app.use(compression());
 
   let vite: any;
 
   if (!isProduction) {
     // ============================================
-    // DEVELOPMENT MODE - Vite SSR Middleware
+    // DEVELOPMENT MODE
     // ============================================
+    // Uses Vite's SSR middleware for hot module replacement.
+    // Every request is still server-rendered, but with live reloading.
+    
     const { createServer: createViteServer } = await import('vite');
     
     vite = await createViteServer({
@@ -27,24 +49,26 @@ async function createServer() {
       appType: 'custom',
     });
 
-    // Use Vite's connect instance as middleware
     app.use(vite.middlewares);
   } else {
     // ============================================
-    // PRODUCTION MODE - Static Assets
+    // PRODUCTION MODE - Static Asset Serving
     // ============================================
+    // Serves pre-built static assets (JS, CSS, images) from dist/client.
+    // These are the client-side hydration bundles, NOT pre-rendered HTML.
+    
     const sirv = (await import('sirv')).default;
     
-    // Serve static assets from dist/client
+    // Cache hashed assets forever (they have content hashes in filenames)
     app.use(
       '/assets',
       sirv(path.resolve(__dirname, 'dist/client/assets'), {
-        maxAge: 31536000, // 1 year cache for hashed assets
+        maxAge: 31536000, // 1 year
         immutable: true,
       })
     );
 
-    // Serve other static files
+    // Serve other static files (robots.txt, sitemap.xml, etc.)
     app.use(
       sirv(path.resolve(__dirname, 'dist/client'), {
         extensions: [],
@@ -55,13 +79,19 @@ async function createServer() {
   }
 
   // ============================================
-  // SSR Handler - All Routes
+  // SSR HANDLER - PER-REQUEST RENDERING
   // ============================================
+  // THIS IS THE KEY: Every request that reaches this handler is
+  // rendered fresh by the SSR render function. No static HTML files
+  // are served - all content is generated on-demand for each request.
+  
   app.use('*', async (req: Request, res: Response, next: NextFunction) => {
     const url = req.originalUrl;
 
     try {
-      // 1. Load the HTML template
+      // ----------------------------------------
+      // Step 1: Load the HTML template
+      // ----------------------------------------
       let template: string;
       
       if (!isProduction) {
@@ -69,14 +99,16 @@ async function createServer() {
         template = fs.readFileSync(path.resolve(__dirname, 'index.html'), 'utf-8');
         template = await vite.transformIndexHtml(url, template);
       } else {
-        // Production: use pre-built template
+        // Production: use the built template from dist/client
         template = fs.readFileSync(
           path.resolve(__dirname, 'dist/client/index.html'),
           'utf-8'
         );
       }
 
-      // 2. Load the server entry module
+      // ----------------------------------------
+      // Step 2: Load the SSR render function
+      // ----------------------------------------
       let render: (url: string) => Promise<{ 
         html: string; 
         helmet: { title: string; meta: string; link: string; script: string }; 
@@ -90,29 +122,39 @@ async function createServer() {
         const module = await vite.ssrLoadModule('/src/entry-server.tsx');
         render = module.render;
       } else {
-        // Production: use the built server bundle
+        // Production: use the pre-built server bundle
         const module = await import('./dist/server/entry-server.js');
         render = module.render;
       }
 
-      // 3. Render the app to HTML
+      // ----------------------------------------
+      // Step 3: RENDER THE APP TO HTML
+      // ----------------------------------------
+      // This is where SSR happens. The render() function:
+      // - Matches the route for the URL
+      // - Loads any data required by the route
+      // - Renders the React app to an HTML string
+      // - Extracts meta tags from react-helmet-async
+      // - Returns the HTML and data for hydration
+      
       const { html: appHtml, helmet, initialData, statusCode } = await render(url);
 
-      // 4. Inject rendered content into template
+      // ----------------------------------------
+      // Step 4: Inject rendered content into template
+      // ----------------------------------------
       let finalHtml = template;
 
-      // Inject SSR content
+      // Inject the SSR-rendered React app HTML
       if (template.includes('<!--ssr-outlet-->')) {
         finalHtml = finalHtml.replace('<!--ssr-outlet-->', appHtml);
       } else {
-        // Fallback: replace empty root div
         finalHtml = finalHtml.replace(
           '<div id="root"></div>',
           `<div id="root">${appHtml}</div>`
         );
       }
 
-      // Inject head tags (title, meta, etc.)
+      // Inject head tags (title, meta, Open Graph, etc.)
       if (helmet) {
         finalHtml = finalHtml.replace(
           '</head>',
@@ -120,7 +162,12 @@ async function createServer() {
         );
       }
 
-      // Inject initial data for hydration (prevent XSS by escaping)
+      // ----------------------------------------
+      // Step 5: Inject initial data for hydration
+      // ----------------------------------------
+      // The client will use window.__INITIAL_DATA__ to hydrate
+      // without needing to re-fetch data
+      
       if (initialData !== null) {
         const serializedData = JSON.stringify(initialData)
           .replace(/</g, '\\u003c')
@@ -132,19 +179,19 @@ async function createServer() {
         );
       }
 
-      // 5. Send the response
+      // ----------------------------------------
+      // Step 6: Send the fully-rendered HTML response
+      // ----------------------------------------
       res.status(statusCode).set({ 'Content-Type': 'text/html' }).end(finalHtml);
 
     } catch (error) {
       // Handle errors
       if (!isProduction && vite) {
-        // In dev, let Vite fix the stack trace
         vite.ssrFixStacktrace(error as Error);
       }
       
       console.error('SSR Error:', error);
       
-      // Send error page
       res.status(500).end(
         isProduction 
           ? 'Internal Server Error' 
@@ -153,12 +200,18 @@ async function createServer() {
     }
   });
 
-  // Start server
+  // ============================================
+  // Start the server
+  // ============================================
   app.listen(port, () => {
-    console.log(`\n🚀 SSR Server running at http://localhost:${port}`);
-    console.log(`   Mode: ${isProduction ? 'Production' : 'Development'}`);
+    console.log('');
+    console.log('═══════════════════════════════════════════════════════════');
+    console.log(`🚀 SSR Server running at http://localhost:${port}`);
+    console.log('═══════════════════════════════════════════════════════════');
+    console.log(`   Mode: ${isProduction ? 'PRODUCTION' : 'DEVELOPMENT'}`);
+    console.log(`   SSR:  Every request is server-side rendered`);
     if (!isProduction) {
-      console.log(`   HMR: Enabled via Vite middleware`);
+      console.log(`   HMR:  Enabled via Vite middleware`);
     }
     console.log('');
   });

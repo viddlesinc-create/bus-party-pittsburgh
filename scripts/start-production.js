@@ -1,4 +1,21 @@
 #!/usr/bin/env node
+/**
+ * ============================================
+ * Production SSR Server Starter
+ * ============================================
+ * 
+ * This script starts the Node.js SSR server in production mode.
+ * Every HTTP request is rendered server-side before being sent to the browser.
+ * 
+ * Prerequisites:
+ *   Run `npm run build` first to create the client and server bundles.
+ * 
+ * Usage:
+ *   node scripts/start-production.js
+ *   OR
+ *   npm run start
+ */
+
 import { spawn } from 'child_process';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
@@ -8,17 +25,31 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
 
 function startProduction() {
-  // Check if build exists
+  // Verify build exists
   const clientDir = resolve(root, 'dist/client');
   const serverDir = resolve(root, 'dist/server');
+  const serverBundle = resolve(serverDir, 'entry-server.js');
   
-  if (!existsSync(clientDir) || !existsSync(serverDir)) {
-    console.error('❌ Production build not found!');
-    console.error('   Run: node scripts/build-all.js');
+  if (!existsSync(clientDir)) {
+    console.error('❌ Client build not found at dist/client/');
+    console.error('   Run: npm run build');
     process.exit(1);
   }
   
-  console.log('🚀 Starting SSR production server...\n');
+  if (!existsSync(serverBundle)) {
+    console.error('❌ Server bundle not found at dist/server/entry-server.js');
+    console.error('   Run: npm run build');
+    process.exit(1);
+  }
+  
+  console.log('');
+  console.log('═══════════════════════════════════════════════════════════');
+  console.log('🚀 Starting SSR Production Server');
+  console.log('═══════════════════════════════════════════════════════════');
+  console.log('');
+  console.log('   Every HTTP request will be server-side rendered.');
+  console.log('   No prerendered static files are required.');
+  console.log('');
   
   const server = spawn('npx', ['tsx', 'server.ts'], {
     cwd: root,
