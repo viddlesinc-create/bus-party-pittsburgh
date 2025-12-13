@@ -1,5 +1,6 @@
-import { lazy, ComponentType } from 'react';
+import { ComponentType } from 'react';
 import { Route } from 'react-router-dom';
+import { LoaderFunction, LoaderContext, createLoaderContext, executeLoader } from './lib/loader';
 
 // Page imports
 import Index from "./pages/Index";
@@ -25,24 +26,28 @@ import AccuratePartyBusEstimate from "./pages/blog/AccuratePartyBusEstimate";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 
+// Loader imports
+import { homepageLoader } from "./loaders/homepage";
+import { fleetLoader } from "./loaders/fleet";
+import { blogListLoader } from "./loaders/blog";
+
 // Route configuration interface
 export interface RouteConfig {
   path: string;
   component: ComponentType;
-  // Future: add loader for SSR data fetching
-  // loader?: () => Promise<unknown>;
+  loader?: LoaderFunction;
 }
 
 // Single source of truth for all routes
 export const routes: RouteConfig[] = [
-  { path: "/", component: Index },
-  { path: "/fleet", component: Fleet },
+  { path: "/", component: Index, loader: homepageLoader },
+  { path: "/fleet", component: Fleet, loader: fleetLoader },
   { path: "/events", component: Events },
   { path: "/locations", component: Locations },
   { path: "/pricing", component: Pricing },
   { path: "/contact", component: Contact },
   { path: "/faqs", component: FAQs },
-  { path: "/blog", component: Blog },
+  { path: "/blog", component: Blog, loader: blogListLoader },
   { path: "/blog/party-bus-pricing-guide", component: PartyBusPricingGuide },
   { path: "/blog/top-events-pittsburgh", component: TopEventsPittsburgh },
   { path: "/blog/party-bus-vs-limo", component: PartyBusVsLimo },
@@ -93,5 +98,17 @@ export function matchRoute(url: string): RouteConfig | null {
   return null;
 }
 
+// Execute loader for a matched route
+export async function loadRouteData(url: string): Promise<unknown> {
+  const route = matchRoute(url);
+  if (!route?.loader) return null;
+  
+  const context = createLoaderContext(url);
+  return executeLoader(route.loader, context);
+}
+
 // Export all route paths for sitemap generation
 export const allRoutePaths = routes.map(r => r.path);
+
+// Re-export loader utilities
+export { createLoaderContext, executeLoader };
