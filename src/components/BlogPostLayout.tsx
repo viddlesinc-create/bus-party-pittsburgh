@@ -8,6 +8,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock, User, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useLoaderData } from "@/lib/use-loader-data";
+import { BlogPostData } from "@/loaders/blog";
 
 // Import blog post images for related posts
 import topEventsImg from "@/assets/blog-top-events-pittsburgh.jpg";
@@ -16,6 +18,16 @@ import bachelorPartyImg from "@/assets/blog-bachelor-bachelorette-party.jpg";
 import weddingTransportImg from "@/assets/blog-wedding-transportation.jpg";
 import safetyTipsImg from "@/assets/blog-party-bus-safety-tips.jpg";
 import pricingGuideImg from "@/assets/blog-party-bus-pricing-guide.jpg";
+
+// Image map for SSR related posts
+const imageMap: Record<string, string> = {
+  '/blog-top-events-pittsburgh.jpg': topEventsImg,
+  '/blog-party-bus-vs-limo.jpg': busVsLimoImg,
+  '/blog-bachelor-bachelorette-party.jpg': bachelorPartyImg,
+  '/blog-wedding-transportation.jpg': weddingTransportImg,
+  '/blog-party-bus-safety-tips.jpg': safetyTipsImg,
+  '/blog-party-bus-pricing-guide.jpg': pricingGuideImg,
+};
 
 interface BlogPostLayoutProps {
   title: string;
@@ -38,35 +50,47 @@ const BlogPostLayout = ({
   image,
   children,
 }: BlogPostLayoutProps) => {
-  const slug = typeof window !== 'undefined' ? window.location.pathname : '';
+  // Get SSR data if available
+  const { data: ssrData } = useLoaderData<BlogPostData>();
   
-  // Related posts data - can be customized per blog post
-  const relatedPosts = [
-    {
-      title: "How Much Does a Party Bus Cost in Pittsburgh?",
-      excerpt: "Complete guide to party bus pricing in Pittsburgh with cost factors and money-saving tips.",
-      slug: "party-bus-pricing-guide",
-      image: pricingGuideImg,
-      date: "March 15, 2024",
-      readTime: "8 min"
-    },
-    {
-      title: "Party Bus Safety Tips for a Fun Night Out",
-      excerpt: "Essential safety guidelines to ensure your party bus experience is both fun and secure.",
-      slug: "party-bus-safety-tips",
-      image: safetyTipsImg,
-      date: "February 22, 2024",
-      readTime: "6 min"
-    },
-    {
-      title: "Top 10 Events to Book a Party Bus For in Pittsburgh",
-      excerpt: "Discover the best occasions for luxury group transportation in the Steel City.",
-      slug: "top-events-pittsburgh",
-      image: topEventsImg,
-      date: "March 12, 2024",
-      readTime: "6 min"
-    }
-  ];
+  const slug = ssrData?.meta?.canonical || (typeof window !== 'undefined' ? window.location.pathname : '');
+  
+  // Use SSR related posts if available, otherwise use defaults
+  const relatedPosts = ssrData?.relatedPosts?.length 
+    ? ssrData.relatedPosts.map(post => ({
+        title: post.title,
+        excerpt: post.description,
+        slug: post.slug,
+        image: imageMap[post.image] || pricingGuideImg,
+        date: post.date,
+        readTime: post.readTime.replace(' read', ''),
+      }))
+    : [
+        {
+          title: "How Much Does a Party Bus Cost in Pittsburgh?",
+          excerpt: "Complete guide to party bus pricing in Pittsburgh with cost factors and money-saving tips.",
+          slug: "party-bus-pricing-guide",
+          image: pricingGuideImg,
+          date: "March 15, 2024",
+          readTime: "8 min"
+        },
+        {
+          title: "Party Bus Safety Tips for a Fun Night Out",
+          excerpt: "Essential safety guidelines to ensure your party bus experience is both fun and secure.",
+          slug: "party-bus-safety-tips",
+          image: safetyTipsImg,
+          date: "February 22, 2024",
+          readTime: "6 min"
+        },
+        {
+          title: "Top 10 Events to Book a Party Bus For in Pittsburgh",
+          excerpt: "Discover the best occasions for luxury group transportation in the Steel City.",
+          slug: "top-events-pittsburgh",
+          image: topEventsImg,
+          date: "March 12, 2024",
+          readTime: "6 min"
+        }
+      ];
   
   return (
     <div className="min-h-screen bg-background">
