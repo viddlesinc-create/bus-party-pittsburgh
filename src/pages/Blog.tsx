@@ -22,6 +22,8 @@ import {
   Car,
   Shield
 } from "lucide-react";
+import { useLoaderData } from "@/lib/use-loader-data";
+import { BlogData } from "@/loaders/blog";
 
 // Blog post images
 import pricingGuideImg from "@/assets/blog-party-bus-pricing-guide.jpg";
@@ -36,6 +38,9 @@ import safetyTipsImg from "@/assets/blog-party-bus-safety-tips.jpg";
 import onlineEstimateImg from "@/assets/blog-online-party-bus-estimate.jpg";
 
 const Blog = () => {
+  // Get SSR data if available (for meta tags during SSR)
+  const { data: ssrData } = useLoaderData<BlogData>();
+  
   const featuredPost = {
     title: "How Much Does a Party Bus Cost in Pittsburgh? Complete 2024 Guide",
     excerpt: "Everything you need to know about party bus rental pricing in Pittsburgh, including factors that affect cost, seasonal variations, and money-saving tips.",
