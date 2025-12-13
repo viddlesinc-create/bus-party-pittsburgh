@@ -5,7 +5,7 @@ import { HelmetProvider, HelmetServerState } from 'react-helmet-async';
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { TooltipProvider } from "./components/ui/tooltip";
 import { Routes } from "react-router-dom";
-import { renderRoutes, matchRoute } from "./router";
+import { renderRoutes, matchRoute, loadRouteData } from "./router";
 import { ScrollToTop } from "./components/ScrollToTop";
 import SkipToContent from "./components/SkipToContent";
 import { SSRDataProvider } from "./lib/ssr-data-context";
@@ -37,9 +37,8 @@ export async function render(url: string): Promise<RenderResult> {
   // Match route for data loading
   const matchedRoute = matchRoute(url);
   
-  // Future: Load data for the matched route
-  // const initialData = matchedRoute?.loader ? await matchedRoute.loader() : null;
-  const initialData = null;
+  // Execute loader if route has one
+  const initialData = await loadRouteData(url);
 
   // SSR data context value
   const ssrDataValue = {
@@ -68,6 +67,7 @@ export async function render(url: string): Promise<RenderResult> {
   
   // Extract helmet data from context
   const { helmet } = helmetContext;
+  
   // Determine status code
   const statusCode = matchedRoute === null ? 404 : 200;
 
