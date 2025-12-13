@@ -5,7 +5,7 @@ import { componentTagger } from "lovable-tagger";
 import viteCompression from 'vite-plugin-compression';
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
+export default defineConfig(({ mode, command }) => ({
   server: {
     host: "::",
     port: 8080,
@@ -44,6 +44,9 @@ export default defineConfig(({ mode }) => ({
     }
   },
   ssr: {
-    noExternal: ['react-helmet']
+    // Dependencies to bundle for SSR
+    noExternal: ['react-helmet'],
+    // Dependencies to externalize (not bundle)
+    external: ['express', 'compression', 'sirv'],
   },
 }));
