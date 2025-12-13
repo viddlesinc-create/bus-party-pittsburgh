@@ -29,7 +29,7 @@ import Terms from "./pages/Terms";
 // Loader imports
 import { homepageLoader } from "./loaders/homepage";
 import { fleetLoader } from "./loaders/fleet";
-import { blogListLoader } from "./loaders/blog";
+import { blogListLoader, blogPostLoader } from "./loaders/blog";
 
 // Route configuration interface
 export interface RouteConfig {
@@ -48,16 +48,16 @@ export const routes: RouteConfig[] = [
   { path: "/contact", component: Contact },
   { path: "/faqs", component: FAQs },
   { path: "/blog", component: Blog, loader: blogListLoader },
-  { path: "/blog/party-bus-pricing-guide", component: PartyBusPricingGuide },
-  { path: "/blog/top-events-pittsburgh", component: TopEventsPittsburgh },
-  { path: "/blog/party-bus-vs-limo", component: PartyBusVsLimo },
-  { path: "/blog/bachelor-bachelorette-ideas", component: BachelorBacheloretteIdeas },
-  { path: "/blog/wedding-transportation", component: WeddingTransportation },
-  { path: "/blog/corporate-event-transportation", component: CorporateEventTransportation },
-  { path: "/blog/concert-party-bus", component: ConcertPartyBus },
-  { path: "/blog/prom-transportation-safety", component: PromTransportationSafety },
-  { path: "/blog/party-bus-safety-tips", component: PartyBusSafetyTips },
-  { path: "/blog/accurate-party-bus-estimate", component: AccuratePartyBusEstimate },
+  { path: "/blog/party-bus-pricing-guide", component: PartyBusPricingGuide, loader: blogPostLoader },
+  { path: "/blog/top-events-pittsburgh", component: TopEventsPittsburgh, loader: blogPostLoader },
+  { path: "/blog/party-bus-vs-limo", component: PartyBusVsLimo, loader: blogPostLoader },
+  { path: "/blog/bachelor-bachelorette-ideas", component: BachelorBacheloretteIdeas, loader: blogPostLoader },
+  { path: "/blog/wedding-transportation", component: WeddingTransportation, loader: blogPostLoader },
+  { path: "/blog/corporate-event-transportation", component: CorporateEventTransportation, loader: blogPostLoader },
+  { path: "/blog/concert-party-bus", component: ConcertPartyBus, loader: blogPostLoader },
+  { path: "/blog/prom-transportation-safety", component: PromTransportationSafety, loader: blogPostLoader },
+  { path: "/blog/party-bus-safety-tips", component: PartyBusSafetyTips, loader: blogPostLoader },
+  { path: "/blog/accurate-party-bus-estimate", component: AccuratePartyBusEstimate, loader: blogPostLoader },
   { path: "/testimonials", component: Testimonials },
   { path: "/privacy", component: Privacy },
   { path: "/terms", component: Terms },
