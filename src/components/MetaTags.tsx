@@ -1,4 +1,11 @@
 import { Helmet } from 'react-helmet-async';
+import { useSSRData } from '@/lib/ssr-data-context';
+
+interface SSRMeta {
+  title?: string;
+  description?: string;
+  canonical?: string;
+}
 
 interface MetaTagsProps {
   title: string;
@@ -13,17 +20,32 @@ interface MetaTagsProps {
   };
 }
 
+/**
+ * MetaTags component with SSR data integration
+ * Uses SSR loader data if available, falls back to props
+ */
 export function MetaTags({ 
-  title, 
-  description, 
-  canonical,
+  title: propTitle, 
+  description: propDescription, 
+  canonical: propCanonical,
   ogImage = '/hero-party-bus.jpg',
   type = 'website',
   article 
 }: MetaTagsProps) {
-  const fullTitle = `${title} | Pitt Party Bus`;
+  // Try to get SSR meta data
+  const ssrData = useSSRData<{ meta?: SSRMeta }>();
+  const ssrMeta = ssrData?.meta;
+  
+  // Use SSR data if available, otherwise fall back to props
+  const title = ssrMeta?.title || propTitle;
+  const description = ssrMeta?.description || propDescription;
+  const canonical = ssrMeta?.canonical || propCanonical;
+  
+  const fullTitle = title.includes('|') ? title : `${title} | Pitt Party Bus`;
   const baseUrl = 'https://pittpartybus.com';
-  const fullCanonical = canonical ? `${baseUrl}${canonical}` : `${baseUrl}${typeof window !== 'undefined' ? window.location.pathname : ''}`;
+  const fullCanonical = canonical 
+    ? (canonical.startsWith('http') ? canonical : `${baseUrl}${canonical}`)
+    : `${baseUrl}${typeof window !== 'undefined' ? window.location.pathname : ''}`;
   const fullOgImage = ogImage.startsWith('http') ? ogImage : `${baseUrl}${ogImage}`;
 
   return (

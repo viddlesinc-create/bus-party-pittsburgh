@@ -1,9 +1,17 @@
+#!/usr/bin/env node
+/**
+ * Complete SSR Build with Meta Tag Injection
+ * 
+ * Enhanced prerender that properly injects all meta tags from react-helmet-async
+ * and SSR data for hydration.
+ */
 import fs from 'fs';
 import path from 'path';
 import { createServer } from 'vite';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const root = path.resolve(__dirname, '..');
 
 // Complete list of all routes that need to be pre-rendered
 const routes = [
@@ -33,18 +41,20 @@ const routes = [
 console.log(`📋 Pre-rendering ${routes.length} routes for pittpartybus.com...`);
 
 async function prerender() {
+  const startTime = Date.now();
+  
   const vite = await createServer({
     server: { middlewareMode: true },
     appType: 'custom'
   });
 
-  const distDir = path.join(__dirname, '../dist');
+  const distDir = path.join(root, 'dist');
 
   if (!fs.existsSync(distDir)) {
     fs.mkdirSync(distDir, { recursive: true });
   }
 
-  const template = fs.readFileSync(path.join(__dirname, '../index.html'), 'utf-8');
+  const template = fs.readFileSync(path.join(root, 'index.html'), 'utf-8');
 
   let successCount = 0;
   let errorCount = 0;
@@ -54,10 +64,30 @@ async function prerender() {
       const { render } = await vite.ssrLoadModule('/src/entry-server.tsx');
       const rendered = await render(route);
       
-      // Insert meta tags and rendered HTML
-      let html = template
-        .replace('<!--ssr-outlet-->', rendered.html)
-        .replace('</head>', `${rendered.helmet.title}${rendered.helmet.meta}${rendered.helmet.link}${rendered.helmet.script}</head>`);
+      // Handle both string and object render results
+      const html = typeof rendered === 'string' ? rendered : rendered.html;
+      const helmet = typeof rendered === 'object' ? rendered.helmet : null;
+      const initialData = typeof rendered === 'object' ? rendered.initialData : null;
+      
+      let finalHtml = template.replace('<!--ssr-outlet-->', html);
+      
+      // Insert helmet meta tags
+      if (helmet) {
+        const helmetInsert = [
+          helmet.title?.toString() || '',
+          helmet.meta?.toString() || '',
+          helmet.link?.toString() || '',
+          helmet.script?.toString() || '',
+        ].filter(Boolean).join('\n');
+        
+        finalHtml = finalHtml.replace('</head>', `${helmetInsert}\n</head>`);
+      }
+      
+      // Insert SSR data for hydration
+      if (initialData) {
+        const dataScript = `<script>window.__INITIAL_DATA__=${JSON.stringify(initialData).replace(/</g, '\\u003c')}</script>`;
+        finalHtml = finalHtml.replace('</head>', `${dataScript}\n</head>`);
+      }
 
       const routePath = route === '/' ? '/index' : route;
       const filePath = path.join(distDir, `${routePath}.html`);
@@ -67,25 +97,18 @@ async function prerender() {
         fs.mkdirSync(dir, { recursive: true });
       }
 
-      fs.writeFileSync(filePath, html);
+      fs.writeFileSync(filePath, finalHtml);
       
       // Comprehensive verification of SSR content
-      const hasH1 = html.includes('<h1');
-      const hasMeta = html.includes('meta name="description"');
-      const hasCanonical = html.includes('rel="canonical"');
-      const hasOgTags = html.includes('property="og:title"') && html.includes('property="og:description"');
-      const hasTwitterCard = html.includes('name="twitter:card"');
-      const hasStructuredData = html.includes('application/ld+json');
-      const hasNavLinks = html.includes('href="/fleet"') && html.includes('href="/contact"');
-      
       const checks = {
-        'H1': hasH1,
-        'Meta': hasMeta,
-        'Canonical': hasCanonical,
-        'OpenGraph': hasOgTags,
-        'Twitter': hasTwitterCard,
-        'Schema': hasStructuredData,
-        'NavLinks': hasNavLinks
+        'H1': finalHtml.includes('<h1'),
+        'Meta': /meta\s+name="description"/i.test(finalHtml),
+        'Canonical': finalHtml.includes('rel="canonical"'),
+        'OpenGraph': /property="og:title"/i.test(finalHtml) && /property="og:description"/i.test(finalHtml),
+        'Twitter': /name="twitter:card"/i.test(finalHtml),
+        'Schema': finalHtml.includes('application/ld+json'),
+        'NavLinks': finalHtml.includes('href="/fleet"') && finalHtml.includes('href="/contact"'),
+        'SSR Data': !initialData || finalHtml.includes('__INITIAL_DATA__'),
       };
       
       const failedChecks = Object.entries(checks).filter(([_, passed]) => !passed).map(([name]) => name);
@@ -101,14 +124,20 @@ async function prerender() {
     }
   }
 
+  await vite.close();
+
+  const duration = ((Date.now() - startTime) / 1000).toFixed(2);
+  
   console.log(`\n📊 Pre-rendering Summary:`);
   console.log(`   ✅ Success: ${successCount}/${routes.length}`);
   if (errorCount > 0) {
     console.log(`   ❌ Errors: ${errorCount}`);
   }
-
-  await vite.close();
-  console.log('🎉 Prerendering with meta tags complete!');
+  console.log(`   ⏱️  Duration: ${duration}s`);
+  console.log('\n🎉 Prerendering with meta tags complete for pittpartybus.com!');
 }
 
-prerender().catch(console.error);
+prerender().catch((err) => {
+  console.error('❌ Prerender failed:', err);
+  process.exit(1);
+});
