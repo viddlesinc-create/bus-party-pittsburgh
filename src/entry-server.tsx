@@ -5,7 +5,10 @@ import { HelmetProvider } from 'react-helmet';
 import { Helmet } from 'react-helmet';
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { TooltipProvider } from "./components/ui/tooltip";
-import App from './App';
+import { Routes } from "react-router-dom";
+import { renderRoutes, matchRoute } from "./router";
+import { ScrollToTop } from "./components/ScrollToTop";
+import SkipToContent from "./components/SkipToContent";
 
 export function render(url: string) {
   const helmetContext = {};
@@ -16,13 +19,20 @@ export function render(url: string) {
       },
     },
   });
+
+  // Match route for future data loading
+  const matchedRoute = matchRoute(url);
   
   const html = renderToString(
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <HelmetProvider context={helmetContext}>
           <StaticRouter location={url}>
-            <App />
+            <SkipToContent />
+            <ScrollToTop />
+            <Routes>
+              {renderRoutes()}
+            </Routes>
           </StaticRouter>
         </HelmetProvider>
       </TooltipProvider>
@@ -38,6 +48,7 @@ export function render(url: string) {
       meta: helmet.meta.toString(),
       link: helmet.link.toString(),
       script: helmet.script.toString(),
-    }
+    },
+    matchedRoute: matchedRoute?.path || null,
   };
 }
