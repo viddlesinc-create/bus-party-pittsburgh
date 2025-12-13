@@ -77,7 +77,13 @@ async function createServer() {
       }
 
       // 2. Load the server entry module
-      let render: (url: string) => { html: string; helmet: any; matchedRoute: string | null };
+      let render: (url: string) => Promise<{ 
+        html: string; 
+        helmet: { title: string; meta: string; link: string; script: string }; 
+        initialData: unknown;
+        matchedRoute: string | null;
+        statusCode: number;
+      }>;
       
       if (!isProduction) {
         // Development: use Vite's SSR module loader (with HMR)
@@ -90,7 +96,7 @@ async function createServer() {
       }
 
       // 3. Render the app to HTML
-      const { html: appHtml, helmet, matchedRoute } = render(url);
+      const { html: appHtml, helmet, initialData, statusCode } = await render(url);
 
       // 4. Inject rendered content into template
       let finalHtml = template;
@@ -114,10 +120,19 @@ async function createServer() {
         );
       }
 
-      // 5. Set status code (404 for unmatched routes)
-      const statusCode = matchedRoute === null ? 404 : 200;
+      // Inject initial data for hydration (prevent XSS by escaping)
+      if (initialData !== null) {
+        const serializedData = JSON.stringify(initialData)
+          .replace(/</g, '\\u003c')
+          .replace(/>/g, '\\u003e')
+          .replace(/&/g, '\\u0026');
+        finalHtml = finalHtml.replace(
+          '</body>',
+          `<script>window.__INITIAL_DATA__=${serializedData}</script></body>`
+        );
+      }
 
-      // 6. Send the response
+      // 5. Send the response
       res.status(statusCode).set({ 'Content-Type': 'text/html' }).end(finalHtml);
 
     } catch (error) {
