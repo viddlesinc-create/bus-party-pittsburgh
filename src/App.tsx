@@ -6,7 +6,7 @@ import { Routes } from "react-router-dom";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import SkipToContent from "@/components/SkipToContent";
 import { useEffect, useState } from "react";
-import { HelmetProvider } from 'react-helmet';
+import { HelmetProvider } from 'react-helmet-async';
 import { renderRoutes } from "./router";
 
 const queryClient = new QueryClient();
