@@ -15,6 +15,8 @@ import {
   Phone,
   Calendar
 } from "lucide-react";
+import { useLoaderData } from "@/lib/use-loader-data";
+import { FleetData } from "@/loaders/fleet";
 
 // Party Buses
 import partyBus30Ext from "@/assets/party-bus-30-passenger-exterior.jpg";
@@ -52,6 +54,9 @@ import continentalExt from "@/assets/private-car-lincoln-continental-exterior.jp
 import continentalInt from "@/assets/private-car-lincoln-continental-interior.jpg";
 
 const Fleet = () => {
+  // Get SSR data if available (for meta tags during SSR)
+  const { data: ssrData } = useLoaderData<FleetData>();
+  
   const fleetCategories = {
     partyBuses: [
       {

@@ -1,43 +1,25 @@
 import { LoaderFunction } from '@/lib/loader';
 
-// Fleet vehicle type
-export interface Vehicle {
-  id: string;
-  name: string;
-  capacity: number;
-  pricePerHour: number;
-  image: string;
-  features: string[];
-}
-
-// Fleet page data
+// Fleet page SSR data - metadata for SEO
 export interface FleetData {
-  vehicles: Vehicle[];
+  meta: {
+    title: string;
+    description: string;
+    canonical: string;
+  };
   categories: string[];
+  totalVehicles: number;
 }
 
 export const fleetLoader: LoaderFunction<FleetData> = async () => {
-  // This would typically fetch from an API or database
-  // For now, return structured data that matches the page
+  // SSR data for the fleet page - primarily for meta tags and SEO
   return {
-    vehicles: [
-      {
-        id: 'party-bus-22',
-        name: '22 Passenger Party Bus',
-        capacity: 22,
-        pricePerHour: 175,
-        image: '/party-bus-22-passenger-exterior.jpg',
-        features: ['LED Lighting', 'Premium Sound', 'Dance Pole', 'Bar Area'],
-      },
-      {
-        id: 'party-bus-30',
-        name: '30 Passenger Party Bus',
-        capacity: 30,
-        pricePerHour: 200,
-        image: '/party-bus-30-passenger-exterior.jpg',
-        features: ['LED Lighting', 'Premium Sound', 'Dance Pole', 'Bar Area', 'Restroom'],
-      },
-    ],
-    categories: ['Party Buses', 'Limousines', 'Shuttle Buses', 'Private Cars'],
+    meta: {
+      title: "Our Fleet - Party Buses & Limousines | Pittsburgh Party Bus",
+      description: "Explore our premium fleet of party buses and limousines in Pittsburgh. Vehicles for 6-40 passengers with luxury amenities. View photos and features.",
+      canonical: "/fleet"
+    },
+    categories: ['Party Buses', 'Mini Party Buses', 'Limousines', 'Shuttle Service', 'Private Car'],
+    totalVehicles: 13,
   };
 };
