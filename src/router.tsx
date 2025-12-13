@@ -30,6 +30,16 @@ import Terms from "./pages/Terms";
 import { homepageLoader } from "./loaders/homepage";
 import { fleetLoader } from "./loaders/fleet";
 import { blogListLoader, blogPostLoader } from "./loaders/blog";
+import { 
+  eventsLoader, 
+  locationsLoader, 
+  pricingLoader, 
+  contactLoader, 
+  faqsLoader, 
+  testimonialsLoader,
+  privacyLoader,
+  termsLoader,
+} from "./loaders/pages";
 
 // Route configuration interface
 export interface RouteConfig {
@@ -42,11 +52,11 @@ export interface RouteConfig {
 export const routes: RouteConfig[] = [
   { path: "/", component: Index, loader: homepageLoader },
   { path: "/fleet", component: Fleet, loader: fleetLoader },
-  { path: "/events", component: Events },
-  { path: "/locations", component: Locations },
-  { path: "/pricing", component: Pricing },
-  { path: "/contact", component: Contact },
-  { path: "/faqs", component: FAQs },
+  { path: "/events", component: Events, loader: eventsLoader },
+  { path: "/locations", component: Locations, loader: locationsLoader },
+  { path: "/pricing", component: Pricing, loader: pricingLoader },
+  { path: "/contact", component: Contact, loader: contactLoader },
+  { path: "/faqs", component: FAQs, loader: faqsLoader },
   { path: "/blog", component: Blog, loader: blogListLoader },
   { path: "/blog/party-bus-pricing-guide", component: PartyBusPricingGuide, loader: blogPostLoader },
   { path: "/blog/top-events-pittsburgh", component: TopEventsPittsburgh, loader: blogPostLoader },
@@ -58,9 +68,9 @@ export const routes: RouteConfig[] = [
   { path: "/blog/prom-transportation-safety", component: PromTransportationSafety, loader: blogPostLoader },
   { path: "/blog/party-bus-safety-tips", component: PartyBusSafetyTips, loader: blogPostLoader },
   { path: "/blog/accurate-party-bus-estimate", component: AccuratePartyBusEstimate, loader: blogPostLoader },
-  { path: "/testimonials", component: Testimonials },
-  { path: "/privacy", component: Privacy },
-  { path: "/terms", component: Terms },
+  { path: "/testimonials", component: Testimonials, loader: testimonialsLoader },
+  { path: "/privacy", component: Privacy, loader: privacyLoader },
+  { path: "/terms", component: Terms, loader: termsLoader },
 ];
 
 // 404 route - kept separate for special handling
