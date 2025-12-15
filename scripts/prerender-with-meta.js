@@ -4,6 +4,9 @@
  * 
  * Enhanced prerender that properly injects all meta tags from react-helmet-async
  * and SSR data for hydration.
+ * 
+ * IMPORTANT: This script must run AFTER "vite build" because it reads
+ * the template from dist/index.html (which has proper asset hashes).
  */
 import fs from 'fs';
 import path from 'path';
@@ -12,6 +15,7 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, '..');
+const distDir = path.join(root, 'dist');
 
 // Complete list of all routes that need to be pre-rendered
 const routes = [
@@ -43,18 +47,34 @@ console.log(`📋 Pre-rendering ${routes.length} routes for pittpartybus.com...`
 async function prerender() {
   const startTime = Date.now();
   
+  // CRITICAL: Ensure Vite build has completed first
+  if (!fs.existsSync(distDir)) {
+    console.error('❌ dist/ directory not found!');
+    console.error('   Run "vite build" first before prerendering.');
+    process.exit(1);
+  }
+  
+  const templatePath = path.join(distDir, 'index.html');
+  if (!fs.existsSync(templatePath)) {
+    console.error('❌ dist/index.html not found!');
+    console.error('   Run "vite build" first before prerendering.');
+    process.exit(1);
+  }
+  
+  // Read the BUILT template (has proper Vite asset hashes)
+  const template = fs.readFileSync(templatePath, 'utf-8');
+  console.log('📄 Using built template from dist/index.html');
+  
+  // Verify the template has the placeholder
+  if (!template.includes('<!--ssr-outlet-->')) {
+    console.error('❌ Template does not contain <!--ssr-outlet--> placeholder!');
+    process.exit(1);
+  }
+  
   const vite = await createServer({
     server: { middlewareMode: true },
     appType: 'custom'
   });
-
-  const distDir = path.join(root, 'dist');
-
-  if (!fs.existsSync(distDir)) {
-    fs.mkdirSync(distDir, { recursive: true });
-  }
-
-  const template = fs.readFileSync(path.join(root, 'index.html'), 'utf-8');
 
   let successCount = 0;
   let errorCount = 0;
@@ -69,7 +89,15 @@ async function prerender() {
       const helmet = typeof rendered === 'object' ? rendered.helmet : null;
       const initialData = typeof rendered === 'object' ? rendered.initialData : null;
       
+      // Replace the SSR placeholder with actual content
       let finalHtml = template.replace('<!--ssr-outlet-->', html);
+      
+      // CRITICAL: Verify placeholder was replaced
+      if (finalHtml.includes('<!--ssr-outlet-->')) {
+        console.error(`❌ CRITICAL: Failed to replace <!--ssr-outlet--> for ${route}`);
+        errorCount++;
+        continue;
+      }
       
       // Insert helmet meta tags
       if (helmet) {
@@ -89,10 +117,15 @@ async function prerender() {
         finalHtml = finalHtml.replace('</head>', `${dataScript}\n</head>`);
       }
 
-      const routePath = route === '/' ? '/index' : route;
-      const filePath = path.join(distDir, `${routePath}.html`);
+      // Determine output path - homepage overwrites dist/index.html
+      let filePath;
+      if (route === '/') {
+        filePath = path.join(distDir, 'index.html');
+      } else {
+        filePath = path.join(distDir, `${route}.html`);
+      }
+      
       const dir = path.dirname(filePath);
-
       if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir, { recursive: true });
       }
@@ -109,6 +142,7 @@ async function prerender() {
         'Schema': finalHtml.includes('application/ld+json'),
         'NavLinks': finalHtml.includes('href="/fleet"') && finalHtml.includes('href="/contact"'),
         'SSR Data': !initialData || finalHtml.includes('__INITIAL_DATA__'),
+        'No Placeholder': !finalHtml.includes('<!--ssr-outlet-->'),
       };
       
       const failedChecks = Object.entries(checks).filter(([_, passed]) => !passed).map(([name]) => name);
@@ -134,10 +168,17 @@ async function prerender() {
     console.log(`   ❌ Errors: ${errorCount}`);
   }
   console.log(`   ⏱️  Duration: ${duration}s`);
-  console.log('\n🎉 Prerendering with meta tags complete for pittpartybus.com!');
+  console.log('\n🎉 Prerendering with meta tags complete!');
+  
+  return errorCount;
 }
 
-prerender().catch((err) => {
+prerender().then((errorCount) => {
+  if (errorCount > 0) {
+    console.error(`\n❌ Prerendering completed with ${errorCount} errors.`);
+    process.exit(1);
+  }
+}).catch((err) => {
   console.error('❌ Prerender failed:', err);
   process.exit(1);
 });
