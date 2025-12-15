@@ -4,14 +4,8 @@
  * SSR Production Build Script
  * ============================================
  * 
- * This script builds the client and server bundles for true per-request SSR.
- * After running this script, use `npm run start` to run the Node SSR server.
- * 
- * Prerendering is NOT required - the Node server renders each request on-demand.
- * 
- * Build output:
- *   dist/client/  - Static assets (JS, CSS, images) + HTML template
- *   dist/server/  - SSR bundle used by server.ts
+ * Builds client + server bundles for per-request SSR.
+ * After building, run: npm run start
  */
 
 import { build } from 'vite';
@@ -25,12 +19,10 @@ const root = resolve(__dirname, '..');
 async function buildAll() {
   const startTime = Date.now();
   
-  console.log('🚀 Building SSR application for per-request rendering...\n');
-  console.log('   This build produces bundles for the Node SSR server.');
-  console.log('   Prerendering is NOT required - each request is rendered on-demand.\n');
+  console.log('🚀 Building SSR application...\n');
   
   // Step 1: Build client bundle
-  console.log('📦 Step 1/3: Building client bundle...');
+  console.log('📦 Step 1/2: Building client bundle...');
   await build({
     root,
     mode: 'production',
@@ -43,7 +35,7 @@ async function buildAll() {
   console.log('✅ Client bundle complete!\n');
   
   // Step 2: Build server bundle
-  console.log('📦 Step 2/3: Building server bundle...');
+  console.log('📦 Step 2/2: Building server bundle...');
   await build({
     root,
     mode: 'production',
@@ -61,16 +53,12 @@ async function buildAll() {
   });
   console.log('✅ Server bundle complete!\n');
   
-  // Step 3: Copy static files
-  console.log('📦 Step 3/3: Copying static files...');
-  
-  // Ensure dist/client directory exists
+  // Copy static files
   const clientDir = resolve(root, 'dist/client');
   if (!existsSync(clientDir)) {
     mkdirSync(clientDir, { recursive: true });
   }
   
-  // Copy robots.txt and sitemap.xml
   const publicDir = resolve(root, 'public');
   if (existsSync(resolve(publicDir, 'robots.txt'))) {
     copyFileSync(resolve(publicDir, 'robots.txt'), resolve(clientDir, 'robots.txt'));
@@ -79,22 +67,13 @@ async function buildAll() {
     copyFileSync(resolve(publicDir, 'sitemap.xml'), resolve(clientDir, 'sitemap.xml'));
   }
   
-  console.log('✅ Static files copied!\n');
-  
   const duration = ((Date.now() - startTime) / 1000).toFixed(2);
   
   console.log('═══════════════════════════════════════════════════════════');
   console.log(`🎉 SSR build completed in ${duration}s`);
   console.log('═══════════════════════════════════════════════════════════');
-  console.log('\n📋 Next steps:');
-  console.log('');
-  console.log('   Start production SSR server:');
-  console.log('   $ npm run start');
-  console.log('');
-  console.log('   Every HTTP request will be server-side rendered by Node.');
-  console.log('');
-  console.log('   Optional - Generate static HTML files:');
-  console.log('   $ npm run prerender');
+  console.log('\n📋 To start the SSR server:');
+  console.log('   npm run start');
   console.log('');
 }
 
