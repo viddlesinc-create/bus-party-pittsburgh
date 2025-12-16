@@ -6,11 +6,12 @@ import viteCompression from 'vite-plugin-compression';
 import { prerenderPlugin } from './vite-plugin-prerender';
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode, command }) => ({
-  server: {
-    host: "::",
-    port: 8080,
+export default defineConfig({
+  // ...existing config...
+  ssr: {
+    noExternal: ["react-helmet-async"],
   },
+});
   plugins: [
     react(),
     mode === 'development' && componentTagger(),
