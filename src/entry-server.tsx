@@ -1,7 +1,7 @@
-import React from 'react';
-import { renderToString } from 'react-dom/server';
-import { StaticRouter } from 'react-router-dom/server';
-import { HelmetProvider, HelmetServerState } from 'react-helmet-async';
+import React from "react";
+import { renderToString } from "react-dom/server";
+import { StaticRouter } from "react-router-dom/server";
+import helmetAsyncPkg, { HelmetServerState } from "react-helmet-async";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { TooltipProvider } from "./components/ui/tooltip";
 import { Routes } from "react-router-dom";
@@ -9,6 +9,8 @@ import { renderRoutes, matchRoute, loadRouteData } from "./router";
 import { ScrollToTop } from "./components/ScrollToTop";
 import SkipToContent from "./components/SkipToContent";
 import { SSRDataProvider } from "./lib/ssr-data-context";
+
+const { HelmetProvider } = helmetAsyncPkg;
 
 export interface RenderResult {
   html: string;
@@ -36,14 +38,14 @@ export async function render(url: string): Promise<RenderResult> {
 
   // Match route for data loading
   const matchedRoute = matchRoute(url);
-  
+
   // Execute loader if route has one
   const initialData = await loadRouteData(url);
 
   // SSR data context value
   const ssrDataValue = {
     data: initialData,
-    url: url,
+    url,
   };
 
   // Render the app to string
@@ -55,29 +57,27 @@ export async function render(url: string): Promise<RenderResult> {
             <StaticRouter location={url}>
               <SkipToContent />
               <ScrollToTop />
-              <Routes>
-                {renderRoutes()}
-              </Routes>
+              <Routes>{renderRoutes()}</Routes>
             </StaticRouter>
           </SSRDataProvider>
         </TooltipProvider>
       </QueryClientProvider>
-    </HelmetProvider>
+    </HelmetProvider>,
   );
-  
+
   // Extract helmet data from context
   const { helmet } = helmetContext;
-  
+
   // Determine status code
   const statusCode = matchedRoute === null ? 404 : 200;
 
-  return { 
-    html, 
+  return {
+    html,
     helmet: {
-      title: helmet?.title?.toString() || '',
-      meta: helmet?.meta?.toString() || '',
-      link: helmet?.link?.toString() || '',
-      script: helmet?.script?.toString() || '',
+      title: helmet?.title?.toString() || "",
+      meta: helmet?.meta?.toString() || "",
+      link: helmet?.link?.toString() || "",
+      script: helmet?.script?.toString() || "",
     },
     initialData,
     matchedRoute: matchedRoute?.path || null,
