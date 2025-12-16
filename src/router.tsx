@@ -1,6 +1,6 @@
-import { ComponentType } from 'react';
-import { Route } from 'react-router-dom';
-import { LoaderFunction, LoaderContext, createLoaderContext, executeLoader } from './lib/loader';
+import { ComponentType } from "react";
+import { Route } from "react-router-dom";
+import { LoaderFunction, LoaderContext, createLoaderContext, executeLoader } from "./lib/loader";
 
 // Page imports
 import Index from "./pages/Index";
@@ -30,12 +30,12 @@ import Terms from "./pages/Terms";
 import { homepageLoader } from "./loaders/homepage";
 import { fleetLoader } from "./loaders/fleet";
 import { blogListLoader, blogPostLoader } from "./loaders/blog";
-import { 
-  eventsLoader, 
-  locationsLoader, 
-  pricingLoader, 
-  contactLoader, 
-  faqsLoader, 
+import {
+  eventsLoader,
+  locationsLoader,
+  pricingLoader,
+  contactLoader,
+  faqsLoader,
   testimonialsLoader,
   privacyLoader,
   termsLoader,
@@ -58,16 +58,56 @@ export const routes: RouteConfig[] = [
   { path: "/contact", component: Contact, loader: contactLoader },
   { path: "/faqs", component: FAQs, loader: faqsLoader },
   { path: "/blog", component: Blog, loader: blogListLoader },
-  { path: "/blog/party-bus-pricing-guide", component: PartyBusPricingGuide, loader: blogPostLoader },
-  { path: "/blog/top-events-pittsburgh", component: TopEventsPittsburgh, loader: blogPostLoader },
-  { path: "/blog/party-bus-vs-limo", component: PartyBusVsLimo, loader: blogPostLoader },
-  { path: "/blog/bachelor-bachelorette-ideas", component: BachelorBacheloretteIdeas, loader: blogPostLoader },
-  { path: "/blog/wedding-transportation", component: WeddingTransportation, loader: blogPostLoader },
-  { path: "/blog/corporate-event-transportation", component: CorporateEventTransportation, loader: blogPostLoader },
-  { path: "/blog/concert-party-bus", component: ConcertPartyBus, loader: blogPostLoader },
-  { path: "/blog/prom-transportation-safety", component: PromTransportationSafety, loader: blogPostLoader },
-  { path: "/blog/party-bus-safety-tips", component: PartyBusSafetyTips, loader: blogPostLoader },
-  { path: "/blog/accurate-party-bus-estimate", component: AccuratePartyBusEstimate, loader: blogPostLoader },
+  {
+    path: "/blog/party-bus-pricing-guide",
+    component: PartyBusPricingGuide,
+    loader: blogPostLoader,
+  },
+  {
+    path: "/blog/top-events-pittsburgh",
+    component: TopEventsPittsburgh,
+    loader: blogPostLoader,
+  },
+  {
+    path: "/blog/party-bus-vs-limo",
+    component: PartyBusVsLimo,
+    loader: blogPostLoader,
+  },
+  {
+    path: "/blog/bachelor-bachelorette-ideas",
+    component: BachelorBacheloretteIdeas,
+    loader: blogPostLoader,
+  },
+  {
+    path: "/blog/wedding-transportation",
+    component: WeddingTransportation,
+    loader: blogPostLoader,
+  },
+  {
+    path: "/blog/corporate-event-transportation",
+    component: CorporateEventTransportation,
+    loader: blogPostLoader,
+  },
+  {
+    path: "/blog/concert-party-bus",
+    component: ConcertPartyBus,
+    loader: blogPostLoader,
+  },
+  {
+    path: "/blog/prom-transportation-safety",
+    component: PromTransportationSafety,
+    loader: blogPostLoader,
+  },
+  {
+    path: "/blog/party-bus-safety-tips",
+    component: PartyBusSafetyTips,
+    loader: blogPostLoader,
+  },
+  {
+    path: "/blog/accurate-party-bus-estimate",
+    component: AccuratePartyBusEstimate,
+    loader: blogPostLoader,
+  },
   { path: "/testimonials", component: Testimonials, loader: testimonialsLoader },
   { path: "/privacy", component: Privacy, loader: privacyLoader },
   { path: "/terms", component: Terms, loader: termsLoader },
@@ -84,11 +124,7 @@ export function renderRoutes() {
   return (
     <>
       {routes.map((route) => (
-        <Route 
-          key={route.path} 
-          path={route.path} 
-          element={<route.component />} 
-        />
+        <Route key={route.path} path={route.path} element={<route.component />} />
       ))}
       <Route path={notFoundRoute.path} element={<notFoundRoute.component />} />
     </>
@@ -97,28 +133,22 @@ export function renderRoutes() {
 
 // Helper to match a URL to a route config (for SSR)
 export function matchRoute(url: string): RouteConfig | null {
-  // Normalize URL
-  const pathname = url.split('?')[0].split('#')[0];
-  
-  // Find exact match first
-  const exactMatch = routes.find(route => route.path === pathname);
-  if (exactMatch) return exactMatch;
-  
-  // No match found
-  return null;
+  const pathname = url.split("?")[0].split("#")[0];
+  const exactMatch = routes.find((route) => route.path === pathname);
+  return exactMatch || null;
 }
 
 // Execute loader for a matched route
 export async function loadRouteData(url: string): Promise<unknown> {
   const route = matchRoute(url);
   if (!route?.loader) return null;
-  
-  const context = createLoaderContext(url);
+
+  const context: LoaderContext = createLoaderContext(url);
   return executeLoader(route.loader, context);
 }
 
 // Export all route paths for sitemap generation
-export const allRoutePaths = routes.map(r => r.path);
+export const allRoutePaths = routes.map((r) => r.path);
 
 // Re-export loader utilities
 export { createLoaderContext, executeLoader };
