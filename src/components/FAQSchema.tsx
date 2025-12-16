@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 
 interface FAQItem {
   question: string;
@@ -9,6 +9,10 @@ interface FAQSchemaProps {
   faqs: FAQItem[];
 }
 
+/**
+ * FAQ Schema component for Google Rich Results
+ * Uses react-helmet-async for SSR compatibility
+ */
 export function FAQSchema({ faqs }: FAQSchemaProps) {
   const schema = {
     "@context": "https://schema.org",
@@ -23,23 +27,11 @@ export function FAQSchema({ faqs }: FAQSchemaProps) {
     }))
   };
 
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
-    script.text = JSON.stringify(schema);
-    script.id = 'faq-schema';
-    
-    const existing = document.getElementById('faq-schema');
-    if (existing) {
-      existing.remove();
-    }
-    
-    document.head.appendChild(script);
-
-    return () => {
-      script.remove();
-    };
-  }, [schema]);
-
-  return null;
+  return (
+    <Helmet>
+      <script type="application/ld+json">
+        {JSON.stringify(schema)}
+      </script>
+    </Helmet>
+  );
 }
