@@ -1,86 +1,48 @@
 import React from "react";
-import { renderToString } from "react-dom/server";
+import ReactDOMServer from "react-dom/server";
 import { StaticRouter } from "react-router-dom/server";
 import { HelmetProvider, HelmetServerState } from "react-helmet-async";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { TooltipProvider } from "./components/ui/tooltip";
-import { Routes } from "react-router-dom";
-import { renderRoutes, matchRoute, loadRouteData } from "./router";
-import { ScrollToTop } from "./components/ScrollToTop";
-import SkipToContent from "./components/SkipToContent";
+import App from "./App";
 import { SSRDataProvider } from "./lib/ssr-data-context";
-
-const { HelmetProvider } = helmetAsyncPkg;
 
 export interface RenderResult {
   html: string;
-  helmet: {
-    title: string;
-    meta: string;
-    link: string;
-    script: string;
-  };
-  initialData: unknown;
-  matchedRoute: string | null;
-  statusCode: number;
+  headTags: string;
+  initialData: string;
 }
 
-export async function render(url: string): Promise<RenderResult> {
-  // Create fresh instances per request (prevents memory leaks)
-  const helmetContext = {} as { helmet: HelmetServerState };
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: {
-        retry: false,
-      },
-    },
-  });
+export async function render(url: string, initialData: unknown = {}): Promise<RenderResult> {
+  const helmetContext: { helmet?: HelmetServerState } = {};
 
-  // Match route for data loading
-  const matchedRoute = matchRoute(url);
-
-  // Execute loader if route has one
-  const initialData = await loadRouteData(url);
-
-  // SSR data context value
-  const ssrDataValue = {
-    data: initialData,
-    url,
-  };
-
-  // Render the app to string
-  const html = renderToString(
-    <HelmetProvider context={helmetContext}>
-      <QueryClientProvider client={queryClient}>
-        <TooltipProvider>
-          <SSRDataProvider value={ssrDataValue}>
-            <StaticRouter location={url}>
-              <SkipToContent />
-              <ScrollToTop />
-              <Routes>{renderRoutes()}</Routes>
-            </StaticRouter>
-          </SSRDataProvider>
-        </TooltipProvider>
-      </QueryClientProvider>
-    </HelmetProvider>,
+  const app = (
+    <React.StrictMode>
+      <SSRDataProvider initialData={initialData}>
+        <HelmetProvider context={helmetContext}>
+          <StaticRouter location={url}>
+            <App />
+          </StaticRouter>
+        </HelmetProvider>
+      </SSRDataProvider>
+    </React.StrictMode>
   );
 
-  // Extract helmet data from context
-  const { helmet } = helmetContext;
+  const html = ReactDOMServer.renderToString(app);
 
-  // Determine status code
-  const statusCode = matchedRoute === null ? 404 : 200;
+  const headTags = helmetContext.helmet
+    ? [
+        helmetContext.helmet.title.toString(),
+        helmetContext.helmet.priority.toString(),
+        helmetContext.helmet.meta.toString(),
+        helmetContext.helmet.link.toString(),
+        helmetContext.helmet.script.toString(),
+      ].join("\n")
+    : "";
+
+  const initialDataJson = JSON.stringify(initialData ?? {});
 
   return {
     html,
-    helmet: {
-      title: helmet?.title?.toString() || "",
-      meta: helmet?.meta?.toString() || "",
-      link: helmet?.link?.toString() || "",
-      script: helmet?.script?.toString() || "",
-    },
-    initialData,
-    matchedRoute: matchedRoute?.path || null,
-    statusCode,
+    headTags,
+    initialData: initialDataJson,
   };
 }
