@@ -26,8 +26,10 @@ export async function render(url: string, initialData: unknown = {}): Promise<Re
     </React.StrictMode>
   );
 
+  // Server-render the app to a string
   const html = ReactDOMServer.renderToString(app);
 
+  // Collect <Helmet> tags from the HelmetProvider context
   const headTags = helmetContext.helmet
     ? [
         helmetContext.helmet.title.toString(),
