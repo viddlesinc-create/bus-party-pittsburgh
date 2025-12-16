@@ -1,5 +1,5 @@
 import React from "react";
-import helmetAsyncPkg from "react-helmet-async";
+import { Helmet } from "react-helmet-async";
 import { useSSRData } from "@/lib/ssr-data-context";
 
 const { Helmet } = helmetAsyncPkg;
