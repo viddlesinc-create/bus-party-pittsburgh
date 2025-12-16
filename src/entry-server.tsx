@@ -1,7 +1,7 @@
 import React from "react";
 import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router-dom/server";
-import helmetAsyncPkg, { HelmetServerState } from "react-helmet-async";
+import { HelmetProvider, HelmetServerState } from "react-helmet-async";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { TooltipProvider } from "./components/ui/tooltip";
 import { Routes } from "react-router-dom";
@@ -10,7 +10,7 @@ import { ScrollToTop } from "./components/ScrollToTop";
 import SkipToContent from "./components/SkipToContent";
 import { SSRDataProvider } from "./lib/ssr-data-context";
 
-const { HelmetProvider } = helmetAsyncPkg;
+
 
 export interface RenderResult {
   html: string;
