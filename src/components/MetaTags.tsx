@@ -2,8 +2,6 @@ import React from "react";
 import { Helmet } from "react-helmet-async";
 import { useSSRData } from "@/lib/ssr-data-context";
 
-const { Helmet } = helmetAsyncPkg;
-
 interface SSRMeta {
   title?: string;
   description?: string;
