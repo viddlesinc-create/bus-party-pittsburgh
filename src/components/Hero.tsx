@@ -80,7 +80,7 @@ const Hero = () => {
       setIsSubmitting(false);
     }
   };
-  return <section className="relative min-h-screen flex items-center justify-center overflow-hidden" aria-label="Hero section">
+  return <section className="relative min-h-screen flex items-center justify-center overflow-hidden" aria-labelledby="hero-heading">
       {/* Background Image with Overlay - LCP Critical */}
       <div className="absolute inset-0" aria-hidden="true">
         <img 
@@ -108,7 +108,7 @@ const Hero = () => {
               <span className="ml-2 text-primary-foreground font-medium">Rated #1 in Pittsburgh</span>
             </div>
             
-            <h1 className="text-4xl md:text-6xl font-bold text-primary-foreground mb-6 leading-tight">
+            <h1 id="hero-heading" className="text-4xl md:text-6xl font-bold text-primary-foreground mb-6 leading-tight">
               Pittsburgh Party Bus Rental &{" "}
               <span className="bg-gradient-to-r from-accent to-accent-glow bg-clip-text text-transparent">
                 Limo Services
@@ -152,7 +152,7 @@ const Hero = () => {
             <Card className="w-full max-w-md bg-card-gradient shadow-luxury border border-accent/20">
               <CardContent className="p-6">
                 <div className="text-center mb-6">
-                  <h3 className="text-2xl font-bold text-card-foreground mb-2">Get Instant Quote</h3>
+                  <h2 className="text-2xl font-bold text-card-foreground mb-2">Get Instant Quote</h2>
                   <p className="text-muted-foreground">Free estimates - Same Day!
 
                 </p>
