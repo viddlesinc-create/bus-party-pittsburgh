@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
 import { MetaTags } from "@/components/MetaTags";
 import { StructuredData, breadcrumbSchema } from "@/components/StructuredData";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { BUSINESS_INFO } from "@/lib/business-info";
 import { 
   MapPin, 
   Phone, 
@@ -55,21 +57,22 @@ export function LocationPageLayout({
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "name": `Pitt Party Bus - ${areaName}`,
+    "name": `${BUSINESS_INFO.name} - ${areaName}`,
     "description": metaDescription,
-    "url": `https://pittpartybus.com/locations/${areaSlug}`,
-    "telephone": "+1-412-385-3877",
+    "url": `${BUSINESS_INFO.website}/locations/${areaSlug}`,
+    "telephone": BUSINESS_INFO.phoneRaw,
+    "email": BUSINESS_INFO.email,
     "address": {
       "@type": "PostalAddress",
       "addressLocality": areaName,
-      "addressRegion": "PA",
-      "addressCountry": "US"
+      "addressRegion": BUSINESS_INFO.address.state,
+      "addressCountry": BUSINESS_INFO.address.country
     },
     "areaServed": {
       "@type": "Place",
       "name": areaName
     },
-    "priceRange": "$100-$175/hour",
+    "priceRange": BUSINESS_INFO.priceRange,
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": "5.0",
@@ -92,6 +95,13 @@ export function LocationPageLayout({
       ])} />
       <Navigation />
 
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Breadcrumbs items={[
+          { name: "Locations", url: "/locations" },
+          { name: areaName, url: `/locations/${areaSlug}` }
+        ]} />
+      </div>
+
       {/* Hero Section */}
       <section className="py-16 bg-hero-gradient">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -104,9 +114,9 @@ export function LocationPageLayout({
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button variant="accent" size="xl" className="shadow-glow" asChild>
-              <a href="tel:4123853877">
+              <a href={BUSINESS_INFO.phoneTel}>
                 <Phone className="mr-2 h-5 w-5" />
-                Call (412) 385-3877
+                Call {BUSINESS_INFO.phone}
               </a>
             </Button>
             <Button variant="outline" size="xl" className="bg-primary-foreground/10 border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-foreground" asChild>
@@ -352,9 +362,9 @@ export function LocationPageLayout({
               <Link to="/contact">Get Free Quote</Link>
             </Button>
             <Button variant="secondary" size="xl" asChild>
-              <a href="tel:4123853877">
+              <a href={BUSINESS_INFO.phoneTel}>
                 <Phone className="mr-2 h-5 w-5" />
-                (412) 385-3877
+                {BUSINESS_INFO.phone}
               </a>
             </Button>
           </div>
