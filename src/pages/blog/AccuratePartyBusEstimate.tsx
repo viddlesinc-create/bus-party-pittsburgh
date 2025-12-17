@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import BlogPostLayout from "@/components/BlogPostLayout";
 import onlineEstimateImg from "@/assets/blog-online-party-bus-estimate.jpg";
 
@@ -280,8 +281,10 @@ const AccuratePartyBusEstimate = () => {
       <p>
         Getting an accurate party bus quote isn't complicated – it just requires providing complete information 
         and asking the right questions. Companies that are transparent, responsive, and thorough in their 
-        quotes are typically the ones that deliver great service. Take the time to gather accurate quotes, 
-        and you'll avoid surprises while finding the perfect party bus for your Pittsburgh celebration.
+        quotes are typically the ones that deliver great service. For a clear understanding of typical costs, 
+        visit our <Link to="/pricing" className="text-primary hover:underline">party bus rental rates</Link> page. 
+        Take the time to gather accurate quotes, and you'll avoid surprises while finding the perfect party bus 
+        for your Pittsburgh celebration.
       </p>
     </BlogPostLayout>
   );

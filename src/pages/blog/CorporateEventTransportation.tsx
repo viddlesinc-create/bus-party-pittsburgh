@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import BlogPostLayout from "@/components/BlogPostLayout";
 import corporateEventImg from "@/assets/blog-corporate-event-transportation.jpg";
 
@@ -185,6 +186,10 @@ const CorporateEventTransportation = () => {
       <h2>Cost Management and Budgeting</h2>
 
       <h3>Understanding Corporate Transportation Costs</h3>
+      <p>
+        Review our <Link to="/pricing" className="text-primary hover:underline">party bus pricing in Pittsburgh</Link> for 
+        current rates and packages.
+      </p>
       <ul>
         <li><strong>Hourly rates:</strong> $100-$300 depending on vehicle</li>
         <li><strong>Minimum rental periods:</strong> Typically 3-4 hours</li>

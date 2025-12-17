@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import BlogPostLayout from "@/components/BlogPostLayout";
 import promSafetyImg from "@/assets/blog-prom-transportation-safety.jpg";
 
@@ -207,7 +208,9 @@ const PromTransportationSafety = () => {
 
       <h3>Investment in Peace of Mind</h3>
       <p>
-        Professional prom transportation costs $400-$800 for 4-6 hours:
+        Professional prom transportation costs $400-$800 for 4-6 hours. See our 
+        complete <Link to="/pricing" className="text-primary hover:underline">party bus pricing in Pittsburgh</Link> for 
+        current <Link to="/pricing" className="text-primary hover:underline">party bus rental rates</Link>:
       </p>
       <ul>
         <li>Split among 10-15 students: $30-80 per person</li>

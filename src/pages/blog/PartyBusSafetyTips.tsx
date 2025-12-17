@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import BlogPostLayout from "@/components/BlogPostLayout";
 import safetyTipsImg from "@/assets/blog-party-bus-safety-tips.jpg";
 
@@ -20,6 +21,10 @@ const PartyBusSafetyTips = () => {
       </p>
 
       <h2>Before You Book: Choosing a Safe Company</h2>
+      <p>
+        When comparing options, check our <Link to="/pricing" className="text-primary hover:underline">party bus rental rates</Link> for 
+        transparent pricing from a reputable provider.
+      </p>
 
       <h3>Verify Credentials</h3>
       <ul>

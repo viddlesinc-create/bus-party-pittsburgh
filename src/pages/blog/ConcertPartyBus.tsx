@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import BlogPostLayout from "@/components/BlogPostLayout";
 import concertBusImg from "@/assets/blog-concert-party-bus.jpg";
 
@@ -234,8 +235,10 @@ const ConcertPartyBus = () => {
 
       <h3>Splitting Costs</h3>
       <p>
-        Party bus rental ($150-300/hour) divided among 15-25 people often costs less per person than 
-        parking, rideshares, and drinks if everyone drove separately.
+        <Link to="/pricing" className="text-primary hover:underline">Party bus rental rates</Link> ($150-300/hour) 
+        divided among 15-25 people often costs less per person than parking, rideshares, and drinks if everyone 
+        drove separately. View our complete <Link to="/pricing" className="text-primary hover:underline">party bus pricing in Pittsburgh</Link> for 
+        detailed information.
       </p>
 
       <h3>Coordinating Your Group</h3>
