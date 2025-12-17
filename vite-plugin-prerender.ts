@@ -55,7 +55,7 @@ export function prerenderPlugin(): Plugin {
       // 3) Use Vite in SSR mode to load entry-server.tsx
       const vite = await createServer({
         root,
-        server: { middlewareMode: "ssr" },
+        server: { middlewareMode: true },
         appType: "custom",
       });
 

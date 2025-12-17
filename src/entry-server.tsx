@@ -14,9 +14,14 @@ export interface RenderResult {
 export async function render(url: string, initialData: unknown = {}): Promise<RenderResult> {
   const helmetContext: { helmet?: HelmetServerState } = {};
 
+  const ssrDataValue = {
+    data: initialData,
+    url,
+  };
+
   const app = (
     <React.StrictMode>
-      <SSRDataProvider initialData={initialData}>
+      <SSRDataProvider value={ssrDataValue}>
         <HelmetProvider context={helmetContext}>
           <StaticRouter location={url}>
             <App />
