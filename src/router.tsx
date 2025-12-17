@@ -23,6 +23,7 @@ import ConcertPartyBus from "./pages/blog/ConcertPartyBus";
 import PromTransportationSafety from "./pages/blog/PromTransportationSafety";
 import PartyBusSafetyTips from "./pages/blog/PartyBusSafetyTips";
 import AccuratePartyBusEstimate from "./pages/blog/AccuratePartyBusEstimate";
+import PartyBusesNearMe from "./pages/blog/PartyBusesNearMe";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 
@@ -106,6 +107,11 @@ export const routes: RouteConfig[] = [
   {
     path: "/blog/accurate-party-bus-estimate",
     component: AccuratePartyBusEstimate,
+    loader: blogPostLoader,
+  },
+  {
+    path: "/blog/party-buses-near-me",
+    component: PartyBusesNearMe,
     loader: blogPostLoader,
   },
   { path: "/testimonials", component: Testimonials, loader: testimonialsLoader },

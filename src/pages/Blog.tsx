@@ -20,7 +20,8 @@ import {
   Music,
   DollarSign,
   Car,
-  Shield
+  Shield,
+  MapPin
 } from "lucide-react";
 import { useLoaderData } from "@/lib/use-loader-data";
 import { BlogData } from "@/loaders/blog";
@@ -36,6 +37,7 @@ import concertBusImg from "@/assets/blog-concert-party-bus.jpg";
 import promSafetyImg from "@/assets/blog-prom-transportation-safety.jpg";
 import safetyTipsImg from "@/assets/blog-party-bus-safety-tips.jpg";
 import onlineEstimateImg from "@/assets/blog-online-party-bus-estimate.jpg";
+import fleetShowcaseImg from "@/assets/fleet-showcase.jpg";
 
 const Blog = () => {
   // Get SSR data if available (for meta tags during SSR)
@@ -142,6 +144,16 @@ const Blog = () => {
       readTime: "4 min read",
       icon: DollarSign,
       slug: "accurate-party-bus-estimate"
+    },
+    {
+      title: "Party Buses Near Me: Find the Best Pittsburgh Party Bus Rental",
+      excerpt: "Looking for party buses near me in Pittsburgh? Discover local party bus rental services, pricing, availability, and tips.",
+      image: fleetShowcaseImg,
+      category: "Local Guide",
+      date: "December 17, 2024",
+      readTime: "8 min read",
+      icon: MapPin,
+      slug: "party-buses-near-me"
     }
   ];
 
