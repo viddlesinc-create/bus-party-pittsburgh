@@ -21,8 +21,14 @@ export const organizationSchema = {
   "@type": ["LocalBusiness", "LimousineBusService"],
   "@id": "https://pittpartybus.com/#organization",
   "name": "Pitt Party Bus",
-  "alternateName": ["Pittsburgh Party Bus", "Pitt Party Bus Pittsburgh"],
-  "description": "Premium party bus and limousine rentals in Pittsburgh, PA. Luxury transportation for weddings, proms, corporate events, and special occasions. 24/7 availability with professional chauffeurs.",
+  "alternateName": [
+    "Pittsburgh Party Bus",
+    "Pitt Party Bus Pittsburgh",
+    "Party Buses Near Me Pittsburgh",
+    "Pittsburgh Party Bus Rental",
+    "Party Bus Pittsburgh PA"
+  ],
+  "description": "Pittsburgh's #1 party bus rental company. Premium party buses and limousines for weddings, proms, bachelor parties, corporate events, and special occasions. Serving all Pittsburgh neighborhoods including Downtown, North Hills, South Hills, and surrounding areas. 24/7 availability with professional chauffeurs.",
   "url": "https://pittpartybus.com",
   "logo": {
     "@type": "ImageObject",
@@ -81,14 +87,40 @@ export const organizationSchema = {
         }
       }
     },
-    {
-      "@type": "AdministrativeArea",
-      "name": "Allegheny County"
-    },
-    {
-      "@type": "AdministrativeArea",
-      "name": "Greater Pittsburgh Area"
-    }
+    { "@type": "AdministrativeArea", "name": "Allegheny County" },
+    { "@type": "AdministrativeArea", "name": "Greater Pittsburgh Area" },
+    // North Hills
+    { "@type": "City", "name": "Cranberry Township" },
+    { "@type": "City", "name": "Wexford" },
+    { "@type": "City", "name": "Pine Township" },
+    { "@type": "City", "name": "McCandless" },
+    { "@type": "City", "name": "Ross Township" },
+    { "@type": "City", "name": "Allison Park" },
+    // South Hills
+    { "@type": "City", "name": "Mt. Lebanon" },
+    { "@type": "City", "name": "Upper St. Clair" },
+    { "@type": "City", "name": "Peters Township" },
+    { "@type": "City", "name": "McMurray" },
+    { "@type": "City", "name": "Bethel Park" },
+    { "@type": "City", "name": "Canonsburg" },
+    // East
+    { "@type": "City", "name": "Monroeville" },
+    { "@type": "City", "name": "Murrysville" },
+    { "@type": "City", "name": "Irwin" },
+    { "@type": "City", "name": "Greensburg" },
+    // West
+    { "@type": "City", "name": "Moon Township" },
+    { "@type": "City", "name": "Robinson Township" },
+    { "@type": "City", "name": "Sewickley" },
+    // Neighborhoods
+    { "@type": "Place", "name": "Downtown Pittsburgh" },
+    { "@type": "Place", "name": "Oakland" },
+    { "@type": "Place", "name": "Shadyside" },
+    { "@type": "Place", "name": "Squirrel Hill" },
+    { "@type": "Place", "name": "South Side" },
+    { "@type": "Place", "name": "Strip District" },
+    { "@type": "Place", "name": "Lawrenceville" },
+    { "@type": "Place", "name": "North Shore" }
   ],
   "serviceArea": {
     "@type": "GeoCircle",
@@ -99,6 +131,29 @@ export const organizationSchema = {
     },
     "geoRadius": "50 mi"
   },
+  "makesOffer": [
+    {
+      "@type": "Offer",
+      "name": "Party Bus Rental Near Me",
+      "description": "Local party bus rentals in Pittsburgh and surrounding areas",
+      "areaServed": { "@type": "City", "name": "Pittsburgh" }
+    },
+    {
+      "@type": "Offer",
+      "name": "Wedding Party Bus",
+      "description": "Luxury wedding transportation in Pittsburgh"
+    },
+    {
+      "@type": "Offer",
+      "name": "Prom Party Bus",
+      "description": "Safe prom transportation for Pittsburgh area students"
+    },
+    {
+      "@type": "Offer",
+      "name": "Bachelor Party Bus",
+      "description": "Bachelor and bachelorette party buses in Pittsburgh"
+    }
+  ],
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Party Bus and Limousine Services",
@@ -109,6 +164,21 @@ export const organizationSchema = {
           "@type": "Service",
           "name": "Party Bus Rental",
           "description": "Luxury party buses for groups of 12-40 passengers with premium sound systems, LED lighting, and full bar setup",
+          "url": "https://pittpartybus.com/fleet"
+        },
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "price": "100",
+          "priceCurrency": "USD",
+          "unitText": "HOUR"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Small Party Bus Rental",
+          "description": "Mini party buses for 8-14 passengers, perfect for small groups",
           "url": "https://pittpartybus.com/fleet"
         },
         "priceSpecification": {
@@ -198,17 +268,37 @@ export const organizationSchema = {
         "name": "Mike R."
       },
       "reviewBody": "Best bachelor party ever! The bus was exactly what we needed and made the night unforgettable."
+    },
+    {
+      "@type": "Review",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Jennifer L."
+      },
+      "reviewBody": "We searched for party buses near me and found Pitt Party Bus. They were amazing for our prom group!"
     }
   ],
   "knowsAbout": [
     "Party Bus Rental",
+    "Party Buses Near Me",
     "Limousine Service",
     "Wedding Transportation",
     "Prom Transportation",
     "Corporate Event Transportation",
     "Bachelor Party Transportation",
-    "Pittsburgh Transportation"
+    "Bachelorette Party Transportation",
+    "Pittsburgh Transportation",
+    "Group Transportation Pittsburgh",
+    "Luxury Bus Rental",
+    "Party Bus Pricing",
+    "Event Transportation"
   ],
+  "keywords": "party buses near me, party bus pittsburgh, party bus rental pittsburgh, pittsburgh party bus, party buses near me pittsburgh, limo service pittsburgh, wedding transportation pittsburgh, prom party bus pittsburgh, bachelor party bus pittsburgh",
   "slogan": "Pittsburgh's Premier Party Bus & Limo Service",
   "foundingDate": "2010",
   "numberOfEmployees": {
@@ -223,7 +313,35 @@ export const organizationSchema = {
     { "@type": "LocationFeatureSpecification", "name": "LED Lighting", "value": true },
     { "@type": "LocationFeatureSpecification", "name": "Bar Setup", "value": true },
     { "@type": "LocationFeatureSpecification", "name": "WiFi", "value": true },
-    { "@type": "LocationFeatureSpecification", "name": "Climate Control", "value": true }
+    { "@type": "LocationFeatureSpecification", "name": "Climate Control", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Professional Chauffeur", "value": true }
+  ],
+  "potentialAction": [
+    {
+      "@type": "ReserveAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://pittpartybus.com/contact",
+        "actionPlatform": [
+          "http://schema.org/DesktopWebPlatform",
+          "http://schema.org/MobileWebPlatform"
+        ]
+      },
+      "result": {
+        "@type": "Reservation",
+        "name": "Party Bus Reservation"
+      }
+    },
+    {
+      "@type": "CommunicateAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "tel:+14123853877",
+        "actionPlatform": [
+          "http://schema.org/MobileWebPlatform"
+        ]
+      }
+    }
   ],
   "sameAs": [
     "https://www.facebook.com/pittpartybus",
