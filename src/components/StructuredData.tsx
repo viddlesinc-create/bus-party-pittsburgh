@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import { BUSINESS_INFO, getSchemaAddress, getSchemaGeo } from '@/lib/business-info';
 
 interface StructuredDataProps {
   data: object;
@@ -15,12 +16,12 @@ export function StructuredData({ data }: StructuredDataProps) {
   );
 }
 
-// Predefined structured data templates
+// Predefined structured data templates using centralized NAP
 export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": ["LocalBusiness", "LimousineBusService"],
-  "@id": "https://pittpartybus.com/#organization",
-  "name": "Pitt Party Bus",
+  "@id": `${BUSINESS_INFO.website}/#organization`,
+  "name": BUSINESS_INFO.name,
   "alternateName": [
     "Pittsburgh Party Bus",
     "Pitt Party Bus Pittsburgh",
@@ -28,35 +29,24 @@ export const organizationSchema = {
     "Pittsburgh Party Bus Rental",
     "Party Bus Pittsburgh PA"
   ],
-  "description": "Pittsburgh's #1 party bus rental company. Premium party buses and limousines for weddings, proms, bachelor parties, corporate events, and special occasions. Serving all Pittsburgh neighborhoods including Downtown, North Hills, South Hills, and surrounding areas. 24/7 availability with professional chauffeurs.",
-  "url": "https://pittpartybus.com",
+  "description": BUSINESS_INFO.description,
+  "url": BUSINESS_INFO.website,
   "logo": {
     "@type": "ImageObject",
-    "url": "https://pittpartybus.com/logo.png",
+    "url": `${BUSINESS_INFO.website}/logo.png`,
     "width": "200",
     "height": "60"
   },
   "image": [
-    "https://pittpartybus.com/hero-party-bus.jpg",
-    "https://pittpartybus.com/fleet-showcase.jpg",
-    "https://pittpartybus.com/party-bus-interior.jpg"
+    `${BUSINESS_INFO.website}/hero-party-bus.jpg`,
+    `${BUSINESS_INFO.website}/fleet-showcase.jpg`,
+    `${BUSINESS_INFO.website}/party-bus-interior.jpg`
   ],
-  "telephone": "+1-412-385-3877",
-  "email": "info@pittpartybus.com",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Pittsburgh",
-    "addressLocality": "Pittsburgh",
-    "addressRegion": "PA",
-    "postalCode": "15222",
-    "addressCountry": "US"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 40.4406,
-    "longitude": -79.9959
-  },
-  "hasMap": "https://www.google.com/maps/search/?api=1&query=Pittsburgh+PA+15222",
+  "telephone": BUSINESS_INFO.phoneRaw,
+  "email": BUSINESS_INFO.email,
+  "address": getSchemaAddress(),
+  "geo": getSchemaGeo(),
+  "hasMap": `https://www.google.com/maps/search/?api=1&query=${BUSINESS_INFO.address.city}+${BUSINESS_INFO.address.state}+${BUSINESS_INFO.address.zip}`,
   "openingHoursSpecification": [
     {
       "@type": "OpeningHoursSpecification",
@@ -321,7 +311,7 @@ export const organizationSchema = {
       "@type": "ReserveAction",
       "target": {
         "@type": "EntryPoint",
-        "urlTemplate": "https://pittpartybus.com/contact",
+        "urlTemplate": `${BUSINESS_INFO.website}/contact`,
         "actionPlatform": [
           "http://schema.org/DesktopWebPlatform",
           "http://schema.org/MobileWebPlatform"
@@ -336,7 +326,7 @@ export const organizationSchema = {
       "@type": "CommunicateAction",
       "target": {
         "@type": "EntryPoint",
-        "urlTemplate": "tel:+14123853877",
+        "urlTemplate": BUSINESS_INFO.phoneTel,
         "actionPlatform": [
           "http://schema.org/MobileWebPlatform"
         ]
@@ -344,22 +334,22 @@ export const organizationSchema = {
     }
   ],
   "sameAs": [
-    "https://www.facebook.com/pittpartybus",
-    "https://www.instagram.com/pittpartybus",
-    "https://www.yelp.com/biz/pitt-party-bus-pittsburgh"
+    BUSINESS_INFO.social.facebook,
+    BUSINESS_INFO.social.instagram,
+    BUSINESS_INFO.social.yelp
   ]
 };
 
 export const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "Pitt Party Bus",
-  "url": "https://pittpartybus.com",
+  "name": BUSINESS_INFO.name,
+  "url": BUSINESS_INFO.website,
   "potentialAction": {
     "@type": "SearchAction",
     "target": {
       "@type": "EntryPoint",
-      "urlTemplate": "https://pittpartybus.com/fleet?search={search_term_string}"
+      "urlTemplate": `${BUSINESS_INFO.website}/fleet?search={search_term_string}`
     },
     "query-input": "required name=search_term_string"
   }
@@ -372,7 +362,7 @@ export const breadcrumbSchema = (items: Array<{ name: string; url: string }>) =>
     "@type": "ListItem",
     "position": index + 1,
     "name": item.name,
-    "item": `https://pittpartybus.com${item.url}`
+    "item": `${BUSINESS_INFO.website}${item.url}`
   }))
 });
 
@@ -397,10 +387,10 @@ export const articleSchema = (article: {
   },
   "publisher": {
     "@type": "Organization",
-    "name": "Pitt Party Bus",
+    "name": BUSINESS_INFO.name,
     "logo": {
       "@type": "ImageObject",
-      "url": "https://pittpartybus.com/logo.png"
+      "url": `${BUSINESS_INFO.website}/logo.png`
     }
   }
 });
@@ -416,11 +406,13 @@ export const serviceSchema = (service: {
   "description": service.description,
   "provider": {
     "@type": "LocalBusiness",
-    "name": "Pitt Party Bus"
+    "name": BUSINESS_INFO.name,
+    "telephone": BUSINESS_INFO.phoneRaw,
+    "address": getSchemaAddress()
   },
   "areaServed": {
     "@type": "City",
-    "name": "Pittsburgh"
+    "name": BUSINESS_INFO.address.city
   },
   "offers": {
     "@type": "Offer",

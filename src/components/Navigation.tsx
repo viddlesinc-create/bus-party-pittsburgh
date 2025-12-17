@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Menu, X, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { BUSINESS_INFO } from "@/lib/business-info";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -25,7 +26,7 @@ const Navigation = () => {
           <div className="flex items-center">
             <Link to="/" className="flex-shrink-0 flex items-center">
               <div className="bg-hero-gradient text-primary-foreground px-3 py-2 rounded-lg font-bold text-xl">
-                Pitt Party Bus
+                {BUSINESS_INFO.name}
               </div>
             </Link>
           </div>
@@ -42,9 +43,13 @@ const Navigation = () => {
               </Link>
             ))}
             <div className="flex items-center space-x-4">
-              <a href="tel:4123853877" className="flex items-center text-accent hover:text-accent-glow font-semibold" aria-label="Call Pitt Party Bus at 412-385-3877">
+              <a 
+                href={BUSINESS_INFO.phoneTel} 
+                className="flex items-center text-accent hover:text-accent-glow font-semibold" 
+                aria-label={`Call ${BUSINESS_INFO.name} at ${BUSINESS_INFO.phone}`}
+              >
                 <Phone className="h-4 w-4 mr-2" aria-hidden="true" />
-                (412) 385-3877
+                {BUSINESS_INFO.phone}
               </a>
               <Button variant="hero" size="sm" asChild>
                 <Link to="/contact">
@@ -56,7 +61,7 @@ const Navigation = () => {
 
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center">
-            <a href="tel:4123853877" className="mr-4" aria-label="Call Pitt Party Bus">
+            <a href={BUSINESS_INFO.phoneTel} className="mr-4" aria-label={`Call ${BUSINESS_INFO.name}`}>
               <Button variant="ghost" size="sm">
                 <Phone className="h-4 w-4" />
               </Button>

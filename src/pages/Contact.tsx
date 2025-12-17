@@ -10,6 +10,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { useState, useEffect } from "react";
+import { BUSINESS_INFO, getFormattedAddress } from "@/lib/business-info";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { 
   Phone,
   Mail,
@@ -97,27 +99,28 @@ const Contact = () => {
       setIsSubmitting(false);
     }
   };
+  
   const contactMethods = [
     {
       icon: Phone,
       title: "Call Us",
-      value: "(412) 385-3877",
+      value: BUSINESS_INFO.phone,
       description: "Available 24/7 for immediate assistance",
-      action: "tel:412-385-3877"
+      action: BUSINESS_INFO.phoneTel
     },
     {
       icon: Mail,
       title: "Email Us", 
-      value: "Pittpartybus412@gmail.com",
+      value: BUSINESS_INFO.email,
       description: "We respond within 2 hours during business hours",
-      action: "mailto:Pittpartybus412@gmail.com"
+      action: `mailto:${BUSINESS_INFO.email}`
     },
     {
       icon: MapPin,
       title: "Visit Us",
-      value: "2101 Centre Ave, Pittsburgh, PA 15219",
-      description: "Our central Pittsburgh location",
-      action: "#"
+      value: getFormattedAddress(),
+      description: "Serving the greater Pittsburgh area",
+      action: `https://www.google.com/maps/search/?api=1&query=${BUSINESS_INFO.address.city}+${BUSINESS_INFO.address.state}+${BUSINESS_INFO.address.zip}`
     }
   ];
 
@@ -156,6 +159,10 @@ const Contact = () => {
       />
       <Navigation />
       
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Breadcrumbs items={[{ name: "Contact", url: "/contact" }]} />
+      </div>
+
       {/* Hero Section */}
       <section className="py-20 bg-hero-gradient">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
