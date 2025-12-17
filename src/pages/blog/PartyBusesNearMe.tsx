@@ -1,26 +1,50 @@
 import { Link } from "react-router-dom";
 import BlogPostLayout from "@/components/BlogPostLayout";
+import { FAQSchema } from "@/components/FAQSchema";
 import fleetImage from "@/assets/fleet-showcase.jpg";
+
+const faqItems = [
+  {
+    question: "Where can I find a party bus near me in Pittsburgh?",
+    answer: "Pitt Party Bus serves all Pittsburgh neighborhoods including Downtown, South Side, Oakland, North Hills, and South Hills. We're locally based and can pick you up anywhere in Allegheny County and surrounding areas."
+  },
+  {
+    question: "What Pittsburgh neighborhoods do you serve for party bus rentals?",
+    answer: "We serve all Pittsburgh neighborhoods including Downtown, Strip District, South Side, Oakland, Shadyside, Lawrenceville, North Shore, plus suburbs like Cranberry, Mt. Lebanon, Monroeville, Moon Township, and more."
+  },
+  {
+    question: "How quickly can I book a party bus near me in Pittsburgh?",
+    answer: "We offer same-day quotes and can often accommodate last-minute bookings depending on availability. For best selection, we recommend booking 4-6 weeks in advance, especially during peak seasons."
+  },
+  {
+    question: "What's the minimum rental time for a party bus near Pittsburgh?",
+    answer: "Our minimum rental time is typically 3-4 hours depending on the vehicle size. Mini party buses have a 3-hour minimum, while larger buses require a 4-hour minimum."
+  }
+];
 
 const PartyBusesNearMe = () => {
   return (
     <BlogPostLayout
-      title="Party Buses Near Me: Find the Best Pittsburgh Party Bus Rental"
-      excerpt="Looking for party buses near me in Pittsburgh? Discover local party bus rental services, pricing, availability, and tips for finding the perfect transportation in your area."
+      title="Party Bus Near Me in Pittsburgh: Find Local Rentals Today"
+      excerpt="Searching for a party bus near me in Pittsburgh? Pitt Party Bus offers local rentals in Downtown, South Side, North Hills & all Pittsburgh neighborhoods. Get a free quote!"
       category="Local Guide"
       date="December 17, 2024"
       readTime="8 min read"
       author="Pittsburgh Party Bus Team"
       image={fleetImage}
     >
-      <h2>Finding Party Buses Near Me in Pittsburgh</h2>
+      <FAQSchema faqs={faqItems} />
+      
+      <h2>Party Bus Near Me: Find Local Pittsburgh Rentals</h2>
       <p>
-        If you're searching for "party buses near me" in Pittsburgh, you've come to the right place. 
-        Pitt Party Bus is Pittsburgh's premier local party bus rental company, serving all neighborhoods 
-        and surrounding communities. Whether you're in Downtown Pittsburgh, the North Hills, South Hills, 
-        or anywhere in Allegheny County, we provide convenient, reliable{" "}
-        <Link to="/events" className="text-primary hover:underline">event transportation in Pittsburgh</Link> right 
-        to your doorstep.
+        Searching for a <strong>party bus near me in Pittsburgh</strong>? You've found Pittsburgh's premier 
+        local party bus rental company. Pitt Party Bus is your neighborhood solution for luxury group 
+        transportation, serving every corner of the Greater Pittsburgh area. Whether you're looking for a 
+        <strong> party bus near me Pittsburgh</strong> for a wedding, bachelor party, prom, or corporate event, 
+        we bring the party bus directly to your doorstep—from{" "}
+        <Link to="/locations/downtown" className="text-primary hover:underline">Downtown Pittsburgh</Link> to the{" "}
+        <Link to="/locations/north-hills" className="text-primary hover:underline">North Hills</Link>,{" "}
+        <Link to="/locations/south-hills" className="text-primary hover:underline">South Hills</Link>, and beyond.
       </p>
 
       <h2>Why Choose a Local Pittsburgh Party Bus Company?</h2>
@@ -54,15 +78,15 @@ const PartyBusesNearMe = () => {
 
       <h2>Pittsburgh Neighborhoods We Serve</h2>
       <p>
-        No matter where you're located in the Pittsburgh area, we bring party buses near you. Our service 
-        areas include:
+        No matter where you're located in the Pittsburgh area, we bring a party bus near you. Our{" "}
+        <Link to="/locations" className="text-primary hover:underline">local party bus service areas</Link> include:
       </p>
 
       <h3>City of Pittsburgh</h3>
       <ul>
-        <li>Downtown Pittsburgh & Strip District</li>
-        <li>Oakland, Shadyside & Squirrel Hill</li>
-        <li>South Side & Station Square</li>
+        <li><Link to="/locations/downtown" className="text-primary hover:underline">Downtown Pittsburgh</Link> & Strip District</li>
+        <li><Link to="/locations/oakland" className="text-primary hover:underline">Oakland</Link>, Shadyside & Squirrel Hill</li>
+        <li><Link to="/locations/south-side" className="text-primary hover:underline">South Side</Link> & Station Square</li>
         <li>Lawrenceville & Bloomfield</li>
         <li>North Shore & North Side</li>
         <li>East Liberty & Highland Park</li>
@@ -94,11 +118,6 @@ const PartyBusesNearMe = () => {
         <li>Irwin & Greensburg</li>
         <li>Pittsburgh Airport (PIT) area</li>
       </ul>
-
-      <p>
-        View our complete <Link to="/locations" className="text-primary hover:underline">service area coverage</Link> for 
-        all Pittsburgh neighborhoods and surrounding counties.
-      </p>
 
       <h2>Our Party Bus Fleet Available Near You</h2>
       <p>
@@ -160,7 +179,7 @@ const PartyBusesNearMe = () => {
       <p>
         All our party bus rentals include professional chauffeur, fuel, insurance, ice, cups, napkins, 
         and red carpet service. View our complete{" "}
-        <Link to="/pricing" className="text-primary hover:underline">party bus rental rates</Link> for 
+        <Link to="/pricing" className="text-primary hover:underline">party bus rental rates in Pittsburgh</Link> for 
         detailed pricing information.
       </p>
 
@@ -203,19 +222,19 @@ const PartyBusesNearMe = () => {
       <h3>Bachelor and Bachelorette Parties</h3>
       <p>
         Hit South Side's bars, explore the Strip District, or tour Pittsburgh's craft breweries. 
-        Get creative ideas in our <Link to="/blog/bachelor-bachelorette-ideas" className="text-primary hover:underline">bachelor and bachelorette party guide</Link>.
+        Get creative ideas in our <Link to="/blog/bachelor-bachelorette-ideas" className="text-primary hover:underline">Pittsburgh bachelor and bachelorette party guide</Link>.
       </p>
 
       <h3>Proms and School Dances</h3>
       <p>
         Pittsburgh area high schools trust us for safe, stylish prom transportation. Learn about 
-        our <Link to="/blog/prom-transportation-safety" className="text-primary hover:underline">prom transportation safety</Link> standards.
+        our <Link to="/blog/prom-transportation-safety" className="text-primary hover:underline">prom party bus safety</Link> standards.
       </p>
 
       <h3>Corporate Events</h3>
       <p>
         Impress clients and team members with professional{" "}
-        <Link to="/blog/corporate-event-transportation" className="text-primary hover:underline">corporate event transportation</Link>. 
+        <Link to="/blog/corporate-event-transportation" className="text-primary hover:underline">corporate event transportation in Pittsburgh</Link>. 
         Perfect for conferences, team outings, and client entertainment.
       </p>
 
@@ -226,7 +245,7 @@ const PartyBusesNearMe = () => {
 
       <h3>Step 1: Get a Free Quote</h3>
       <p>
-        <Link to="/contact" className="text-primary hover:underline">Contact us</Link> with your event details 
+        <Link to="/contact" className="text-primary hover:underline">Contact us for a free quote</Link> with your event details 
         including date, time, number of passengers, pickup location, and itinerary. We'll provide a 
         detailed quote within hours.
       </p>
@@ -281,14 +300,24 @@ const PartyBusesNearMe = () => {
         no hidden fees.
       </p>
 
-      <h2>Ready to Book Party Buses Near You?</h2>
+      <h2>Frequently Asked Questions: Party Bus Near Me Pittsburgh</h2>
+      <div className="space-y-4">
+        {faqItems.map((faq, index) => (
+          <div key={index} className="border-b border-border pb-4">
+            <h3 className="text-lg font-semibold mb-2">{faq.question}</h3>
+            <p className="text-muted-foreground">{faq.answer}</p>
+          </div>
+        ))}
+      </div>
+
+      <h2>Ready to Book a Party Bus Near You in Pittsburgh?</h2>
       <p>
-        Stop searching for "party buses near me" and start planning your Pittsburgh celebration. 
+        Stop searching for "party bus near me Pittsburgh" and start planning your celebration. 
         Pitt Party Bus is your local, trusted partner for luxury group transportation. We serve all 
         Pittsburgh neighborhoods and surrounding communities with professionalism, reliability, and style.
       </p>
       <p>
-        <Link to="/contact" className="text-primary hover:underline font-semibold">Get your free quote today</Link> or 
+        <Link to="/contact" className="text-primary hover:underline font-semibold">Get your free Pittsburgh party bus quote today</Link> or 
         call us at (412) 385-3877 to speak with our team. We're here to make your next Pittsburgh 
         event unforgettable!
       </p>
