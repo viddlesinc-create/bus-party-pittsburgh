@@ -2,127 +2,165 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://pittpartybus.com/</loc>
-    <lastmod>2025-12-04</lastmod>
+    <lastmod>2025-12-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://pittpartybus.com/fleet</loc>
-    <lastmod>2025-12-04</lastmod>
+    <lastmod>2025-12-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://pittpartybus.com/events</loc>
-    <lastmod>2025-12-04</lastmod>
+    <lastmod>2025-12-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://pittpartybus.com/locations</loc>
-    <lastmod>2025-12-04</lastmod>
+    <lastmod>2025-12-17</lastmod>
     <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- Location Sub-Pages -->
+  <url>
+    <loc>https://pittpartybus.com/locations/north-hills</loc>
+    <lastmod>2025-12-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pittpartybus.com/locations/south-hills</loc>
+    <lastmod>2025-12-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pittpartybus.com/locations/downtown</loc>
+    <lastmod>2025-12-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pittpartybus.com/locations/south-side</loc>
+    <lastmod>2025-12-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pittpartybus.com/locations/oakland</loc>
+    <lastmod>2025-12-17</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pittpartybus.com/pricing</loc>
-    <lastmod>2025-12-04</lastmod>
+    <lastmod>2025-12-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://pittpartybus.com/contact</loc>
-    <lastmod>2025-12-04</lastmod>
+    <lastmod>2025-12-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pittpartybus.com/faqs</loc>
-    <lastmod>2025-12-04</lastmod>
+    <lastmod>2025-12-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pittpartybus.com/blog</loc>
-    <lastmod>2025-12-04</lastmod>
+    <lastmod>2025-12-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pittpartybus.com/testimonials</loc>
-    <lastmod>2025-12-04</lastmod>
+    <lastmod>2025-12-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pittpartybus.com/privacy</loc>
-    <lastmod>2025-12-04</lastmod>
+    <lastmod>2025-12-17</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://pittpartybus.com/terms</loc>
-    <lastmod>2025-12-04</lastmod>
+    <lastmod>2025-12-17</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
+  <!-- Blog Posts -->
   <url>
     <loc>https://pittpartybus.com/blog/party-bus-pricing-guide</loc>
-    <lastmod>2025-12-04</lastmod>
+    <lastmod>2025-12-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://pittpartybus.com/blog/top-events-pittsburgh</loc>
-    <lastmod>2025-12-04</lastmod>
+    <lastmod>2025-12-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://pittpartybus.com/blog/party-bus-vs-limo</loc>
-    <lastmod>2025-12-04</lastmod>
+    <lastmod>2025-12-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://pittpartybus.com/blog/bachelor-bachelorette-ideas</loc>
-    <lastmod>2025-12-04</lastmod>
+    <lastmod>2025-12-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://pittpartybus.com/blog/wedding-transportation</loc>
-    <lastmod>2025-12-04</lastmod>
+    <lastmod>2025-12-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://pittpartybus.com/blog/corporate-event-transportation</loc>
-    <lastmod>2025-12-04</lastmod>
+    <lastmod>2025-12-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://pittpartybus.com/blog/concert-party-bus</loc>
-    <lastmod>2025-12-04</lastmod>
+    <lastmod>2025-12-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://pittpartybus.com/blog/prom-transportation-safety</loc>
-    <lastmod>2025-12-04</lastmod>
+    <lastmod>2025-12-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://pittpartybus.com/blog/party-bus-safety-tips</loc>
-    <lastmod>2025-12-04</lastmod>
+    <lastmod>2025-12-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://pittpartybus.com/blog/accurate-party-bus-estimate</loc>
-    <lastmod>2025-12-04</lastmod>
+    <lastmod>2025-12-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pittpartybus.com/blog/party-buses-near-me</loc>
+    <lastmod>2025-12-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
