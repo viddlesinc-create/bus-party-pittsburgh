@@ -119,8 +119,8 @@ const Pricing = () => {
   return (
     <div className="min-h-screen bg-background">
       <MetaTags 
-        title="Party Bus Rental Pricing Pittsburgh | Online Estimates & Rates"
-        description="How much does a party bus cost in Pittsburgh? Mini buses $100/hr, party buses $125-175/hr. Transparent party bus rental pricing with free instant quotes. No hidden fees!"
+        title="Party Bus Rental Pricing & Rates in Pittsburgh | Pitt Party Bus"
+        description="See party bus rental pricing in Pittsburgh, PA. Learn what affects your rate and get an accurate quote for your event in just a few minutes."
         canonical="/pricing"
       />
       <StructuredData data={serviceSchema({

@@ -15,7 +15,8 @@ const PartyBusVsLimo = () => {
     >
       <h2>Party Bus vs Limo: The Ultimate Pittsburgh Transportation Decision</h2>
       <p>
-        Choosing between a party bus and a limousine for your Pittsburgh event can be challenging. Both offer 
+        Whether you're searching for a <Link to="/" className="text-primary hover:underline">Pittsburgh party bus rental</Link> or 
+        a classic limousine, choosing the right vehicle for your event can be challenging. Both offer 
         luxury group transportation, but they serve different purposes and provide distinct experiences. Browse our 
         complete <Link to="/fleet" className="text-primary hover:underline">party bus fleet</Link> including{" "}
         <Link to="/fleet" className="text-primary hover:underline">small party bus</Link> options. This 

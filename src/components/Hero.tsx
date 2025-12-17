@@ -107,8 +107,9 @@ const Hero = () => {
             </h1>
             
             <p className="text-xl text-primary-foreground/90 mb-8 leading-relaxed">
-              Pittsburgh's #1 party bus rental company. Premium party buses and limousines for weddings, 
-              proms, bachelor parties, and corporate events. Free quotes available 24/7.
+              Pitt Party Bus offers premium party bus rental in Pittsburgh and professional limousine service 
+              in Pittsburgh for weddings, proms, bachelor and bachelorette parties, concerts, and more. 
+              Free quotes available 24/7.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
