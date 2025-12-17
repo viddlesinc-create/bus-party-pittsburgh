@@ -5,21 +5,25 @@ import corporateEventImg from "@/assets/blog-corporate-event-transportation.jpg"
 const CorporateEventTransportation = () => {
   return (
     <BlogPostLayout
-      title="Corporate Event Transportation: Impress Your Team"
-      excerpt="Elevate your corporate events with professional group transportation that makes a lasting impression."
+      title="Corporate Event Transportation in Pittsburgh with a Party Bus"
+      excerpt="Elevate your corporate events in Pittsburgh with professional party bus transportation. Perfect for team outings, client entertainment, and company celebrations."
       category="Corporate"
       date="March 3, 2024"
       readTime="6 min read"
       author="Pittsburgh Party Bus Team"
       image={corporateEventImg}
     >
-      <h2>Why Corporate Transportation Matters</h2>
+      <h2>Corporate Event Transportation in Pittsburgh with a Party Bus</h2>
       <p>
-        First impressions matter in business, and your choice of transportation speaks volumes about your 
-        company's values and attention to detail. Professional group transportation for corporate events 
-        demonstrates that you value your team, clients, and partners while ensuring everyone arrives safely 
-        and on time. Explore our <Link to="/events" className="text-primary hover:underline">event transportation in Pittsburgh</Link> services 
-        and browse our <Link to="/fleet" className="text-primary hover:underline">party bus fleet</Link> for corporate options.
+        Looking for corporate event transportation in Pittsburgh? First impressions matter in business, and your choice of 
+        event transportation in Pittsburgh speaks volumes about your company's values and attention to detail. Professional 
+        group transportation for corporate events demonstrates that you value your team, clients, and partners while ensuring 
+        everyone arrives safely and on time.
+      </p>
+      <p>
+        Explore our <Link to="/events" className="text-primary hover:underline">event transportation in Pittsburgh</Link> services 
+        and browse our <Link to="/fleet" className="text-primary hover:underline">party bus fleet</Link> for corporate options. 
+        View <Link to="/pricing" className="text-primary hover:underline">party bus rental rates in Pittsburgh</Link> for transparent pricing.
       </p>
 
       <h2>Benefits of Professional Corporate Transportation</h2>

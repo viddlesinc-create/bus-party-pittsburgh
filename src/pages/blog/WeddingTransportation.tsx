@@ -5,20 +5,22 @@ import weddingTransportImg from "@/assets/blog-wedding-transportation.jpg";
 const WeddingTransportation = () => {
   return (
     <BlogPostLayout
-      title="Pittsburgh Wedding Transportation Guide | Party Bus & Limo Rentals"
-      excerpt="Planning Pittsburgh wedding transportation? Learn how to coordinate seamless party bus and limo rentals for your wedding party and guests."
+      title="Wedding Transportation Pittsburgh: Complete Planning Guide"
+      excerpt="Planning wedding transportation in Pittsburgh? Learn how to coordinate seamless party bus and limo rentals for your wedding party and guests."
       category="Wedding Tips"
       date="March 5, 2024"
       readTime="9 min read"
       author="Pittsburgh Party Bus Team"
       image={weddingTransportImg}
     >
-      <h2>Why Pittsburgh Wedding Transportation Matters</h2>
+      <h2>Wedding Transportation Pittsburgh: Why It Matters</h2>
       <p>
-        Planning Pittsburgh wedding transportation is essential for your big day. For your{" "}
-        <Link to="/" className="text-primary hover:underline">Pittsburgh party bus rental</Link> needs on your wedding day, 
+        Planning wedding transportation in Pittsburgh? Professional wedding transportation Pittsburgh couples trust is essential 
+        for your big day. For your <Link to="/" className="text-primary hover:underline">Pittsburgh party bus rental</Link> needs, 
         professional party bus and limo rentals ensure everyone arrives on time, reduce stress, and add luxury to your celebration. 
-        In Pittsburgh's diverse landscape of wedding venues, proper transportation planning is essential for a flawless day. 
+        In Pittsburgh's diverse landscape of wedding venues, proper transportation planning is essential for a flawless day.
+      </p>
+      <p>
         View our <Link to="/fleet" className="text-primary hover:underline">party bus fleet</Link> and explore{" "}
         <Link to="/events" className="text-primary hover:underline">event transportation in Pittsburgh</Link> for weddings.
       </p>
