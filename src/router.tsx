@@ -7,6 +7,11 @@ import Index from "./pages/Index";
 import Fleet from "./pages/Fleet";
 import Events from "./pages/Events";
 import Locations from "./pages/Locations";
+import NorthHills from "./pages/locations/NorthHills";
+import SouthHills from "./pages/locations/SouthHills";
+import Downtown from "./pages/locations/Downtown";
+import SouthSide from "./pages/locations/SouthSide";
+import Oakland from "./pages/locations/Oakland";
 import Pricing from "./pages/Pricing";
 import Contact from "./pages/Contact";
 import FAQs from "./pages/FAQs";
@@ -55,6 +60,11 @@ export const routes: RouteConfig[] = [
   { path: "/fleet", component: Fleet, loader: fleetLoader },
   { path: "/events", component: Events, loader: eventsLoader },
   { path: "/locations", component: Locations, loader: locationsLoader },
+  { path: "/locations/north-hills", component: NorthHills },
+  { path: "/locations/south-hills", component: SouthHills },
+  { path: "/locations/downtown", component: Downtown },
+  { path: "/locations/south-side", component: SouthSide },
+  { path: "/locations/oakland", component: Oakland },
   { path: "/pricing", component: Pricing, loader: pricingLoader },
   { path: "/contact", component: Contact, loader: contactLoader },
   { path: "/faqs", component: FAQs, loader: faqsLoader },
