@@ -183,25 +183,31 @@ const BlogPostLayout = ({
         </div>
       </article>
 
-      {/* Internal Links Section */}
+      {/* SEO: Internal links to main nav pages with descriptive anchor text for stronger SEO signals */}
       <section className="py-12 bg-background">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-4 gap-6">
+            <Link to="/" className="group">
+              <div className="p-6 border border-border rounded-lg hover:border-primary hover:shadow-card-custom transition-all">
+                <h3 className="font-bold text-lg mb-2 group-hover:text-primary">Pittsburgh Party Bus Rental →</h3>
+                <p className="text-sm text-muted-foreground">Premium transportation services in Pittsburgh</p>
+              </div>
+            </Link>
             <Link to="/fleet" className="group">
               <div className="p-6 border border-border rounded-lg hover:border-primary hover:shadow-card-custom transition-all">
-                <h3 className="font-bold text-lg mb-2 group-hover:text-primary">View Our Fleet →</h3>
+                <h3 className="font-bold text-lg mb-2 group-hover:text-primary">Party Bus & Limo Fleet →</h3>
                 <p className="text-sm text-muted-foreground">Explore luxury vehicles for any group size</p>
               </div>
             </Link>
             <Link to="/pricing" className="group">
               <div className="p-6 border border-border rounded-lg hover:border-primary hover:shadow-card-custom transition-all">
-                <h3 className="font-bold text-lg mb-2 group-hover:text-primary">Check Pricing →</h3>
+                <h3 className="font-bold text-lg mb-2 group-hover:text-primary">Party Bus Pricing →</h3>
                 <p className="text-sm text-muted-foreground">Transparent rates and instant quotes</p>
               </div>
             </Link>
             <Link to="/events" className="group">
               <div className="p-6 border border-border rounded-lg hover:border-primary hover:shadow-card-custom transition-all">
-                <h3 className="font-bold text-lg mb-2 group-hover:text-primary">Event Services →</h3>
+                <h3 className="font-bold text-lg mb-2 group-hover:text-primary">Event Transportation →</h3>
                 <p className="text-sm text-muted-foreground">Perfect transportation for any occasion</p>
               </div>
             </Link>

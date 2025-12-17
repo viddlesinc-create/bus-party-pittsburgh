@@ -56,6 +56,9 @@ export function MetaTags({
       {/* Basic Meta Tags */}
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
+      {/* SEO: Global robots directive - all pages using MetaTags are indexable by default.
+          Main nav pages (/, /fleet, /events, /pricing, /contact, /faqs, /blog) are prioritized
+          through strong internal linking rather than noindex on other pages. */}
       <meta name="robots" content="index, follow" />
 
       {/* Canonical */}
