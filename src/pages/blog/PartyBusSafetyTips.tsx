@@ -17,7 +17,9 @@ const PartyBusSafetyTips = () => {
       <p>
         Party buses offer an incredible way to celebrate with friends, but like any group activity, safety 
         should always be your top priority. By following these essential guidelines, you ensure everyone 
-        has an amazing time while staying safe and protected throughout your Pittsburgh celebration.
+        has an amazing time while staying safe and protected throughout your Pittsburgh celebration. Learn 
+        more about <Link to="/events" className="text-primary hover:underline">event transportation in Pittsburgh</Link> and 
+        browse our <Link to="/fleet" className="text-primary hover:underline">party bus fleet</Link> of safe, modern vehicles.
       </p>
 
       <h2>Before You Book: Choosing a Safe Company</h2>
@@ -56,7 +58,8 @@ const PartyBusSafetyTips = () => {
 
       <h3>Group Size Management</h3>
       <p>
-        Never exceed the vehicle's rated capacity:
+        Never exceed the vehicle's rated capacity. Check our <Link to="/fleet" className="text-primary hover:underline">small party bus</Link> options 
+        for smaller groups:
       </p>
       <ul>
         <li>Know the legal passenger limit</li>

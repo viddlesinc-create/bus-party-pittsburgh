@@ -18,7 +18,9 @@ const PromTransportationSafety = () => {
         Prom represents a milestone moment in every teenager's life – a night of elegance, celebration, 
         and memories. As parents, you want your teens to enjoy this special evening while ensuring their 
         safety above all else. Professional prom transportation provides the perfect solution, combining 
-        luxury, fun, and most importantly, peace of mind.
+        luxury, fun, and most importantly, peace of mind. Learn more about{" "}
+        <Link to="/events" className="text-primary hover:underline">event transportation in Pittsburgh</Link> for proms and 
+        explore our <Link to="/fleet" className="text-primary hover:underline">party bus fleet</Link>.
       </p>
 
       <h2>Why Professional Transportation Matters for Prom</h2>

@@ -18,7 +18,8 @@ const CorporateEventTransportation = () => {
         First impressions matter in business, and your choice of transportation speaks volumes about your 
         company's values and attention to detail. Professional group transportation for corporate events 
         demonstrates that you value your team, clients, and partners while ensuring everyone arrives safely 
-        and on time.
+        and on time. Explore our <Link to="/events" className="text-primary hover:underline">event transportation in Pittsburgh</Link> services 
+        and browse our <Link to="/fleet" className="text-primary hover:underline">party bus fleet</Link> for corporate options.
       </p>
 
       <h2>Benefits of Professional Corporate Transportation</h2>
@@ -92,7 +93,10 @@ const CorporateEventTransportation = () => {
       </ul>
 
       <h2>Choosing the Right Vehicle for Your Corporate Event</h2>
-
+      <p>
+        View our complete <Link to="/fleet" className="text-primary hover:underline">party bus fleet</Link> including{" "}
+        <Link to="/fleet" className="text-primary hover:underline">small party bus</Link> options perfect for executive teams.
+      </p>
       <h3>Executive SUVs and Limousines</h3>
       <p><strong>Best for:</strong> 6-10 people, executive teams, client meetings</p>
       <ul>

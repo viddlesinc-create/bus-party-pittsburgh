@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import BlogPostLayout from "@/components/BlogPostLayout";
 import weddingTransportImg from "@/assets/blog-wedding-transportation.jpg";
 
@@ -17,7 +18,9 @@ const WeddingTransportation = () => {
         Planning Pittsburgh wedding transportation is essential for your big day. Your wedding involves countless 
         moving parts, and transportation is one element you absolutely cannot overlook. Professional party bus 
         and limo rentals ensure everyone arrives on time, reduce stress, and add luxury to your celebration. 
-        In Pittsburgh's diverse landscape of wedding venues, proper transportation planning is essential for a flawless day.
+        In Pittsburgh's diverse landscape of wedding venues, proper transportation planning is essential for a flawless day. 
+        View our <Link to="/fleet" className="text-primary hover:underline">party bus fleet</Link> and explore{" "}
+        <Link to="/events" className="text-primary hover:underline">event transportation in Pittsburgh</Link> for weddings.
       </p>
 
       <h2>Transportation Needs to Consider</h2>
@@ -158,6 +161,10 @@ const WeddingTransportation = () => {
       </ul>
 
       <h2>Cost Considerations and Budgeting</h2>
+      <p>
+        For current <Link to="/pricing" className="text-primary hover:underline">party bus rental rates</Link> and{" "}
+        <Link to="/pricing" className="text-primary hover:underline">party bus pricing in Pittsburgh</Link>, visit our pricing page.
+      </p>
 
       <h3>Average Costs in Pittsburgh</h3>
       <ul>

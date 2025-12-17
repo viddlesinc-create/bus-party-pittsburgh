@@ -144,8 +144,11 @@ const ConcertPartyBus = () => {
       </ul>
 
       <h3>Choosing Your Vehicle</h3>
+      <p>
+        Browse our <Link to="/fleet" className="text-primary hover:underline">party bus fleet</Link> to find the perfect fit:
+      </p>
       <ul>
-        <li><strong>Small group (10-15):</strong> Mini party bus or large SUV</li>
+        <li><strong>Small group (10-15):</strong> <Link to="/fleet" className="text-primary hover:underline">Small party bus</Link> or large SUV</li>
         <li><strong>Medium group (15-25):</strong> Mid-size party bus</li>
         <li><strong>Large group (25-40):</strong> Full-size party bus</li>
       </ul>
