@@ -340,6 +340,87 @@ export const organizationSchema = {
   ]
 };
 
+// Dedicated LocalBusiness schema export for specific pages
+export const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": `${BUSINESS_INFO.website}/#localbusiness`,
+  "name": BUSINESS_INFO.name,
+  "description": BUSINESS_INFO.description,
+  "url": BUSINESS_INFO.website,
+  "telephone": BUSINESS_INFO.phoneRaw,
+  "email": BUSINESS_INFO.email,
+  "address": getSchemaAddress(),
+  "geo": getSchemaGeo(),
+  "priceRange": "$100-$175/hour",
+  "image": `${BUSINESS_INFO.website}/hero-party-bus.jpg`,
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+    "opens": "00:00",
+    "closes": "23:59"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5.0",
+    "reviewCount": "500",
+    "bestRating": "5"
+  },
+  "sameAs": [
+    BUSINESS_INFO.social.facebook,
+    BUSINESS_INFO.social.instagram,
+    BUSINESS_INFO.social.yelp
+  ]
+};
+
+// FAQPage schema for homepage and other pages with FAQs
+export const homepageFAQSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much does a party bus cost in Pittsburgh?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Party bus rentals in Pittsburgh start at $100/hour for mini buses (8-12 passengers) and go up to $175/hour for large luxury buses (35-40 passengers). Most rentals have a 3-4 hour minimum. Prices vary based on vehicle size, date, and duration."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How far in advance should I book a party bus in Pittsburgh?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We recommend booking 2-4 weeks in advance for regular events. For peak times like prom season (April-June), wedding season (May-October), and New Year's Eve, book 6-8 weeks ahead. We often have same-day availability for last-minute requests."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What areas do you serve in Pittsburgh?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We serve all of Pittsburgh and surrounding areas including Downtown, Oakland, Shadyside, South Side, North Hills, South Hills, and the entire Allegheny County. We also provide service to Pittsburgh International Airport and can arrange trips throughout Western Pennsylvania."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can we bring alcohol on the party bus?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, passengers 21+ may bring their own alcoholic beverages. We provide ice, cups, and cooler space. We do not supply alcohol. Our chauffeur will check IDs and has the right to refuse service to intoxicated passengers for safety."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's included in a party bus rental?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Every rental includes a professional chauffeur, fuel and tolls, insurance coverage, premium amenities (sound system, LED lighting, climate control), ice, cups, napkins, red carpet service, and complimentary water. Larger buses include dance floors and bar setups."
+      }
+    }
+  ]
+};
+
 export const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
