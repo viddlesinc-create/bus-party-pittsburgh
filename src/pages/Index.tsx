@@ -1,5 +1,5 @@
 import { MetaTags } from "@/components/MetaTags";
-import { StructuredData, organizationSchema, websiteSchema } from "@/components/StructuredData";
+import { StructuredData, organizationSchema, websiteSchema, localBusinessSchema, homepageFAQSchema } from "@/components/StructuredData";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
@@ -30,7 +30,7 @@ import interiorImage from "@/assets/party-bus-interior.jpg";
 const Index = () => {
   const combinedSchema = {
     "@context": "https://schema.org",
-    "@graph": [organizationSchema, websiteSchema]
+    "@graph": [organizationSchema, websiteSchema, localBusinessSchema, homepageFAQSchema]
   };
 
   const features = [
