@@ -410,6 +410,52 @@ const Pricing = () => {
         </div>
       </section>
 
+      {/* Related Blog Posts Section */}
+      <section className="py-20 bg-muted/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Learn More About Party Bus Pricing
+            </h2>
+            <p className="text-xl text-muted-foreground">
+              Expert guides to help you understand costs and get the best value
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            <Link to="/blog/party-bus-pricing-guide" className="group">
+              <Card className="h-full border-border shadow-card-custom hover:shadow-party transition-all duration-300">
+                <CardHeader>
+                  <CardTitle className="text-lg group-hover:text-primary transition-colors">Complete Party Bus Pricing Guide</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground text-sm">Comprehensive breakdown of party bus rental costs in Pittsburgh. Learn what affects pricing and how to get the best deal.</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/blog/accurate-party-bus-estimate" className="group">
+              <Card className="h-full border-border shadow-card-custom hover:shadow-party transition-all duration-300">
+                <CardHeader>
+                  <CardTitle className="text-lg group-hover:text-primary transition-colors">How to Get an Accurate Estimate</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground text-sm">Tips for getting accurate party bus quotes. Know what information to provide and questions to ask.</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/blog/party-bus-vs-limo" className="group">
+              <Card className="h-full border-border shadow-card-custom hover:shadow-party transition-all duration-300">
+                <CardHeader>
+                  <CardTitle className="text-lg group-hover:text-primary transition-colors">Party Bus vs Limo: Cost Comparison</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground text-sm">Compare the costs of party buses and limousines. Find out which option offers better value for your group.</p>
+                </CardContent>
+              </Card>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Quick Links Section */}
       <section className="py-12 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

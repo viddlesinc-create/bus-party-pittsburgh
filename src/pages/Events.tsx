@@ -341,6 +341,84 @@ const Events = () => {
         </div>
       </section>
 
+      {/* Related Blog Posts Section */}
+      <section className="py-20 bg-muted/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Event Planning Resources
+            </h2>
+            <p className="text-xl text-muted-foreground">
+              Expert tips and guides for your Pittsburgh celebration
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <Link to="/blog/wedding-transportation" className="group">
+              <Card className="h-full border-border shadow-card-custom hover:shadow-party transition-all duration-300">
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-base group-hover:text-primary transition-colors">Wedding Transportation Guide</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground text-sm">Plan perfect wedding day transportation in Pittsburgh.</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/blog/bachelor-bachelorette-ideas" className="group">
+              <Card className="h-full border-border shadow-card-custom hover:shadow-party transition-all duration-300">
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-base group-hover:text-primary transition-colors">Bachelor & Bachelorette Ideas</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground text-sm">Creative party ideas for pre-wedding celebrations.</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/blog/prom-transportation-safety" className="group">
+              <Card className="h-full border-border shadow-card-custom hover:shadow-party transition-all duration-300">
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-base group-hover:text-primary transition-colors">Prom Transportation Safety</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground text-sm">Keep teens safe on prom night with our tips.</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/blog/corporate-event-transportation" className="group">
+              <Card className="h-full border-border shadow-card-custom hover:shadow-party transition-all duration-300">
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-base group-hover:text-primary transition-colors">Corporate Event Transportation</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground text-sm">Professional transportation for business events.</p>
+                </CardContent>
+              </Card>
+            </Link>
+          </div>
+          <div className="grid md:grid-cols-2 gap-6 mt-6 max-w-2xl mx-auto">
+            <Link to="/blog/concert-party-bus" className="group">
+              <Card className="h-full border-border shadow-card-custom hover:shadow-party transition-all duration-300">
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-base group-hover:text-primary transition-colors">Concert & Sports Event Guide</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground text-sm">Hassle-free transportation to Pittsburgh venues.</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/blog/top-events-pittsburgh" className="group">
+              <Card className="h-full border-border shadow-card-custom hover:shadow-party transition-all duration-300">
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-base group-hover:text-primary transition-colors">Top Events in Pittsburgh</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground text-sm">Discover the best events to enjoy with a party bus.</p>
+                </CardContent>
+              </Card>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Related Services */}
       <RelatedServices 
         title="Complete Event Solutions"

@@ -487,6 +487,52 @@ const Fleet = () => {
         </div>
       </section>
 
+      {/* Related Blog Posts Section */}
+      <section className="py-20 bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Helpful Resources for Choosing Your Vehicle
+            </h2>
+            <p className="text-xl text-muted-foreground">
+              Read our expert guides to make the best transportation decision
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            <Link to="/blog/party-bus-vs-limo" className="group">
+              <Card className="h-full border-border shadow-card-custom hover:shadow-party transition-all duration-300">
+                <CardHeader>
+                  <CardTitle className="text-lg group-hover:text-primary transition-colors">Party Bus vs Limo: Which is Right for You?</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground text-sm">Compare party buses and limousines to find the perfect vehicle for your Pittsburgh event. Learn about capacity, amenities, and pricing differences.</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/blog/party-bus-safety-tips" className="group">
+              <Card className="h-full border-border shadow-card-custom hover:shadow-party transition-all duration-300">
+                <CardHeader>
+                  <CardTitle className="text-lg group-hover:text-primary transition-colors">Party Bus Safety Tips</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground text-sm">Learn what to look for when choosing a safe, reliable party bus rental company. Essential safety information for your peace of mind.</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/blog/party-bus-pricing-guide" className="group">
+              <Card className="h-full border-border shadow-card-custom hover:shadow-party transition-all duration-300">
+                <CardHeader>
+                  <CardTitle className="text-lg group-hover:text-primary transition-colors">Party Bus Pricing Guide</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground text-sm">Understand party bus rental costs in Pittsburgh. Get tips on getting the best value and what factors affect pricing.</p>
+                </CardContent>
+              </Card>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <InternalLinkCTA 
         title="Ready to Reserve Your Vehicle?"
