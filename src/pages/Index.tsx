@@ -139,7 +139,8 @@ const Index = () => {
               </h2>
               <p className="text-lg text-muted-foreground mb-8">
                 From intimate gatherings to large celebrations, our diverse fleet of luxury 
-                vehicles ensures we have the perfect ride for your special occasion.
+                vehicles ensures we have the perfect ride for your special occasion. Not sure which to choose? 
+                Read our <Link to="/blog/party-bus-vs-limo" className="text-accent hover:underline font-semibold">party bus vs limo comparison</Link>.
               </p>
               
               <div className="grid grid-cols-2 gap-4 mb-8">
@@ -324,7 +325,8 @@ const Index = () => {
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               From intimate celebrations to grand affairs, our <Link to="/fleet" className="text-accent hover:underline font-semibold">luxury fleet</Link> provides 
-              the perfect transportation solution for any event type in Pittsburgh.
+              the perfect transportation solution for any event type in Pittsburgh. Explore 
+              the <Link to="/blog/top-events-pittsburgh" className="text-accent hover:underline font-semibold">top events in Pittsburgh</Link> perfect for a party bus.
             </p>
           </div>
           
@@ -443,8 +445,8 @@ const Index = () => {
                   Celebrate another year with luxury <Link to="/events" className="text-accent hover:underline">birthday party transportation</Link>. 
                   Sweet 16s, milestone birthdays, or any age - we make it special.
                 </p>
-                <Link to="/events" className="text-accent hover:underline text-sm font-semibold">
-                  See all event types →
+                <Link to="/blog/top-events-pittsburgh" className="text-accent hover:underline text-sm font-semibold">
+                  Discover top Pittsburgh events →
                 </Link>
               </CardContent>
             </Card>
