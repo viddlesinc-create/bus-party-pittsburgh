@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import BlogPostLayout from "@/components/BlogPostLayout";
 import topEventsImg from "@/assets/blog-top-events-pittsburgh.jpg";
 
@@ -170,7 +171,10 @@ const TopEventsPittsburgh = () => {
       <h2>Planning Your Pittsburgh Party Bus Event</h2>
       <p>
         No matter which event you're planning, booking your party bus early ensures availability and the 
-        best rates. Consider your group size, desired amenities, and event schedule when selecting your vehicle.
+        best <Link to="/pricing" className="text-primary hover:underline">party bus rental rates</Link>. 
+        Consider your group size, desired amenities, and event schedule when selecting your vehicle. 
+        Check our <Link to="/pricing" className="text-primary hover:underline">party bus pricing in Pittsburgh</Link> page 
+        for detailed rate information.
       </p>
 
       <h3>Tips for a Successful Event</h3>
