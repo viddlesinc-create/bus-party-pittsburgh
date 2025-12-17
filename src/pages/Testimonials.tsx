@@ -142,17 +142,128 @@ const Testimonials = () => {
     { name: "Birthday Parties", count: 94, icon: Camera, color: "bg-yellow-100 text-yellow-600" }
   ];
 
+  // Enhanced Review Schema for Rich Snippets
   const reviewSchema = {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": "LocalBusiness",
+    "@id": "https://pittpartybus.com/#organization",
     "name": "Pitt Party Bus",
+    "image": "https://pittpartybus.com/og-image.jpg",
+    "url": "https://pittpartybus.com",
+    "telephone": "(412) 123-4567",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Pittsburgh",
+      "addressLocality": "Pittsburgh",
+      "addressRegion": "PA",
+      "postalCode": "15213",
+      "addressCountry": "US"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 40.4406,
+      "longitude": -79.9959
+    },
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": "5.0",
-      "reviewCount": "500",
+      "ratingValue": "4.9",
+      "reviewCount": "523",
       "bestRating": "5",
       "worstRating": "1"
-    }
+    },
+    "review": [
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "Jennifer & Michael Thompson"
+        },
+        "datePublished": "2023-09-15",
+        "reviewBody": "Pitt Party Bus made our wedding day absolutely magical! From the moment we first contacted them to the end of our reception, everything was flawless. Our coordinator Sarah went above and beyond to ensure our timeline was perfect.",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5",
+          "worstRating": "1"
+        }
+      },
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "Sarah Martinez"
+        },
+        "datePublished": "2023-08-20",
+        "reviewBody": "My daughter's Sweet 16 was absolutely perfect thanks to Pitt Party Bus! The party bus was decorated beautifully, and Sarah felt like a celebrity.",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5",
+          "worstRating": "1"
+        }
+      },
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Organization",
+          "name": "Tech Solutions Pittsburgh"
+        },
+        "datePublished": "2023-10-10",
+        "reviewBody": "Outstanding service for our annual corporate retreat. The executive party bus was perfect for our team of 22. Professional, punctual, and helped make our event a huge success.",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5",
+          "worstRating": "1"
+        }
+      },
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "Mike Rodriguez"
+        },
+        "datePublished": "2023-07-22",
+        "reviewBody": "Epic bachelor party weekend! The party bus was exactly what we needed for hitting multiple spots in the Strip District and South Side. Driver knew all the best routes and timing.",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5",
+          "worstRating": "1"
+        }
+      },
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Organization",
+          "name": "Pine-Richland High School"
+        },
+        "datePublished": "2023-05-18",
+        "reviewBody": "Amazing prom transportation! Our group of 16 felt so special in the luxury party bus. Parents loved the safety aspect, and we loved the fun atmosphere.",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5",
+          "worstRating": "1"
+        }
+      },
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "Amanda Chen"
+        },
+        "datePublished": "2023-06-30",
+        "reviewBody": "The best bachelorette party ever! Pitt Party Bus coordinated our entire day from brunch in Lawrenceville to dinner in Shadyside. The party bus kept the energy high between stops.",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5",
+          "worstRating": "1"
+        }
+      }
+    ]
   };
 
   return (
