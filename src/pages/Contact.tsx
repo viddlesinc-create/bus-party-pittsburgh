@@ -150,8 +150,8 @@ const Contact = () => {
   return (
     <div className="min-h-screen bg-background">
       <MetaTags 
-        title="Contact Us - Get Your Free Quote"
-        description="Contact Pitt Party Bus for a free quote. Call (412) 385-3877 or submit our online form. Available 24/7 for party bus and limo rentals in Pittsburgh."
+        title="Contact Pitt Party Bus Pittsburgh | Get Your Free Quote Today"
+        description="Contact Pitt Party Bus for a free party bus rental quote in Pittsburgh. Call (412) 385-3877 or submit our online form. Available 24/7 for all events!"
         canonical="/contact"
       />
       <Navigation />
@@ -160,7 +160,7 @@ const Contact = () => {
       <section className="py-20 bg-hero-gradient">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-6xl font-bold text-primary-foreground mb-6">
-            Contact Pitt Party Bus - Get Your Free Quote
+            Contact Pitt Party Bus Pittsburgh – Free Quotes
           </h1>
           <p className="text-xl text-primary-foreground/90 max-w-3xl mx-auto mb-8">
             Ready to book your luxury transportation? Have questions about our services? 
