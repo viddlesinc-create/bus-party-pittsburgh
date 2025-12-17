@@ -411,32 +411,50 @@ const Contact = () => {
                 </CardContent>
               </Card>
 
-              {/* Location Map Placeholder */}
+              {/* Service Area Map */}
               <Card className="border-border shadow-card-custom">
                 <CardHeader>
-                  <CardTitle>Our Location</CardTitle>
+                  <CardTitle className="flex items-center">
+                    <MapPin className="h-5 w-5 mr-2 text-accent" />
+                    Pittsburgh Service Area
+                  </CardTitle>
                   <CardDescription>
-                    2101 Centre Ave, Pittsburgh, PA 15219
+                    Serving all of Pittsburgh and surrounding areas within 50 miles
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
-                    <div className="text-center">
-                      <MapPin className="h-12 w-12 text-accent mx-auto mb-4" />
-                      <h3 className="text-lg font-semibold mb-2">Interactive Map</h3>
-                      <p className="text-muted-foreground text-sm">
-                        Google Maps integration showing our central Pittsburgh location
-                      </p>
-                    </div>
+                  <div className="aspect-video rounded-lg overflow-hidden">
+                    <iframe
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d194473.5089445399!2d-80.09519372382595!3d40.44168917390624!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8834f16f48068503%3A0x8df915a15aa21b34!2sPittsburgh%2C%20PA!5e0!3m2!1sen!2sus!4v1703000000000!5m2!1sen!2sus"
+                      width="100%"
+                      height="100%"
+                      style={{ border: 0 }}
+                      allowFullScreen
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      title="Pitt Party Bus Service Area - Pittsburgh, PA"
+                      className="w-full h-full"
+                    />
                   </div>
                   <div className="mt-4 flex gap-2">
-                    <Button variant="outline" size="sm" className="flex-1 bg-background/50 border-2">
-                      Get Directions
+                    <Button variant="outline" size="sm" className="flex-1 bg-background/50 border-2" asChild>
+                      <a 
+                        href={`https://www.google.com/maps/search/?api=1&query=${BUSINESS_INFO.address.city}+${BUSINESS_INFO.address.state}+${BUSINESS_INFO.address.zip}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Get Directions
+                      </a>
                     </Button>
-                    <Button variant="outline" size="sm" className="flex-1 bg-background/50 border-2">
-                      Call Location
+                    <Button variant="outline" size="sm" className="flex-1 bg-background/50 border-2" asChild>
+                      <a href={BUSINESS_INFO.phoneTel}>
+                        Call Us
+                      </a>
                     </Button>
                   </div>
+                  <p className="text-xs text-muted-foreground mt-3 text-center">
+                    We serve Downtown, North Hills, South Hills, Oakland, South Side, and all surrounding areas
+                  </p>
                 </CardContent>
               </Card>
             </div>
