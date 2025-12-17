@@ -100,15 +100,15 @@ const Hero = () => {
             </div>
             
             <h1 className="text-4xl md:text-6xl font-bold text-primary-foreground mb-6 leading-tight">
-              Premium Party Bus & Limo Rentals in{" "}
+              Pittsburgh Party Bus Rental &{" "}
               <span className="bg-gradient-to-r from-accent to-accent-glow bg-clip-text text-transparent">
-                Pittsburgh
+                Limo Services
               </span>
             </h1>
             
             <p className="text-xl text-primary-foreground/90 mb-8 leading-relaxed">
-              Make your special event unforgettable with our luxury fleet of party buses and limousines. 
-              Perfect for weddings, proms, bachelor parties, and corporate events.
+              Pittsburgh's #1 party bus rental company. Premium party buses and limousines for weddings, 
+              proms, bachelor parties, and corporate events. Free quotes available 24/7.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">

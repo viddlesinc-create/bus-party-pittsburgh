@@ -318,8 +318,8 @@ const Fleet = () => {
   return (
     <div className="min-h-screen bg-background">
       <MetaTags 
-        title="Our Fleet - Party Buses & Limousines"
-        description="Explore our premium fleet of party buses and limousines in Pittsburgh. Vehicles for 6-40 passengers with luxury amenities. View photos and features."
+        title="Pittsburgh Party Bus & Limousine Fleet | Small to Large Party Buses"
+        description="Explore our Pittsburgh party bus rental fleet. Small party buses for 8-14 passengers, large party buses for 20-40 guests. Luxury amenities, modern interiors. View photos!"
         canonical="/fleet"
       />
       <StructuredData data={serviceSchema({
@@ -341,11 +341,11 @@ const Fleet = () => {
       <section className="py-20 bg-hero-gradient">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-6xl font-bold text-primary-foreground mb-6">
-            Premium Party Bus & Limousine Fleet - Pittsburgh
+            Pittsburgh Party Bus & Limousine Fleet
           </h1>
           <p className="text-xl text-primary-foreground/90 max-w-3xl mx-auto mb-8">
-            Explore our diverse fleet of luxury vehicles perfect for any <Link to="/events" className="text-white hover:underline font-semibold">event</Link>. 
-            From intimate limousines to spacious party buses, we have the perfect vehicle for every occasion and group size. 
+            Looking for a party bus rental in Pittsburgh? Explore our diverse fleet from small party buses (8-14 passengers) 
+            to large party buses (20-40 guests). Perfect for any <Link to="/events" className="text-white hover:underline font-semibold">event</Link>. 
             All vehicles serve the entire <Link to="/locations" className="text-white hover:underline font-semibold">Pittsburgh area</Link> with 
             competitive <Link to="/pricing" className="text-white hover:underline font-semibold">hourly rates</Link>. 
             Read our <Link to="/blog/party-bus-vs-limo" className="text-white hover:underline font-semibold">party bus vs limo guide</Link> to 

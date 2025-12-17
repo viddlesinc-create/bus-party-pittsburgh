@@ -89,8 +89,8 @@ const Index = () => {
   return (
     <>
       <MetaTags 
-        title="Pittsburgh Party Bus & Limo Rental"
-        description="Premium party bus and limousine rentals in Pittsburgh, PA. Luxury transportation for weddings, proms, bachelor parties, corporate events. Available 24/7. Book now!"
+        title="Pittsburgh Party Bus Rental | #1 Party Bus & Limo Service"
+        description="Pittsburgh's top-rated party bus rental company. Premium party buses & limousines for weddings, proms, bachelor parties & corporate events. 8-40 passengers. Free quotes 24/7!"
         canonical="/"
       />
       <StructuredData data={combinedSchema} />

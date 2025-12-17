@@ -4,19 +4,19 @@ import busVsLimoImg from "@/assets/blog-party-bus-vs-limo.jpg";
 const PartyBusVsLimo = () => {
   return (
     <BlogPostLayout
-      title="Party Bus vs. Limo: Which is Best for Your Group?"
-      excerpt="Compare party buses and limousines to choose the perfect vehicle for your Pittsburgh celebration."
+      title="Party Bus vs Limo in Pittsburgh: Which is Best for Your Group?"
+      excerpt="Compare party buses and limousines for Pittsburgh events. Find out which luxury vehicle is best for your celebration, group size, and budget."
       category="Vehicle Guide"
       date="March 10, 2024"
       readTime="5 min read"
       author="Pittsburgh Party Bus Team"
       image={busVsLimoImg}
     >
-      <h2>The Ultimate Transportation Decision</h2>
+      <h2>Party Bus vs Limo: The Ultimate Pittsburgh Transportation Decision</h2>
       <p>
-        Choosing between a party bus and a limousine can be challenging. Both offer luxury group transportation, 
-        but they serve different purposes and provide distinct experiences. This guide will help you make the 
-        right choice for your Pittsburgh event.
+        Choosing between a party bus and a limousine for your Pittsburgh event can be challenging. Both offer 
+        luxury group transportation, but they serve different purposes and provide distinct experiences. This 
+        guide will help you make the right choice for your Pittsburgh celebration.
       </p>
 
       <h2>Party Bus: The Mobile Celebration</h2>

@@ -119,8 +119,8 @@ const Pricing = () => {
   return (
     <div className="min-h-screen bg-background">
       <MetaTags 
-        title="Pricing & Rates - Pittsburgh Party Bus Rental"
-        description="Transparent party bus pricing in Pittsburgh. Mini $100, Party Van $125, Executive $150, Luxury $175 per hour. Free quotes. No hidden fees."
+        title="Party Bus Rental Pricing Pittsburgh | Online Estimates & Rates"
+        description="How much does a party bus cost in Pittsburgh? Mini buses $100/hr, party buses $125-175/hr. Transparent party bus rental pricing with free instant quotes. No hidden fees!"
         canonical="/pricing"
       />
       <StructuredData data={serviceSchema({
@@ -138,11 +138,11 @@ const Pricing = () => {
       <section className="py-20 bg-hero-gradient">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-6xl font-bold text-primary-foreground mb-6">
-            Party Bus Rental Pricing & Online Estimates
+            Party Bus Rental Pricing in Pittsburgh
           </h1>
           <p className="text-xl text-primary-foreground/90 max-w-3xl mx-auto mb-8">
-            Transparent, competitive pricing for premium party bus and limousine rentals in Pittsburgh. 
-            Get your free estimate in seconds. All <Link to="/fleet" className="text-white hover:underline font-semibold">vehicles</Link> include 
+            How much does a party bus cost in Pittsburgh? Get transparent party bus rental rates starting at $100/hour. 
+            Free instant estimates with no hidden fees. All <Link to="/fleet" className="text-white hover:underline font-semibold">vehicles</Link> include 
             professional chauffeurs, insurance, and amenities. We serve 
             all <Link to="/locations" className="text-white hover:underline font-semibold">Pittsburgh areas</Link> for 
             any <Link to="/events" className="text-white hover:underline font-semibold">event type</Link>. 

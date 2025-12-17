@@ -141,8 +141,8 @@ const FAQs = () => {
   return (
     <div className="min-h-screen bg-background">
       <MetaTags 
-        title="FAQs - Your Party Bus Questions Answered"
-        description="Get answers to frequently asked questions about party bus rentals in Pittsburgh. Learn about booking, pricing, policies, and what to expect."
+        title="Pittsburgh Party Bus Rental FAQs | Questions Answered"
+        description="Frequently asked questions about party bus rentals in Pittsburgh. Learn about booking, party bus pricing, rental policies, and what to expect. Call (412) 385-3877!"
         canonical="/faqs"
       />
       <FAQSchema faqs={allFaqs} />
@@ -152,7 +152,7 @@ const FAQs = () => {
       <section className="py-20 bg-hero-gradient">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-6xl font-bold text-primary-foreground mb-6">
-            Frequently Asked Questions - Party Bus Rentals
+            Pittsburgh Party Bus Rental FAQs
           </h1>
           <p className="text-xl text-primary-foreground/90 max-w-3xl mx-auto mb-8">
             Find answers to common questions about party bus rentals in Pittsburgh. Learn about 
