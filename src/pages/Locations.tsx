@@ -22,6 +22,7 @@ const Locations = () => {
   const serviceAreas = [
     {
       name: "Downtown Pittsburgh",
+      slug: "downtown",
       description: "The heart of the Steel City with iconic landmarks, restaurants, and nightlife venues.",
       landmarks: ["Heinz Field", "PNC Park", "Strip District", "Market Square"],
       popular: true,
@@ -30,6 +31,7 @@ const Locations = () => {
     },
     {
       name: "Oakland",
+      slug: "oakland",
       description: "University area home to Pitt Panthers, CMU, and vibrant student life.",
       landmarks: ["University of Pittsburgh", "Carnegie Mellon", "Phipps Conservatory", "Carnegie Museums"],
       events: ["Graduation Parties", "College Events", "Academic Functions"],
@@ -37,6 +39,7 @@ const Locations = () => {
     },
     {
       name: "Shadyside",
+      slug: "shadyside",
       description: "Upscale neighborhood known for boutique shopping and fine dining establishments.",
       landmarks: ["Walnut Street", "Highland Park", "East End Food Co-op"],
       events: ["Weddings", "Bridal Showers", "Upscale Dining Tours"],
@@ -44,6 +47,7 @@ const Locations = () => {
     },
     {
       name: "Lawrenceville", 
+      slug: "lawrenceville",
       description: "Trendy neighborhood with art galleries, craft breweries, and hip venues.",
       landmarks: ["Butler Street", "Arsenal Park", "Children's Hospital"],
       events: ["Art Crawls", "Brewery Tours", "Bachelor/Bachelorette Parties"],
@@ -51,6 +55,7 @@ const Locations = () => {
     },
     {
       name: "South Side",
+      slug: "south-side",
       description: "Entertainment district famous for its nightlife and restaurant scene.",
       landmarks: ["Carson Street", "Station Square", "Mount Washington"],
       events: ["Bar Crawls", "Birthday Parties", "Night Out Events"],
@@ -58,6 +63,7 @@ const Locations = () => {
     },
     {
       name: "North Hills",
+      slug: "north-hills",
       description: "Suburban communities including Cranberry, Wexford, and Pine Township.",
       landmarks: ["Cranberry Township", "North Hills Village", "Seneca Valley"],
       events: ["Wedding Receptions", "Prom Transportation", "Corporate Shuttles"],
@@ -65,6 +71,7 @@ const Locations = () => {
     },
     {
       name: "South Hills",
+      slug: "south-hills",
       description: "Affluent suburbs including Mt. Lebanon, Upper St. Clair, and Peters Township.",
       landmarks: ["South Hills Village", "The Galleria", "Boyce Park"],
       events: ["Country Club Events", "High School Proms", "Wedding Transportation"],
@@ -72,6 +79,7 @@ const Locations = () => {
     },
     {
       name: "East End",
+      slug: "east-end",
       description: "Including Squirrel Hill, Point Breeze, and Regent Square neighborhoods.",
       landmarks: ["Frick Park", "Carnegie Mellon", "Squirrel Hill"],
       events: ["University Events", "Cultural Celebrations", "Family Gatherings"],
@@ -79,6 +87,7 @@ const Locations = () => {
     },
     {
       name: "West End",
+      slug: "west-end",
       description: "Growing area including Robinson Township and Moon Township near the airport.",
       landmarks: ["Pittsburgh Airport", "Robinson Town Centre", "Settler's Ridge"],
       events: ["Airport Transfers", "Corporate Travel", "Shopping Tours"],
@@ -167,59 +176,76 @@ const Locations = () => {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {serviceAreas.map((area, index) => (
-              <Card key={index} className="border-border shadow-card-custom hover:shadow-party transition-all duration-300 relative">
-                {area.popular && (
-                  <Badge className="absolute -top-2 left-4 bg-accent text-accent-foreground font-semibold z-10">
-                    Most Popular
-                  </Badge>
-                )}
-                <CardHeader>
-                  <div className="flex items-center justify-between">
-                    <CardTitle className="text-xl flex items-center">
-                      <MapPin className="h-5 w-5 mr-2 text-accent" />
-                      {area.name}
-                    </CardTitle>
-                  </div>
-                  <CardDescription className="text-sm text-muted-foreground">
-                    {area.distance}
-                  </CardDescription>
-                </CardHeader>
-                
-                <CardContent className="space-y-4">
-                  <p className="text-muted-foreground">{area.description}</p>
-                  
-                  <div>
-                    <h4 className="font-semibold mb-2 text-foreground">Popular Landmarks:</h4>
-                    <div className="flex flex-wrap gap-1">
-                      {area.landmarks.map((landmark, idx) => (
-                        <Badge key={idx} variant="secondary" className="text-xs">
-                          {landmark}
-                        </Badge>
-                      ))}
+            {serviceAreas.map((area, index) => {
+              const hasDetailPage = ['downtown', 'oakland', 'south-side', 'north-hills', 'south-hills'].includes(area.slug);
+              
+              return (
+                <Card key={index} className="border-border shadow-card-custom hover:shadow-party transition-all duration-300 relative">
+                  {area.popular && (
+                    <Badge className="absolute -top-2 left-4 bg-accent text-accent-foreground font-semibold z-10">
+                      Most Popular
+                    </Badge>
+                  )}
+                  <CardHeader>
+                    <div className="flex items-center justify-between">
+                      <CardTitle className="text-xl flex items-center">
+                        <MapPin className="h-5 w-5 mr-2 text-accent" />
+                        {area.name}
+                      </CardTitle>
                     </div>
-                  </div>
+                    <CardDescription className="text-sm text-muted-foreground">
+                      {area.distance}
+                    </CardDescription>
+                  </CardHeader>
                   
-                  <div>
-                    <h4 className="font-semibold mb-2 text-foreground">Common Events:</h4>
-                    <ul className="space-y-1">
-                      {area.events.map((event, idx) => (
-                        <li key={idx} className="text-sm text-muted-foreground flex items-center">
-                          <CheckCircle className="h-3 w-3 mr-2 text-accent flex-shrink-0" />
-                          {event}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  
-                  <div className="pt-4">
-                    <Button variant="hero" className="w-full">
-                      Get Quote for {area.name}
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+                  <CardContent className="space-y-4">
+                    <p className="text-muted-foreground">{area.description}</p>
+                    
+                    <div>
+                      <h4 className="font-semibold mb-2 text-foreground">Popular Landmarks:</h4>
+                      <div className="flex flex-wrap gap-1">
+                        {area.landmarks.map((landmark, idx) => (
+                          <Badge key={idx} variant="secondary" className="text-xs">
+                            {landmark}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <h4 className="font-semibold mb-2 text-foreground">Common Events:</h4>
+                      <ul className="space-y-1">
+                        {area.events.map((event, idx) => (
+                          <li key={idx} className="text-sm text-muted-foreground flex items-center">
+                            <CheckCircle className="h-3 w-3 mr-2 text-accent flex-shrink-0" />
+                            {event}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    
+                    <div className="pt-4 space-y-2">
+                      {hasDetailPage ? (
+                        <>
+                          <Button variant="hero" className="w-full" asChild>
+                            <Link to={`/locations/${area.slug}`}>
+                              Explore {area.name} Services
+                            </Link>
+                          </Button>
+                          <Button variant="outline" className="w-full bg-background/50 border-2" asChild>
+                            <Link to="/contact">Get Quote</Link>
+                          </Button>
+                        </>
+                      ) : (
+                        <Button variant="hero" className="w-full" asChild>
+                          <Link to="/contact">Get Quote for {area.name}</Link>
+                        </Button>
+                      )}
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
         </div>
       </section>
