@@ -17,7 +17,10 @@ const TopEventsPittsburgh = () => {
       <p>
         Pittsburgh offers an incredible variety of events and venues that make it ideal for party bus transportation. 
         Whether you're celebrating a milestone or just enjoying a night out with friends, a party bus adds luxury, 
-        convenience, and unforgettable memories to your experience.
+        convenience, and unforgettable memories to your experience. Explore our complete guide to{" "}
+        <Link to="/events" className="text-primary hover:underline">event transportation in Pittsburgh</Link> and 
+        browse our <Link to="/fleet" className="text-primary hover:underline">party bus fleet</Link> to find the 
+        perfect vehicle for your celebration.
       </p>
 
       <h2>The Top 10 Events for Party Bus Rentals in Pittsburgh</h2>
@@ -165,7 +168,9 @@ const TopEventsPittsburgh = () => {
       <h3>Luxury Experience</h3>
       <p>
         Modern party buses offer premium amenities that elevate any occasion - from sound systems and 
-        lighting to comfortable seating and climate control.
+        lighting to comfortable seating and climate control. View our{" "}
+        <Link to="/fleet" className="text-primary hover:underline">small party bus</Link> options for 
+        intimate groups or larger vehicles for bigger celebrations.
       </p>
 
       <h2>Planning Your Pittsburgh Party Bus Event</h2>

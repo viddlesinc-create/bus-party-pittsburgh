@@ -17,8 +17,9 @@ const AccuratePartyBusEstimate = () => {
       <p>
         Nothing is more frustrating than receiving a quote online, only to discover the actual price is 
         significantly different when you try to book. The key to getting accurate party bus estimates is 
-        providing complete, specific information upfront. This guide shows you exactly what details to 
-        include for quotes that match your actual costs.
+        providing complete, specific information upfront. Browse our{" "}
+        <Link to="/fleet" className="text-primary hover:underline">party bus fleet</Link> to see available vehicles 
+        before requesting a quote. This guide shows you exactly what details to include for quotes that match your actual costs.
       </p>
 
       <h2>Essential Information for Accurate Quotes</h2>
@@ -80,7 +81,8 @@ const AccuratePartyBusEstimate = () => {
       <h3>5. Vehicle Preferences</h3>
       <p>
         <strong>Why it matters:</strong> Different vehicles have different rates. Luxury options cost more 
-        than standard buses.
+        than standard buses. View our <Link to="/fleet" className="text-primary hover:underline">small party bus</Link> and 
+        larger vehicle options for comparison.
       </p>
       <p><strong>What to specify:</strong></p>
       <ul>

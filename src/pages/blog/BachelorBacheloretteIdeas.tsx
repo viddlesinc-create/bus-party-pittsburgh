@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import BlogPostLayout from "@/components/BlogPostLayout";
 import bachelorPartyImg from "@/assets/blog-bachelor-bachelorette-party.jpg";
 
@@ -16,8 +17,10 @@ const BachelorBacheloretteIdeas = () => {
       <p>
         Planning a Pittsburgh bachelor party or bachelorette party? Pittsburgh offers endless possibilities 
         for bachelor and bachelorette celebrations, and a party bus rental is your ticket to experiencing 
-        them all in one unforgettable night. Let's explore creative itineraries that maximize fun, minimize 
-        hassle, and create memories that last a lifetime.
+        them all in one unforgettable night. Browse our{" "}
+        <Link to="/fleet" className="text-primary hover:underline">party bus fleet</Link> and explore{" "}
+        <Link to="/events" className="text-primary hover:underline">event transportation in Pittsburgh</Link> options. 
+        Let's explore creative itineraries that maximize fun, minimize hassle, and create memories that last a lifetime.
       </p>
 
       <h2>Why Party Buses Are Perfect for Bachelor/Bachelorette Parties</h2>
@@ -137,7 +140,7 @@ const BachelorBacheloretteIdeas = () => {
 
       <h3>Budgeting</h3>
       <ul>
-        <li>Split party bus cost among attendees</li>
+        <li>Split party bus cost among attendees – check our <Link to="/pricing" className="text-primary hover:underline">party bus rental rates</Link></li>
         <li>Set expectations for individual spending at venues</li>
         <li>Consider a group fund for shared expenses</li>
         <li>Factor in gratuity for your driver</li>

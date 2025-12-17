@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import BlogPostLayout from "@/components/BlogPostLayout";
 import busVsLimoImg from "@/assets/blog-party-bus-vs-limo.jpg";
 
@@ -15,7 +16,9 @@ const PartyBusVsLimo = () => {
       <h2>Party Bus vs Limo: The Ultimate Pittsburgh Transportation Decision</h2>
       <p>
         Choosing between a party bus and a limousine for your Pittsburgh event can be challenging. Both offer 
-        luxury group transportation, but they serve different purposes and provide distinct experiences. This 
+        luxury group transportation, but they serve different purposes and provide distinct experiences. Browse our 
+        complete <Link to="/fleet" className="text-primary hover:underline">party bus fleet</Link> including{" "}
+        <Link to="/fleet" className="text-primary hover:underline">small party bus</Link> options. This 
         guide will help you make the right choice for your Pittsburgh celebration.
       </p>
 
@@ -189,11 +192,14 @@ const PartyBusVsLimo = () => {
         Both party buses and limousines offer luxury transportation with unique advantages. Your choice 
         should reflect your group size, event type, and celebration style. Consider your priorities - 
         whether that's maximum fun, classic elegance, or practical accommodation - and select the vehicle 
-        that best delivers on those goals.
+        that best delivers on those goals. Check our <Link to="/pricing" className="text-primary hover:underline">party bus pricing in Pittsburgh</Link> for 
+        detailed rate information.
       </p>
       <p>
         When in doubt, consult with your transportation provider. Experienced companies can offer insights 
-        based on your specific event and help you make the perfect choice for your Pittsburgh celebration.
+        based on your specific event and help you make the perfect choice for your Pittsburgh celebration. 
+        Learn more about <Link to="/events" className="text-primary hover:underline">event transportation in Pittsburgh</Link> for 
+        weddings, proms, and more.
       </p>
     </BlogPostLayout>
   );
