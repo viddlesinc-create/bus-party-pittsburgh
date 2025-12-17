@@ -5,20 +5,24 @@ import concertBusImg from "@/assets/blog-concert-party-bus.jpg";
 const ConcertPartyBus = () => {
   return (
     <BlogPostLayout
-      title="Concert Party Bus: The Ultimate Group Experience"
-      excerpt="Skip the parking hassles and enhance your concert experience with party bus transportation to Pittsburgh venues."
+      title="Concert Party Bus in Pittsburgh: Safe & Fun Group Rides"
+      excerpt="Make concert night unforgettable with a concert party bus in Pittsburgh. Skip parking, keep the party going, and enjoy safe group transportation to PPG Arena, Stage AE, and more."
       category="Entertainment"
       date="February 28, 2024"
       readTime="5 min read"
       author="Pittsburgh Party Bus Team"
       image={concertBusImg}
     >
-      <h2>Why Party Buses Are Perfect for Concerts</h2>
+      <h2>Concert Party Bus in Pittsburgh: Safe & Fun Group Rides</h2>
       <p>
-        Concert nights should be about the music, the energy, and time with friends – not stress about 
-        parking, designated drivers, or coordinating multiple cars. A party bus transforms your concert 
-        outing into an all-night celebration that starts the moment you board and continues until everyone's 
-        safely home.
+        Looking for a concert party bus in Pittsburgh? Concert nights should be about the music, the energy, and time with friends – 
+        not stress about parking, designated drivers, or coordinating multiple cars. A concert party bus in Pittsburgh transforms your 
+        outing to PPG Paints Arena, Stage AE, or Mr. Smalls Theatre into an all-night celebration that starts the moment you board 
+        and continues until everyone's safely home.
+      </p>
+      <p>
+        Explore our <Link to="/events" className="text-primary hover:underline">event transportation in Pittsburgh</Link> options 
+        and check <Link to="/pricing" className="text-primary hover:underline">party bus rental rates in Pittsburgh</Link> for group pricing.
       </p>
 
       <h2>The Party Bus Concert Advantage</h2>

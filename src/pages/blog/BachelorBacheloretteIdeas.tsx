@@ -5,22 +5,25 @@ import bachelorPartyImg from "@/assets/blog-bachelor-bachelorette-party.jpg";
 const BachelorBacheloretteIdeas = () => {
   return (
     <BlogPostLayout
-      title="Pittsburgh Bachelor & Bachelorette Party Ideas | Party Bus Guide"
-      excerpt="Planning a Pittsburgh bachelor party or bachelorette party? Get creative itinerary ideas for unforgettable celebrations using party bus transportation."
+      title="Pittsburgh Bachelor & Bachelorette Party Ideas with a Party Bus"
+      excerpt="Planning a Pittsburgh bachelor or bachelorette party? Discover the best bar crawls, clubs, and experiences with a party bus, plus tips for an unforgettable night."
       category="Event Ideas"
       date="March 8, 2024"
       readTime="7 min read"
       author="Pittsburgh Party Bus Team"
       image={bachelorPartyImg}
     >
-      <h2>Making Your Pittsburgh Bachelor or Bachelorette Party Epic</h2>
+      <h2>Pittsburgh Bachelor & Bachelorette Party Ideas with a Party Bus</h2>
       <p>
-        Planning a Pittsburgh bachelor party or bachelorette party? Pittsburgh offers endless possibilities 
-        for bachelor and bachelorette celebrations, and a party bus rental is your ticket to experiencing 
-        them all in one unforgettable night. Browse our{" "}
-        <Link to="/fleet" className="text-primary hover:underline">party bus fleet</Link> and explore{" "}
-        <Link to="/events" className="text-primary hover:underline">event transportation in Pittsburgh</Link> options. 
-        Let's explore creative itineraries that maximize fun, minimize hassle, and create memories that last a lifetime.
+        Planning a Pittsburgh bachelor party or bachelorette party Pittsburgh style? The Steel City offers endless possibilities 
+        for unforgettable celebrations, and a bachelor party bus is your ticket to experiencing them all in one epic night. 
+        Whether you're organizing a bachelorette party in Pittsburgh with bar hopping and dancing, or a Pittsburgh bachelor party 
+        with breweries and sports, we've got the perfect itinerary ideas for you.
+      </p>
+      <p>
+        Browse our <Link to="/fleet" className="text-primary hover:underline">party bus fleet</Link> and explore{" "}
+        <Link to="/events" className="text-primary hover:underline">party bus events in Pittsburgh</Link> options. 
+        Ready to start planning? <Link to="/contact" className="text-primary hover:underline">Book your Pittsburgh bachelor party bus</Link> today!
       </p>
 
       <h2>Why Party Buses Are Perfect for Bachelor/Bachelorette Parties</h2>

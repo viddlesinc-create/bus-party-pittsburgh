@@ -5,20 +5,23 @@ import safetyTipsImg from "@/assets/blog-party-bus-safety-tips.jpg";
 const PartyBusSafetyTips = () => {
   return (
     <BlogPostLayout
-      title="Party Bus Safety Tips for a Fun Night Out"
-      excerpt="Essential safety guidelines to ensure your party bus experience is both fun and secure."
+      title="Party Bus Safety Tips for Pittsburgh Events"
+      excerpt="Stay safe while having fun on your Pittsburgh party bus. Learn essential party bus safety tips, company questions to ask, and rules for guests."
       category="Safety Guide"
       date="February 22, 2024"
       readTime="6 min read"
       author="Pittsburgh Party Bus Team"
       image={safetyTipsImg}
     >
-      <h2>Safety First, Fun Always</h2>
+      <h2>Party Bus Safety Tips for Pittsburgh Events</h2>
       <p>
-        Party buses offer an incredible way to celebrate with friends, but like any group activity, safety 
-        should always be your top priority. By following these essential guidelines, you ensure everyone 
-        has an amazing time while staying safe and protected throughout your Pittsburgh celebration. Learn 
-        more about <Link to="/events" className="text-primary hover:underline">event transportation in Pittsburgh</Link> and 
+        Looking for party bus safety tips for your Pittsburgh celebration? Party buses offer an incredible way to celebrate 
+        with friends, but like any group activity, safety should always be your top priority. Whether you're planning a 
+        bachelor party, prom, or night out in Pittsburgh, following these essential party bus safety tips ensures everyone 
+        has an amazing time while staying safe and protected.
+      </p>
+      <p>
+        Learn more about <Link to="/events" className="text-primary hover:underline">safe party bus events in Pittsburgh</Link> and 
         browse our <Link to="/fleet" className="text-primary hover:underline">party bus fleet</Link> of safe, modern vehicles.
       </p>
 

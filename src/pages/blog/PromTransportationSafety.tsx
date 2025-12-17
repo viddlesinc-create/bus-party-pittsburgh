@@ -5,21 +5,23 @@ import promSafetyImg from "@/assets/blog-prom-transportation-safety.jpg";
 const PromTransportationSafety = () => {
   return (
     <BlogPostLayout
-      title="Prom Transportation Safety: Parents' Peace of Mind"
-      excerpt="Why professional prom transportation is the safest choice for Pittsburgh high school students."
+      title="Prom Party Bus in Pittsburgh: Safety Tips for Parents & Students"
+      excerpt="Ensure your teen's prom night is safe and memorable with a prom party bus in Pittsburgh. Professional drivers, parent monitoring, and peace of mind for Pittsburgh high schoolers."
       category="Safety"
       date="February 25, 2024"
       readTime="7 min read"
       author="Pittsburgh Party Bus Team"
       image={promSafetyImg}
     >
-      <h2>Prom Night: Celebration Meets Safety</h2>
+      <h2>Prom Party Bus in Pittsburgh: Safety Tips for Parents & Students</h2>
       <p>
-        Prom represents a milestone moment in every teenager's life – a night of elegance, celebration, 
-        and memories. As parents, you want your teens to enjoy this special evening while ensuring their 
-        safety above all else. Professional prom transportation provides the perfect solution, combining 
-        luxury, fun, and most importantly, peace of mind. Learn more about{" "}
-        <Link to="/events" className="text-primary hover:underline">event transportation in Pittsburgh</Link> for proms and 
+        Considering a prom party bus in Pittsburgh for your teen? Prom represents a milestone moment in every teenager's life – 
+        a night of elegance, celebration, and memories. As parents, you want your teens to enjoy this special evening while ensuring 
+        their safety above all else. A prom party bus in Pittsburgh provides the perfect solution, combining luxury, fun, and most 
+        importantly, peace of mind for Pittsburgh high school families.
+      </p>
+      <p>
+        Learn more about <Link to="/events" className="text-primary hover:underline">event transportation in Pittsburgh</Link> for proms and 
         explore our <Link to="/fleet" className="text-primary hover:underline">party bus fleet</Link>.
       </p>
 
