@@ -1,3 +1,4 @@
+// scripts/prerender.cjs
 const fs = require("fs");
 const path = require("path");
 const { createServer } = require("vite");
@@ -23,7 +24,7 @@ const routes = [
   "/blog/concert-party-bus",
   "/blog/prom-transportation-safety",
   "/blog/party-bus-safety-tips",
-  "/blog/accurate-party-bus-estimate",
+  "/blog/accurate-party-bus-estimate"
 ];
 
 async function prerender() {
@@ -46,7 +47,7 @@ async function prerender() {
   const vite = await createServer({
     root,
     server: { middlewareMode: "ssr" },
-    appType: "custom",
+    appType: "custom"
   });
 
   try {
@@ -59,10 +60,13 @@ async function prerender() {
     for (const route of routes) {
       console.log(`  Prerendering: ${route}`);
 
+      // Our entry-server.tsx returns { html, headTags, initialData }
       const { html, headTags, initialData } = await entryServer.render(route, {});
 
+      // Inject HTML into the SSR outlet
       let finalHtml = template.replace("<!--ssr-outlet-->", html);
 
+      // Inject HEAD_TAGS
       if (headTags && headTags.length > 0) {
         if (finalHtml.includes("<!--HEAD_TAGS-->")) {
           finalHtml = finalHtml.replace("<!--HEAD_TAGS-->", headTags);
@@ -71,6 +75,7 @@ async function prerender() {
         }
       }
 
+      // Inject INITIAL_DATA
       if (initialData) {
         const dataScript = `<script>window.__SSR_DATA__=${initialData}</script>`;
         if (finalHtml.includes("<!--INITIAL_DATA-->")) {
@@ -80,15 +85,17 @@ async function prerender() {
         }
       }
 
+      // Sanity check
       if (finalHtml.includes("<!--ssr-outlet-->")) {
         throw new Error(`Failed to replace <!--ssr-outlet--> for route "${route}"`);
       }
 
+      // Determine output path
       let filePath;
       if (route === "/") {
         filePath = path.join(distDir, "index.html");
       } else {
-        const routePath = route.slice(1);
+        const routePath = route.slice(1); // remove leading slash
         filePath = path.join(distDir, `${routePath}.html`);
       }
 
