@@ -129,8 +129,8 @@ const Events = () => {
   return (
     <div className="min-h-screen bg-background">
       <MetaTags 
-        title="Event Transportation Pittsburgh | Party Bus for Weddings, Proms & Events"
-        description="Pittsburgh event transportation specialists. Party bus rentals for weddings, proms, bachelor parties, corporate events & concerts. Professional chauffeurs, luxury vehicles. Free quotes!"
+        title="Party Bus Events & Event Transportation in Pittsburgh | Pitt Party Bus"
+        description="Book a party bus for weddings, proms, concerts, sports games, and corporate outings in Pittsburgh. Reliable event transportation with modern buses and professional drivers."
         canonical="/events"
       />
       <StructuredData data={breadcrumbSchema([
@@ -147,10 +147,10 @@ const Events = () => {
       <section className="py-20 bg-hero-gradient">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-6xl font-bold text-primary-foreground mb-6">
-            Event Transportation & Party Bus Rentals in Pittsburgh
+            Party Bus Events & Event Transportation in Pittsburgh
           </h1>
           <p className="text-xl text-primary-foreground/90">
-            Pittsburgh's premier event transportation company. From intimate celebrations to grand occasions, 
+            Looking for reliable event transportation in Pittsburgh? From intimate celebrations to grand occasions, 
             we provide luxury party bus rentals that make every event special. Our <Link to="/fleet" className="text-white hover:underline font-semibold">diverse fleet</Link> includes 
             vehicles perfect for any group size, and our professional service ensures your event runs smoothly. 
             Learn about <Link to="/pricing" className="text-white hover:underline font-semibold">competitive pricing</Link> or 

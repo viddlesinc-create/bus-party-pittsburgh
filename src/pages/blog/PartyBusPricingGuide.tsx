@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import BlogPostLayout from "@/components/BlogPostLayout";
 import pricingGuideImg from "@/assets/blog-party-bus-pricing-guide.jpg";
 
@@ -14,9 +15,9 @@ const PartyBusPricingGuide = () => {
     >
       <h2>Understanding Party Bus Rental Costs in Pittsburgh</h2>
       <p>
-        Planning a special event in Pittsburgh and wondering about party bus costs? You're in the right place. 
-        Party bus rental prices can vary significantly based on several factors, but understanding these variables 
-        will help you budget effectively and get the best value for your celebration.
+        If you're looking for a <Link to="/" className="text-primary hover:underline">Pittsburgh party bus rental</Link>, 
+        understanding pricing is key. Party bus rental prices can vary significantly based on several factors, 
+        but understanding these variables will help you budget effectively and get the best value for your celebration.
       </p>
 
       <h2>Average Party Bus Rental Prices in Pittsburgh</h2>
@@ -168,8 +169,11 @@ const PartyBusPricingGuide = () => {
       <p>
         Party bus rental costs in Pittsburgh are an investment in your celebration's success. By understanding 
         the pricing factors and planning strategically, you can find a luxury transportation solution that fits 
-        your budget and exceeds your expectations. Remember to book early, compare quotes from multiple providers, 
-        and read reviews to ensure you're getting the best value for your special event.
+        your budget and exceeds your expectations. Ready to book? Check our{" "}
+        <Link to="/events" className="text-primary hover:underline">event transportation in Pittsburgh</Link> options 
+        or view our <Link to="/pricing" className="text-primary hover:underline">party bus pricing in Pittsburgh</Link> page 
+        for current rates. Remember to book early, compare quotes from multiple providers, and read reviews to 
+        ensure you're getting the best value for your special event.
       </p>
     </BlogPostLayout>
   );
