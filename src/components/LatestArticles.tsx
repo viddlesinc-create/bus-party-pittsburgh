@@ -61,6 +61,7 @@ export function LatestArticles() {
                   alt={post.title}
                   className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                   loading="lazy"
+                  decoding="async"
                   width="400"
                   height="300"
                 />

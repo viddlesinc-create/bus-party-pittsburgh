@@ -81,9 +81,18 @@ const Hero = () => {
     }
   };
   return <section className="relative min-h-screen flex items-center justify-center overflow-hidden" aria-label="Hero section">
-      {/* Background Image with Overlay */}
+      {/* Background Image with Overlay - LCP Critical */}
       <div className="absolute inset-0" aria-hidden="true">
-        <img src={heroImage} alt="Luxury party bus exterior in Pittsburgh" className="w-full h-full object-cover" width="1920" height="1080" />
+        <img 
+          src={heroImage} 
+          alt="Luxury party bus exterior in Pittsburgh" 
+          className="w-full h-full object-cover" 
+          width="1920" 
+          height="1080"
+          fetchPriority="high"
+          loading="eager"
+          decoding="sync"
+        />
         <div className="absolute inset-0 bg-luxury-gradient opacity-80"></div>
       </div>
 

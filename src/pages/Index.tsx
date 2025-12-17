@@ -1,9 +1,12 @@
+import { lazy, Suspense } from "react";
 import { MetaTags } from "@/components/MetaTags";
 import { StructuredData, organizationSchema, websiteSchema, localBusinessSchema, homepageFAQSchema } from "@/components/StructuredData";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
-import { LatestArticles } from "@/components/LatestArticles";
+
+// Code splitting: Lazy load below-fold component
+const LatestArticles = lazy(() => import("@/components/LatestArticles").then(m => ({ default: m.LatestArticles })));
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -175,6 +178,7 @@ const Index = () => {
                 width="800"
                 height="600"
                 loading="lazy"
+                decoding="async"
               />
               <div className="absolute -bottom-4 -right-4 bg-accent text-accent-foreground p-4 rounded-lg shadow-glow">
                 <div className="text-2xl font-bold">15+</div>
@@ -197,6 +201,7 @@ const Index = () => {
                 width="800"
                 height="600"
                 loading="lazy"
+                decoding="async"
               />
               <div className="absolute top-4 left-4 bg-primary text-primary-foreground px-3 py-2 rounded-lg font-semibold">
                 Premium Interior
@@ -672,8 +677,10 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Latest Articles */}
-      <LatestArticles />
+      {/* Latest Articles - Code Split */}
+      <Suspense fallback={<div className="py-20 bg-muted/50"><div className="max-w-7xl mx-auto px-4 text-center text-muted-foreground">Loading articles...</div></div>}>
+        <LatestArticles />
+      </Suspense>
 
       {/* CTA Section */}
       <section className="py-20 bg-hero-gradient" aria-labelledby="cta-heading">

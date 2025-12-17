@@ -6,6 +6,9 @@ import viteCompression from "vite-plugin-compression";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
+  server: {
+    port: 8080,
+  },
   plugins: [
     react(),
     mode === "development" && componentTagger(),
