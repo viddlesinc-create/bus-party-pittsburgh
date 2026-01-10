@@ -1,5 +1,6 @@
 import { MetaTags } from "@/components/MetaTags";
 import { StructuredData, serviceSchema, breadcrumbSchema } from "@/components/StructuredData";
+import { PricingFAQSchema } from "@/components/PricingFAQSchema";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { InternalLinkCTA } from "@/components/InternalLinkCTA";
 import Navigation from "@/components/Navigation";
@@ -119,8 +120,8 @@ const Pricing = () => {
   return (
     <div className="min-h-screen bg-background">
       <MetaTags 
-        title="Party Bus Rental Pricing & Rates in Pittsburgh | Pitt Party Bus"
-        description="See party bus rental pricing in Pittsburgh, PA. Learn what affects your rate and get an accurate quote for your event in just a few minutes."
+        title="How Much Does a Party Bus Cost? Pittsburgh Pricing | $100-175/hr"
+        description="Party bus rental costs in Pittsburgh from $100-175/hour. See pricing for 10, 15, 20, 25, 30+ passenger buses. No hidden fees. Free instant estimates."
         canonical="/pricing"
       />
       <StructuredData data={serviceSchema({
@@ -128,6 +129,7 @@ const Pricing = () => {
         description: "Competitive party bus rental rates in Pittsburgh starting at $100 per hour",
         price: "$100-175 per hour"
       })} />
+      <PricingFAQSchema />
       <Navigation />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -403,6 +405,88 @@ const Pricing = () => {
               <CardContent>
                 <p className="text-muted-foreground">
                   All quotes are completely free with no obligation. Get multiple options to choose from.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing FAQ Section */}
+      <section className="py-20 bg-muted/50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Frequently Asked Pricing Questions
+            </h2>
+            <p className="text-xl text-muted-foreground">
+              Common questions about party bus rental costs in Pittsburgh
+            </p>
+          </div>
+          
+          <div className="space-y-6">
+            <Card className="border-border shadow-card-custom">
+              <CardHeader>
+                <CardTitle className="text-lg">How much is a party bus for 5 hours?</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground">
+                  A party bus for 5 hours in Pittsburgh costs $500-$875 depending on the vehicle size. Mini party buses (8-12 passengers) are $100/hour = $500. Mid-size buses (20-25 passengers) are $150/hour = $750. Large luxury buses (35-40 passengers) are $175/hour = $875. All prices include the professional chauffeur, fuel, and amenities.
+                </p>
+              </CardContent>
+            </Card>
+            
+            <Card className="border-border shadow-card-custom">
+              <CardHeader>
+                <CardTitle className="text-lg">How much does it cost to rent a party bus?</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground">
+                  Party bus rental in Pittsburgh starts at $100/hour for mini buses with a 3-hour minimum ($300 total). Mid-size party buses start at $150/hour with a 4-hour minimum ($600 total). Prices include professional chauffeur, fuel, ice, cups, red carpet service, and all premium amenities.
+                </p>
+              </CardContent>
+            </Card>
+            
+            <Card className="border-border shadow-card-custom">
+              <CardHeader>
+                <CardTitle className="text-lg">What is the average party bus cost per hour?</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground">
+                  The average party bus rental in Pittsburgh is $125-150 per hour. This gets you a mid-size bus with 14-24 passenger capacity, premium sound system, LED lighting, bar setup, and professional chauffeur. Weekends and peak seasons may have slightly higher rates.
+                </p>
+              </CardContent>
+            </Card>
+            
+            <Card className="border-border shadow-card-custom">
+              <CardHeader>
+                <CardTitle className="text-lg">How much to tip a party bus driver?</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground">
+                  The standard tip for a party bus driver is 18-20% of the total rental cost. For exceptional service, 20-25% is appropriate. For example, on a $600 rental, a $108-$120 tip is customary. Tips can be given in cash directly to the driver at the end of your rental.
+                </p>
+              </CardContent>
+            </Card>
+            
+            <Card className="border-border shadow-card-custom">
+              <CardHeader>
+                <CardTitle className="text-lg">Are there hidden fees with party bus rentals?</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground">
+                  At Pitt Party Bus, we have no hidden fees. Your quoted price includes the chauffeur, fuel, tolls, insurance, and all amenities. Optional add-ons include decorations ($25-50), extra stops beyond 3 ($15/stop), and airport fees ($25). Gratuity (18-20%) is suggested but not required.
+                </p>
+              </CardContent>
+            </Card>
+            
+            <Card className="border-border shadow-card-custom">
+              <CardHeader>
+                <CardTitle className="text-lg">What's the minimum rental time for a party bus?</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground">
+                  Minimum rental times vary by vehicle size. Mini party buses (8-15 passengers) have a 3-hour minimum. Larger party buses (20+ passengers) have a 4-hour minimum. This ensures enough time for pickup, your event, and safe return. Longer rentals get better per-hour rates.
                 </p>
               </CardContent>
             </Card>
