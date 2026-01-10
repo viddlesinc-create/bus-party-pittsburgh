@@ -129,8 +129,8 @@ const Events = () => {
   return (
     <div className="min-h-screen bg-background">
       <MetaTags 
-        title="Party Bus Events & Event Transportation in Pittsburgh | Pitt Party Bus"
-        description="Book a party bus for weddings, proms, concerts, sports games, and corporate outings in Pittsburgh. Reliable event transportation with modern buses and professional drivers."
+        title="Event Transportation Pittsburgh | Weddings, Proms, Concerts, Sports"
+        description="Professional event transportation in Pittsburgh. Wedding shuttles, prom party buses, concert transportation, corporate events. Modern buses, professional drivers. Book now!"
         canonical="/events"
       />
       <StructuredData data={breadcrumbSchema([

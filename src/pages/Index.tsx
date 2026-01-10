@@ -92,8 +92,8 @@ const Index = () => {
   return (
     <>
       <MetaTags 
-        title="Party Bus Rental Pittsburgh | Limo & Bus Services | Pitt Party Bus"
-        description="Premium party bus and limo rentals in Pittsburgh, PA. Perfect for weddings, proms, bachelor parties & special events. Get your free quote today!"
+        title="Pittsburgh Party Bus Rental | $100/hr Party Buses & Limos | Pitt Party Bus"
+        description="Pittsburgh's #1 party bus rental. Buses for 10-40 passengers starting at $100/hr. Weddings, proms, bachelor parties. Free instant quotes. Call (412) 385-3877"
         canonical="/"
       />
       <StructuredData data={combinedSchema} />

@@ -1,5 +1,6 @@
 import { MetaTags } from "@/components/MetaTags";
 import { StructuredData, serviceSchema, breadcrumbSchema } from "@/components/StructuredData";
+import { FleetFAQSchema } from "@/components/FleetFAQSchema";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { InternalLinkCTA } from "@/components/InternalLinkCTA";
 import Navigation from "@/components/Navigation";
@@ -13,7 +14,8 @@ import {
   Users, 
   CheckCircle,
   Phone,
-  Calendar
+  Calendar,
+  DollarSign
 } from "lucide-react";
 import { useLoaderData } from "@/lib/use-loader-data";
 import { FleetData } from "@/loaders/fleet";
@@ -318,8 +320,8 @@ const Fleet = () => {
   return (
     <div className="min-h-screen bg-background">
       <MetaTags 
-        title="Pittsburgh Party Bus & Limousine Fleet | Small to Large Party Buses"
-        description="Explore our Pittsburgh party bus rental fleet. Small party buses for 8-14 passengers, large party buses for 20-40 guests. Luxury amenities, modern interiors. View photos!"
+        title="Party Bus Fleet Pittsburgh | 10, 15, 20, 25, 30 Passenger Buses & Limos"
+        description="View our Pittsburgh party bus fleet. 10, 12, 15, 20, 22, 24, 26, 28, 30 passenger party buses. Limousines and shuttles. Photos, features & pricing."
         canonical="/fleet"
       />
       <StructuredData data={serviceSchema({
@@ -331,6 +333,7 @@ const Fleet = () => {
         { name: "Home", url: "/" },
         { name: "Fleet", url: "/fleet" }
       ])} />
+      <FleetFAQSchema />
       <Navigation />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -423,6 +426,236 @@ const Fleet = () => {
               ))}
             </TabsContent>
           </Tabs>
+        </div>
+      </section>
+
+      {/* Party Buses by Passenger Count Section */}
+      <section className="py-20 bg-background" id="passenger-count">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Party Buses by Passenger Count
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Not sure what size party bus you need? Use our guide below to find the perfect vehicle for your group.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* 10-12 Passengers */}
+            <Card className="border-border shadow-card-custom hover:shadow-party transition-all duration-300" id="10-passenger">
+              <CardHeader className="text-center bg-hero-gradient rounded-t-lg">
+                <div className="mx-auto mb-2 p-3 bg-white/20 rounded-full w-fit">
+                  <Users className="h-6 w-6 text-primary-foreground" />
+                </div>
+                <CardTitle className="text-primary-foreground">10-12 Passenger Party Buses</CardTitle>
+              </CardHeader>
+              <CardContent className="pt-6">
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-muted-foreground">Hourly Rate</span>
+                  <span className="text-2xl font-bold text-accent">$100/hr</span>
+                </div>
+                <p className="text-muted-foreground mb-4">
+                  Perfect for small groups, intimate celebrations, wine tours, and birthday parties. Our mini party buses offer all the amenities in a compact package.
+                </p>
+                <ul className="space-y-2 mb-6">
+                  <li className="flex items-center text-sm">
+                    <CheckCircle className="h-4 w-4 mr-2 text-accent" />
+                    3-hour minimum rental
+                  </li>
+                  <li className="flex items-center text-sm">
+                    <CheckCircle className="h-4 w-4 mr-2 text-accent" />
+                    LED lighting & sound system
+                  </li>
+                  <li className="flex items-center text-sm">
+                    <CheckCircle className="h-4 w-4 mr-2 text-accent" />
+                    Bar setup included
+                  </li>
+                </ul>
+                <Button variant="hero" className="w-full" asChild>
+                  <Link to="/contact">Get Quote for 10-12 Passengers</Link>
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* 14-15 Passengers */}
+            <Card className="border-border shadow-card-custom hover:shadow-party transition-all duration-300" id="15-passenger">
+              <CardHeader className="text-center bg-hero-gradient rounded-t-lg">
+                <div className="mx-auto mb-2 p-3 bg-white/20 rounded-full w-fit">
+                  <Users className="h-6 w-6 text-primary-foreground" />
+                </div>
+                <CardTitle className="text-primary-foreground">14-15 Passenger Party Buses</CardTitle>
+              </CardHeader>
+              <CardContent className="pt-6">
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-muted-foreground">Hourly Rate</span>
+                  <span className="text-2xl font-bold text-accent">$125/hr</span>
+                </div>
+                <p className="text-muted-foreground mb-4">
+                  Ideal for medium groups wanting extra space. Great for bachelor/bachelorette parties, prom groups, and nights out in Pittsburgh.
+                </p>
+                <ul className="space-y-2 mb-6">
+                  <li className="flex items-center text-sm">
+                    <CheckCircle className="h-4 w-4 mr-2 text-accent" />
+                    3-hour minimum rental
+                  </li>
+                  <li className="flex items-center text-sm">
+                    <CheckCircle className="h-4 w-4 mr-2 text-accent" />
+                    Premium audio system
+                  </li>
+                  <li className="flex items-center text-sm">
+                    <CheckCircle className="h-4 w-4 mr-2 text-accent" />
+                    Climate control
+                  </li>
+                </ul>
+                <Button variant="hero" className="w-full" asChild>
+                  <Link to="/contact">Get Quote for 14-15 Passengers</Link>
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* 20-22 Passengers */}
+            <Card className="border-border shadow-card-custom hover:shadow-party transition-all duration-300" id="20-passenger">
+              <CardHeader className="text-center bg-hero-gradient rounded-t-lg">
+                <div className="mx-auto mb-2 p-3 bg-white/20 rounded-full w-fit">
+                  <Users className="h-6 w-6 text-primary-foreground" />
+                </div>
+                <CardTitle className="text-primary-foreground">20-22 Passenger Party Buses</CardTitle>
+              </CardHeader>
+              <CardContent className="pt-6">
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-muted-foreground">Hourly Rate</span>
+                  <span className="text-2xl font-bold text-accent">$150/hr</span>
+                </div>
+                <p className="text-muted-foreground mb-4">
+                  Our most popular size for weddings, corporate events, and larger celebrations. Room to dance and mingle with full party amenities.
+                </p>
+                <ul className="space-y-2 mb-6">
+                  <li className="flex items-center text-sm">
+                    <CheckCircle className="h-4 w-4 mr-2 text-accent" />
+                    4-hour minimum rental
+                  </li>
+                  <li className="flex items-center text-sm">
+                    <CheckCircle className="h-4 w-4 mr-2 text-accent" />
+                    Dance floor area
+                  </li>
+                  <li className="flex items-center text-sm">
+                    <CheckCircle className="h-4 w-4 mr-2 text-accent" />
+                    Full bar with ice
+                  </li>
+                </ul>
+                <Button variant="hero" className="w-full" asChild>
+                  <Link to="/contact">Get Quote for 20-22 Passengers</Link>
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* 24-26 Passengers */}
+            <Card className="border-border shadow-card-custom hover:shadow-party transition-all duration-300" id="25-passenger">
+              <CardHeader className="text-center bg-hero-gradient rounded-t-lg">
+                <div className="mx-auto mb-2 p-3 bg-white/20 rounded-full w-fit">
+                  <Users className="h-6 w-6 text-primary-foreground" />
+                </div>
+                <CardTitle className="text-primary-foreground">24-26 Passenger Party Buses</CardTitle>
+              </CardHeader>
+              <CardContent className="pt-6">
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-muted-foreground">Hourly Rate</span>
+                  <span className="text-2xl font-bold text-accent">$150/hr</span>
+                </div>
+                <p className="text-muted-foreground mb-4">
+                  Perfect for larger wedding parties, birthday celebrations, and group outings. Premium features with ample space for everyone.
+                </p>
+                <ul className="space-y-2 mb-6">
+                  <li className="flex items-center text-sm">
+                    <CheckCircle className="h-4 w-4 mr-2 text-accent" />
+                    4-hour minimum rental
+                  </li>
+                  <li className="flex items-center text-sm">
+                    <CheckCircle className="h-4 w-4 mr-2 text-accent" />
+                    Entertainment center
+                  </li>
+                  <li className="flex items-center text-sm">
+                    <CheckCircle className="h-4 w-4 mr-2 text-accent" />
+                    LED light shows
+                  </li>
+                </ul>
+                <Button variant="hero" className="w-full" asChild>
+                  <Link to="/contact">Get Quote for 24-26 Passengers</Link>
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* 28-30 Passengers */}
+            <Card className="border-border shadow-card-custom hover:shadow-party transition-all duration-300 md:col-span-2 lg:col-span-1" id="30-passenger">
+              <CardHeader className="text-center bg-accent rounded-t-lg">
+                <Badge className="absolute -top-2 left-4 bg-primary text-primary-foreground">Largest Available</Badge>
+                <div className="mx-auto mb-2 p-3 bg-white/20 rounded-full w-fit mt-4">
+                  <Users className="h-6 w-6 text-accent-foreground" />
+                </div>
+                <CardTitle className="text-accent-foreground">28-30+ Passenger Party Buses</CardTitle>
+              </CardHeader>
+              <CardContent className="pt-6">
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-muted-foreground">Hourly Rate</span>
+                  <span className="text-2xl font-bold text-accent">$175/hr</span>
+                </div>
+                <p className="text-muted-foreground mb-4">
+                  Our largest luxury party buses for big celebrations. Ideal for large weddings, corporate groups, and major events in Pittsburgh.
+                </p>
+                <ul className="space-y-2 mb-6">
+                  <li className="flex items-center text-sm">
+                    <CheckCircle className="h-4 w-4 mr-2 text-accent" />
+                    4-hour minimum rental
+                  </li>
+                  <li className="flex items-center text-sm">
+                    <CheckCircle className="h-4 w-4 mr-2 text-accent" />
+                    State-of-the-art sound
+                  </li>
+                  <li className="flex items-center text-sm">
+                    <CheckCircle className="h-4 w-4 mr-2 text-accent" />
+                    Multiple flat screen TVs
+                  </li>
+                </ul>
+                <Button variant="accent" className="w-full shadow-glow" asChild>
+                  <Link to="/contact">Get Quote for 28-30+ Passengers</Link>
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Pricing Summary Card */}
+            <Card className="border-border shadow-luxury bg-muted/30">
+              <CardHeader className="text-center">
+                <div className="mx-auto mb-2 p-3 bg-hero-gradient rounded-full w-fit">
+                  <DollarSign className="h-6 w-6 text-primary-foreground" />
+                </div>
+                <CardTitle>Quick Pricing Guide</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center py-2 border-b border-border">
+                    <span className="font-medium">10-12 passengers</span>
+                    <span className="text-accent font-bold">$100/hr</span>
+                  </div>
+                  <div className="flex justify-between items-center py-2 border-b border-border">
+                    <span className="font-medium">14-15 passengers</span>
+                    <span className="text-accent font-bold">$125/hr</span>
+                  </div>
+                  <div className="flex justify-between items-center py-2 border-b border-border">
+                    <span className="font-medium">20-26 passengers</span>
+                    <span className="text-accent font-bold">$150/hr</span>
+                  </div>
+                  <div className="flex justify-between items-center py-2">
+                    <span className="font-medium">28-40 passengers</span>
+                    <span className="text-accent font-bold">$175/hr</span>
+                  </div>
+                </div>
+                <Button variant="outline" className="w-full mt-6" asChild>
+                  <Link to="/pricing">View Full Pricing Details</Link>
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </section>
 
