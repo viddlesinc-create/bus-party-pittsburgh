@@ -327,7 +327,7 @@ const Fleet = () => {
       <StructuredData data={serviceSchema({
         name: "Party Bus & Limousine Fleet",
         description: "Premium party bus and limousine rental fleet serving Pittsburgh, PA",
-        price: "$100-175 per hour"
+        price: "$150-250 per hour"
       })} />
       <StructuredData data={breadcrumbSchema([
         { name: "Home", url: "/" },
@@ -453,7 +453,7 @@ const Fleet = () => {
               <CardContent className="pt-6">
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-muted-foreground">Hourly Rate</span>
-                  <span className="text-2xl font-bold text-accent">$100/hr</span>
+                  <span className="text-2xl font-bold text-accent">$150/hr</span>
                 </div>
                 <p className="text-muted-foreground mb-4">
                   Perfect for small groups, intimate celebrations, wine tours, and birthday parties. Our mini party buses offer all the amenities in a compact package.
@@ -489,7 +489,7 @@ const Fleet = () => {
               <CardContent className="pt-6">
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-muted-foreground">Hourly Rate</span>
-                  <span className="text-2xl font-bold text-accent">$125/hr</span>
+                  <span className="text-2xl font-bold text-accent">$175/hr</span>
                 </div>
                 <p className="text-muted-foreground mb-4">
                   Ideal for medium groups wanting extra space. Great for bachelor/bachelorette parties, prom groups, and nights out in Pittsburgh.
@@ -525,7 +525,7 @@ const Fleet = () => {
               <CardContent className="pt-6">
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-muted-foreground">Hourly Rate</span>
-                  <span className="text-2xl font-bold text-accent">$150/hr</span>
+                  <span className="text-2xl font-bold text-accent">$200/hr</span>
                 </div>
                 <p className="text-muted-foreground mb-4">
                   Our most popular size for weddings, corporate events, and larger celebrations. Room to dance and mingle with full party amenities.
@@ -561,7 +561,7 @@ const Fleet = () => {
               <CardContent className="pt-6">
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-muted-foreground">Hourly Rate</span>
-                  <span className="text-2xl font-bold text-accent">$150/hr</span>
+                  <span className="text-2xl font-bold text-accent">$200/hr</span>
                 </div>
                 <p className="text-muted-foreground mb-4">
                   Perfect for larger wedding parties, birthday celebrations, and group outings. Premium features with ample space for everyone.
@@ -598,7 +598,7 @@ const Fleet = () => {
               <CardContent className="pt-6">
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-muted-foreground">Hourly Rate</span>
-                  <span className="text-2xl font-bold text-accent">$175/hr</span>
+                  <span className="text-2xl font-bold text-accent">$250/hr</span>
                 </div>
                 <p className="text-muted-foreground mb-4">
                   Our largest luxury party buses for big celebrations. Ideal for large weddings, corporate groups, and major events in Pittsburgh.
@@ -635,19 +635,19 @@ const Fleet = () => {
                 <div className="space-y-3">
                   <div className="flex justify-between items-center py-2 border-b border-border">
                     <span className="font-medium">10-12 passengers</span>
-                    <span className="text-accent font-bold">$100/hr</span>
+                    <span className="text-accent font-bold">$150/hr</span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b border-border">
                     <span className="font-medium">14-15 passengers</span>
-                    <span className="text-accent font-bold">$125/hr</span>
+                    <span className="text-accent font-bold">$175/hr</span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b border-border">
                     <span className="font-medium">20-26 passengers</span>
-                    <span className="text-accent font-bold">$150/hr</span>
+                    <span className="text-accent font-bold">$200/hr</span>
                   </div>
                   <div className="flex justify-between items-center py-2">
                     <span className="font-medium">28-40 passengers</span>
-                    <span className="text-accent font-bold">$175/hr</span>
+                    <span className="text-accent font-bold">$250/hr</span>
                   </div>
                 </div>
                 <Button variant="outline" className="w-full mt-6" asChild>

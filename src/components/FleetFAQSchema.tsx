@@ -18,7 +18,7 @@ export const fleetFAQSchema = {
       "name": "What size party bus do I need for 10 people?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "For 10 people, we recommend our 12 Passenger Mini Party Bus. This gives everyone comfortable seating with room to spare for bags, coolers, and dancing. Starting at $100/hour with a 3-hour minimum, it's our most affordable option for small groups."
+        "text": "For 10 people, we recommend our 12 Passenger Mini Party Bus. This gives everyone comfortable seating with room to spare for bags, coolers, and dancing. Starting at $150/hour with a 3-hour minimum, it's a great option for small groups."
       }
     },
     {
@@ -34,7 +34,7 @@ export const fleetFAQSchema = {
       "name": "What size party bus do I need for 20 people?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "For 20 people, our 22 or 24 Passenger Party Buses are ideal. These mid-size buses offer premium sound systems, LED lighting, bar setups, and plenty of room to dance. Pricing starts at $150/hour with a 4-hour minimum."
+        "text": "For 20 people, our 22 or 24 Passenger Party Buses are ideal. These mid-size buses offer premium sound systems, LED lighting, bar setups, and plenty of room to dance. Pricing starts at $200/hour with a 4-hour minimum."
       }
     },
     {

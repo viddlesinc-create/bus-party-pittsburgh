@@ -92,8 +92,8 @@ const Index = () => {
   return (
     <>
       <MetaTags 
-        title="Pittsburgh Party Bus Rental | $100/hr Party Buses & Limos | Pitt Party Bus"
-        description="Pittsburgh's #1 party bus rental. Buses for 10-40 passengers starting at $100/hr. Weddings, proms, bachelor parties. Free instant quotes. Call (412) 385-3877"
+        title="Pittsburgh Party Bus Rental | $150/hr Party Buses & Limos | Pitt Party Bus"
+        description="Pittsburgh's #1 party bus rental. Buses for 10-40 passengers starting at $150/hr. Weddings, proms, bachelor parties. Free instant quotes. Call (412) 385-3877"
         canonical="/"
       />
       <StructuredData data={combinedSchema} />
