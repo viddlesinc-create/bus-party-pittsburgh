@@ -27,8 +27,10 @@ import {
   Briefcase,
   Calendar
 } from "lucide-react";
-import fleetImage from "@/assets/fleet-showcase.jpg";
-import interiorImage from "@/assets/party-bus-interior.jpg";
+import fleetImageWebP from "@/assets/fleet-showcase.webp";
+import fleetImageJpg from "@/assets/fleet-showcase.jpg";
+import interiorImageWebP from "@/assets/party-bus-interior.webp";
+import interiorImageJpg from "@/assets/party-bus-interior.jpg";
 
 const Index = () => {
   const combinedSchema = {
@@ -171,15 +173,18 @@ const Index = () => {
             </div>
             
             <div className="relative">
-              <img
-                src={fleetImage}
-                alt="Pittsburgh party bus fleet including luxury coaches and limousines"
-                className="rounded-lg shadow-luxury w-full h-auto"
-                width="800"
-                height="600"
-                loading="lazy"
-                decoding="async"
-              />
+              <picture>
+                <source type="image/webp" srcSet={fleetImageWebP} />
+                <img
+                  src={fleetImageJpg}
+                  alt="Pittsburgh party bus fleet including luxury coaches and limousines"
+                  className="rounded-lg shadow-luxury w-full h-auto"
+                  width="800"
+                  height="600"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <div className="absolute -bottom-4 -right-4 bg-accent text-accent-foreground p-4 rounded-lg shadow-glow">
                 <div className="text-2xl font-bold">15+</div>
                 <div className="text-sm">Premium Vehicles</div>
@@ -194,15 +199,18 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="relative">
-              <img
-                src={interiorImage}
-                alt="Luxury party bus interior featuring LED lights, premium sound system, and leather seating"
-                className="rounded-lg shadow-luxury w-full h-auto"
-                width="800"
-                height="600"
-                loading="lazy"
-                decoding="async"
-              />
+              <picture>
+                <source type="image/webp" srcSet={interiorImageWebP} />
+                <img
+                  src={interiorImageJpg}
+                  alt="Luxury party bus interior featuring LED lights, premium sound system, and leather seating"
+                  className="rounded-lg shadow-luxury w-full h-auto"
+                  width="800"
+                  height="600"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <div className="absolute top-4 left-4 bg-primary text-primary-foreground px-3 py-2 rounded-lg font-semibold">
                 Premium Interior
               </div>
