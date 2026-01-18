@@ -7,7 +7,8 @@ import { Calendar, Users, MapPin, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { useState, useEffect } from "react";
-import heroImage from "@/assets/hero-party-bus.jpg";
+import heroImageWebP from "@/assets/hero-party-bus.webp";
+import heroImageJpg from "@/assets/hero-party-bus.jpg";
 const Hero = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -83,16 +84,22 @@ const Hero = () => {
   return <section className="relative min-h-screen flex items-center justify-center overflow-hidden" aria-labelledby="hero-heading">
       {/* Background Image with Overlay - LCP Critical */}
       <div className="absolute inset-0" aria-hidden="true">
-        <img 
-          src={heroImage} 
-          alt="Luxury party bus exterior in Pittsburgh" 
-          className="w-full h-full object-cover" 
-          width="1920" 
-          height="1080"
-          fetchPriority="high"
-          loading="eager"
-          decoding="sync"
-        />
+        <picture>
+          <source 
+            type="image/webp" 
+            srcSet={heroImageWebP}
+          />
+          <img 
+            src={heroImageJpg} 
+            alt="Luxury party bus exterior in Pittsburgh" 
+            className="w-full h-full object-cover" 
+            width="1920" 
+            height="1080"
+            fetchPriority="high"
+            loading="eager"
+            decoding="sync"
+          />
+        </picture>
         <div className="absolute inset-0 bg-luxury-gradient opacity-80"></div>
       </div>
 

@@ -22,7 +22,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
     
-    <!-- LCP Hero Image Preload -->
+    <!-- LCP Hero Image Preload - WebP with JPG fallback -->
+    <link rel="preload" as="image" href="/src/assets/hero-party-bus.webp" type="image/webp" fetchpriority="high" />
     <link rel="preload" as="image" href="/src/assets/hero-party-bus.jpg" fetchpriority="high" />
     
     <!-- Critical CSS for FCP - Inline above-the-fold styles -->
