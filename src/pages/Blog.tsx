@@ -26,7 +26,7 @@ import {
 import { useLoaderData } from "@/lib/use-loader-data";
 import { BlogData } from "@/loaders/blog";
 
-// Blog post images
+// Blog post images - JPG
 import pricingGuideImg from "@/assets/blog-party-bus-pricing-guide.jpg";
 import topEventsImg from "@/assets/blog-top-events-pittsburgh.jpg";
 import busVsLimoImg from "@/assets/blog-party-bus-vs-limo.jpg";
@@ -38,6 +38,18 @@ import promSafetyImg from "@/assets/blog-prom-transportation-safety.jpg";
 import safetyTipsImg from "@/assets/blog-party-bus-safety-tips.jpg";
 import onlineEstimateImg from "@/assets/blog-online-party-bus-estimate.jpg";
 import fleetShowcaseImg from "@/assets/fleet-showcase.jpg";
+// Blog post images - WebP
+import pricingGuideImgWebP from "@/assets/blog-party-bus-pricing-guide.webp";
+import topEventsImgWebP from "@/assets/blog-top-events-pittsburgh.webp";
+import busVsLimoImgWebP from "@/assets/blog-party-bus-vs-limo.webp";
+import bachelorPartyImgWebP from "@/assets/blog-bachelor-bachelorette-party.webp";
+import weddingTransportImgWebP from "@/assets/blog-wedding-transportation.webp";
+import corporateEventImgWebP from "@/assets/blog-corporate-event-transportation.webp";
+import concertBusImgWebP from "@/assets/blog-concert-party-bus.webp";
+import promSafetyImgWebP from "@/assets/blog-prom-transportation-safety.webp";
+import safetyTipsImgWebP from "@/assets/blog-party-bus-safety-tips.webp";
+import onlineEstimateImgWebP from "@/assets/blog-online-party-bus-estimate.webp";
+import fleetShowcaseImgWebP from "@/assets/fleet-showcase.webp";
 
 const Blog = () => {
   // Get SSR data if available (for meta tags during SSR)
@@ -47,6 +59,7 @@ const Blog = () => {
     title: "How Much Does a Party Bus Cost in Pittsburgh? Complete 2024 Guide",
     excerpt: "Everything you need to know about party bus rental pricing in Pittsburgh, including factors that affect cost, seasonal variations, and money-saving tips.",
     image: pricingGuideImg,
+    imageWebP: pricingGuideImgWebP,
     category: "Pricing Guide",
     date: "March 15, 2024",
     readTime: "8 min read",
@@ -59,6 +72,7 @@ const Blog = () => {
       title: "Top 10 Events to Book a Party Bus For in Pittsburgh",
       excerpt: "From Steelers games to weddings, discover the best occasions for luxury group transportation in the Steel City.",
       image: topEventsImg,
+      imageWebP: topEventsImgWebP,
       category: "Event Planning",
       date: "March 12, 2024",
       readTime: "6 min read",
@@ -69,6 +83,7 @@ const Blog = () => {
       title: "Party Bus vs. Limo: Which is Best for Your Group?",
       excerpt: "Compare party buses and limousines to choose the perfect vehicle for your Pittsburgh celebration.",
       image: busVsLimoImg,
+      imageWebP: busVsLimoImgWebP,
       category: "Vehicle Guide",
       date: "March 10, 2024",
       readTime: "5 min read",
@@ -79,6 +94,7 @@ const Blog = () => {
       title: "Bachelor & Bachelorette Party Bus Ideas in Pittsburgh", 
       excerpt: "Creative itinerary ideas for unforgettable bachelor and bachelorette parties using party bus transportation.",
       image: bachelorPartyImg,
+      imageWebP: bachelorPartyImgWebP,
       category: "Event Ideas",
       date: "March 8, 2024",
       readTime: "7 min read",
@@ -89,6 +105,7 @@ const Blog = () => {
       title: "Wedding Transportation: Making Your Day Perfect",
       excerpt: "How to coordinate seamless transportation for your wedding party and guests in Pittsburgh.",
       image: weddingTransportImg,
+      imageWebP: weddingTransportImgWebP,
       category: "Wedding Tips",
       date: "March 5, 2024",
       readTime: "9 min read",
@@ -99,6 +116,7 @@ const Blog = () => {
       title: "Corporate Event Transportation: Impress Your Team",
       excerpt: "Elevate your corporate events with professional group transportation that makes a lasting impression.",
       image: corporateEventImg,
+      imageWebP: corporateEventImgWebP,
       category: "Corporate",
       date: "March 3, 2024",
       readTime: "6 min read",
@@ -109,6 +127,7 @@ const Blog = () => {
       title: "Concert Party Bus: The Ultimate Group Experience",
       excerpt: "Skip the parking hassles and enhance your concert experience with party bus transportation to Pittsburgh venues.",
       image: concertBusImg,
+      imageWebP: concertBusImgWebP,
       category: "Entertainment",
       date: "February 28, 2024",
       readTime: "5 min read",
@@ -119,6 +138,7 @@ const Blog = () => {
       title: "Prom Transportation Safety: Parents' Peace of Mind",
       excerpt: "Why professional prom transportation is the safest choice for Pittsburgh high school students.",
       image: promSafetyImg,
+      imageWebP: promSafetyImgWebP,
       category: "Safety",
       date: "February 25, 2024",
       readTime: "7 min read",
@@ -129,6 +149,7 @@ const Blog = () => {
       title: "Party Bus Safety Tips for a Fun Night Out",
       excerpt: "Essential safety guidelines to ensure your party bus experience is both fun and secure.",
       image: safetyTipsImg,
+      imageWebP: safetyTipsImgWebP,
       category: "Safety Guide",
       date: "February 22, 2024",
       readTime: "6 min read",
@@ -139,6 +160,7 @@ const Blog = () => {
       title: "How to Get an Accurate Party Bus Estimate Online",
       excerpt: "Learn what information to provide when requesting quotes to get the most accurate pricing estimates.",
       image: onlineEstimateImg,
+      imageWebP: onlineEstimateImgWebP,
       category: "Booking Tips",
       date: "February 20, 2024",
       readTime: "4 min read",
@@ -149,6 +171,7 @@ const Blog = () => {
       title: "Party Buses Near Me: Find the Best Pittsburgh Party Bus Rental",
       excerpt: "Looking for party buses near me in Pittsburgh? Discover local party bus rental services, pricing, availability, and tips.",
       image: fleetShowcaseImg,
+      imageWebP: fleetShowcaseImgWebP,
       category: "Local Guide",
       date: "December 17, 2024",
       readTime: "8 min read",
@@ -222,14 +245,18 @@ const Blog = () => {
           <Card className="border-border shadow-luxury overflow-hidden">
             <div className="md:flex">
               <div className="md:w-1/2">
-                <img 
-                  src={featuredPost.image} 
-                  alt={featuredPost.title}
-                  className="w-full h-64 md:h-full object-cover"
-                  loading="lazy"
-                  width="600"
-                  height="400"
-                />
+                <picture>
+                  <source type="image/webp" srcSet={featuredPost.imageWebP} />
+                  <img 
+                    src={featuredPost.image} 
+                    alt={featuredPost.title}
+                    className="w-full h-64 md:h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                    width="600"
+                    height="400"
+                  />
+                </picture>
               </div>
               <div className="md:w-1/2 p-8">
                 <Badge variant="secondary" className="mb-4">{featuredPost.category}</Badge>
@@ -303,14 +330,18 @@ const Blog = () => {
             {blogPosts.map((post, index) => (
               <Card key={index} className="border-border shadow-card-custom hover:shadow-party transition-all duration-300 overflow-hidden group">
                 <div className="relative">
-                  <img 
-                    src={post.image} 
-                    alt={post.title}
-                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                    loading="lazy"
-                    width="400"
-                    height="300"
-                  />
+                  <picture>
+                    <source type="image/webp" srcSet={post.imageWebP} />
+                    <img 
+                      src={post.image} 
+                      alt={post.title}
+                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                      loading="lazy"
+                      decoding="async"
+                      width="400"
+                      height="300"
+                    />
+                  </picture>
                   <div className="absolute top-4 left-4">
                     <Badge variant="secondary" className="bg-background/90">
                       {post.category}
