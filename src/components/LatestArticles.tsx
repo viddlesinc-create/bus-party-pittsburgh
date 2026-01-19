@@ -4,10 +4,14 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
 
-// Blog post images
+// Blog post images - JPG
 import pricingGuideImg from "@/assets/blog-party-bus-pricing-guide.jpg";
 import topEventsImg from "@/assets/blog-top-events-pittsburgh.jpg";
 import busVsLimoImg from "@/assets/blog-party-bus-vs-limo.jpg";
+// Blog post images - WebP
+import pricingGuideImgWebP from "@/assets/blog-party-bus-pricing-guide.webp";
+import topEventsImgWebP from "@/assets/blog-top-events-pittsburgh.webp";
+import busVsLimoImgWebP from "@/assets/blog-party-bus-vs-limo.webp";
 
 export function LatestArticles() {
   const latestPosts = [
@@ -15,6 +19,7 @@ export function LatestArticles() {
       title: "How Much Does a Party Bus Cost in Pittsburgh?",
       excerpt: "Everything you need to know about party bus rental pricing in Pittsburgh, including factors that affect cost.",
       image: pricingGuideImg,
+      imageWebP: pricingGuideImgWebP,
       category: "Pricing Guide",
       date: "March 15, 2024",
       readTime: "8 min",
@@ -24,6 +29,7 @@ export function LatestArticles() {
       title: "Top 10 Events to Book a Party Bus For",
       excerpt: "From Steelers games to weddings, discover the best occasions for luxury group transportation.",
       image: topEventsImg,
+      imageWebP: topEventsImgWebP,
       category: "Event Planning",
       date: "March 12, 2024",
       readTime: "6 min",
@@ -33,6 +39,7 @@ export function LatestArticles() {
       title: "Party Bus vs. Limo: Which is Best?",
       excerpt: "Compare party buses and limousines to choose the perfect vehicle for your celebration.",
       image: busVsLimoImg,
+      imageWebP: busVsLimoImgWebP,
       category: "Vehicle Guide",
       date: "March 10, 2024",
       readTime: "5 min",
@@ -56,15 +63,18 @@ export function LatestArticles() {
           {latestPosts.map((post, index) => (
             <Card key={index} className="border-border shadow-card-custom hover:shadow-party transition-all duration-300 overflow-hidden group">
               <div className="relative">
-                <img 
-                  src={post.image} 
-                  alt={post.title}
-                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                  loading="lazy"
-                  decoding="async"
-                  width="400"
-                  height="300"
-                />
+                <picture>
+                  <source type="image/webp" srcSet={post.imageWebP} />
+                  <img 
+                    src={post.image} 
+                    alt={post.title}
+                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                    decoding="async"
+                    width="400"
+                    height="300"
+                  />
+                </picture>
                 <div className="absolute top-4 left-4">
                   <Badge variant="secondary" className="bg-background/90">
                     {post.category}
