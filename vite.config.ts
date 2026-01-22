@@ -37,11 +37,13 @@ export default defineConfig(({ mode }) => ({
   build: {
     cssCodeSplit: true,
     minify: "esbuild",
+    target: "esnext",
     rollupOptions: {
       output: {
         manualChunks: {
           "react-vendor": ["react", "react-dom", "react-router-dom"],
           "ui-vendor": ["lucide-react", "@radix-ui/react-accordion", "@radix-ui/react-dialog"],
+          "helmet": ["react-helmet-async"],
         },
       },
     },
