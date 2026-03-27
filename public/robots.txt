@@ -6,3 +6,6 @@ Disallow: /admin/
 
 # Sitemap
 Sitemap: https://pittpartybus.com/sitemap.xml
+
+# LLM Context
+Allow: /llms.txt
