@@ -147,7 +147,7 @@ const Events = () => {
       <section className="py-20 bg-hero-gradient">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-6xl font-bold text-primary-foreground mb-6">
-            Party Bus Events & Event Transportation in Pittsburgh
+            Pittsburgh Event Transportation — Weddings, Proms, Corporate
           </h1>
           <p className="text-xl text-primary-foreground/90">
             Looking for reliable event transportation in Pittsburgh? From intimate celebrations to grand occasions, 

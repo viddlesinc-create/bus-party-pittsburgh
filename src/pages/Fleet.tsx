@@ -344,7 +344,7 @@ const Fleet = () => {
       <section className="py-20 bg-hero-gradient">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-6xl font-bold text-primary-foreground mb-6">
-            Pittsburgh Party Bus & Limousine Fleet
+            Pittsburgh Party Bus Fleet — 6 to 40 Passenger Vehicles
           </h1>
           <p className="text-xl text-primary-foreground/90 max-w-3xl mx-auto mb-8">
             Looking for a party bus rental in Pittsburgh? Explore our diverse fleet from small party buses (8-14 passengers) 
