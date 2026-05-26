@@ -185,10 +185,6 @@ const Contact = () => {
               <Phone className="mr-2 h-5 w-5" />
               Call (412) 385-3877
             </Button>
-            <Button variant="outline" size="xl" className="bg-primary-foreground/10 border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-foreground backdrop-blur-sm">
-              <MessageSquare className="mr-2 h-5 w-5" />
-              Send Message
-            </Button>
           </div>
         </div>
       </section>
