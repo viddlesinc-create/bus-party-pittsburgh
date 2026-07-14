@@ -3,29 +3,26 @@ const fs = require("fs");
 const path = require("path");
 const { createServer } = require("vite");
 
-const routes = [
-  "/",
-  "/fleet",
-  "/events",
-  "/locations",
-  "/pricing",
-  "/contact",
-  "/faqs",
-  "/blog",
-  "/testimonials",
-  "/privacy",
-  "/terms",
-  "/blog/party-bus-pricing-guide",
-  "/blog/top-events-pittsburgh",
-  "/blog/party-bus-vs-limo",
-  "/blog/bachelor-bachelorette-ideas",
-  "/blog/wedding-transportation",
-  "/blog/corporate-event-transportation",
-  "/blog/concert-party-bus",
-  "/blog/prom-transportation-safety",
-  "/blog/party-bus-safety-tips",
-  "/blog/accurate-party-bus-estimate"
-];
+// Routes are derived from public/sitemap.xml so the prerender list can never
+// drift from what we tell crawlers exists. Every <loc> must render to a real
+// HTML file — a missing route here means a 404 in production.
+function routesFromSitemap() {
+  const sitemapPath = path.join(process.cwd(), "public", "sitemap.xml");
+  const xml = fs.readFileSync(sitemapPath, "utf-8");
+  const locs = [...xml.matchAll(/<loc>\s*([^<\s]+)\s*<\/loc>/g)].map((m) => m[1]);
+  if (locs.length === 0) {
+    throw new Error("No <loc> entries found in public/sitemap.xml");
+  }
+  const routes = locs.map((loc) => {
+    const u = new URL(loc);
+    return u.pathname === "/" ? "/" : u.pathname.replace(/\/+$/, "");
+  });
+  return [...new Set(routes)];
+}
+
+// "/404" hits the router's catch-all (NotFound) and is written to dist/404.html,
+// which Netlify serves automatically for unknown paths with a real 404 status.
+const routes = [...routesFromSitemap(), "/404"];
 
 async function prerender() {
   const root = process.cwd();
@@ -46,6 +43,9 @@ async function prerender() {
 
   const vite = await createServer({
     root,
+    // "production" keeps dev-only plugins (lovable-tagger's data-lov-* markup)
+    // out of the prerendered HTML.
+    mode: "production",
     server: { middlewareMode: "ssr" },
     appType: "custom"
   });
@@ -65,6 +65,19 @@ async function prerender() {
 
       // Inject HTML into the SSR outlet
       let finalHtml = template.replace("<!--ssr-outlet-->", html);
+
+      // When the page's Helmet emitted a real <title>, strip the template's
+      // static title/description/OG/Twitter tags so every page ships exactly
+      // one of each (duplicate titles were getting flagged by crawlers).
+      // Verification tags (google-site-verification, msvalidate) are untouched.
+      if (headTags && /<title[^>]*>[^<]+<\/title>/.test(headTags)) {
+        finalHtml = finalHtml
+          .replace(/^\s*<title>.*<\/title>\s*$/m, "")
+          .replace(/^\s*<meta name="description"[^>]*>\s*$/m, "")
+          .replace(/^\s*<meta name="robots"[^>]*>\s*$/m, "")
+          .replace(/^\s*<meta property="og:(title|description|type)"[^>]*>\s*$/gm, "")
+          .replace(/^\s*<meta name="twitter:(title|description|card)"[^>]*>\s*$/gm, "");
+      }
 
       // Inject HEAD_TAGS
       if (headTags && headTags.length > 0) {

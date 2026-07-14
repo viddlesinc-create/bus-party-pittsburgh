@@ -24,6 +24,13 @@ RewriteRule ^testimonials/?$ /testimonials.html [L]
 RewriteRule ^privacy/?$ /privacy.html [L]
 RewriteRule ^terms/?$ /terms.html [L]
 
+# Location pages - serve nested .html files
+RewriteRule ^locations/north-hills/?$ /locations/north-hills.html [L]
+RewriteRule ^locations/south-hills/?$ /locations/south-hills.html [L]
+RewriteRule ^locations/downtown/?$ /locations/downtown.html [L]
+RewriteRule ^locations/south-side/?$ /locations/south-side.html [L]
+RewriteRule ^locations/oakland/?$ /locations/oakland.html [L]
+
 # Blog posts - serve nested .html files
 RewriteRule ^blog/party-bus-pricing-guide/?$ /blog/party-bus-pricing-guide.html [L]
 RewriteRule ^blog/top-events-pittsburgh/?$ /blog/top-events-pittsburgh.html [L]
@@ -35,11 +42,12 @@ RewriteRule ^blog/concert-party-bus/?$ /blog/concert-party-bus.html [L]
 RewriteRule ^blog/prom-transportation-safety/?$ /blog/prom-transportation-safety.html [L]
 RewriteRule ^blog/party-bus-safety-tips/?$ /blog/party-bus-safety-tips.html [L]
 RewriteRule ^blog/accurate-party-bus-estimate/?$ /blog/accurate-party-bus-estimate.html [L]
+RewriteRule ^blog/party-buses-near-me/?$ /blog/party-buses-near-me.html [L]
 
-# If none of the above match, fall back to index.html for client-side routing
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ /index.html [L]
+# Unknown paths get a real 404 (prerendered 404.html), NEVER the SPA shell.
+# A /* -> /index.html catch-all here once masked missing prerendered pages by
+# serving crawlers an empty 200 shell — do not reintroduce it.
+ErrorDocument 404 /404.html
 
 # Browser caching for static assets - Aggressive caching for immutable assets
 <IfModule mod_expires.c>

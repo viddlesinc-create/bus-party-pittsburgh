@@ -2,7 +2,12 @@ import React from "react";
 import ReactDOMServer from "react-dom/server";
 import { StaticRouter } from "react-router-dom/server";
 import { HelmetProvider, HelmetServerState } from "react-helmet-async";
-import App from "./App";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { ScrollToTop } from "@/components/ScrollToTop";
+import { Routes } from "react-router-dom";
+import { renderRoutes } from "./router";
+import { eagerComponents } from "./ssr-routes";
 import { SSRDataProvider } from "./lib/ssr-data-context";
 
 export interface RenderResult {
@@ -11,8 +16,14 @@ export interface RenderResult {
   initialData: string;
 }
 
+// This tree mirrors entry-client.tsx so hydration markup matches. Two SSR-only
+// differences: the HelmetProvider gets a context object (the ONLY provider in
+// the tree — a nested context-less provider would shadow it and every page's
+// head tags would collect into the void), and renderRoutes receives eager
+// components because renderToString cannot resolve React.lazy.
 export async function render(url: string, initialData: unknown = {}): Promise<RenderResult> {
   const helmetContext: { helmet?: HelmetServerState } = {};
+  const queryClient = new QueryClient();
 
   const ssrDataValue = {
     data: initialData,
@@ -20,21 +31,22 @@ export async function render(url: string, initialData: unknown = {}): Promise<Re
   };
 
   const app = (
-    <React.StrictMode>
-      <SSRDataProvider value={ssrDataValue}>
-        <HelmetProvider context={helmetContext}>
-          <StaticRouter location={url}>
-            <App />
-          </StaticRouter>
-        </HelmetProvider>
-      </SSRDataProvider>
-    </React.StrictMode>
+    <HelmetProvider context={helmetContext}>
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <SSRDataProvider value={ssrDataValue}>
+            <StaticRouter location={url}>
+              <ScrollToTop />
+              <Routes>{renderRoutes(eagerComponents)}</Routes>
+            </StaticRouter>
+          </SSRDataProvider>
+        </TooltipProvider>
+      </QueryClientProvider>
+    </HelmetProvider>
   );
 
-  // Server-render the app to a string
   const html = ReactDOMServer.renderToString(app);
 
-  // Collect <Helmet> tags from the HelmetProvider context
   const headTags = helmetContext.helmet
     ? [
         helmetContext.helmet.title.toString(),

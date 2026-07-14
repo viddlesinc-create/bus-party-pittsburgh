@@ -105,30 +105,40 @@ const LazyFallback = () => (
   </div>
 );
 
-// Helper to render all routes as Route elements with Suspense for lazy components
-export function renderRoutes() {
+// Helper to render all routes as Route elements with Suspense for lazy components.
+// `overrides` maps route path -> eagerly-imported component; the SSR entry passes
+// these because renderToString cannot resolve React.lazy (it would emit the
+// Suspense fallback instead of page content). The Suspense wrapper is kept in
+// both trees so server and client markup structure match for hydration.
+export function renderRoutes(overrides?: Record<string, ComponentType>) {
   return (
     <>
-      {routes.map((route) => (
-        <Route
-          key={route.path}
-          path={route.path}
-          element={
-            route.isLazy ? (
-              <Suspense fallback={<LazyFallback />}>
-                <route.component />
-              </Suspense>
-            ) : (
-              <route.component />
-            )
-          }
-        />
-      ))}
+      {routes.map((route) => {
+        const Component = overrides?.[route.path] ?? route.component;
+        return (
+          <Route
+            key={route.path}
+            path={route.path}
+            element={
+              route.isLazy ? (
+                <Suspense fallback={<LazyFallback />}>
+                  <Component />
+                </Suspense>
+              ) : (
+                <Component />
+              )
+            }
+          />
+        );
+      })}
       <Route
         path={notFoundRoute.path}
         element={
           <Suspense fallback={<LazyFallback />}>
-            <notFoundRoute.component />
+            {(() => {
+              const NotFoundComponent = overrides?.["*"] ?? notFoundRoute.component;
+              return <NotFoundComponent />;
+            })()}
           </Suspense>
         }
       />

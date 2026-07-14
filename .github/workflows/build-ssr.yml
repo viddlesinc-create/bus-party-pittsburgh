@@ -29,6 +29,12 @@ jobs:
       - name: Prerender pages (SSR -> static HTML)
         run: npm run prerender
 
+      # Required gate: every sitemap <loc> must have a prerendered HTML file
+      # with real content. If this fails, the workflow goes red — a routeless
+      # build can never look green.
+      - name: Validate all sitemap routes exist in build
+        run: bash scripts/validate-routes.sh --dist
+
       - name: Verify build output
         run: node scripts/verify-build.js
         continue-on-error: true

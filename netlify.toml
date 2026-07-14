@@ -1,0 +1,27 @@
+# Netlify build configuration for pittpartybus.com
+#
+# The prerender step is NOT optional: `vite build` alone emits only the SPA
+# shell (dist/index.html + assets). Without `npm run prerender` every non-root
+# route 404s in production, because this site has no redirects — routes are
+# served from real prerendered HTML files (fleet.html, blog/*.html, ...).
+#
+# validate-routes.sh --dist fails the build (and therefore blocks the publish)
+# if any sitemap URL is missing its prerendered file or contains a content-less
+# shell. A routeless deploy cannot go live.
+#
+# Deliberately NO /* -> /index.html catch-all redirect anywhere: unknown paths
+# must return a real 404 (dist/404.html), never a 200 SPA shell.
+
+[build]
+  command = "npm run build && npm run prerender && bash scripts/validate-routes.sh --dist"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Hashed assets are immutable; cache them for a year (parity with the caching
+# the old Apache .htaccess provided).
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
