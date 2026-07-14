@@ -1,5 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
+import { useLocation } from "react-router-dom";
 import { useSSRData } from "@/lib/ssr-data-context";
 
 interface SSRMeta {
@@ -36,6 +37,9 @@ export function MetaTags({
   // Try to get SSR meta data
   const ssrData = useSSRData<{ meta?: SSRMeta }>();
   const ssrMeta = ssrData?.meta;
+  // Router location works during SSR too (window does not) — pages that don't
+  // pass a canonical prop were prerendering with the bare domain as canonical.
+  const { pathname } = useLocation();
 
   // Use SSR data if available, otherwise fall back to props
   const title = ssrMeta?.title || propTitle;
@@ -48,7 +52,7 @@ export function MetaTags({
     ? canonical.startsWith("http")
       ? canonical
       : `${baseUrl}${canonical}`
-    : `${baseUrl}${typeof window !== "undefined" ? window.location.pathname : ""}`;
+    : `${baseUrl}${pathname === "/" ? "/" : pathname.replace(/\/+$/, "")}`;
   const fullOgImage = ogImage.startsWith("http") ? ogImage : `${baseUrl}${ogImage}`;
 
   return (
