@@ -1,4 +1,5 @@
 import { MetaTags } from "@/components/MetaTags";
+import { InitialsAvatar } from "@/components/InitialsAvatar";
 import { StructuredData, breadcrumbSchema } from "@/components/StructuredData";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { InternalLinkCTA } from "@/components/InternalLinkCTA";
@@ -106,21 +107,18 @@ const Events = () => {
     {
       name: "Amanda & David",
       event: "Wedding",
-      image: "/placeholder.svg",
       text: "Pitt Party Bus made our wedding day absolutely perfect! The service was impeccable and our guests are still talking about the amazing transportation.",
       rating: 5
     },
     {
       name: "Sarah's Sweet 16", 
       event: "Birthday Party",
-      image: "/placeholder.svg",
       text: "The best birthday party ever! The party bus was decorated perfectly and the driver was so professional. Sarah felt like a celebrity!",
       rating: 5
     },
     {
       name: "Tech Solutions Corp",
       event: "Corporate Event",
-      image: "/placeholder.svg", 
       text: "Outstanding service for our corporate retreat. Professional, punctual, and helped make our event a huge success. Highly recommended!",
       rating: 5
     }
@@ -313,13 +311,9 @@ const Events = () => {
               <Card key={index} className="border-border shadow-card-custom">
                 <CardHeader>
                   <div className="flex items-center space-x-4">
-                    <img 
-                      src={testimonial.image} 
-                      alt={testimonial.name}
-                      className="w-12 h-12 rounded-full object-cover"
-                      loading="lazy"
-                      width="48"
-                      height="48"
+                    <InitialsAvatar
+                      name={testimonial.name}
+                      className="w-12 h-12 text-base"
                     />
                     <div>
                       <CardTitle className="text-lg">{testimonial.name}</CardTitle>
