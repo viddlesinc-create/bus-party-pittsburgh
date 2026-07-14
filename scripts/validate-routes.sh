@@ -65,6 +65,34 @@ if [[ "$MODE" == "--dist" ]]; then
   else
     printf "%-55s %s\n" "/404.html" "OK"
   fi
+
+  # Imagery gate. Two ways image URLs have shipped broken before:
+  #  1. Dev-server paths (/src/assets/...) leaking out of the prerender —
+  #     they only resolve on a Vite dev server, never in a deployed build.
+  #  2. Site-relative references (img src, og:image, preloads) pointing at
+  #     files that don't exist in dist/.
+  echo
+  DEVPATH_FILES=$(grep -rl "/src/assets" dist --include="*.html" 2>/dev/null || true)
+  if [[ -n "$DEVPATH_FILES" ]]; then
+    echo "IMAGES: dev-server /src/assets paths leaked into:"
+    echo "$DEVPATH_FILES"
+    FAILURES=$((FAILURES+1))
+  fi
+  IMG_REFS=$( { grep -rho 'src="/[^"]*\.\(jpg\|jpeg\|png\|webp\|svg\|gif\|avif\)"' dist --include="*.html" | sed 's/^src="//;s/"$//' ;
+                grep -rho 'content="https://pittpartybus\.com/[^"]*\.\(jpg\|jpeg\|png\|webp\|svg\|gif\|avif\)"' dist --include="*.html" | sed 's/^content="https:\/\/pittpartybus\.com//;s/"$//' ;
+              } 2>/dev/null | sort -u || true)
+  IMG_MISSING=0
+  for img in $IMG_REFS; do
+    if [[ ! -f "dist${img}" ]]; then
+      echo "IMAGES: referenced but missing from dist: $img"
+      IMG_MISSING=$((IMG_MISSING+1))
+    fi
+  done
+  if [[ "$IMG_MISSING" -gt 0 ]]; then
+    FAILURES=$((FAILURES+IMG_MISSING))
+  else
+    echo "IMAGES: all $(echo "$IMG_REFS" | grep -c . ) referenced image paths resolve  OK"
+  fi
 else
   BASE="${MODE%/}"
   for p in $PATHS; do

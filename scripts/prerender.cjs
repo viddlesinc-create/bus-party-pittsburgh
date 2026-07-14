@@ -1,7 +1,13 @@
 // scripts/prerender.cjs
+//
+// Renders every sitemap route to static HTML using the PRODUCTION SSR bundle
+// (dist-server/entry-server.js, built by `vite build --ssr`). Do NOT render
+// through a Vite dev server here: dev-mode asset imports resolve to
+// /src/assets/... URLs which do not exist in a deployed build — that shipped
+// broken images on every page that imports one.
 const fs = require("fs");
 const path = require("path");
-const { createServer } = require("vite");
+const { pathToFileURL } = require("url");
 
 // Routes are derived from public/sitemap.xml so the prerender list can never
 // drift from what we tell crawlers exists. Every <loc> must render to a real
@@ -41,20 +47,18 @@ async function prerender() {
     throw new Error("Template does not contain <!--ssr-outlet--> placeholder.");
   }
 
-  const vite = await createServer({
-    root,
-    // "production" keeps dev-only plugins (lovable-tagger's data-lov-* markup)
-    // out of the prerendered HTML.
-    mode: "production",
-    server: { middlewareMode: "ssr" },
-    appType: "custom"
-  });
+  const ssrEntryPath = path.join(root, "dist-server", "entry-server.js");
+  if (!fs.existsSync(ssrEntryPath)) {
+    throw new Error(
+      "dist-server/entry-server.js not found. Run `vite build --ssr src/entry-server.tsx --outDir dist-server` first (npm run prerender does both)."
+    );
+  }
 
-  try {
-    const entryServer = await vite.ssrLoadModule("/src/entry-server.tsx");
+  {
+    const entryServer = await import(pathToFileURL(ssrEntryPath).href);
 
     if (!entryServer || typeof entryServer.render !== "function") {
-      throw new Error("`render` function not found in /src/entry-server.tsx");
+      throw new Error("`render` function not found in dist-server/entry-server.js");
     }
 
     for (const route of routes) {
@@ -122,8 +126,6 @@ async function prerender() {
     }
 
     console.log("\n✅ SSR prerendering complete!\n");
-  } finally {
-    await vite.close();
   }
 }
 

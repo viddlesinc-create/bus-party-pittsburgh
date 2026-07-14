@@ -5,7 +5,7 @@ import { componentTagger } from "lovable-tagger";
 import viteCompression from "vite-plugin-compression";
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
+export default defineConfig(({ mode, isSsrBuild }) => ({
   server: {
     port: 8080,
   },
@@ -40,11 +40,15 @@ export default defineConfig(({ mode }) => ({
     target: "esnext",
     rollupOptions: {
       output: {
-        manualChunks: {
-          "react-vendor": ["react", "react-dom", "react-router-dom"],
-          "ui-vendor": ["lucide-react", "@radix-ui/react-accordion", "@radix-ui/react-dialog"],
-          "helmet": ["react-helmet-async"],
-        },
+        // Chunk splitting is a client-bundle concern; react & friends are
+        // external in the SSR build and can't be assigned to chunks there.
+        manualChunks: isSsrBuild
+          ? undefined
+          : {
+              "react-vendor": ["react", "react-dom", "react-router-dom"],
+              "ui-vendor": ["lucide-react", "@radix-ui/react-accordion", "@radix-ui/react-dialog"],
+              "helmet": ["react-helmet-async"],
+            },
       },
     },
   },

@@ -30,7 +30,10 @@ export function MetaTags({
   title: propTitle,
   description: propDescription,
   canonical: propCanonical,
-  ogImage = "/hero-party-bus.jpg",
+  // Default lives in public/og-image.jpg (1200x630, matching the
+  // og:image:width/height tags below). The old default "/hero-party-bus.jpg"
+  // never existed at the site root — every page's og:image was a 404.
+  ogImage = "/og-image.jpg",
   type = "website",
   article,
 }: MetaTagsProps) {
