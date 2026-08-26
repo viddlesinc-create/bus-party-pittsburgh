@@ -1,7 +1,9 @@
 import { MetaTags } from "@/components/MetaTags";
 import { LastUpdated } from "@/components/LastUpdated";
+import { ComparisonTable } from "@/components/ComparisonTable";
 import { StructuredData, serviceSchema, breadcrumbSchema } from "@/components/StructuredData";
-import { FleetFAQSchema } from "@/components/FleetFAQSchema";
+import { FAQSection } from "@/components/FAQSection";
+import { FLEET_FAQS } from "@/data/faqs";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { InternalLinkCTA } from "@/components/InternalLinkCTA";
 import Navigation from "@/components/Navigation";
@@ -55,6 +57,22 @@ import expeditionExt from "@/assets/private-car-expedition-exterior.jpg";
 import expeditionInt from "@/assets/private-car-expedition-interior.jpg";
 import continentalExt from "@/assets/private-car-lincoln-continental-exterior.jpg";
 import continentalInt from "@/assets/private-car-lincoln-continental-interior.jpg";
+
+const CATEGORY_LABELS: Record<string, string> = {
+  partyBuses: "Party bus",
+  miniPartyBuses: "Mini party bus",
+  limousines: "Limousine",
+  shuttleService: "Luxury shuttle",
+  privateCar: "Private car",
+};
+
+const CATEGORY_BEST_FOR: Record<string, string> = {
+  partyBuses: "Weddings, proms, large groups",
+  miniPartyBuses: "Small groups, short trips",
+  limousines: "Formal arrivals, airport runs",
+  shuttleService: "Guest shuttles, corporate loops",
+  privateCar: "Executive and airport transfers",
+};
 
 const Fleet = () => {
   // Get SSR data if available (for meta tags during SSR)
@@ -334,7 +352,6 @@ const Fleet = () => {
         { name: "Home", url: "/" },
         { name: "Fleet", url: "/fleet" }
       ])} />
-      <FleetFAQSchema />
       <Navigation />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -808,6 +825,32 @@ const Fleet = () => {
           </div>
         </div>
       </section>
+
+      {/* Rows are derived from fleetCategories, the same data the vehicle cards
+          above render, so the table cannot list a vehicle we do not operate. */}
+      <section className="py-14 bg-muted/40">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold mb-6">Compare the fleet</h2>
+          <ComparisonTable
+            caption="Every Pitt Party Bus vehicle available in Pittsburgh, PA, by capacity and category."
+            columns={["Vehicle", "Capacity", "Category", "Best for"]}
+            rows={Object.entries(fleetCategories).flatMap(([category, vehicles]) =>
+              vehicles.map((v: { name: string; capacity: string; bestFor?: string }) => [
+                v.name,
+                v.capacity,
+                CATEGORY_LABELS[category] ?? category,
+                v.bestFor ?? CATEGORY_BEST_FOR[category] ?? "Group transportation",
+              ])
+            )}
+          />
+        </div>
+      </section>
+
+      <FAQSection
+        faqs={FLEET_FAQS}
+        heading="Choosing the right vehicle"
+        intro="How to size a party bus for your group, answered in detail."
+      />
 
       <Footer />
     </div>

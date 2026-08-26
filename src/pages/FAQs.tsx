@@ -1,5 +1,6 @@
 import { MetaTags } from "@/components/MetaTags";
 import { FAQSchema } from "@/components/FAQSchema";
+import { FAQ_PAGE_FAQS } from "@/data/faqs";
 import Navigation from "@/components/Navigation";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { LastUpdated } from "@/components/LastUpdated";
@@ -23,7 +24,7 @@ import {
 } from "lucide-react";
 
 const FAQs = () => {
-  const faqCategories = [
+  const rawFaqCategories = [
     {
       title: "Booking & Reservations",
       icon: Calendar,
@@ -138,6 +139,19 @@ const FAQs = () => {
 
 
   // Flatten all FAQs for schema
+  // Answers come from src/data/faqs.ts, which holds the full 100-200 word
+  // versions; the categories and question order stay as they are here. Keeping
+  // one source means the visible accordion and the FAQPage markup below cannot
+  // say different things, which they previously did.
+  const expandedAnswers = new Map(FAQ_PAGE_FAQS.map((f) => [f.question, f.answer]));
+  const faqCategories = rawFaqCategories.map((category) => ({
+    ...category,
+    faqs: category.faqs.map((faq) => ({
+      ...faq,
+      answer: expandedAnswers.get(faq.question) ?? faq.answer,
+    })),
+  }));
+
   const allFaqs = faqCategories.flatMap(category => category.faqs);
 
   return (

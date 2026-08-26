@@ -1,6 +1,8 @@
 import { lazy, Suspense } from "react";
 import { MetaTags } from "@/components/MetaTags";
-import { StructuredData, organizationSchema, websiteSchema, localBusinessSchema, homepageFAQSchema } from "@/components/StructuredData";
+import { StructuredData, organizationSchema, websiteSchema, localBusinessSchema } from "@/components/StructuredData";
+import { FAQSection } from "@/components/FAQSection";
+import { HOME_FAQS } from "@/data/faqs";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
@@ -35,7 +37,11 @@ import interiorImageJpg from "@/assets/party-bus-interior.jpg";
 const Index = () => {
   const combinedSchema = {
     "@context": "https://schema.org",
-    "@graph": [organizationSchema, websiteSchema, localBusinessSchema, homepageFAQSchema]
+    // homepageFAQSchema is deliberately NOT in this graph any more. It declared
+    // five questions that appeared nowhere on the page, which is exactly what
+    // Google's FAQ guidance prohibits. The questions are now rendered by
+    // <FAQSection> below, which emits the FAQPage markup from the same array.
+    "@graph": [organizationSchema, websiteSchema, localBusinessSchema]
   };
 
   const features = [
@@ -724,6 +730,12 @@ const Index = () => {
         </div>
       </section>
       </main>
+
+      <FAQSection
+        faqs={HOME_FAQS}
+        intro="The questions Pittsburgh renters ask us most, answered in full."
+        className="bg-muted/40"
+      />
 
       <Footer />
     </>

@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { LastUpdated } from "@/components/LastUpdated";
+import { FAQSection } from "@/components/FAQSection";
+import { LOCATION_FAQS } from "@/data/faqs";
 import { MetaTags } from "@/components/MetaTags";
 import { StructuredData, breadcrumbSchema } from "@/components/StructuredData";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -370,6 +372,15 @@ export function LocationPageLayout({
           </div>
         </div>
       </section>
+
+      {/* Area-specific FAQ. Visible copy and FAQPage JSON-LD both come from
+          LOCATION_FAQS, so the markup can never drift from the page. */}
+      <FAQSection
+        faqs={LOCATION_FAQS[areaSlug] ?? []}
+        heading={`${areaName} party bus questions`}
+        intro={`What people ask us most about renting a party bus in ${areaName}.`}
+        className="bg-muted/40"
+      />
 
       <Footer />
     </div>

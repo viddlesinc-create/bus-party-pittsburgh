@@ -1,5 +1,8 @@
 import { MetaTags } from "@/components/MetaTags";
 import { LastUpdated } from "@/components/LastUpdated";
+import { FAQSection } from "@/components/FAQSection";
+import { ComparisonTable } from "@/components/ComparisonTable";
+import { EVENTS_FAQS } from "@/data/faqs";
 import { InitialsAvatar } from "@/components/InitialsAvatar";
 import { StructuredData, breadcrumbSchema } from "@/components/StructuredData";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -447,6 +450,32 @@ const Events = () => {
         primaryLink={{ text: "Get Free Quote", href: "/contact" }}
         secondaryLink={{ text: "Call (412) 385-3877", href: "tel:4123853877" }}
         bgClass="bg-accent"
+      />
+
+      <section className="py-14">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold mb-6">How long to book, by event type</h2>
+          <ComparisonTable
+            caption="Typical Pitt Party Bus booking length and vehicle by event type in Pittsburgh, PA."
+            columns={["Event", "Typical hours", "Usual vehicle", "Book ahead by", "Notes"]}
+            rows={[
+              ["Wedding (party + photos)", "5-6 hours", "22-26 passenger bus", "3-6 months", "Add an hour for photos running long"],
+              ["Wedding guest shuttle", "4-5 hours", "14 or 23 passenger shuttle", "3-6 months", "Runs in loops between hotel and venue"],
+              ["Prom or graduation", "4-5 hours", "22-30 passenger bus", "6-8 weeks", "Dry vehicle; no alcohol on board"],
+              ["Bachelor / bachelorette", "5-6 hours", "22-30 passenger bus", "4-8 weeks", "21+ may bring their own drinks"],
+              ["Concert or game day", "4-5 hours", "Mini bus to 30 passenger", "2-4 weeks", "Build slack into the return leg"],
+              ["Corporate / conference", "3-5 hours", "14 or 23 passenger shuttle", "2-4 weeks", "Can be invoiced to the company"],
+              ["Birthday night out", "4-5 hours", "Mini bus to 30 passenger", "2-4 weeks", "Three stops included as standard"],
+            ]}
+          />
+        </div>
+      </section>
+
+      <FAQSection
+        faqs={EVENTS_FAQS}
+        heading="Event transportation questions"
+        intro="Planning a wedding, prom or corporate event in Pittsburgh? Start here."
+        className="bg-muted/40"
       />
 
       <Footer />
