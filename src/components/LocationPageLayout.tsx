@@ -72,12 +72,10 @@ export function LocationPageLayout({
       "@type": "Place",
       "name": areaName
     },
-    "priceRange": BUSINESS_INFO.priceRange,
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "5.0",
-      "reviewCount": "500"
-    }
+    "priceRange": BUSINESS_INFO.priceRange
+    // No aggregateRating — the 5.0/500 that used to sit here was unverifiable and
+    // was being repeated on every one of the five location pages. See the note in
+    // StructuredData.tsx.
   };
 
   return (

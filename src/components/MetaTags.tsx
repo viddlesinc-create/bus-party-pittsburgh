@@ -15,6 +15,8 @@ interface MetaTagsProps {
   canonical?: string;
   ogImage?: string;
   type?: "website" | "article";
+  /** Set on pages that must never be indexed (the 404 page). Defaults to indexable. */
+  noindex?: boolean;
   article?: {
     publishedTime?: string;
     author?: string;
@@ -35,6 +37,7 @@ export function MetaTags({
   // never existed at the site root — every page's og:image was a 404.
   ogImage = "/og-image.jpg",
   type = "website",
+  noindex = false,
   article,
 }: MetaTagsProps) {
   // Try to get SSR meta data
@@ -65,8 +68,10 @@ export function MetaTags({
       <meta name="description" content={description} />
       {/* SEO: Global robots directive - all pages using MetaTags are indexable by default.
           Main nav pages (/, /fleet, /events, /pricing, /contact, /faqs, /blog) are prioritized
-          through strong internal linking rather than noindex on other pages. */}
-      <meta name="robots" content="index, follow" />
+          through strong internal linking rather than noindex on other pages.
+          The 404 page opts out via noindex: it was previously declaring itself
+          indexable, which matters here because ~38 retired URLs still land on it. */}
+      <meta name="robots" content={noindex ? "noindex, follow" : "index, follow"} />
 
       {/* Canonical */}
       <link rel="canonical" href={fullCanonical} />

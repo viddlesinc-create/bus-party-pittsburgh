@@ -25,3 +25,225 @@
   for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+# ---------------------------------------------------------------------------
+# Legacy URL recovery (301)
+#
+# Google Search Console shows 38 URLs from the site's previous WordPress build
+# still indexed and accumulating impressions — 12,875 impressions and 61 clicks
+# over the last 16 months. None of them exist in this repo, and because there is
+# deliberately no catch-all redirect (see the header comment), every one of them
+# returns a hard 404 to real searchers.
+#
+# Eight of them still rank on page one:
+#   /services/sporting-events/   pos 4.5    /?page_id=3448              pos 2.9
+#   /locations/wexford/          pos 5.5    /about/                     pos 6.5
+#   /faq-2/                      pos 7.3    /services/bachlorette-party/ pos 7.7
+#   /services/concerts/          pos 8.1    /services/corporate-events/  pos 8.5
+#
+# These rules are explicit, one path each. They are NOT a catch-all and must not
+# be replaced by one: an unknown path must still return dist/404.html.
+#
+# Netlify normalizes trailing slashes when matching, so `from = "/foo"` catches
+# both /foo and /foo/. The `from` paths below are therefore written bare.
+# ---------------------------------------------------------------------------
+
+# --- Pricing intent ---
+[[redirects]]
+  from = "/party-bus-costs"
+  to = "/pricing"
+  status = 301
+
+[[redirects]]
+  from = "/how-much-is-a-party-bus"
+  to = "/pricing"
+  status = 301
+
+# --- Vehicle / capacity intent ---
+[[redirects]]
+  from = "/10-passenger-limo"
+  to = "/fleet"
+  status = 301
+
+[[redirects]]
+  from = "/15-passenger-party-bus"
+  to = "/fleet"
+  status = 301
+
+[[redirects]]
+  from = "/20-passenger-party-bus"
+  to = "/fleet"
+  status = 301
+
+[[redirects]]
+  from = "/services/airport-transfer"
+  to = "/fleet"
+  status = 301
+
+# --- Event / occasion intent ---
+[[redirects]]
+  from = "/services"
+  to = "/events"
+  status = 301
+
+[[redirects]]
+  from = "/our-services"
+  to = "/events"
+  status = 301
+
+[[redirects]]
+  from = "/concerts"
+  to = "/events"
+  status = 301
+
+[[redirects]]
+  from = "/services/concerts"
+  to = "/events"
+  status = 301
+
+[[redirects]]
+  from = "/sporting-events"
+  to = "/events"
+  status = 301
+
+[[redirects]]
+  from = "/services/sporting-events"
+  to = "/events"
+  status = 301
+
+[[redirects]]
+  from = "/weddings"
+  to = "/events"
+  status = 301
+
+[[redirects]]
+  from = "/wedding-bus-rental-pittsburgh"
+  to = "/events"
+  status = 301
+
+[[redirects]]
+  from = "/services/wedding-bus-rental-pittsburgh"
+  to = "/events"
+  status = 301
+
+[[redirects]]
+  from = "/proms-and-dances"
+  to = "/events"
+  status = 301
+
+[[redirects]]
+  from = "/services/proms-and-dances"
+  to = "/events"
+  status = 301
+
+[[redirects]]
+  from = "/birthday-party"
+  to = "/events"
+  status = 301
+
+[[redirects]]
+  from = "/services/birthday-party"
+  to = "/events"
+  status = 301
+
+[[redirects]]
+  from = "/bachelor-party"
+  to = "/events"
+  status = 301
+
+[[redirects]]
+  from = "/bachelor-party-limo-pittsburgh"
+  to = "/events"
+  status = 301
+
+[[redirects]]
+  from = "/services/bachelor-party-limo-pittsburgh"
+  to = "/events"
+  status = 301
+
+# Misspelled in the original site ("bachlorette"); kept verbatim so the rule matches.
+[[redirects]]
+  from = "/bachlorette-party"
+  to = "/events"
+  status = 301
+
+[[redirects]]
+  from = "/services/bachlorette-party"
+  to = "/events"
+  status = 301
+
+[[redirects]]
+  from = "/corporate-events"
+  to = "/events"
+  status = 301
+
+[[redirects]]
+  from = "/services/corporate-events"
+  to = "/events"
+  status = 301
+
+# --- Informational intent ---
+[[redirects]]
+  from = "/faq-2"
+  to = "/faqs"
+  status = 301
+
+[[redirects]]
+  from = "/things-to-know-rent-partybus"
+  to = "/faqs"
+  status = 301
+
+[[redirects]]
+  from = "/why-partybus"
+  to = "/about"
+  status = 301
+
+# --- Long-form posts → nearest current article ---
+[[redirects]]
+  from = "/upgrade-a-steelers-game-day-with-a-party-bus-in-pittsburgh"
+  to = "/blog/top-events-pittsburgh"
+  status = 301
+
+[[redirects]]
+  from = "/bachelorette-party-bus-pittsburgh-the-ultimate-night"
+  to = "/blog/bachelor-bachelorette-ideas"
+  status = 301
+
+[[redirects]]
+  from = "/why-a-party-bus-is-perfect-for-your-pittsburgh-wedding"
+  to = "/blog/wedding-transportation"
+  status = 301
+
+# --- Retired location pages → the area page that now covers them ---
+[[redirects]]
+  from = "/locations/wexford"
+  to = "/locations/north-hills"
+  status = 301
+
+[[redirects]]
+  from = "/locations/mt-lebanon"
+  to = "/locations/south-hills"
+  status = 301
+
+# ---------------------------------------------------------------------------
+# Deliberately NOT redirected (4 of the 38):
+#
+#   /?page_id=3448                      A query string on "/". A rule with
+#                                       from = "/" would capture the homepage,
+#                                       so this is left alone; it resolves to the
+#                                       homepage today and is already indexed there.
+#   /assets/hero-party-bus-BO2I66O1.jpg Stale content-hashed build asset.
+#   /images/hero-party-bus.webp         Old image paths from the previous host;
+#   /images/blog-bachelor-bachelorette-party.webp
+#                                       image URLs, not landing pages.
+#
+# Trailing-slash normalization (/faqs/ vs /faqs) is NOT handled here on purpose.
+# Google has picked the trailing-slash form as canonical for /faqs/ (306 impressions,
+# position 3.1), /contact/ and /blog/party-bus-pricing-guide/, overriding our
+# declared canonical. The obvious fix — a "/faqs/" -> "/faqs" rule — is unsafe:
+# Netlify normalizes trailing slashes during matching, so such a rule can match its
+# own target and loop, and that cannot be verified from CI. Enable the "Pretty URLs"
+# post-processing setting in the Netlify UI instead, then confirm with:
+#   curl -sI https://pittpartybus.com/faqs/   # expect 301 -> /faqs
+#   curl -sI https://pittpartybus.com/faqs    # expect 200, not a redirect
+# ---------------------------------------------------------------------------

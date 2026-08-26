@@ -1,5 +1,12 @@
 import { Helmet } from 'react-helmet-async';
-import { BUSINESS_INFO, getSchemaAddress, getSchemaGeo } from '@/lib/business-info';
+import {
+  BUSINESS_INFO,
+  getSchemaAddress,
+  getSchemaGeo,
+  getSameAs,
+  BRAND_ASSETS,
+  absoluteUrl,
+} from '@/lib/business-info';
 
 interface StructuredDataProps {
   data: object;
@@ -31,17 +38,17 @@ export const organizationSchema = {
   ],
   "description": BUSINESS_INFO.description,
   "url": BUSINESS_INFO.website,
+  // Both of these must point at files that actually exist in public/. They
+  // previously pointed at /logo.png, /hero-party-bus.jpg, /fleet-showcase.jpg and
+  // /party-bus-interior.jpg — none of which are served at the site root, so every
+  // logo and image URL in our schema returned a 404.
   "logo": {
     "@type": "ImageObject",
-    "url": `${BUSINESS_INFO.website}/logo.png`,
-    "width": "200",
-    "height": "60"
+    "url": absoluteUrl(BRAND_ASSETS.logo.url),
+    "width": BRAND_ASSETS.logo.width,
+    "height": BRAND_ASSETS.logo.height
   },
-  "image": [
-    `${BUSINESS_INFO.website}/hero-party-bus.jpg`,
-    `${BUSINESS_INFO.website}/fleet-showcase.jpg`,
-    `${BUSINESS_INFO.website}/party-bus-interior.jpg`
-  ],
+  "image": [absoluteUrl(BRAND_ASSETS.image.url)],
   "telephone": BUSINESS_INFO.phoneRaw,
   "email": BUSINESS_INFO.email,
   "address": getSchemaAddress(),
@@ -63,7 +70,7 @@ export const organizationSchema = {
       "closes": "23:59"
     }
   ],
-  "priceRange": "$150-$250/hour",
+  "priceRange": BUSINESS_INFO.priceRange,
   "areaServed": [
     {
       "@type": "City",
@@ -225,54 +232,16 @@ export const organizationSchema = {
       }
     ]
   },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "5.0",
-    "reviewCount": "500",
-    "bestRating": "5",
-    "worstRating": "1"
-  },
-  "review": [
-    {
-      "@type": "Review",
-      "reviewRating": {
-        "@type": "Rating",
-        "ratingValue": "5",
-        "bestRating": "5"
-      },
-      "author": {
-        "@type": "Person",
-        "name": "Sarah M."
-      },
-      "reviewBody": "Absolutely amazing service! The party bus was perfect for our wedding party and the driver was so professional."
-    },
-    {
-      "@type": "Review",
-      "reviewRating": {
-        "@type": "Rating",
-        "ratingValue": "5",
-        "bestRating": "5"
-      },
-      "author": {
-        "@type": "Person",
-        "name": "Mike R."
-      },
-      "reviewBody": "Best bachelor party ever! The bus was exactly what we needed and made the night unforgettable."
-    },
-    {
-      "@type": "Review",
-      "reviewRating": {
-        "@type": "Rating",
-        "ratingValue": "5",
-        "bestRating": "5"
-      },
-      "author": {
-        "@type": "Person",
-        "name": "Jennifer L."
-      },
-      "reviewBody": "We searched for party buses near me and found Pitt Party Bus. They were amazing for our prom group!"
-    }
-  ],
+  // NO aggregateRating / review HERE — deliberately.
+  //
+  // This block used to hard-code a 5.0 rating over 500 reviews plus three
+  // Review objects with invented authors. The business has no Google Business
+  // Profile and no verifiable review source, so none of it could be
+  // substantiated. Review markup a business writes about itself violates
+  // Google's structured-data policies and risks a manual action.
+  //
+  // Do not re-add aggregateRating or review until reviews come from a real,
+  // verifiable source, and then generate them from that source — never inline.
   "knowsAbout": [
     "Party Bus Rental",
     "Party Buses Near Me",
@@ -333,11 +302,7 @@ export const organizationSchema = {
       }
     }
   ],
-  "sameAs": [
-    BUSINESS_INFO.social.facebook,
-    BUSINESS_INFO.social.instagram,
-    BUSINESS_INFO.social.yelp
-  ]
+  "sameAs": getSameAs()
 };
 
 // Dedicated LocalBusiness schema export for specific pages
@@ -352,25 +317,16 @@ export const localBusinessSchema = {
   "email": BUSINESS_INFO.email,
   "address": getSchemaAddress(),
   "geo": getSchemaGeo(),
-  "priceRange": "$150-$250/hour",
-  "image": `${BUSINESS_INFO.website}/hero-party-bus.jpg`,
+  "priceRange": BUSINESS_INFO.priceRange,
+  "image": absoluteUrl(BRAND_ASSETS.image.url),
   "openingHoursSpecification": {
     "@type": "OpeningHoursSpecification",
     "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
     "opens": "00:00",
     "closes": "23:59"
   },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "5.0",
-    "reviewCount": "500",
-    "bestRating": "5"
-  },
-  "sameAs": [
-    BUSINESS_INFO.social.facebook,
-    BUSINESS_INFO.social.instagram,
-    BUSINESS_INFO.social.yelp
-  ]
+  // No aggregateRating — see the note in organizationSchema above.
+  "sameAs": getSameAs()
 };
 
 // FAQPage schema for homepage and other pages with FAQs
@@ -471,7 +427,7 @@ export const articleSchema = (article: {
     "name": BUSINESS_INFO.name,
     "logo": {
       "@type": "ImageObject",
-      "url": `${BUSINESS_INFO.website}/logo.png`
+      "url": absoluteUrl(BRAND_ASSETS.logo.url)
     }
   }
 });
