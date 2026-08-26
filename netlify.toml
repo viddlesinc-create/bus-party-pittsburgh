@@ -251,13 +251,36 @@
 #   /images/blog-bachelor-bachelorette-party.webp
 #                                       image URLs, not landing pages.
 #
-# Trailing-slash normalization (/faqs/ vs /faqs) is NOT handled here on purpose.
-# Google has picked the trailing-slash form as canonical for /faqs/ (306 impressions,
-# position 3.1), /contact/ and /blog/party-bus-pricing-guide/, overriding our
-# declared canonical. The obvious fix — a "/faqs/" -> "/faqs" rule — is unsafe:
-# Netlify normalizes trailing slashes during matching, so such a rule can match its
-# own target and loop, and that cannot be verified from CI. Enable the "Pretty URLs"
-# post-processing setting in the Netlify UI instead, then confirm with:
-#   curl -sI https://pittpartybus.com/faqs/   # expect 301 -> /faqs
-#   curl -sI https://pittpartybus.com/faqs    # expect 200, not a redirect
+# Trailing-slash normalization (/faqs/ vs /faqs) is NOT handled here, and cannot be.
+#
+# The site prerenders to flat files (dist/faqs.html, not dist/faqs/index.html), so
+# Netlify serves that one file at both /faqs and /faqs/, each returning 200 with
+# identical content. Every page therefore has two live URLs.
+#
+# Google has picked the trailing-slash form as its canonical for /faqs/ (306
+# impressions, position 3.1), /contact/ and /blog/party-bus-pricing-guide/,
+# overriding the non-slash canonical those pages declare. URL Inspection shows
+# googleCanonical and userCanonical disagreeing. The cause is almost certainly the
+# previous WordPress site, which used trailing slashes and holds the link history.
+#
+# Do not try to fix this with a redirect rule. Netlify documents that a redirect
+# rule cannot add or remove a trailing slash: its CDN edge nodes normalize the URL
+# before redirect rules are evaluated, so "/faqs/" -> "/faqs" matches its own
+# target and loops.
+#   https://docs.netlify.com/manage/routing/redirects/redirect-options/
+#
+# The "Pretty URLs" post-processing setting is not the lever either. It is on by
+# default, and it redirects directory requests /test -> /test/, i.e. it ADDS
+# trailing slashes rather than removing them.
+#
+# The only Netlify-native mechanism that would work is an Edge Function, which runs
+# ahead of the redirect engine. That is deliberately not done here: Google has
+# already consolidated each pair onto one canonical, so signals are pooled rather
+# than split, and /faqs/ ranks at position 3.1 precisely because that consolidation
+# worked. Putting code in the request path of every page view to correct which of
+# two equivalent URLs Google chose is a bad risk trade.
+#
+# What we do instead is keep internal links, the sitemap and canonicals consistently
+# non-slash and let Google converge. Revisit only if Search Console starts reporting
+# "Duplicate, Google chose different canonical" as an actual coverage error.
 # ---------------------------------------------------------------------------
