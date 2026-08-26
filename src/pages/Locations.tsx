@@ -1,6 +1,8 @@
 import { MetaTags } from "@/components/MetaTags";
 import { StructuredData, organizationSchema } from "@/components/StructuredData";
 import Navigation from "@/components/Navigation";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { LastUpdated } from "@/components/LastUpdated";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -125,6 +127,11 @@ const Locations = () => {
       />
       <StructuredData data={organizationSchema} />
       <Navigation />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Breadcrumbs items={[{ name: "Service Areas", url: "/locations" }]} />
+        <LastUpdated />
+      </div>
       
       <section className="py-12 bg-hero-gradient">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

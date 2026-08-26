@@ -410,25 +410,52 @@ export const articleSchema = (article: {
   datePublished: string;
   dateModified?: string;
   author: string;
+  url?: string;
 }) => ({
   "@context": "https://schema.org",
-  "@type": "Article",
+  // BlogPosting rather than the bare Article this used to emit — it is the more
+  // specific type for these posts and is what Google's article guidance expects.
+  "@type": "BlogPosting",
   "headline": article.title,
   "description": article.description,
   "image": article.image,
   "datePublished": article.datePublished,
   "dateModified": article.dateModified || article.datePublished,
-  "author": {
-    "@type": "Organization",
-    "name": article.author
-  },
+  // mainEntityOfPage was missing entirely, so nothing tied the markup to the URL.
+  ...(article.url ? { "mainEntityOfPage": { "@type": "WebPage", "@id": article.url } } : {}),
+  ...(article.url ? { "url": article.url } : {}),
+  // author stays an Organization until a real named person is supplied via
+  // BUSINESS_INFO.author (see the note there). A Person entry with an invented
+  // name would be worse than an honest Organization byline.
+  "author": BUSINESS_INFO.author.confirmed
+    ? {
+        "@type": "Person",
+        "name": BUSINESS_INFO.author.name,
+        "url": `${BUSINESS_INFO.website}/authors/${BUSINESS_INFO.author.slug}`,
+        ...(BUSINESS_INFO.author.credential
+          ? { "jobTitle": BUSINESS_INFO.author.credential }
+          : {}),
+      }
+    : {
+        "@type": "Organization",
+        "name": article.author,
+        "url": BUSINESS_INFO.website,
+      },
   "publisher": {
     "@type": "Organization",
     "name": BUSINESS_INFO.name,
+    "url": BUSINESS_INFO.website,
     "logo": {
       "@type": "ImageObject",
-      "url": absoluteUrl(BRAND_ASSETS.logo.url)
+      "url": absoluteUrl(BRAND_ASSETS.logo.url),
+      "width": BRAND_ASSETS.logo.width,
+      "height": BRAND_ASSETS.logo.height
     }
+  },
+  "isPartOf": {
+    "@type": "Blog",
+    "@id": `${BUSINESS_INFO.website}/blog`,
+    "name": `${BUSINESS_INFO.name} Blog`
   }
 });
 

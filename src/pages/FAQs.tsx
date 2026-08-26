@@ -1,6 +1,8 @@
 import { MetaTags } from "@/components/MetaTags";
 import { FAQSchema } from "@/components/FAQSchema";
 import Navigation from "@/components/Navigation";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { LastUpdated } from "@/components/LastUpdated";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -147,6 +149,11 @@ const FAQs = () => {
       />
       <FAQSchema faqs={allFaqs} />
       <Navigation />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Breadcrumbs items={[{ name: "FAQs", url: "/faqs" }]} />
+        <LastUpdated />
+      </div>
       
       {/* Hero Section */}
       <section className="py-20 bg-hero-gradient">

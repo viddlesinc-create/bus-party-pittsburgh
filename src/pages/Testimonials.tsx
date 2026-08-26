@@ -2,6 +2,8 @@ import { MetaTags } from "@/components/MetaTags";
 import { StructuredData } from "@/components/StructuredData";
 import { BUSINESS_INFO, getSchemaAddress, getSchemaGeo } from "@/lib/business-info";
 import Navigation from "@/components/Navigation";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { LastUpdated } from "@/components/LastUpdated";
 import Footer from "@/components/Footer";
 import { InitialsAvatar } from "@/components/InitialsAvatar";
 import { Link } from "react-router-dom";
@@ -167,6 +169,11 @@ const Testimonials = () => {
       />
       <StructuredData data={reviewSchema} />
       <Navigation />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Breadcrumbs items={[{ name: "Reviews", url: "/testimonials" }]} />
+        <LastUpdated />
+      </div>
       
       {/* Hero Section */}
       <section className="py-20 bg-hero-gradient">

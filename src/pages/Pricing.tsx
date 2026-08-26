@@ -1,4 +1,5 @@
 import { MetaTags } from "@/components/MetaTags";
+import { LastUpdated } from "@/components/LastUpdated";
 import { StructuredData, serviceSchema, breadcrumbSchema } from "@/components/StructuredData";
 import { PricingFAQSchema } from "@/components/PricingFAQSchema";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -134,6 +135,7 @@ const Pricing = () => {
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <Breadcrumbs items={[{ name: "Pricing", url: "/pricing" }]} />
+        <LastUpdated />
       </div>
       
       {/* Hero Section */}

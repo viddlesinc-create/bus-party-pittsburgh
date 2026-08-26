@@ -1,4 +1,5 @@
 import { MetaTags } from "@/components/MetaTags";
+import { LastUpdated } from "@/components/LastUpdated";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -18,6 +19,7 @@ const Terms = () => {
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <Breadcrumbs items={[{ name: "Terms of Service", url: "/terms" }]} />
+        <LastUpdated />
       </div>
       
       {/* Hero Section */}

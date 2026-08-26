@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { LastUpdated } from "@/components/LastUpdated";
 import { MetaTags } from "@/components/MetaTags";
 import { StructuredData, breadcrumbSchema } from "@/components/StructuredData";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -98,6 +99,7 @@ export function LocationPageLayout({
           { name: "Locations", url: "/locations" },
           { name: areaName, url: `/locations/${areaSlug}` }
         ]} />
+        <LastUpdated />
       </div>
 
       {/* Hero Section */}

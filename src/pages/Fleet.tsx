@@ -1,4 +1,5 @@
 import { MetaTags } from "@/components/MetaTags";
+import { LastUpdated } from "@/components/LastUpdated";
 import { StructuredData, serviceSchema, breadcrumbSchema } from "@/components/StructuredData";
 import { FleetFAQSchema } from "@/components/FleetFAQSchema";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -338,6 +339,7 @@ const Fleet = () => {
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <Breadcrumbs items={[{ name: "Fleet", url: "/fleet" }]} />
+        <LastUpdated />
       </div>
       
       {/* Hero Section */}
