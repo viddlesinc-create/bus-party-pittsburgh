@@ -11,7 +11,10 @@
     "preview": "vite preview",
     "build:ssr": "vite build --ssr src/entry-server.tsx --outDir dist-server",
     "prerender": "npm run build:ssr && node scripts/prerender.cjs",
-    "prebuild": "node scripts/generate-last-updated.mjs"
+    "prebuild": "node scripts/generate-last-updated.mjs",
+    "validate:seo": "node scripts/validate-seo.mjs",
+    "validate:sitemap": "node scripts/validate-sitemap.mjs",
+    "validate": "bash scripts/validate-routes.sh --dist && npm run validate:seo && npm run validate:sitemap"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

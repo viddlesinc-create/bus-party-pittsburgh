@@ -2,7 +2,7 @@
 // Regenerated on every build; see the script for how each date is derived.
 
 export const LAST_UPDATED: Record<string, string> = {
-  "/": "2026-01-18",
+  "/": "2026-08-26",
   "/fleet": "2026-08-26",
   "/contact": "2026-08-26",
   "/about": "2026-08-26",

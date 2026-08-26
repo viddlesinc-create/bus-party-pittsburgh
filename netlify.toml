@@ -5,15 +5,29 @@
 # route 404s in production, because this site has no redirects — routes are
 # served from real prerendered HTML files (fleet.html, blog/*.html, ...).
 #
-# validate-routes.sh --dist fails the build (and therefore blocks the publish)
-# if any sitemap URL is missing its prerendered file or contains a content-less
-# shell. A routeless deploy cannot go live.
+# Three gates run after the prerender and all of them fail the build, which
+# blocks the publish:
+#
+#   validate-routes.sh   every sitemap URL has a prerendered file with real
+#                        content, and every referenced image resolves
+#   validate-seo.mjs     title 50-60, description 140-160, both unique, one
+#                        robots tag, self-canonical, one H1, valid JSON-LD, no
+#                        unverifiable review markup, no schema image that 404s,
+#                        FAQ answers 100-200 words AND visible on the page,
+#                        BlogPosting complete, "Last updated" present, real tables
+#   validate-sitemap.mjs absolute https on the exact property host, no duplicate
+#                        or redirected URLs, ISO lastmod that is not in the future
+#
+# sync-sitemap-lastmod.mjs runs first and rewrites each <lastmod> in dist to the
+# page's own dateModified, so the sitemap cannot contradict the page.
+#
+# A routeless or regressed deploy cannot go live.
 #
 # Deliberately NO /* -> /index.html catch-all redirect anywhere: unknown paths
 # must return a real 404 (dist/404.html), never a 200 SPA shell.
 
 [build]
-  command = "npm run build && npm run prerender && bash scripts/validate-routes.sh --dist"
+  command = "npm run build && npm run prerender && node scripts/sync-sitemap-lastmod.mjs && bash scripts/validate-routes.sh --dist && node scripts/validate-seo.mjs && node scripts/validate-sitemap.mjs"
   publish = "dist"
 
 [build.environment]
