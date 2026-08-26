@@ -1,4 +1,5 @@
 import { MetaTags } from "@/components/MetaTags";
+import { LastUpdated } from "@/components/LastUpdated";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
@@ -162,6 +163,7 @@ const Contact = () => {
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <Breadcrumbs items={[{ name: "Contact", url: "/contact" }]} />
+        <LastUpdated />
       </div>
 
       {/* Hero Section */}

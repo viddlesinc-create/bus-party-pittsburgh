@@ -120,7 +120,7 @@ const CorporateEventTransportation = () => {
       </ul>
 
       <h3>Party Buses</h3>
-      <p><strong>Best for:</strong> 20-40 people, team celebrations, client entertainment</p>
+      <p><strong>Best for:</strong> 20-30 people, team celebrations, client entertainment</p>
       <ul>
         <li>Creates exciting atmosphere</li>
         <li>Entertainment features enhance bonding</li>

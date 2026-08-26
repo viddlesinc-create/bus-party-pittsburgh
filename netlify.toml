@@ -5,15 +5,29 @@
 # route 404s in production, because this site has no redirects — routes are
 # served from real prerendered HTML files (fleet.html, blog/*.html, ...).
 #
-# validate-routes.sh --dist fails the build (and therefore blocks the publish)
-# if any sitemap URL is missing its prerendered file or contains a content-less
-# shell. A routeless deploy cannot go live.
+# Three gates run after the prerender and all of them fail the build, which
+# blocks the publish:
+#
+#   validate-routes.sh   every sitemap URL has a prerendered file with real
+#                        content, and every referenced image resolves
+#   validate-seo.mjs     title 50-60, description 140-160, both unique, one
+#                        robots tag, self-canonical, one H1, valid JSON-LD, no
+#                        unverifiable review markup, no schema image that 404s,
+#                        FAQ answers 100-200 words AND visible on the page,
+#                        BlogPosting complete, "Last updated" present, real tables
+#   validate-sitemap.mjs absolute https on the exact property host, no duplicate
+#                        or redirected URLs, ISO lastmod that is not in the future
+#
+# sync-sitemap-lastmod.mjs runs first and rewrites each <lastmod> in dist to the
+# page's own dateModified, so the sitemap cannot contradict the page.
+#
+# A routeless or regressed deploy cannot go live.
 #
 # Deliberately NO /* -> /index.html catch-all redirect anywhere: unknown paths
 # must return a real 404 (dist/404.html), never a 200 SPA shell.
 
 [build]
-  command = "npm run build && npm run prerender && bash scripts/validate-routes.sh --dist"
+  command = "npm run build && npm run prerender && node scripts/sync-sitemap-lastmod.mjs && bash scripts/validate-routes.sh --dist && node scripts/validate-seo.mjs && node scripts/validate-sitemap.mjs"
   publish = "dist"
 
 [build.environment]
@@ -25,3 +39,248 @@
   for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+# ---------------------------------------------------------------------------
+# Legacy URL recovery (301)
+#
+# Google Search Console shows 38 URLs from the site's previous WordPress build
+# still indexed and accumulating impressions — 12,875 impressions and 61 clicks
+# over the last 16 months. None of them exist in this repo, and because there is
+# deliberately no catch-all redirect (see the header comment), every one of them
+# returns a hard 404 to real searchers.
+#
+# Eight of them still rank on page one:
+#   /services/sporting-events/   pos 4.5    /?page_id=3448              pos 2.9
+#   /locations/wexford/          pos 5.5    /about/                     pos 6.5
+#   /faq-2/                      pos 7.3    /services/bachlorette-party/ pos 7.7
+#   /services/concerts/          pos 8.1    /services/corporate-events/  pos 8.5
+#
+# These rules are explicit, one path each. They are NOT a catch-all and must not
+# be replaced by one: an unknown path must still return dist/404.html.
+#
+# Netlify normalizes trailing slashes when matching, so `from = "/foo"` catches
+# both /foo and /foo/. The `from` paths below are therefore written bare.
+# ---------------------------------------------------------------------------
+
+# --- Pricing intent ---
+[[redirects]]
+  from = "/party-bus-costs"
+  to = "/pricing"
+  status = 301
+
+[[redirects]]
+  from = "/how-much-is-a-party-bus"
+  to = "/pricing"
+  status = 301
+
+# --- Vehicle / capacity intent ---
+[[redirects]]
+  from = "/10-passenger-limo"
+  to = "/fleet"
+  status = 301
+
+[[redirects]]
+  from = "/15-passenger-party-bus"
+  to = "/fleet"
+  status = 301
+
+[[redirects]]
+  from = "/20-passenger-party-bus"
+  to = "/fleet"
+  status = 301
+
+[[redirects]]
+  from = "/services/airport-transfer"
+  to = "/fleet"
+  status = 301
+
+# --- Event / occasion intent ---
+[[redirects]]
+  from = "/services"
+  to = "/events"
+  status = 301
+
+[[redirects]]
+  from = "/our-services"
+  to = "/events"
+  status = 301
+
+[[redirects]]
+  from = "/concerts"
+  to = "/events"
+  status = 301
+
+[[redirects]]
+  from = "/services/concerts"
+  to = "/events"
+  status = 301
+
+[[redirects]]
+  from = "/sporting-events"
+  to = "/events"
+  status = 301
+
+[[redirects]]
+  from = "/services/sporting-events"
+  to = "/events"
+  status = 301
+
+[[redirects]]
+  from = "/weddings"
+  to = "/events"
+  status = 301
+
+[[redirects]]
+  from = "/wedding-bus-rental-pittsburgh"
+  to = "/events"
+  status = 301
+
+[[redirects]]
+  from = "/services/wedding-bus-rental-pittsburgh"
+  to = "/events"
+  status = 301
+
+[[redirects]]
+  from = "/proms-and-dances"
+  to = "/events"
+  status = 301
+
+[[redirects]]
+  from = "/services/proms-and-dances"
+  to = "/events"
+  status = 301
+
+[[redirects]]
+  from = "/birthday-party"
+  to = "/events"
+  status = 301
+
+[[redirects]]
+  from = "/services/birthday-party"
+  to = "/events"
+  status = 301
+
+[[redirects]]
+  from = "/bachelor-party"
+  to = "/events"
+  status = 301
+
+[[redirects]]
+  from = "/bachelor-party-limo-pittsburgh"
+  to = "/events"
+  status = 301
+
+[[redirects]]
+  from = "/services/bachelor-party-limo-pittsburgh"
+  to = "/events"
+  status = 301
+
+# Misspelled in the original site ("bachlorette"); kept verbatim so the rule matches.
+[[redirects]]
+  from = "/bachlorette-party"
+  to = "/events"
+  status = 301
+
+[[redirects]]
+  from = "/services/bachlorette-party"
+  to = "/events"
+  status = 301
+
+[[redirects]]
+  from = "/corporate-events"
+  to = "/events"
+  status = 301
+
+[[redirects]]
+  from = "/services/corporate-events"
+  to = "/events"
+  status = 301
+
+# --- Informational intent ---
+[[redirects]]
+  from = "/faq-2"
+  to = "/faqs"
+  status = 301
+
+[[redirects]]
+  from = "/things-to-know-rent-partybus"
+  to = "/faqs"
+  status = 301
+
+[[redirects]]
+  from = "/why-partybus"
+  to = "/about"
+  status = 301
+
+# --- Long-form posts → nearest current article ---
+[[redirects]]
+  from = "/upgrade-a-steelers-game-day-with-a-party-bus-in-pittsburgh"
+  to = "/blog/top-events-pittsburgh"
+  status = 301
+
+[[redirects]]
+  from = "/bachelorette-party-bus-pittsburgh-the-ultimate-night"
+  to = "/blog/bachelor-bachelorette-ideas"
+  status = 301
+
+[[redirects]]
+  from = "/why-a-party-bus-is-perfect-for-your-pittsburgh-wedding"
+  to = "/blog/wedding-transportation"
+  status = 301
+
+# --- Retired location pages → the area page that now covers them ---
+[[redirects]]
+  from = "/locations/wexford"
+  to = "/locations/north-hills"
+  status = 301
+
+[[redirects]]
+  from = "/locations/mt-lebanon"
+  to = "/locations/south-hills"
+  status = 301
+
+# ---------------------------------------------------------------------------
+# Deliberately NOT redirected (4 of the 38):
+#
+#   /?page_id=3448                      A query string on "/". A rule with
+#                                       from = "/" would capture the homepage,
+#                                       so this is left alone; it resolves to the
+#                                       homepage today and is already indexed there.
+#   /assets/hero-party-bus-BO2I66O1.jpg Stale content-hashed build asset.
+#   /images/hero-party-bus.webp         Old image paths from the previous host;
+#   /images/blog-bachelor-bachelorette-party.webp
+#                                       image URLs, not landing pages.
+#
+# Trailing-slash normalization (/faqs/ vs /faqs) is NOT handled here, and cannot be.
+#
+# The site prerenders to flat files (dist/faqs.html, not dist/faqs/index.html), so
+# Netlify serves that one file at both /faqs and /faqs/, each returning 200 with
+# identical content. Every page therefore has two live URLs.
+#
+# Google has picked the trailing-slash form as its canonical for /faqs/ (306
+# impressions, position 3.1), /contact/ and /blog/party-bus-pricing-guide/,
+# overriding the non-slash canonical those pages declare. URL Inspection shows
+# googleCanonical and userCanonical disagreeing. The cause is almost certainly the
+# previous WordPress site, which used trailing slashes and holds the link history.
+#
+# Do not try to fix this with a redirect rule. Netlify documents that a redirect
+# rule cannot add or remove a trailing slash: its CDN edge nodes normalize the URL
+# before redirect rules are evaluated, so "/faqs/" -> "/faqs" matches its own
+# target and loops.
+#   https://docs.netlify.com/manage/routing/redirects/redirect-options/
+#
+# The "Pretty URLs" post-processing setting is not the lever either. It is on by
+# default, and it redirects directory requests /test -> /test/, i.e. it ADDS
+# trailing slashes rather than removing them.
+#
+# The only Netlify-native mechanism that would work is an Edge Function, which runs
+# ahead of the redirect engine. That is deliberately not done here: Google has
+# already consolidated each pair onto one canonical, so signals are pooled rather
+# than split, and /faqs/ ranks at position 3.1 precisely because that consolidation
+# worked. Putting code in the request path of every page view to correct which of
+# two equivalent URLs Google chose is a bad risk trade.
+#
+# What we do instead is keep internal links, the sitemap and canonicals consistently
+# non-slash and let Google converge. Revisit only if Search Console starts reporting
+# "Duplicate, Google chose different canonical" as an actual coverage error.
+# ---------------------------------------------------------------------------

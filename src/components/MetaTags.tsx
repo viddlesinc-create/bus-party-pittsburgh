@@ -2,6 +2,7 @@ import React from "react";
 import { Helmet } from "react-helmet-async";
 import { useLocation } from "react-router-dom";
 import { useSSRData } from "@/lib/ssr-data-context";
+import { getPageSeo } from "@/lib/seo";
 
 interface SSRMeta {
   title?: string;
@@ -15,6 +16,10 @@ interface MetaTagsProps {
   canonical?: string;
   ogImage?: string;
   type?: "website" | "article";
+  /** Set on pages that must never be indexed (the 404 page). Defaults to indexable. */
+  noindex?: boolean;
+  /** Override the PAGE_SEO lookup key when it cannot be read from the URL (404). */
+  seoKey?: string;
   article?: {
     publishedTime?: string;
     author?: string;
@@ -35,6 +40,8 @@ export function MetaTags({
   // never existed at the site root — every page's og:image was a 404.
   ogImage = "/og-image.jpg",
   type = "website",
+  noindex = false,
+  seoKey,
   article,
 }: MetaTagsProps) {
   // Try to get SSR meta data
@@ -44,12 +51,21 @@ export function MetaTags({
   // pass a canonical prop were prerendering with the bare domain as canonical.
   const { pathname } = useLocation();
 
-  // Use SSR data if available, otherwise fall back to props
-  const title = ssrMeta?.title || propTitle;
-  const description = ssrMeta?.description || propDescription;
+  // src/lib/seo.ts is authoritative for every route it knows about, so titles and
+  // descriptions cannot drift between the page component, the route loader and
+  // what actually ships. The title/description props remain the fallback for any
+  // route not in that map (and for the 404 page, which reaches this component
+  // under whatever unknown path the visitor typed — hence seoKey).
+  const seo = getPageSeo(seoKey ?? pathname);
+  const title = seo?.title ?? ssrMeta?.title ?? propTitle;
+  const description = seo?.description ?? ssrMeta?.description ?? propDescription;
   const canonical = ssrMeta?.canonical || propCanonical;
 
-  const fullTitle = title.includes("|") ? title : `${title} | Pitt Party Bus`;
+  // Titles from PAGE_SEO are already final and length-checked, so the brand
+  // suffix must not be appended to them — doing so silently pushed
+  // /blog/top-events-pittsburgh to 72 characters. Only prop-supplied titles
+  // (routes not in PAGE_SEO) still get the suffix.
+  const fullTitle = seo || title.includes("|") ? title : `${title} | Pitt Party Bus`;
   const baseUrl = "https://pittpartybus.com";
   const fullCanonical = canonical
     ? canonical.startsWith("http")
@@ -65,8 +81,10 @@ export function MetaTags({
       <meta name="description" content={description} />
       {/* SEO: Global robots directive - all pages using MetaTags are indexable by default.
           Main nav pages (/, /fleet, /events, /pricing, /contact, /faqs, /blog) are prioritized
-          through strong internal linking rather than noindex on other pages. */}
-      <meta name="robots" content="index, follow" />
+          through strong internal linking rather than noindex on other pages.
+          The 404 page opts out via noindex: it was previously declaring itself
+          indexable, which matters here because ~38 retired URLs still land on it. */}
+      <meta name="robots" content={noindex ? "noindex, follow" : "index, follow"} />
 
       {/* Canonical */}
       <link rel="canonical" href={fullCanonical} />

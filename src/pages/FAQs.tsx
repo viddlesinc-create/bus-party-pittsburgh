@@ -1,6 +1,9 @@
 import { MetaTags } from "@/components/MetaTags";
 import { FAQSchema } from "@/components/FAQSchema";
+import { FAQ_PAGE_FAQS } from "@/data/faqs";
 import Navigation from "@/components/Navigation";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { LastUpdated } from "@/components/LastUpdated";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -21,7 +24,7 @@ import {
 } from "lucide-react";
 
 const FAQs = () => {
-  const faqCategories = [
+  const rawFaqCategories = [
     {
       title: "Booking & Reservations",
       icon: Calendar,
@@ -50,7 +53,7 @@ const FAQs = () => {
       faqs: [
         {
           question: "How much does a party bus rental cost in Pittsburgh?",
-          answer: "Pricing varies by vehicle size, day of week, and duration. Mini buses (8-12 passengers) start at $75/hour, while our largest party buses (35-40 passengers) start at $150/hour. All rentals have a 3-4 hour minimum. Contact us for exact pricing for your event."
+          answer: "Pricing varies by vehicle size, day of week, and duration. Mini buses (8-12 passengers) start at $150/hour, while our largest party buses (26-30 passengers) are $250/hour. All rentals have a 3-4 hour minimum. Contact us for exact pricing for your event."
         },
         {
           question: "What's included in the rental price?",
@@ -72,7 +75,7 @@ const FAQs = () => {
       faqs: [
         {
           question: "What types of vehicles do you have?",
-          answer: "Our fleet includes: Mini party buses (8-12), Party vans (13-15), Executive party buses (20-25), Luxury party buses (35-40), Stretch limousines (up to 10), and SUV limos (up to 20). Each vehicle is equipped with premium amenities and regularly maintained."
+          answer: "Our fleet includes: Mini party buses (8-12), Party vans (13-15), Executive party buses (20-25), Large party buses (26-30), Stretch limousines (up to 10), and SUV limos (up to 20). Each vehicle is equipped with premium amenities and regularly maintained."
         },
         {
           question: "What amenities are included in your party buses?",
@@ -136,6 +139,19 @@ const FAQs = () => {
 
 
   // Flatten all FAQs for schema
+  // Answers come from src/data/faqs.ts, which holds the full 100-200 word
+  // versions; the categories and question order stay as they are here. Keeping
+  // one source means the visible accordion and the FAQPage markup below cannot
+  // say different things, which they previously did.
+  const expandedAnswers = new Map(FAQ_PAGE_FAQS.map((f) => [f.question, f.answer]));
+  const faqCategories = rawFaqCategories.map((category) => ({
+    ...category,
+    faqs: category.faqs.map((faq) => ({
+      ...faq,
+      answer: expandedAnswers.get(faq.question) ?? faq.answer,
+    })),
+  }));
+
   const allFaqs = faqCategories.flatMap(category => category.faqs);
 
   return (
@@ -147,6 +163,11 @@ const FAQs = () => {
       />
       <FAQSchema faqs={allFaqs} />
       <Navigation />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Breadcrumbs items={[{ name: "FAQs", url: "/faqs" }]} />
+        <LastUpdated />
+      </div>
       
       {/* Hero Section */}
       <section className="py-20 bg-hero-gradient">
@@ -314,9 +335,9 @@ const FAQs = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               { topic: "Booking Timeline", answer: "Book 2-4 weeks in advance for best availability" },
-              { topic: "Group Size", answer: "We accommodate groups from 8 to 40 passengers" },
+              { topic: "Group Size", answer: "We accommodate groups from 2 to 30 passengers" },
               { topic: "Service Area", answer: "All of Pittsburgh and surrounding communities" },
-              { topic: "Pricing", answer: "Starting at $75/hour with 3-4 hour minimums" },
+              { topic: "Pricing", answer: "Starting at $150/hour with 3-4 hour minimums" },
               { topic: "Alcohol Policy", answer: "BYOB allowed for passengers 21+ with valid ID" },
               { topic: "Weather Policy", answer: "We operate in most conditions, safety first" },
               { topic: "Payment", answer: "25% deposit required, balance due day of service" },

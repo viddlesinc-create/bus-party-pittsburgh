@@ -1,26 +1,11 @@
 import { Link } from "react-router-dom";
 import BlogPostLayout from "@/components/BlogPostLayout";
 import { FAQSchema } from "@/components/FAQSchema";
+import { NEAR_ME_FAQS } from "@/data/faqs";
 import fleetImage from "@/assets/fleet-showcase.jpg";
 
-const faqItems = [
-  {
-    question: "Where can I find a party bus near me in Pittsburgh?",
-    answer: "Pitt Party Bus serves all Pittsburgh neighborhoods including Downtown, South Side, Oakland, North Hills, and South Hills. We're locally based and can pick you up anywhere in Allegheny County and surrounding areas."
-  },
-  {
-    question: "What Pittsburgh neighborhoods do you serve for party bus rentals?",
-    answer: "We serve all Pittsburgh neighborhoods including Downtown, Strip District, South Side, Oakland, Shadyside, Lawrenceville, North Shore, plus suburbs like Cranberry, Mt. Lebanon, Monroeville, Moon Township, and more."
-  },
-  {
-    question: "How quickly can I book a party bus near me in Pittsburgh?",
-    answer: "We offer same-day quotes and can often accommodate last-minute bookings depending on availability. For best selection, we recommend booking 4-6 weeks in advance, especially during peak seasons."
-  },
-  {
-    question: "What's the minimum rental time for a party bus near Pittsburgh?",
-    answer: "Our minimum rental time is typically 3-4 hours depending on the vehicle size. Mini party buses have a 3-hour minimum, while larger buses require a 4-hour minimum."
-  }
-];
+// FAQ content lives in src/data/faqs.ts (NEAR_ME_FAQS) so the visible list and
+// the FAQPage markup below are generated from one array.
 
 const PartyBusesNearMe = () => {
   return (
@@ -33,7 +18,7 @@ const PartyBusesNearMe = () => {
       author="Pittsburgh Party Bus Team"
       image={fleetImage}
     >
-      <FAQSchema faqs={faqItems} />
+      <FAQSchema faqs={NEAR_ME_FAQS} />
       
       <h2>Party Bus Near Me: Find Local Pittsburgh Rentals</h2>
       <p>
@@ -150,7 +135,7 @@ const PartyBusesNearMe = () => {
         <li>Full bar setup and dance floor space</li>
       </ul>
 
-      <h3>Large Party Buses (28-40 Passengers)</h3>
+      <h3>Large Party Buses (28-30 Passengers)</h3>
       <p>
         For big celebrations and large groups, our luxury coaches provide maximum space and the ultimate 
         party atmosphere.
@@ -170,9 +155,10 @@ const PartyBusesNearMe = () => {
 
       <h3>Typical Pittsburgh Party Bus Rates</h3>
       <ul>
-        <li><strong>Mini Party Buses:</strong> Starting at $100/hour (3-hour minimum)</li>
-        <li><strong>Medium Party Buses:</strong> Starting at $125-150/hour (4-hour minimum)</li>
-        <li><strong>Large Party Buses:</strong> Starting at $175/hour (4-hour minimum)</li>
+        <li><strong>Mini Party Bus (8-12):</strong> $150/hour (3-hour minimum)</li>
+        <li><strong>Party Van (13-15):</strong> $175/hour (3-hour minimum)</li>
+        <li><strong>Executive Party Bus (20-25):</strong> $200/hour (4-hour minimum)</li>
+        <li><strong>Largest Party Buses:</strong> $250/hour (4-hour minimum)</li>
       </ul>
 
       <h3>What's Included</h3>
@@ -302,7 +288,7 @@ const PartyBusesNearMe = () => {
 
       <h2>Frequently Asked Questions: Party Bus Near Me Pittsburgh</h2>
       <div className="space-y-4">
-        {faqItems.map((faq, index) => (
+        {NEAR_ME_FAQS.map((faq, index) => (
           <div key={index} className="border-b border-border pb-4">
             <h3 className="text-lg font-semibold mb-2">{faq.question}</h3>
             <p className="text-muted-foreground">{faq.answer}</p>

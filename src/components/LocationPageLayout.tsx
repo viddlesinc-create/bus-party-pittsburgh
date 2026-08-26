@@ -1,4 +1,7 @@
 import { Link } from "react-router-dom";
+import { LastUpdated } from "@/components/LastUpdated";
+import { FAQSection } from "@/components/FAQSection";
+import { LOCATION_FAQS } from "@/data/faqs";
 import { MetaTags } from "@/components/MetaTags";
 import { StructuredData, breadcrumbSchema } from "@/components/StructuredData";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -72,12 +75,10 @@ export function LocationPageLayout({
       "@type": "Place",
       "name": areaName
     },
-    "priceRange": BUSINESS_INFO.priceRange,
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "5.0",
-      "reviewCount": "500"
-    }
+    "priceRange": BUSINESS_INFO.priceRange
+    // No aggregateRating — the 5.0/500 that used to sit here was unverifiable and
+    // was being repeated on every one of the five location pages. See the note in
+    // StructuredData.tsx.
   };
 
   return (
@@ -100,6 +101,7 @@ export function LocationPageLayout({
           { name: "Locations", url: "/locations" },
           { name: areaName, url: `/locations/${areaSlug}` }
         ]} />
+        <LastUpdated />
       </div>
 
       {/* Hero Section */}
@@ -370,6 +372,15 @@ export function LocationPageLayout({
           </div>
         </div>
       </section>
+
+      {/* Area-specific FAQ. Visible copy and FAQPage JSON-LD both come from
+          LOCATION_FAQS, so the markup can never drift from the page. */}
+      <FAQSection
+        faqs={LOCATION_FAQS[areaSlug] ?? []}
+        heading={`${areaName} party bus questions`}
+        intro={`What people ask us most about renting a party bus in ${areaName}.`}
+        className="bg-muted/40"
+      />
 
       <Footer />
     </div>

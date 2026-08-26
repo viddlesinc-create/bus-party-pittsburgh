@@ -1,5 +1,12 @@
 import { Helmet } from 'react-helmet-async';
-import { BUSINESS_INFO, getSchemaAddress, getSchemaGeo } from '@/lib/business-info';
+import {
+  BUSINESS_INFO,
+  getSchemaAddress,
+  getSchemaGeo,
+  getSameAs,
+  BRAND_ASSETS,
+  absoluteUrl,
+} from '@/lib/business-info';
 
 interface StructuredDataProps {
   data: object;
@@ -31,17 +38,17 @@ export const organizationSchema = {
   ],
   "description": BUSINESS_INFO.description,
   "url": BUSINESS_INFO.website,
+  // Both of these must point at files that actually exist in public/. They
+  // previously pointed at /logo.png, /hero-party-bus.jpg, /fleet-showcase.jpg and
+  // /party-bus-interior.jpg — none of which are served at the site root, so every
+  // logo and image URL in our schema returned a 404.
   "logo": {
     "@type": "ImageObject",
-    "url": `${BUSINESS_INFO.website}/logo.png`,
-    "width": "200",
-    "height": "60"
+    "url": absoluteUrl(BRAND_ASSETS.logo.url),
+    "width": BRAND_ASSETS.logo.width,
+    "height": BRAND_ASSETS.logo.height
   },
-  "image": [
-    `${BUSINESS_INFO.website}/hero-party-bus.jpg`,
-    `${BUSINESS_INFO.website}/fleet-showcase.jpg`,
-    `${BUSINESS_INFO.website}/party-bus-interior.jpg`
-  ],
+  "image": [absoluteUrl(BRAND_ASSETS.image.url)],
   "telephone": BUSINESS_INFO.phoneRaw,
   "email": BUSINESS_INFO.email,
   "address": getSchemaAddress(),
@@ -63,7 +70,7 @@ export const organizationSchema = {
       "closes": "23:59"
     }
   ],
-  "priceRange": "$150-$250/hour",
+  "priceRange": BUSINESS_INFO.priceRange,
   "areaServed": [
     {
       "@type": "City",
@@ -153,7 +160,7 @@ export const organizationSchema = {
         "itemOffered": {
           "@type": "Service",
           "name": "Party Bus Rental",
-          "description": "Luxury party buses for groups of 12-40 passengers with premium sound systems, LED lighting, and full bar setup",
+          "description": "Luxury party buses for groups of 12-30 passengers with premium sound systems, LED lighting, and full bar setup",
           "url": "https://pittpartybus.com/fleet"
         },
         "priceSpecification": {
@@ -225,54 +232,16 @@ export const organizationSchema = {
       }
     ]
   },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "5.0",
-    "reviewCount": "500",
-    "bestRating": "5",
-    "worstRating": "1"
-  },
-  "review": [
-    {
-      "@type": "Review",
-      "reviewRating": {
-        "@type": "Rating",
-        "ratingValue": "5",
-        "bestRating": "5"
-      },
-      "author": {
-        "@type": "Person",
-        "name": "Sarah M."
-      },
-      "reviewBody": "Absolutely amazing service! The party bus was perfect for our wedding party and the driver was so professional."
-    },
-    {
-      "@type": "Review",
-      "reviewRating": {
-        "@type": "Rating",
-        "ratingValue": "5",
-        "bestRating": "5"
-      },
-      "author": {
-        "@type": "Person",
-        "name": "Mike R."
-      },
-      "reviewBody": "Best bachelor party ever! The bus was exactly what we needed and made the night unforgettable."
-    },
-    {
-      "@type": "Review",
-      "reviewRating": {
-        "@type": "Rating",
-        "ratingValue": "5",
-        "bestRating": "5"
-      },
-      "author": {
-        "@type": "Person",
-        "name": "Jennifer L."
-      },
-      "reviewBody": "We searched for party buses near me and found Pitt Party Bus. They were amazing for our prom group!"
-    }
-  ],
+  // NO aggregateRating / review HERE — deliberately.
+  //
+  // This block used to hard-code a 5.0 rating over 500 reviews plus three
+  // Review objects with invented authors. The business has no Google Business
+  // Profile and no verifiable review source, so none of it could be
+  // substantiated. Review markup a business writes about itself violates
+  // Google's structured-data policies and risks a manual action.
+  //
+  // Do not re-add aggregateRating or review until reviews come from a real,
+  // verifiable source, and then generate them from that source — never inline.
   "knowsAbout": [
     "Party Bus Rental",
     "Party Buses Near Me",
@@ -333,11 +302,7 @@ export const organizationSchema = {
       }
     }
   ],
-  "sameAs": [
-    BUSINESS_INFO.social.facebook,
-    BUSINESS_INFO.social.instagram,
-    BUSINESS_INFO.social.yelp
-  ]
+  "sameAs": getSameAs()
 };
 
 // Dedicated LocalBusiness schema export for specific pages
@@ -352,74 +317,22 @@ export const localBusinessSchema = {
   "email": BUSINESS_INFO.email,
   "address": getSchemaAddress(),
   "geo": getSchemaGeo(),
-  "priceRange": "$150-$250/hour",
-  "image": `${BUSINESS_INFO.website}/hero-party-bus.jpg`,
+  "priceRange": BUSINESS_INFO.priceRange,
+  "image": absoluteUrl(BRAND_ASSETS.image.url),
   "openingHoursSpecification": {
     "@type": "OpeningHoursSpecification",
     "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
     "opens": "00:00",
     "closes": "23:59"
   },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "5.0",
-    "reviewCount": "500",
-    "bestRating": "5"
-  },
-  "sameAs": [
-    BUSINESS_INFO.social.facebook,
-    BUSINESS_INFO.social.instagram,
-    BUSINESS_INFO.social.yelp
-  ]
+  // No aggregateRating — see the note in organizationSchema above.
+  "sameAs": getSameAs()
 };
 
-// FAQPage schema for homepage and other pages with FAQs
-export const homepageFAQSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How much does a party bus cost in Pittsburgh?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Party bus rentals in Pittsburgh start at $150/hour for mini buses (8-12 passengers) and go up to $250/hour for large luxury buses (35-40 passengers). Most rentals have a 3-4 hour minimum. Prices vary based on vehicle size, date, and duration."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How far in advance should I book a party bus in Pittsburgh?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "We recommend booking 2-4 weeks in advance for regular events. For peak times like prom season (April-June), wedding season (May-October), and New Year's Eve, book 6-8 weeks ahead. We often have same-day availability for last-minute requests."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What areas do you serve in Pittsburgh?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "We serve all of Pittsburgh and surrounding areas including Downtown, Oakland, Shadyside, South Side, North Hills, South Hills, and the entire Allegheny County. We also provide service to Pittsburgh International Airport and can arrange trips throughout Western Pennsylvania."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can we bring alcohol on the party bus?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, passengers 21+ may bring their own alcoholic beverages. We provide ice, cups, and cooler space. We do not supply alcohol. Our chauffeur will check IDs and has the right to refuse service to intoxicated passengers for safety."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What's included in a party bus rental?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Every rental includes a professional chauffeur, fuel and tolls, insurance coverage, premium amenities (sound system, LED lighting, climate control), ice, cups, napkins, red carpet service, and complimentary water. Larger buses include dance floors and bar setups."
-      }
-    }
-  ]
-};
+// homepageFAQSchema was removed. It declared five questions that appeared
+// nowhere on the homepage, which Google's FAQ guidance prohibits. Homepage FAQ
+// content now lives in src/data/faqs.ts and is rendered by <FAQSection>, which
+// emits the markup from the same array it renders.
 
 export const websiteSchema = {
   "@context": "https://schema.org",
@@ -454,25 +367,52 @@ export const articleSchema = (article: {
   datePublished: string;
   dateModified?: string;
   author: string;
+  url?: string;
 }) => ({
   "@context": "https://schema.org",
-  "@type": "Article",
+  // BlogPosting rather than the bare Article this used to emit — it is the more
+  // specific type for these posts and is what Google's article guidance expects.
+  "@type": "BlogPosting",
   "headline": article.title,
   "description": article.description,
   "image": article.image,
   "datePublished": article.datePublished,
   "dateModified": article.dateModified || article.datePublished,
-  "author": {
-    "@type": "Organization",
-    "name": article.author
-  },
+  // mainEntityOfPage was missing entirely, so nothing tied the markup to the URL.
+  ...(article.url ? { "mainEntityOfPage": { "@type": "WebPage", "@id": article.url } } : {}),
+  ...(article.url ? { "url": article.url } : {}),
+  // author stays an Organization until a real named person is supplied via
+  // BUSINESS_INFO.author (see the note there). A Person entry with an invented
+  // name would be worse than an honest Organization byline.
+  "author": BUSINESS_INFO.author.confirmed
+    ? {
+        "@type": "Person",
+        "name": BUSINESS_INFO.author.name,
+        "url": `${BUSINESS_INFO.website}/authors/${BUSINESS_INFO.author.slug}`,
+        ...(BUSINESS_INFO.author.credential
+          ? { "jobTitle": BUSINESS_INFO.author.credential }
+          : {}),
+      }
+    : {
+        "@type": "Organization",
+        "name": article.author,
+        "url": BUSINESS_INFO.website,
+      },
   "publisher": {
     "@type": "Organization",
     "name": BUSINESS_INFO.name,
+    "url": BUSINESS_INFO.website,
     "logo": {
       "@type": "ImageObject",
-      "url": `${BUSINESS_INFO.website}/logo.png`
+      "url": absoluteUrl(BRAND_ASSETS.logo.url),
+      "width": BRAND_ASSETS.logo.width,
+      "height": BRAND_ASSETS.logo.height
     }
+  },
+  "isPartOf": {
+    "@type": "Blog",
+    "@id": `${BUSINESS_INFO.website}/blog`,
+    "name": `${BUSINESS_INFO.name} Blog`
   }
 });
 

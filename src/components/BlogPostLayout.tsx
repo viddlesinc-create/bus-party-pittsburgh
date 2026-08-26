@@ -6,10 +6,12 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, Clock, User, ArrowLeft } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Calendar, Clock, User, ArrowLeft, CalendarClock } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 import { useLoaderData } from "@/lib/use-loader-data";
 import { BlogPostData } from "@/loaders/blog";
+import { getLastUpdated, formatLastUpdated } from "@/components/LastUpdated";
+import { BUSINESS_INFO } from "@/lib/business-info";
 
 // Import blog post images for related posts
 import topEventsImg from "@/assets/blog-top-events-pittsburgh.jpg";
@@ -54,6 +56,13 @@ const BlogPostLayout = ({
   const { data: ssrData } = useLoaderData<BlogPostData>();
   
   const slug = ssrData?.meta?.canonical || (typeof window !== 'undefined' ? window.location.pathname : '');
+
+  // Must come from the router, not from `slug`: ssrData is empty during
+  // prerendering and `window` does not exist there, so `slug` resolves to ""
+  // and every post declared the homepage as its mainEntityOfPage.
+  const { pathname } = useLocation();
+  const postPath = pathname !== "/" ? pathname.replace(/\/+$/, "") : "/";
+  const lastUpdatedIso = getLastUpdated(postPath);
   
   // Use SSR related posts if available, otherwise use defaults
   const relatedPosts = ssrData?.relatedPosts?.length 
@@ -108,9 +117,13 @@ const BlogPostLayout = ({
       <StructuredData data={articleSchema({
         title,
         description: excerpt,
-        image: `https://pittpartybus.com${image}`,
+        image: `${BUSINESS_INFO.website}${image}`,
         datePublished: new Date(date).toISOString(),
-        author
+        // Same value as the visible "Last updated" line below, so the page can
+        // never display one date and declare another.
+        dateModified: new Date(lastUpdatedIso).toISOString(),
+        author,
+        url: `${BUSINESS_INFO.website}${postPath}`,
       })} />
       <Navigation />
       
@@ -155,6 +168,13 @@ const BlogPostLayout = ({
             <span className="flex items-center">
               <Clock className="h-5 w-5 mr-2" />
               {readTime}
+            </span>
+            <span className="flex items-center">
+              <CalendarClock className="h-5 w-5 mr-2" />
+              Last updated:{" "}
+              <time dateTime={lastUpdatedIso} className="ml-1">
+                {formatLastUpdated(lastUpdatedIso)}
+              </time>
             </span>
           </div>
         </div>

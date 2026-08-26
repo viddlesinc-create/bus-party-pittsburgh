@@ -27,14 +27,13 @@ const PartyBusPricingGuide = () => {
 
       <h2>Average Party Bus Rental Prices in Pittsburgh</h2>
       <p>
-        In Pittsburgh, party bus rental rates typically range from $100 to $300 per hour, depending on the vehicle 
+        In Pittsburgh, our party bus rental rates run from $150 to $250 per hour, depending on the vehicle 
         size and amenities. Here's a breakdown of what you can expect:
       </p>
       <ul>
-        <li><strong>Small Party Buses (10-15 passengers):</strong> $100-$150 per hour</li>
+        <li><strong>Small Party Buses (8-15 passengers):</strong> $150-$175 per hour</li>
         <li><strong>Medium Party Buses (16-25 passengers):</strong> $150-$200 per hour</li>
-        <li><strong>Large Party Buses (26-40 passengers):</strong> $200-$300 per hour</li>
-        <li><strong>Luxury/Premium Buses:</strong> $250-$400+ per hour</li>
+        <li><strong>Large Party Buses (26-30 passengers):</strong> $200-$250 per hour</li>
       </ul>
 
       <h2>Key Factors That Affect Party Bus Pricing</h2>

@@ -34,7 +34,7 @@ const PartyBusVsLimo = () => {
         Party buses excel when it comes to accommodating larger groups:
       </p>
       <ul>
-        <li>Typical capacity: 15-40 passengers</li>
+        <li>Typical capacity: 15-30 passengers</li>
         <li>Standing room allows for movement and dancing</li>
         <li>Spacious interior with multiple seating areas</li>
         <li>Room for everyone to mingle and socialize</li>
