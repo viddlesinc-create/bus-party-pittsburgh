@@ -101,7 +101,7 @@ const Index = () => {
     <>
       <MetaTags 
         title="Pittsburgh Party Bus Rental | $150/hr Party Buses & Limos | Pitt Party Bus"
-        description="Pittsburgh's #1 party bus rental. Buses for 10-40 passengers starting at $150/hr. Weddings, proms, bachelor parties. Free instant quotes. Call (412) 385-3877"
+        description="Pittsburgh's #1 party bus rental. Buses for 2-30 passengers starting at $150/hr. Weddings, proms, bachelor parties. Free instant quotes. Call (412) 385-3877"
         canonical="/"
       />
       <StructuredData data={combinedSchema} />
@@ -497,7 +497,7 @@ const Index = () => {
           <div className="grid md:grid-cols-4 gap-6 mb-12">
             <Card className="border-border shadow-card-custom text-center">
               <CardHeader>
-                <CardTitle className="text-2xl text-accent">$100+</CardTitle>
+                <CardTitle className="text-2xl text-accent">$150+</CardTitle>
                 <CardDescription>Mini Party Bus</CardDescription>
               </CardHeader>
               <CardContent>
@@ -507,7 +507,7 @@ const Index = () => {
             
             <Card className="border-border shadow-card-custom text-center">
               <CardHeader>
-                <CardTitle className="text-2xl text-accent">$125+</CardTitle>
+                <CardTitle className="text-2xl text-accent">$175+</CardTitle>
                 <CardDescription>Party Van</CardDescription>
               </CardHeader>
               <CardContent>
@@ -517,7 +517,7 @@ const Index = () => {
             
             <Card className="border-border shadow-card-custom text-center">
               <CardHeader>
-                <CardTitle className="text-2xl text-accent">$150+</CardTitle>
+                <CardTitle className="text-2xl text-accent">$200+</CardTitle>
                 <CardDescription>Executive Bus</CardDescription>
               </CardHeader>
               <CardContent>
@@ -527,11 +527,11 @@ const Index = () => {
             
             <Card className="border-border shadow-card-custom text-center">
               <CardHeader>
-                <CardTitle className="text-2xl text-accent">$175+</CardTitle>
-                <CardDescription>Luxury Bus</CardDescription>
+                <CardTitle className="text-2xl text-accent">$250+</CardTitle>
+                <CardDescription>Large Bus</CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-muted-foreground">35-40 passengers<br/>Ultimate party experience</p>
+                <p className="text-sm text-muted-foreground">26-30 passengers<br/>Ultimate party experience</p>
               </CardContent>
             </Card>
           </div>

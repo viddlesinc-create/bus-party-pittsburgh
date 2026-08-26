@@ -72,8 +72,8 @@ export const BUSINESS_INFO = {
   priceMax: 250,
 
   // Founded — used by the footer, /about and LocalBusiness.foundingDate.
-  // OWNER TO CONFIRM: this year was already asserted in the repo's schema before
-  // this change; it has not been independently verified.
+  // Confirmed by the owner. Note the operator behind this brand publicly claims
+  // 20+ years; 2010 is the founding year of Pitt Party Bus specifically.
   foundingDate: "2010",
   foundingYear: "2010",
 

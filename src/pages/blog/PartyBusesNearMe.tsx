@@ -135,7 +135,7 @@ const PartyBusesNearMe = () => {
         <li>Full bar setup and dance floor space</li>
       </ul>
 
-      <h3>Large Party Buses (28-40 Passengers)</h3>
+      <h3>Large Party Buses (28-30 Passengers)</h3>
       <p>
         For big celebrations and large groups, our luxury coaches provide maximum space and the ultimate 
         party atmosphere.
@@ -155,9 +155,10 @@ const PartyBusesNearMe = () => {
 
       <h3>Typical Pittsburgh Party Bus Rates</h3>
       <ul>
-        <li><strong>Mini Party Buses:</strong> Starting at $100/hour (3-hour minimum)</li>
-        <li><strong>Medium Party Buses:</strong> Starting at $125-150/hour (4-hour minimum)</li>
-        <li><strong>Large Party Buses:</strong> Starting at $175/hour (4-hour minimum)</li>
+        <li><strong>Mini Party Bus (8-12):</strong> $150/hour (3-hour minimum)</li>
+        <li><strong>Party Van (13-15):</strong> $175/hour (3-hour minimum)</li>
+        <li><strong>Executive Party Bus (20-25):</strong> $200/hour (4-hour minimum)</li>
+        <li><strong>Largest Party Buses:</strong> $250/hour (4-hour minimum)</li>
       </ul>
 
       <h3>What's Included</h3>

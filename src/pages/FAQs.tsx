@@ -53,7 +53,7 @@ const FAQs = () => {
       faqs: [
         {
           question: "How much does a party bus rental cost in Pittsburgh?",
-          answer: "Pricing varies by vehicle size, day of week, and duration. Mini buses (8-12 passengers) start at $75/hour, while our largest party buses (35-40 passengers) start at $150/hour. All rentals have a 3-4 hour minimum. Contact us for exact pricing for your event."
+          answer: "Pricing varies by vehicle size, day of week, and duration. Mini buses (8-12 passengers) start at $150/hour, while our largest party buses (26-30 passengers) are $250/hour. All rentals have a 3-4 hour minimum. Contact us for exact pricing for your event."
         },
         {
           question: "What's included in the rental price?",
@@ -75,7 +75,7 @@ const FAQs = () => {
       faqs: [
         {
           question: "What types of vehicles do you have?",
-          answer: "Our fleet includes: Mini party buses (8-12), Party vans (13-15), Executive party buses (20-25), Luxury party buses (35-40), Stretch limousines (up to 10), and SUV limos (up to 20). Each vehicle is equipped with premium amenities and regularly maintained."
+          answer: "Our fleet includes: Mini party buses (8-12), Party vans (13-15), Executive party buses (20-25), Large party buses (26-30), Stretch limousines (up to 10), and SUV limos (up to 20). Each vehicle is equipped with premium amenities and regularly maintained."
         },
         {
           question: "What amenities are included in your party buses?",
@@ -335,9 +335,9 @@ const FAQs = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               { topic: "Booking Timeline", answer: "Book 2-4 weeks in advance for best availability" },
-              { topic: "Group Size", answer: "We accommodate groups from 8 to 40 passengers" },
+              { topic: "Group Size", answer: "We accommodate groups from 2 to 30 passengers" },
               { topic: "Service Area", answer: "All of Pittsburgh and surrounding communities" },
-              { topic: "Pricing", answer: "Starting at $75/hour with 3-4 hour minimums" },
+              { topic: "Pricing", answer: "Starting at $150/hour with 3-4 hour minimums" },
               { topic: "Alcohol Policy", answer: "BYOB allowed for passengers 21+ with valid ID" },
               { topic: "Weather Policy", answer: "We operate in most conditions, safety first" },
               { topic: "Payment", answer: "25% deposit required, balance due day of service" },

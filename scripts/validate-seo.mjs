@@ -23,6 +23,30 @@ const TITLE_MIN = 50, TITLE_MAX = 60;
 const DESC_MIN = 140, DESC_MAX = 160;
 const FAQ_MIN = 100, FAQ_MAX = 200;
 
+/**
+ * Every hourly figure the site is allowed to state.
+ *
+ * The site once told six different price stories at the same time — $150-$250 in
+ * schema, $100-$175 in business-info, $100-$200 in the pricing loader, "$115" in
+ * the /pricing H1, "$" on /testimonials, and a $100/$125-150/$175 rate table on
+ * a blog post. This gate is what stops a seventh appearing.
+ *
+ * 150/175/200/250 are the per-vehicle rates on /pricing. 50 is the waiting-time
+ * fee, which is also quoted per hour and is not a vehicle rate.
+ */
+const ALLOWED_HOURLY = new Set([150, 175, 200, 250, 50]);
+
+/**
+ * Largest vehicle we actually operate.
+ *
+ * /pricing sold a "Luxury Party Bus (35-40)" tier and eight other places quoted
+ * capacities up to 40, but the biggest bus on /fleet seats 30 — and the operator
+ * behind this brand publishes the same 30-passenger ceiling. Same defect class as
+ * the price drift: a plausible number, contradicting the fleet, unnoticed for
+ * months. This bounds it.
+ */
+const MAX_CAPACITY = 30;
+
 const failures = [];
 const warnings = [];
 const fail = (file, msg) => failures.push(`${file}: ${msg}`);
@@ -188,6 +212,41 @@ for (const abs of files) {
   if (/^\/(fleet|pricing|events)\.html$/.test(file)) {
     if (!/<table/.test(html)) fail(file, 'expected a real <table> for extractability');
     else if (!/<caption/.test(html)) fail(file, '<table> is missing a <caption>');
+  }
+
+  // Any dollar figure quoted per hour must be one we actually charge.
+  for (const m of visible.matchAll(/\$\s?([\d,]+)(?:\s*(?:-|–|—|to)\s*\$?\s?([\d,]+))?\s*(?:\/|\s+per\s+|\s+an\s+|\s+a\s+)hour/gi)) {
+    for (const raw of [m[1], m[2]]) {
+      if (!raw) continue;
+      const n = Number(raw.replace(/,/g, ''));
+      if (!ALLOWED_HOURLY.has(n)) {
+        fail(file, `states ${n}/hour, which is not a rate we charge (allowed: ${[...ALLOWED_HOURLY].sort((a, b) => a - b).join(', ')}) — context: "${m[0]}"`);
+      }
+    }
+  }
+
+  // No page may advertise a vehicle larger than the one we operate.
+  for (const m of visible.matchAll(/(\d{1,3})\s*(?:-|–|—|to)\s*(\d{1,3})\s*(?:passenger|people|guests)/gi)) {
+    const top = Number(m[2]);
+    if (top > MAX_CAPACITY) {
+      fail(file, `advertises up to ${top} passengers; the largest vehicle seats ${MAX_CAPACITY} — context: "${m[0]}"`);
+    }
+  }
+
+  // "$150+" style rate floors are the other way a price story gets told. They
+  // carry no "/hour", so the hourly check above cannot see them — the homepage
+  // ran a whole $100+/$125+/$150+/$175+ ladder against /pricing's $150-$250.
+  // The negative lookahead skips costs that are plainly not ours — parking,
+  // tickets, gratuity, tax, per-person splits — so only our own rate floors
+  // are checked.
+  const NOT_OUR_COST = /^\s*(parking|fee|fees|ticket|tickets|cover|tip|tips|gratuity|tax|taxes|per person|per head|deposit|damage)/i;
+  for (const m of visible.matchAll(/\$\s?([\d,]+)\s?\+/g)) {
+    const trailing = visible.slice(m.index + m[0].length, m.index + m[0].length + 24);
+    if (NOT_OUR_COST.test(trailing)) continue;
+    const n = Number(m[1].replace(/,/g, ''));
+    if (!ALLOWED_HOURLY.has(n)) {
+      fail(file, `states a "${m[0]}" rate floor, which is not a rate we charge — followed by: "${trailing.trim().slice(0, 30)}"`);
+    }
   }
 
   // A placeholder must never reach a customer-facing page. Outstanding owner

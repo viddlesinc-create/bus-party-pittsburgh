@@ -160,7 +160,7 @@ export const organizationSchema = {
         "itemOffered": {
           "@type": "Service",
           "name": "Party Bus Rental",
-          "description": "Luxury party buses for groups of 12-40 passengers with premium sound systems, LED lighting, and full bar setup",
+          "description": "Luxury party buses for groups of 12-30 passengers with premium sound systems, LED lighting, and full bar setup",
           "url": "https://pittpartybus.com/fleet"
         },
         "priceSpecification": {
@@ -329,53 +329,10 @@ export const localBusinessSchema = {
   "sameAs": getSameAs()
 };
 
-// FAQPage schema for homepage and other pages with FAQs
-export const homepageFAQSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How much does a party bus cost in Pittsburgh?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Party bus rentals in Pittsburgh start at $150/hour for mini buses (8-12 passengers) and go up to $250/hour for large luxury buses (35-40 passengers). Most rentals have a 3-4 hour minimum. Prices vary based on vehicle size, date, and duration."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How far in advance should I book a party bus in Pittsburgh?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "We recommend booking 2-4 weeks in advance for regular events. For peak times like prom season (April-June), wedding season (May-October), and New Year's Eve, book 6-8 weeks ahead. We often have same-day availability for last-minute requests."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What areas do you serve in Pittsburgh?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "We serve all of Pittsburgh and surrounding areas including Downtown, Oakland, Shadyside, South Side, North Hills, South Hills, and the entire Allegheny County. We also provide service to Pittsburgh International Airport and can arrange trips throughout Western Pennsylvania."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can we bring alcohol on the party bus?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, passengers 21+ may bring their own alcoholic beverages. We provide ice, cups, and cooler space. We do not supply alcohol. Our chauffeur will check IDs and has the right to refuse service to intoxicated passengers for safety."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What's included in a party bus rental?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Every rental includes a professional chauffeur, fuel and tolls, insurance coverage, premium amenities (sound system, LED lighting, climate control), ice, cups, napkins, red carpet service, and complimentary water. Larger buses include dance floors and bar setups."
-      }
-    }
-  ]
-};
+// homepageFAQSchema was removed. It declared five questions that appeared
+// nowhere on the homepage, which Google's FAQ guidance prohibits. Homepage FAQ
+// content now lives in src/data/faqs.ts and is rendered by <FAQSection>, which
+// emits the markup from the same array it renders.
 
 export const websiteSchema = {
   "@context": "https://schema.org",

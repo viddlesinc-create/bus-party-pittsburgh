@@ -74,7 +74,7 @@ const Pricing = () => {
       bestFor: "Weddings, corporate events"
     },
     {
-      name: "Luxury Party Bus (35-40)",
+      name: "Large Party Bus (26-30)",
       hourlyRate: "$250",
       minimumHours: 4,
       popular: false,
@@ -144,7 +144,7 @@ const Pricing = () => {
       <section className="py-20 bg-hero-gradient">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-6xl font-bold text-primary-foreground mb-6">
-            Pittsburgh Party Bus Pricing — Rates from $115/Hour
+            Pittsburgh Party Bus Pricing — Rates from $150/Hour
           </h1>
           <p className="text-xl text-primary-foreground/90 max-w-3xl mx-auto mb-8">
             How much does a party bus cost in Pittsburgh? Get transparent party bus rental rates starting at $150/hour.
@@ -219,7 +219,6 @@ const Pricing = () => {
                         <SelectItem value="16-20">16-20 passengers</SelectItem>
                         <SelectItem value="21-25">21-25 passengers</SelectItem>
                         <SelectItem value="26-30">26-30 passengers</SelectItem>
-                        <SelectItem value="31-40">31-40 passengers</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>

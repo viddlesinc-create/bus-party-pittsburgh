@@ -364,11 +364,11 @@ const Fleet = () => {
       <section className="py-20 bg-hero-gradient">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-6xl font-bold text-primary-foreground mb-6">
-            Pittsburgh Party Bus Fleet — 6 to 40 Passenger Vehicles
+            Pittsburgh Party Bus Fleet — 2 to 30 Passenger Vehicles
           </h1>
           <p className="text-xl text-primary-foreground/90 max-w-3xl mx-auto mb-8">
             Looking for a party bus rental in Pittsburgh? Explore our diverse fleet from small party buses (8-14 passengers) 
-            to large party buses (20-40 guests). Perfect for any <Link to="/events" className="text-white hover:underline font-semibold">event</Link>. 
+            to large party buses (20-30 guests). Perfect for any <Link to="/events" className="text-white hover:underline font-semibold">event</Link>. 
             All vehicles serve the entire <Link to="/locations" className="text-white hover:underline font-semibold">Pittsburgh area</Link> with 
             competitive <Link to="/pricing" className="text-white hover:underline font-semibold">hourly rates</Link>. 
             Read our <Link to="/blog/party-bus-vs-limo" className="text-white hover:underline font-semibold">party bus vs limo guide</Link> to 
@@ -666,7 +666,7 @@ const Fleet = () => {
                     <span className="text-accent font-bold">$200/hr</span>
                   </div>
                   <div className="flex justify-between items-center py-2">
-                    <span className="font-medium">28-40 passengers</span>
+                    <span className="font-medium">28-30 passengers</span>
                     <span className="text-accent font-bold">$250/hr</span>
                   </div>
                 </div>
