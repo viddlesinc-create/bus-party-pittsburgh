@@ -21,7 +21,7 @@ const Footer = () => {
               {BUSINESS_INFO.name}
             </div>
             <p className="text-primary-foreground/80 mb-4" itemProp="description">
-              Pittsburgh's premier party bus and limousine rental service. Making your special events unforgettable since day one.
+              Pittsburgh's premier party bus and limousine rental service. Serving Pittsburgh since {BUSINESS_INFO.foundingYear}, making your special events unforgettable.
             </p>
             <div className="flex space-x-3">
               <Button variant="ghost" size="sm" className="text-primary-foreground hover:text-accent" asChild>
@@ -89,6 +89,11 @@ const Footer = () => {
               <li>
                 <Link to="/blog" className="text-primary-foreground/80 hover:text-accent transition-colors">
                   Blog & Tips
+                </Link>
+              </li>
+              <li>
+                <Link to="/about" className="text-primary-foreground/80 hover:text-accent transition-colors">
+                  About Us
                 </Link>
               </li>
               <li>

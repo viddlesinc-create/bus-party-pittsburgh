@@ -8,6 +8,7 @@ import { ComponentType } from "react";
 import Index from "./pages/Index";
 import Fleet from "./pages/Fleet";
 import Contact from "./pages/Contact";
+import About from "./pages/About";
 import Events from "./pages/Events";
 import Locations from "./pages/Locations";
 import NorthHills from "./pages/locations/NorthHills";
@@ -38,6 +39,7 @@ export const eagerComponents: Record<string, ComponentType> = {
   "/": Index,
   "/fleet": Fleet,
   "/contact": Contact,
+  "/about": About,
   "/events": Events,
   "/locations": Locations,
   "/locations/north-hills": NorthHills,

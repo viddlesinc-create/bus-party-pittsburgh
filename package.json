@@ -10,7 +10,8 @@
     "verify-ssr": "node scripts/verify-ssr.js",
     "preview": "vite preview",
     "build:ssr": "vite build --ssr src/entry-server.tsx --outDir dist-server",
-    "prerender": "npm run build:ssr && node scripts/prerender.cjs"
+    "prerender": "npm run build:ssr && node scripts/prerender.cjs",
+    "prebuild": "node scripts/generate-last-updated.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

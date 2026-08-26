@@ -6,6 +6,7 @@ import { LoaderFunction, LoaderContext, createLoaderContext, executeLoader } fro
 import Index from "./pages/Index";
 import Fleet from "./pages/Fleet";
 import Contact from "./pages/Contact";
+import About from "./pages/About";
 
 // Lazy-loaded pages (code splitting for better performance)
 const Events = lazy(() => import("./pages/Events"));
@@ -65,6 +66,7 @@ export const routes: RouteConfig[] = [
   { path: "/", component: Index, loader: homepageLoader, isLazy: false },
   { path: "/fleet", component: Fleet, loader: fleetLoader, isLazy: false },
   { path: "/contact", component: Contact, loader: contactLoader, isLazy: false },
+  { path: "/about", component: About, isLazy: false },
   { path: "/events", component: Events, loader: eventsLoader, isLazy: true },
   { path: "/locations", component: Locations, loader: locationsLoader, isLazy: true },
   { path: "/locations/north-hills", component: NorthHills, isLazy: true },
