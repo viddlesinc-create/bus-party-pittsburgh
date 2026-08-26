@@ -190,9 +190,23 @@ for (const abs of files) {
     else if (!/<caption/.test(html)) fail(file, '<table> is missing a <caption>');
   }
 
-  // Owner-supplied facts still outstanding. Not a failure — a visible reminder.
-  const todos = (html.match(/\{TODO: owner to supply\}/g) || []).length;
-  if (todos) warn(file, `${todos} {TODO: owner to supply} marker(s) still rendered`);
+  // A placeholder must never reach a customer-facing page. Outstanding owner
+  // facts are tracked from the source instead (see the TODO(owner) sweep below).
+  if (/\{TODO[:\s]/.test(visible)) fail(file, 'a TODO placeholder is rendered in visible page content');
+}
+
+// Outstanding owner-supplied facts. These are warnings, not failures: the pages
+// render correctly without them, but they should not be quietly forgotten.
+for (const src of ['src/data/experience.ts', 'src/pages/About.tsx', 'src/lib/business-info.ts']) {
+  const abs = resolve(root, src);
+  if (!existsSync(abs)) continue;
+  const text = readFileSync(abs, 'utf8');
+  for (const m of text.matchAll(/TODO\(owner\):\s*([^\n]*(?:\n\s*\*\s+[^\n]*)*)/g)) {
+    warn(src, 'owner input outstanding — ' + m[1].replace(/\n\s*\*\s*/g, ' ').trim());
+  }
+}
+if (!/confirmed:\s*true/.test(readFileSync(resolve(root, 'src/lib/business-info.ts'), 'utf8'))) {
+  warn('src/lib/business-info.ts', 'no named blog author confirmed; BlogPosting.author stays an Organization');
 }
 
 if (warnings.length) {

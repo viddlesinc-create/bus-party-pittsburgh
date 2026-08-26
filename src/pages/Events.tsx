@@ -1,6 +1,7 @@
 import { MetaTags } from "@/components/MetaTags";
 import { LastUpdated } from "@/components/LastUpdated";
 import { FAQSection } from "@/components/FAQSection";
+import { ExperienceSection } from "@/components/ExperienceSection";
 import { ComparisonTable } from "@/components/ComparisonTable";
 import { EVENTS_FAQS } from "@/data/faqs";
 import { InitialsAvatar } from "@/components/InitialsAvatar";
@@ -470,6 +471,8 @@ const Events = () => {
           />
         </div>
       </section>
+
+      <ExperienceSection page="events" heading="What we have learned running events" />
 
       <FAQSection
         faqs={EVENTS_FAQS}

@@ -23,6 +23,15 @@ import { Phone, ShieldCheck, MapPin, Bus, Clock, Users } from "lucide-react";
  * /fleet, the service areas in organizationSchema, the NAP in business-info) or
  * marked TODO for the owner. No job counts, crew sizes or awards are invented.
  */
+/**
+ * Licensing and insurance details, once the owner supplies them. Each is a claim
+ * a customer or a regulator can verify, so none may be invented.
+ *
+ * TODO(owner): supply commercial insurance carrier and liability limits, the
+ * PA PUC / DOT operating authority number, and the chauffeur screening policy.
+ */
+const LICENSING: { label: string; value: string }[] = [];
+
 const About = () => {
   // Straight from the vehicle list rendered on /fleet — 13 vehicles spanning
   // 2 to 30 passengers. If that list changes, update this.
@@ -150,22 +159,21 @@ const About = () => {
             {/* Do not fill these in without documentation from the owner. Carrier
                 name, policy limits and the PA PUC certificate number are all
                 publicly checkable claims — a wrong one is worse than none. */}
-            <Card className="border-dashed">
-              <CardContent className="pt-6 space-y-2 text-sm text-muted-foreground">
-                <p>
-                  <strong className="text-foreground">Commercial insurance carrier and
-                  liability limits:</strong> {"{TODO: owner to supply}"}
-                </p>
-                <p>
-                  <strong className="text-foreground">PA PUC / DOT operating authority
-                  number:</strong> {"{TODO: owner to supply}"}
-                </p>
-                <p>
-                  <strong className="text-foreground">Chauffeur licensing and background
-                  check policy:</strong> {"{TODO: owner to supply}"}
-                </p>
-              </CardContent>
-            </Card>
+            {/* Carrier name, liability limits and the PA PUC authority number are
+                publicly checkable claims. They are omitted rather than guessed;
+                add them to LICENSING below once the owner supplies them and this
+                block renders itself. */}
+            {LICENSING.length > 0 && (
+              <Card>
+                <CardContent className="pt-6 space-y-2 text-sm text-muted-foreground">
+                  {LICENSING.map((item) => (
+                    <p key={item.label}>
+                      <strong className="text-foreground">{item.label}:</strong> {item.value}
+                    </p>
+                  ))}
+                </CardContent>
+              </Card>
+            )}
           </div>
         </section>
 

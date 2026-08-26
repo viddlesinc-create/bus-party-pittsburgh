@@ -3,6 +3,7 @@ import { LastUpdated } from "@/components/LastUpdated";
 import { ComparisonTable } from "@/components/ComparisonTable";
 import { StructuredData, serviceSchema, breadcrumbSchema } from "@/components/StructuredData";
 import { FAQSection } from "@/components/FAQSection";
+import { ExperienceSection } from "@/components/ExperienceSection";
 import { PRICING_FAQS } from "@/data/faqs";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { InternalLinkCTA } from "@/components/InternalLinkCTA";
@@ -414,6 +415,8 @@ const Pricing = () => {
           </div>
         </div>
       </section>
+
+      <ExperienceSection page="pricing" heading="How we quote" />
 
       <FAQSection
         faqs={PRICING_FAQS}
