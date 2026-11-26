@@ -10,6 +10,7 @@ import { ScrollToTop } from "@/components/ScrollToTop";
 import { Routes } from "react-router-dom";
 import { renderRoutes } from "./router";
 import { SSRDataProvider } from "./lib/ssr-data-context";
+import { installPhoneClickTracking } from "./lib/analytics";
 import './index.css';
 
 // Client-only toasters to prevent hydration mismatch
@@ -60,6 +61,9 @@ const app = (
     </QueryClientProvider>
   </HelmetProvider>
 );
+
+// GTM lead event: one delegated listener covers every tel: link site-wide.
+installPhoneClickTracking();
 
 // Check if server-rendered content exists
 const html = container.innerHTML.trim();

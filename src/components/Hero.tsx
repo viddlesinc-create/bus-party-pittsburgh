@@ -9,6 +9,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useState, useEffect } from "react";
 import heroImageWebP from "@/assets/hero-party-bus.webp";
 import heroImageJpg from "@/assets/hero-party-bus.jpg";
+import { trackGenerateLead } from "@/lib/analytics";
 const Hero = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -62,6 +63,7 @@ const Hero = () => {
         body: JSON.stringify(data)
       });
       if (response.ok) {
+        trackGenerateLead('homepage');
         toast({
           title: "Quote Request Sent!",
           description: "We'll get back to you within 2 hours during business hours."
