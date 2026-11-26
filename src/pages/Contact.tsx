@@ -13,6 +13,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useState, useEffect } from "react";
 import { BUSINESS_INFO, getFormattedAddress } from "@/lib/business-info";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { trackGenerateLead } from "@/lib/analytics";
 import { 
   Phone,
   Mail,
@@ -81,6 +82,7 @@ const Contact = () => {
       });
 
       if (response.ok) {
+        trackGenerateLead('contact');
         toast({
           title: "Quote Request Sent!",
           description: "We'll get back to you within 2 hours during business hours.",
